@@ -1,0 +1,14 @@
+CMake Error at CMakeLists.txt:39 (add_executable):
+  Target "teleop_twist_joy_node" links to target
+  "rclcpp_components::component" but the target was not found.  Perhaps a
+  find_package() call is missing for an IMPORTED target, or an ALIAS target
+  is missing?
+
+
+CMake Error at CMakeLists.txt:20 (add_library):
+  Target "teleop_twist_joy" links to target "rclcpp_components::component"
+  but the target was not found.  Perhaps a find_package() call is missing for
+  an IMPORTED target, or an ALIAS target is missing?
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

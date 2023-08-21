@@ -1,0 +1,74 @@
+[0.012s] Invoking command in '/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/tcp_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg
+[0.046s] -- The C compiler identification is GNU 9.4.0
+[0.078s] -- The CXX compiler identification is GNU 9.4.0
+[0.081s] -- Check for working C compiler: /usr/bin/cc
+[0.118s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.119s] -- Detecting C compiler ABI info
+[0.157s] -- Detecting C compiler ABI info - done
+[0.165s] -- Detecting C compile features
+[0.165s] -- Detecting C compile features - done
+[0.166s] -- Check for working CXX compiler: /usr/bin/c++
+[0.211s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.211s] -- Detecting CXX compiler ABI info
+[0.255s] -- Detecting CXX compiler ABI info - done
+[0.261s] -- Detecting CXX compile features
+[0.262s] -- Detecting CXX compile features - done
+[0.265s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.278s] -- Found PythonInterp: /home/bigyun/anaconda3/bin/python3 (found suitable version "3.10.9", minimum required is "3") 
+[0.278s] -- Using PYTHON_EXECUTABLE: /home/bigyun/anaconda3/bin/python3
+[0.369s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.389s] -- Found std_msgs: 2.0.5 (/opt/ros/foxy/share/std_msgs/cmake)
+[0.405s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.409s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.454s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.476s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.520s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.548s] -- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[0.617s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.642s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.642s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.643s] -- Looking for pthread.h
+[0.683s] -- Looking for pthread.h - found
+[0.684s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.727s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[0.727s] -- Looking for pthread_create in pthreads
+[0.763s] -- Looking for pthread_create in pthreads - not found
+[0.763s] -- Looking for pthread_create in pthread
+[0.808s] -- Looking for pthread_create in pthread - found
+[0.809s] -- Found Threads: TRUE  
+[0.891s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.948s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.949s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.949s] -- Configured cppcheck include dirs: 
+[0.949s] -- Configured cppcheck exclude dirs and/or files: 
+[0.949s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.949s] -- Configured cpplint exclude dirs and/or files: 
+[0.949s] -- Added test 'lint_cmake' to check CMake code style
+[0.950s] -- Added test 'uncrustify' to check C / C++ code style
+[0.950s] -- Configured uncrustify additional arguments: 
+[0.950s] -- Added test 'xmllint' to check XML markup files
+[0.952s] -- Configuring done
+[0.953s] -- Generating done
+[0.954s] -- Build files have been written to: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg
+[0.960s] Invoked command in '/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/tcp_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg
+[0.961s] Invoking command in '/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg -- -j20 -l20
+[0.985s] Invoked command in '/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg -- -j20 -l20
+[1.003s] Invoking command in '/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg
+[1.007s] -- Install configuration: ""
+[1.008s] -- Execute custom install script
+[1.008s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/ament_index/resource_index/package_run_dependencies/tcp_pkg
+[1.013s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/ament_index/resource_index/parent_prefix_path/tcp_pkg
+[1.019s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/environment/ament_prefix_path.sh
+[1.024s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/environment/ament_prefix_path.dsv
+[1.030s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/environment/path.sh
+[1.034s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/environment/path.dsv
+[1.040s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/local_setup.bash
+[1.045s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/local_setup.sh
+[1.051s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/local_setup.zsh
+[1.056s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/local_setup.dsv
+[1.061s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/package.dsv
+[1.066s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/ament_index/resource_index/packages/tcp_pkg
+[1.071s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/cmake/tcp_pkgConfig.cmake
+[1.076s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/cmake/tcp_pkgConfig-version.cmake
+[1.081s] -- Symlinking: /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/install/tcp_pkg/share/tcp_pkg/package.xml
+[1.088s] Invoked command in '/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/build/tcp_pkg

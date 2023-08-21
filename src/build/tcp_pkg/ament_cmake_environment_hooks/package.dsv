@@ -1,0 +1,4 @@
+source;share/tcp_pkg/local_setup.bash
+source;share/tcp_pkg/local_setup.dsv
+source;share/tcp_pkg/local_setup.sh
+source;share/tcp_pkg/local_setup.zsh

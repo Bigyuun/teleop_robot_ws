@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/opt/ros/foxy/include/**",
+        "/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/include/**",
+        "/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/**",
+        "/usr/include/**",
+        ""
+
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
