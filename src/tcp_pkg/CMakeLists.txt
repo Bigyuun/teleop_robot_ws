@@ -27,7 +27,7 @@ include_directories("include/tcp_pkg"
 
 # DY
 # Build
-add_executable(tcpclient src/tcp_node.cpp)
+add_executable(tcpclient src/main.cpp src/tcp_node.cpp)
 ament_target_dependencies(tcpclient rclcpp std_msgs sensor_msgs geometry_msgs)
 
 # DY

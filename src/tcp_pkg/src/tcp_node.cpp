@@ -2,9 +2,15 @@
 
 #include "tcp_node.hpp"
 
+#include <memory>
+#include <functional>
+#include <chrono>
+#include <signal.h>
+
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+
 using namespace std::chrono_literals;
-
-
 
 TCPClientNode::TCPClientNode() : rclcpp::Node("TCPClientNode")
 {
@@ -20,16 +26,6 @@ TCPClientNode::TCPClientNode() : rclcpp::Node("TCPClientNode")
   // trying to send." Therefore set the policy to best effort to avoid blocking during execution.
   qos.best_effort();
 
-  // haptic_publisher_ = this->create_publisher<ecat_msgs::msg::HapticCmd>("HapticInput",qos);
-
-  // // JKim - Subscription
-  // slave_feedback_ = this->create_subscription<ecat_msgs::msg::DataReceived>("Slave_Feedback", qos,
-  //                   std::bind(&HapticNode::HandleSlaveFeedbackCallbacks, this, std::placeholders::_1));
-
-  // // CKim - Launch thread that will constantly read socket and publish data
-  // future_ = exit_signal_.get_future();
-  // comm_thread_ = std::thread(&HapticNode::commThread, this); 
-
   if (this->Initialize()) {
     std::cout << "[TCPClientNode] Init Error." << std::endl;
     return;
@@ -38,6 +34,11 @@ TCPClientNode::TCPClientNode() : rclcpp::Node("TCPClientNode")
   this->send_thread_ = std::thread(&TCPClientNode::SendThread, this);
   this->recv_thread_ = std::thread(&TCPClientNode::RecvThread, this);
   std::cout << "[TCPClientNode] Threads (Send, Recv) are created." << std::endl;
+  
+  while (true) {
+    /* check the tcp On/Off */
+    usleep(1000000);
+  }
 
   this->send_thread_.join();
   this->recv_thread_.join();
@@ -47,7 +48,9 @@ TCPClientNode::TCPClientNode() : rclcpp::Node("TCPClientNode")
 
 TCPClientNode::~TCPClientNode()
 {
-
+  close(this->client_socket_);
+  this->send_thread_.join();
+  this->recv_thread_.join();
 }
 
 uint8_t TCPClientNode::Initialize()
@@ -96,7 +99,10 @@ uint8_t TCPClientNode::Initialize()
   }
   std::cout << "[INFO] Set is done -> " << "IP = " << this->ip_ << " port = " << this->port_ << std::endl;
 
+  return this->TCPconfiguration();
+}
 
+uint8_t TCPClientNode::TCPconfiguration() {
   // ***********************
   // 3 - TCP configuration
   // ***********************
@@ -107,8 +113,10 @@ uint8_t TCPClientNode::Initialize()
   memset(&this->server_addr_, 0, sizeof(this->server_addr_));
   this->server_addr_.sin_family = AF_INET;
   this->server_addr_.sin_addr.s_addr = inet_addr(this->ip_.c_str());
-  this->server_addr_.sin_port = this->port_;
+  this->server_addr_.sin_port = htons(this->port_);
+  // this->server_addr_.sin_port = htons(atoi(argc[2]));
   RCLCPP_INFO(this->get_logger(), "Connecting to server... ");
+  std::cout << this->server_addr_.sin_family << '/' << this->server_addr_.sin_addr.s_addr << '/' << this->server_addr_.sin_port << std::endl;
 
   int client_connect = connect(this->client_socket_, (struct sockaddr*)&this->server_addr_, sizeof(this->server_addr_));
   if (client_connect == -1) {
@@ -136,7 +144,7 @@ void TCPClientNode::SendThread()
     }
     write(this->client_socket_, this->send_msg_, this->buffer_size_);
     counter++;
-    usleep(100);
+    usleep(1000);
   }
 #else
   // spin
@@ -151,7 +159,7 @@ void TCPClientNode::SendThread()
       memcpy(this->send_msg_ + i*sizeof(long), &send_val[i], sizeof(send_val[i]));
     }
     write(this->client_socket_, this->send_msg_, this->buffer_size_);
-    usleep(100);
+    usleep(1000);
   }
 #endif
 }
@@ -171,87 +179,19 @@ void TCPClientNode::RecvThread()
     this->send_strlen_ = read(this->client_socket_, this->recv_msg_, this->buffer_size_);
     if (this->send_strlen_ == -1) {
       std::cout << "[Send Thread] read() error." << std::endl;
-      break;
+      continue;
+    }
+
+    if (this->send_strlen_ == 0) {  // disconnetion
+      RCLCPP_WARN(this->get_logger(), "EOF from Server. Try to reconnect");
     }
 
     // Little-Endian
     memcpy(recv_val, this->recv_msg_, this->buffer_size_);
-    system("cls");  // clear every time
+    // system("cls");  // clear every time
     for(int n=0; n<NUM_OF_MOTORS; n++){
         std::cout << "#" << n << "| pos : " << recv_val[0+n*2] << " / vel : " << recv_val[1+n*2] << " - " << counter++ << std::endl;
     }
     usleep(100);
   }
 }
-
-
-
-int main(int argc, char *argv[])
-{
-  rclcpp::init(argc, argv);
-  auto node = std::make_shared<TCPClientNode>();
-  rclcpp::spin(node);
-  rclcpp::shutdown();
-  return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-// TCPClientNode:TCPClientNode() : rclcpp::Node("TCPClientNode")
-// {
-
-//   // DY - set IP and Port as Server
-//   m_Port = "9800";
-//   // m_Port = argv[1];
-  
-//   auto qos = rclcpp::QoS(
-//     // The "KEEP_LAST" history setting tells DDS to store a fixed-size buffer of values before they
-//     // are sent, to aid with recovery in the event of dropped messages.
-//     // "depth" specifies the size of this buffer.
-//     // In this example, we are optimizing for performance and limited resource usage (preventing
-//     // page faults), instead of reliability. Thus, we set the size of the history buffer to 1.
-//     rclcpp::KeepLast(1)
-//   );
-//   // From http://www.opendds.org/qosusages.html: "A RELIABLE setting can potentially block while
-//   // trying to send." Therefore set the policy to best effort to avoid blocking during execution.
-//   qos.best_effort();
-//   // CKim - Initialize publisher
-//   haptic_publisher_ = this->create_publisher<ecat_msgs::msg::HapticCmd>("HapticInput",qos);
-
-//   // JKim - Subscription
-//   slave_feedback_ = this->create_subscription<ecat_msgs::msg::DataReceived>("Slave_Feedback", qos,
-//                     std::bind(&HapticNode::HandleSlaveFeedbackCallbacks, this, std::placeholders::_1));
-
-//   // CKim - Launch thread that will constantly read socket and publish data
-//   future_ = exit_signal_.get_future();
-//   comm_thread_ = std::thread(&HapticNode::commThread, this);  
-// }
-
-// void HapticNode::HandleSlaveFeedbackCallbacks(const ecat_msgs::msg::DataReceived::SharedPtr msg)
-//   {
-// //      time_info_.GetTime();
-//       for(int i=0; i < NUM_OF_SLAVES ; i++){
-//         received_data_[i].actual_pos             =  msg->actual_pos[i];
-//         received_data_[i].actual_vel             =  msg->actual_vel[i];
-//         received_data_[i].status_word            =  msg->status_word[i];
-//         received_data_[i].left_limit_switch_val  =  msg->left_limit_switch_val;
-//         received_data_[i].right_limit_switch_val =  msg->right_limit_switch_val;
-//         received_data_[i].p_emergency_switch_val =  msg->emergency_switch_val;
-//         received_data_[i].com_status             =  msg->com_status;
-
-//         // DY analog
-//         received_data_[i].analog_input_1         =  msg->analog_input_1[i];
-//         received_data_[i].analog_input_2         =  msg->analog_input_2[i];
-//     }  
-//   }
-
-
-

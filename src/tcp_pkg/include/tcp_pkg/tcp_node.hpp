@@ -1,4 +1,3 @@
-#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include <future>
@@ -35,8 +34,7 @@ class TCPClientNode final : public rclcpp::Node  // keyword 'final' prevents fur
 {
 public:
   TCPClientNode();
-  ~TCPClientNode() override; // Keyword 'override' tell compiler that this inherited function must be implemented
-
+  ~TCPClientNode(); // Keyword 'override' tell compiler that this inherited function must be implemented
   
 private:
   /***************************
@@ -44,9 +42,9 @@ private:
    * @brief  tcp ip elements
   **************************/
   uint8_t Initialize();
+  uint8_t TCPconfiguration();
   void SendThread();
   void RecvThread();
-  static void signal_callback_handler (int signum);
   
   std::string ip_ = DEFAULT_IP;
   std::string s_port_;
@@ -54,8 +52,8 @@ private:
 
   int client_socket_;
   struct sockaddr_in server_addr_;
-  char *send_msg_;
-  char *recv_msg_;
+  char send_msg_[DEFAULT_TCP_BUFFER_SIZE] = {0,};
+  char recv_msg_[DEFAULT_TCP_BUFFER_SIZE] = {0,};
 
   uint32_t buffer_size_;
   std::thread send_thread_;
