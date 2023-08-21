@@ -1,1 +1,0 @@
-/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/build/tcp_pkg/ament_cmake_core/tcp_pkgConfig-version.cmake
