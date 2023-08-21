@@ -1,9 +1,0 @@
-[35m[1mScanning dependencies of target tcpclient[0m
-[ 50%] [32mBuilding CXX object CMakeFiles/tcpclient.dir/src/tcp_node.cpp.o[0m
-[01m[K/home/bigyun/Desktop/github_repositories-Bigyuun/teleop_robot_ws/src/tcp_pkg/src/tcp_node.cpp:3:10:[m[K [01;31m[Kfatal error: [m[Ktcp_pkg/tcp_node.hpp: No such file or directory
-    3 | #include [01;31m[K"tcp_pkg/tcp_node.hpp"[m[K
-      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~[m[K
-compilation terminated.
-make[2]: *** [CMakeFiles/tcpclient.dir/build.make:63: CMakeFiles/tcpclient.dir/src/tcp_node.cpp.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:105: CMakeFiles/tcpclient.dir/all] Error 2
-make: *** [Makefile:141: all] Error 2

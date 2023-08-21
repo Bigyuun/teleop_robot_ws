@@ -1,0 +1,17 @@
+/**
+*	@file		SDK_VirtualModule_MasterSetup.mh
+*	@brief		Declaration of the virtual master functions
+*	$Revision: 155 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkSetupVirtualMasterMode(long master, long mode);
+long sdkSetupVirtualMasterAxisLink(long master, long axis);
+long sdkSetupVirtualMasterScale(long master, long numerator, long denominator);
+
+long sdkSetVirtualMasterProfile(long master, long acc, long dec);
+long sdkStartVirtualMasterProfile(long master, long vel);
+long sdkStopVirtualMasterProfile(long master);

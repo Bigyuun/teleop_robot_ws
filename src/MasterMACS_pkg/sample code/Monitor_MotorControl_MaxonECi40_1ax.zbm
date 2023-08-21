@@ -1,0 +1,197 @@
+[VARIABLES]
+
+///////////////////////////////////////////////////////////////////////
+//
+// Main Dialog Definition
+//
+//     WindowWidth   	=> Width of main dialog window.
+//     WindowHeight  	=> Height of main dialog window.
+//     WindowTitle   	=> Title for dialog window.
+//     WindowFlags      => Flags for controlling window behaviour:
+//
+//                            0x0001 - Maximize window:  0 - No (default), 1 - Yes.
+//                            0x0002 - System menu:  0 - Hide, 1 - Show (default).
+//                            0x0004 - ESC close:  0 - Disabled (default), 1 - Enabled.
+//                            0x0008 - Size boxes:  0 - Hide (default), 1 - Show.
+//                            0x0010 - Resizing:  0 - Disabled (default), 1 - Enabled.
+//                            0x0020 - Title move:  0 - Disabled (default), 1 - Enabled.
+//
+///////////////////////////////////////////////////////////////////////
+
+WindowWidth  = 800
+WindowHeight = 400
+WindowFlags  = 0x0000
+WindowTitle  = Quickstart MiniMACS Pre-Release
+
+///////////////////////////////////////////////////////////////////////
+//
+// Operating Parameters
+//
+//     OpFlags          => Flags for controlling dialog operating behaviour:
+//
+//                            0x0001 - Start polling on open:  0 - No (default), 1 - Yes.
+//
+//     PollInterval     => Polling interval (in ms).  Default is 1000 ms if not specified.
+//     Fade             => Fade list for SDO value changes.  This list is as follows:
+//
+//                            time1,colour1,time2,colour2,time3,colour3
+//
+//                         The list can contain 0 or more time/colour pairs.  The pairs must
+//                         be ordered by increasing time.  The SDO background colour will be
+//                         the specified colour for the specified length of time after the
+//                         value has changed.
+//
+///////////////////////////////////////////////////////////////////////
+
+PollInterval = 500
+OpFlags      = 0x0001
+
+///////////////////////////////////////////////////////////////////////
+//
+// Main Dialog Layout
+//
+//   Controller,flags,(connection)
+//   Text,string,offset,x,y,width,height,just,font,flags
+//   Box,label,offset,x,y,width,height,flags
+//   Bitmap,filename,offset,x,y,flags
+//   Button,Controller,label,offset,x,y,width,height,flags,textcolour,facecolour,source
+//   Button,PollStart,label,offset,x,y,width,height,flags,textcolour,facecolour
+//   Button,PollStop,label,offset,x,y,width,height,flags,textcolour,facecolour
+//   Button,Get,label,offset,x,y,width,height,flags,textcolour,facecolour,sdo
+//   Button,Set,label,offset,x,y,width,height,flags,textcolour,facecolour,sdo,value,addval
+//   Button,Group,label,offset,x,y,width,height,flags,textcolour,facecolour,(elements)
+//   SDO,flags,ctrl,index,subindex,addndx,addsub
+//   Value,label,offset,x,y,flags,sdo,format,addval,scale
+//   Table,flags,(list)
+//   List,Table,offset,x,y,width,drop-height,flags,table
+//   List,Axis,offset,x,y,width,drop-height,flags,ctrl
+//   List,Lookup,offset,x,y,width,drop-height,flags,sdo,table
+//   Bit,offset,x,y,width,height,flags,oncolour,offcolour,undefcolour,source,bitmask
+//
+// Button Flags:
+//
+//     All:    0x0001  - Hide the button.
+//     Group:  0x0100  - "Read" each SDO element and "Click" each Get element.
+//             0x0200  - "Write" each SDO element and "Click" each Set element.
+//
+// Controller element flags:
+//
+//     0x0001       - Connect controller on open.
+//
+// SDO element flags:
+//
+//     0x0001       - SDO should be polled.
+//     0x0002       - SDO is read-only.
+//     0x0004       - Poll SDO once after initial connection (or reconnection).
+//
+// Text element flags:
+//
+//     0x0001       - Use bold font.
+//
+// Lookup list flags:
+//
+//     0x0001       - Lookup element is read-only.
+//     0x0002       - Automatically write if user changes value.
+//
+// Value element flags:
+//
+//     0x0001       - Value is read-only.
+//     0x0002       - Blink value when Read button is pressed.
+//     0x0004       - Automatically write if user changes value and leaves field.
+//     0x0100       - Use the "small" child dialog.
+//     0x0200       - Use the "display" child dialog (no Read or Write buttons).
+//
+///////////////////////////////////////////////////////////////////////
+
+$Controller  = Controller,0x0000,(1,USB,6,50,0x0,921600,1)    // Original für USB Verbindung!
+
+
+$11 = Button,PollStart,"*Poll",0,360,20,60,30,0x0000,Black,DlgGray
+$12 = Button,PollStop,"*NoPoll",0,430,20,60,30,0x0000,Black,DlgGray
+$13 = Button,Controller,"*Select Controller",0,500,20,150,30,0x0000,Black,DlgGray,Controller
+
+
+$Logo_zub = Bitmap,"maxon_zub_logo.bmp",0,20,10,0x0000
+
+
+//******************************************************************************************
+// SDO Definitionen UserVars / Display / Controlword / Status
+//******************************************************************************************
+
+$SDO_UserParam1 = SDO,0x0001,Controller,0x2201, 1,0,0	// Poll
+$SDO_UserParam2 = SDO,0x0001,Controller,0x2201, 2,0,0	// Poll
+$SDO_UserParam3 = SDO,0x0001,Controller,0x2201, 3,0,0	// Poll
+$SDO_UserParam4 = SDO,0x0001,Controller,0x2201, 4,0,0	// Poll
+$SDO_UserParam5 = SDO,0x0001,Controller,0x2201, 5,0,0	// Poll
+$SDO_UserParam6 = SDO,0x0001,Controller,0x2201, 6,0,0	// Poll
+
+
+//--------------------------------------------------------------------------------------------
+// Main State Machine
+//--------------------------------------------------------------------------------------------
+$BoxMain1 = Box,"*Main Control Panel",0,10,90,390,280,0x0000
+
+$TextAxis = Text,"Axis:",BoxMain1,20,20,80,15,-1,14,0x0001,Black,-
+$Axis    = List,Axis,TextAxis,80,-5,50,200,0x0000,-,{Controller}
+
+$ButtonMain1 	= Button,Set,"*AbsPositionMode",TextUserParam1, 20,20,100,30,0x0001,Black,DlgGray,SDO_UserParam1,0x01,0
+$ButtonMainGrp1 = Button,Group,"*AbsPositionMode",TextUserParam1, 20,20,100,30,0x0200,-,Black,DlgGray,-,{WriteAxisNo,ButtonMain1}
+$ButtonMain2 	= Button,Set,"*ContPositionMode",ButtonMain1,110,0,100,30,0x0001,Black,DlgGray,SDO_UserParam1,0x02,0
+$ButtonMainGrp2 = Button,Group,"*ContPositionMode",ButtonMain1,110,0,100,30,0x0200,-,Black,DlgGray,-,{WriteAxisNo,ButtonMain2}
+$ButtonMain3 	= Button,Set,"*Stop",ButtonMain2,110,0,100,30,0x0001,Black,DlgGray,SDO_UserParam1,0x03,0
+$ButtonMainGrp3 = Button,Group,"*Stop",ButtonMain2,110,0,100,30,0x0200,-,Black,DlgGray,-,{WriteAxisNo,ButtonMain3}
+
+$WriteAxisNo = Button,Set,"*Set Width",TextUserParam2,40,190,200,30,0x0001,-,Black,[177.100.201],-,{SDO_UserParam6,0,Axis}
+
+//******************************************************************************************
+// User-Parameter Text and Input Fields
+//******************************************************************************************
+$TextUserParam1 = Text,"OpMode: ",BoxMain1, 20,50,80,15,-1,14,0x0000
+$TextUserParam2 = Text,"Velocity: ", BoxMain1, 20,120,80,15,-1,14,0x0000
+$TextUserParam3 = Text,"Acceleration: ", BoxMain1, 20,150,80,15,-1,14,0x0000
+$TextUserParam4 = Text,"Deceleration: ", BoxMain1, 20,180,80,15,-1,14,0x0000
+$TextUserParam5 = Text,"Target Position: ", BoxMain1, 20,210,80,15,-1,14,0x0000
+
+$ValueUserParam2 = Value,"*", TextUserParam2,80,-5,0x0102,SDO_UserParam2,0,0,0
+$ValueUserParam3 = Value,"*", TextUserParam3,80,-5,0x0102,SDO_UserParam3,0,0,0
+$ValueUserParam4 = Value,"*", TextUserParam4,80,-5,0x0102,SDO_UserParam4,0,0,0
+$ValueUserParam5 = Value,"*", TextUserParam5,80,-5,0x0102,SDO_UserParam5,0,0,0
+
+$TextUserParam2Units = Text,"1 - 100 [%]", ValueUserParam2, 110,7,80,15,-1,14,0x0000
+$TextUserParam3Units = Text,"1 - 100 [%]", ValueUserParam3, 110,7,80,15,-1,14,0x0000
+$TextUserParam4Units = Text,"1 - 100 [%]", ValueUserParam4, 110,7,80,15,-1,14,0x0000
+$TextUserParam5Units = Text,"[qc]", ValueUserParam5, 110,7,80,15,-1,14,0x0000
+
+//--------------------------------------------------------------------------------------------
+// Statusbar
+//--------------------------------------------------------------------------------------------
+$BoxStatus = Box,"*Axis information",0,410,90,390,280,0x0000
+
+$SDO_ActPosAx	= SDO,0x0001,Controller,0x2500,1,Axis,0     // Poll
+$SDO_ActVelAx	= SDO,0x0001,Controller,0x2500,4,Axis,0    // Poll
+$SDO_TrackErrAx	= SDO,0x0001,Controller,0x2500,6,Axis,0     // Poll
+$SDO_ActCurAx	= SDO,0x0001,Controller,0x4800,2,Axis,0    // Poll
+
+$TextStatus1 = Text,"Actual axis position:",BoxStatus,20,20,150,15,-1,15,0x0000
+$ValueStatus1 = Value,"-",TextStatus1,150,0,0x0201,SDO_ActPosAx,0,0,0   // Poll
+$TextStatus2 = Text,"Actual axis velocity:",BoxStatus,20,50,150,15,-1,15,0x0000
+$ValueStatus2 = Value,"-",TextStatus2,150,0,0x0201,SDO_ActVelAx,0,0,0   // Poll
+$TextStatus3 = Text,"Actual pos tracking error:",BoxStatus,20,80,150,15,-1,15,0x0000
+$ValueStatus3 = Value,"-",TextStatus3,150,0,0x0201,SDO_TrackErrAx,0,0,0   // Poll
+$TextStatus4 = Text,"Actual current amplifier:",BoxStatus,20,110,150,15,-1,15,0x0000
+$ValueStatus4 = Value,"-",TextStatus4,150,0,0x0201,SDO_ActCurAx,0,0,0   // Poll
+
+$ValueStatus1Units = Text,"[qc]", ValueStatus1, 100,7,80,15,-1,14,0x0000
+$ValueStatus2Units = Text,"[qc/st]", ValueStatus2, 100,7,80,15,-1,14,0x0000
+$ValueStatus3Units = Text,"[qc]", ValueStatus3, 100,7,80,15,-1,14,0x0000
+$ValueStatus4Units = Text,"[mA]", ValueStatus4, 100,7,80,15,-1,14,0x0000
+
+
+
+
+
+
+
+
+
+

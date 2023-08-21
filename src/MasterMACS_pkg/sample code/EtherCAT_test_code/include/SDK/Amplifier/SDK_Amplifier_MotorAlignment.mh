@@ -1,0 +1,13 @@
+/**
+*	@file		SDK_Amplifier_MotorAlignment.mh
+*	@brief		Declaration of the motor aligning function.
+*	$Revision: 162 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkMotorAlignment(long axis, long mode, long maxCurrentMotor, long alignCurrent);
+long sdkMotorMultiAlignment(long axis, long axisNumber, long mode, long maxCurrent, long alignCurrent);
+long sdkSetMotorAlignmentOffset(long axis, long elPol, long poselOffset);

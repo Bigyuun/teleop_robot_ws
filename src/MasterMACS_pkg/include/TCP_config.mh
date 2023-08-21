@@ -1,0 +1,3 @@
+#pragma once
+#include <SysDef.mh>
+#include ".\SDK_ApossC.mc"

@@ -1,0 +1,48 @@
+/**
+*	@file		SDK_Amplifier_MiniMACS6_DS402_Slave.mh
+*	@brief		Declaration of the MiniMACS6 DS402 slave function.
+*	$Revision: 224 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkMiniMACS6_SetupCanBusModule(long axis, long busId, long pdoNumber, long operationMode);
+long sdkMiniMACS6_SetupCanVirtAmp(long axis, long maxRpm, long operationMode);
+long sdkMiniMACS6_SetupCanVirtCntin(long axis, long operationMode);
+long sdkMiniMACS6_SetupCanSdoParam(long busId, long pdonumber, long slaveAxisNo, long operationMode);
+
+long sdkMiniMACS6_AxisHomingStart(long axis, long busId, long operationMode, long &homingState);
+
+/*********************************************************************
+** OBJECT DICTIONARY - MiniMACS6 DS402 Slave
+*********************************************************************/
+#define	MINIMACS6_RECEIVE_PDO_1_PARAMETER					0x1400
+#define	MINIMACS6_RECEIVE_PDO_2_PARAMETER					0x1401
+#define	MINIMACS6_RECEIVE_PDO_3_PARAMETER					0x1402
+#define	MINIMACS6_RECEIVE_PDO_4_PARAMETER					0x1403
+#define	MINIMACS6_RECEIVE_PDO_1_MAPPING						0x1600
+#define	MINIMACS6_RECEIVE_PDO_2_MAPPING						0x1601
+#define	MINIMACS6_RECEIVE_PDO_3_MAPPING						0x1602
+#define	MINIMACS6_RECEIVE_PDO_4_MAPPING						0x1603
+#define	MINIMACS6_TRANSMIT_PDO_1_PARAMETER					0x1800
+#define	MINIMACS6_TRANSMIT_PDO_2_PARAMETER					0x1801
+#define	MINIMACS6_TRANSMIT_PDO_3_PARAMETER					0x1802
+#define	MINIMACS6_TRANSMIT_PDO_4_PARAMETER					0x1803
+#define	MINIMACS6_TRANSMIT_PDO_1_MAPPING					0x1A00
+#define	MINIMACS6_TRANSMIT_PDO_2_MAPPING					0x1A01
+#define	MINIMACS6_TRANSMIT_PDO_3_MAPPING					0x1A02
+#define	MINIMACS6_TRANSMIT_PDO_4_MAPPING					0x1A03
+#define MINIMACS6_SYNC_MANAGER_2_PDO_ASSIGNMENT				0
+#define MINIMACS6_SYNC_MANAGER_3_PDO_ASSIGNMENT				0
+#define	MINIMACS6_CONTROLWORD								0x6040
+#define	MINIMACS6_STATUSWORD								0x6041
+#define	MINIMACS6_MODES_OF_OPERATION						0x6060
+		#define MINIMACS6_OP_PPM	0x01	// Profile Position Mode
+		#define MINIMACS6_OP_PVM	0x03	// Profile Velocity Mode
+		#define MINIMACS6_OP_HMM	0x06	// Homing Mode
+		#define MINIMACS6_OP_CSP	0x08	// Cyclic Synchronous Position Mode
+		#define MINIMACS6_OP_CSV	0x09	// Cyclic Synchronous Velocity Mode
+		#define MINIMACS6_OP_CST	0x0A	// Cyclic Synchronous Torque Mode
+#define	MINIMACS6_MODES_OF_OPERATION_DISPLAY				0x6061

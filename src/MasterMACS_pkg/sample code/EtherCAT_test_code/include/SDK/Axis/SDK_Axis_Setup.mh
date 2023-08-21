@@ -1,0 +1,22 @@
+/**
+*	@file		SDK_Axis_Setup.mh
+*	@brief		Declaration of the axis setup function.
+*	$Revision: 143 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkSetupPositionPIDControl(long axis, long kprop, long kint, long kder);
+long sdkSetupPositionPIDControlExt(long axis, long kprop, long kint, long kder, long kilim, long kilimtime, long bandwidth, long ffvel, long kffacc, long kffdec);
+
+
+long sdkSetupAxisUserUnits(long axis, long posencrev, long posencqc, long posfact_z, long posfact_n, long feedrev, long feeddist);
+long sdkSetupAxisMovementParam(long axis, long velres, long maxRpm, long ramptype, long rampmin, long jerkmin);
+long sdkSetupAxisJerkLimited(long axis, long jerkmin1, long jerkmin2, long jerkmin3, long jerkmin4);
+
+long sdkSetupAxisDirection(long axis, long posdrct);
+
+long skdSetupAxisSoftwareLimit( long axis, long negLimitUu, long posLimitUu);
+long skdEnableAxisSoftwareLimit( long axis, long active);

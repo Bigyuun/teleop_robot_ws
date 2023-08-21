@@ -1,0 +1,14 @@
+/**
+*	@file		SDK_Information_General.mh
+*	@brief		Declaration of the general information functions.
+*	$Revision: 24 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkInfoPrintSoftware();
+long sdkInfoPrintHardware();
+long sdkInfoPrintAxesPos();
+long sdkInfoPrintPosPID();

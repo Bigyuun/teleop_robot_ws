@@ -1,0 +1,11 @@
+/**
+*	@file		SDK_VirtualModule_AxisSetup.mh
+*	@brief		Declaration of the virtual axis setup functions
+*	$Revision: 39 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkSetupAxisSimulation(long axis);

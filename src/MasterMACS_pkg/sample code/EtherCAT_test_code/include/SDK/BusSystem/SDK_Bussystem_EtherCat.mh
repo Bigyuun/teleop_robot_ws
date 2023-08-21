@@ -1,0 +1,16 @@
+/**
+*	@file		SDK_Bussystem_EtherCat.mh
+*	@brief		Declaration of the EtherCat functions
+*	$Revision: 228 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkEtherCATMasterInitialize(void);
+long sdkEtherCATMasterDoMapping(void);
+long sdkEtherCATMasterStart(void);
+long sdkEtherCATSetupDC(long slaveNo, long cycleTime_ms, long offset_us);
+
+

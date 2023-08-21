@@ -1,0 +1,48 @@
+
+#pragma once
+#include "user_definition.mh"
+
+
+/*********************************************************************
+** Application Defines
+*********************************************************************/
+#define g_IP	172.16.1.5
+#define g_PORT	7777
+#define BUFFER_SIZE	256
+#define BUFFER_TYPE 4	// long
+
+
+#define SOCK_STATUS_INIT 0
+#define SOCK_STATUS_WAITING 1
+#define SOCK_STATUS_CONNECTING 2
+#define SOCK_STATUS_READY 3
+#define SOCK_STATUS_CLOSED 4
+#define SOCK_STATUS_ERRORSENDING -1
+#define SOCK_STATUS_ERROR -2
+
+
+// TCP queue
+long socketHandle, status;
+
+dim long receiveData[BUFFER_SIZE];
+dim long sendData[BUFFER_SIZE];	// *2 : actual Pos & Vel
+
+// long receiveData[NUM_OF_MOTORS] = {0};
+// long sendData[NUM_OF_MOTORS*2] = {0};	// *2 : actual Pos & Vel
+
+long retVal=0;
+long n=0;
+
+// Send protocal parameters
+double timestamp = 0;
+double target_q[NUM_OF_MOTORS] = {0};
+double target_qd[NUM_OF_MOTORS] = {0};
+double target_qdd[NUM_OF_MOTORS] = {0};
+double target_current[NUM_OF_MOTORS] = {0};
+double target_moment[NUM_OF_MOTORS] = {0};
+long actual_pos[NUM_OF_MOTORS] = {0};
+long actual_vel[NUM_OF_MOTORS] = {0};
+
+
+// Receive protocal parameters
+long target_val[NUM_OF_MOTORS] = {0};

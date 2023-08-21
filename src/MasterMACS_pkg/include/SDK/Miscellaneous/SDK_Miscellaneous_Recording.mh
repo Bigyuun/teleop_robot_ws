@@ -1,0 +1,12 @@
+/**
+*	@file		SDK_Miscellaneous_Recording.mh
+*	@brief		Declaration of the recording functions.
+*	$Revision: 23 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkRecordGeneralAxisParam_1Ax(long axis);
+long sdkRecordGeneralAxisParam_4Ax(long axis1, long axis2, long axis3, long axis4);

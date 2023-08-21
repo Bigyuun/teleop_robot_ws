@@ -1,0 +1,12 @@
+/**
+*	@file		SDK_Motion_Movement.mh
+*	@brief		Declaration of the motion movement functions.
+*	$Revision: 39 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkStartContinuousMove(long axis, long vel, long acc);
+long sdkStopContinuousMove(long axis, long dec);

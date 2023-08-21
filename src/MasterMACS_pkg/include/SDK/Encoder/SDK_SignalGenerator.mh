@@ -1,0 +1,17 @@
+/**
+*	@file		SDK_SignalGenerator.mh
+*	@brief		Declaration of the signal generator functions.
+*	$Revision: 210 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkSigGenAxisSetupMiniMACS6(long axis, long encPortOut, long indexDistance);
+long sdkSigGenOpenloopSetupMiniMACS6(long encPort, long indexDistance);
+void sdkSigGenEnable(long encPort, long enable);
+void sdkSigGenReset(long encPort);
+void sdkSigGenOpenloopAcceleration(long encPort, long acceleration);
+void sdkSigGenOpenloopDeceleration(long encPort, long deceleration);
+void sdkSigGenOpenloopVelocity(long encPort, long velocity);

@@ -1,0 +1,15 @@
+/**
+*	@file		SDK_Communication_Ethernet.mh
+*	@brief		Declaration of the Ethernet functions
+*	$Revision: 196 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkEthernetSendString(wchar sendArray[], long handle);
+long sdkEthernetPrintConnectionStatus(long status);
+long sdkEthernetPrintGeneralResult(long result);
+
+

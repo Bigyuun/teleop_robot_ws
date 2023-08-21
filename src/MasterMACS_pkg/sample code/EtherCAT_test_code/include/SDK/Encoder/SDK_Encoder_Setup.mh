@@ -1,0 +1,17 @@
+/**
+*	@file		SDK_Encoder_Setup.mh
+*	@brief		Declaration of the encoder setup function.
+*	$Revision: 188 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkSetupIncEncoder(long axis, long encPort, long encRes, long latchType, long latchParam, long latchSlope);
+long sdkSetupSinCosEncoder(long axis, long encPort, long encRes, long latchType, long latchParam, long latchSlope);
+long sdkSetupAbsSSIEncoder(long axis, long encPort, long encRes, long clockFreq, long fastUpdate, long datlen, long isBinary, long latchBitMask);
+
+
+long sdkSetupHallEncoderMACS5(long axis, long hallPort,long hallAligment);
+long sdkSetupHallEncoder(long axis, long hallAligment, long hallDirection);

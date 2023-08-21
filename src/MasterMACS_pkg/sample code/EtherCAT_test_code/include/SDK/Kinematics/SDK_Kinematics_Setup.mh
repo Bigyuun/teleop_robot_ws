@@ -1,0 +1,19 @@
+/**
+*	@file		SDK_Kinematics_Setup.mh
+*	@brief		Declaration of the kinematics setup function.
+*	$Revision: 129 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkSetupDeltaKinematics(long axis_0, long axis_1, long axis_2, long prms_A, long prms_B, long prms_C, long prms_D, long prms_minMotAng, long prms_maxMotAng);
+long sdkSetupCartesian2dKinematics(long axis_0, long axis_1);
+long sdkSetupCartesian3dKinematics(long axis_0, long axis_1, long axis_2);
+long sdkSetupHBotCoreXYKinematics(long axis_0, long axis_1);
+long sdkSetupScara2dKinematics(long axis_0, long axis_1, long prms_A, long prms_B, long prms_orient);
+long sdkSetupScara3dKinematics(long axis_0, long axis_1, long axis_2, long prms_A, long prms_B, long prms_orient);
+long sdkSetupDualScara2dKinematics(long axis_0, long axis_1, long prms_A, long prms_B, long prms_C, long prms_D, long prms_distance);
+long sdkSetupDualScara3dKinematics(long axis_0, long axis_1, long axis_2, long prms_A, long prms_B, long prms_C, long prms_D, long prms_distance);
+long sdkSetupWorkCoordKinematics(transform workToMachine, double originTranslate_X, double originTranslate_Y, double originTranslate_Z, double rotation_XY,double scale);

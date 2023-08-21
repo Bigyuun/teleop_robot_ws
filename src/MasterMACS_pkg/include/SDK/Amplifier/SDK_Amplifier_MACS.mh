@@ -1,0 +1,21 @@
+/**
+*	@file		SDK_Amplifier_MACS.mh
+*	@brief		Declaration of the integreted amplifier functions
+*	$Revision: 193 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkSetupAmpDcMotor(long axis, long controlMode,long polePairs, long maxCur, long encQc, long maxRpm);
+long sdkSetupAmpBldcMotor(long axis, long hallAligment, long controlMode,long polePairs, long maxCur, long encQc, long maxRpm);
+long sdkSetupAmpBldc120Motor(long axis, long controlMode,long polePairs, long maxCur, long encQc, long maxRpm); // Deprecated
+long sdkSetupAmpStepMotor_CL(long axis, long controlMode,long steps, long maxCur, long encQc, long maxRpm);
+long sdkSetupAmpStepMotor_OL(long axis, long steps, long maxCur,long maxRpm);
+long sdkSetupAmpPmsmMotor(long axis, long controlMode,long polePairs, long maxCur, long encQc, long maxRpm);
+long sdkSetupAmpHallPmsmMotor(long axis, long controlMode,long polePairs, long maxCur, long encQc, long maxRpm, long elPol);
+
+long sdkSetupCurrentPIControl(long axis, long curkprop, long curkint, long curkilim);
+long sdkSetupVelocityPIControl(long axis, long velkprop, long velkint, long velkilim);
+long sdkSetupVirtualI2T(long axis, long nominalCur, long thermalTime);

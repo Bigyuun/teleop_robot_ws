@@ -1,0 +1,13 @@
+/**
+*	@file		SDK_Miscellaneous_IO.mh
+*	@brief		Declaration of the IO functions.
+*	$Revision: 183 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkSetupPwmGenerator_UserParamMode(long userParam, long digOutPWM,long frequency, long cycleRange, long polarity);
+long sdkSetupPwmGenerator_AxisModeVel(long axisNo, long digOutEnable, long digOutPWM, long frequency, long cycleRange, long polarity);
+long sdkScaleAnalogInput(long analogInputNo, long minVoltage, long maxVoltage,long offsetVoltage, long minValue, long maxValue);

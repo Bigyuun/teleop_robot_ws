@@ -1,0 +1,13 @@
+/**
+*	@file		SDK_Amplifier_MotorCommissioning.mh
+*	@brief		Declaration of the motor commissioning functions.
+*	$Revision: 49 $
+*
+*/
+
+#pragma once
+
+// Declaration of the functions
+long sdkMotorCommCurrentStep(long axis, long current, long time, long recordEnable);
+long sdkMotorCommVelStep(long axis, long velocity, long time, long recordEnable);
+long sdkMotorCommPositionRamp(long axis, long distance, long controlMode, long recordEnable);
