@@ -14,11 +14,15 @@
 #include <vector>
 #include <sys/signal.h>
 #include <chrono>
+#include <memory>
+#include <functional>
+#include <chrono>
+#include <signal.h>
 
 // ROS2
 #include <rclcpp/rclcpp.hpp>
 #include "sensor_msgs/msg/joy.hpp"
-#include "std_msgs/msg/u_int8.hpp"
+#include "std_msgs/msg/int32_multi_array.hpp"
 
 // DY
 #define DEFAULT_IP "172.16.1.0"
@@ -33,8 +37,8 @@
 class TCPClientNode final : public rclcpp::Node  // keyword 'final' prevents further inheritance
 {
 public:
-  TCPClientNode();
-  ~TCPClientNode(); // Keyword 'override' tell compiler that this inherited function must be implemented
+  explicit TCPClientNode(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
+  virtual ~TCPClientNode(); // Keyword 'override' tell compiler that this inherited function must be implemented
   
 private:
   /***************************
@@ -67,17 +71,14 @@ private:
    * @brief  ROS2 elements
   **************************/
   sensor_msgs::msg::Joy joystick_msg_;
+  rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joystic_subscriber_;
 
-  // rclcpp::Publisher<ecat_msgs::msg::HapticCmd>::SharedPtr haptic_publisher_;
-
-  // rclcpp::Subscription<ecat_msgs::msg::DataReceived>::SharedPtr slave_feedback_;
+  std_msgs::msg::Int32MultiArray tcp_read_msg_;
+  rclcpp::Publisher<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_publisher_;
+  std_msgs::msg::Int32MultiArray tcp_send_msg_;
+  rclcpp::Subscription<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_subscriber_;
   
-  // CKim - Published message
-  // rclcpp::Publisher<sensor_msgs::msg::Joy>::SharedPtr pub_;
-  // rclcpp::Subscription<sensor_msgs::msg::JoyFeedback>::SharedPtr feedback_sub_;
-  // sensor_msgs::msg::Joy joy_msg_;
-
-  // void HandleSlaveFeedbackCallbacks(const ecat_msgs::msg::DataReceived::SharedPtr msg);
 };
+
 
 

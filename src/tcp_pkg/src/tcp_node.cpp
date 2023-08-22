@@ -2,29 +2,55 @@
 
 #include "tcp_node.hpp"
 
-#include <memory>
-#include <functional>
-#include <chrono>
-#include <signal.h>
-
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
-
 using namespace std::chrono_literals;
 
-TCPClientNode::TCPClientNode() : rclcpp::Node("TCPClientNode")
+TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
+: Node("TCPClientNode", node_options)
 {
-  auto qos = rclcpp::QoS(
-    // The "KEEP_LAST" history setting tells DDS to store a fixed-size buffer of values before they
-    // are sent, to aid with recovery in the event of dropped messages.
-    // "depth" specifies the size of this buffer.
-    // In this example, we are optimizing for performance and limited resource usage (preventing
-    // page faults), instead of reliability. Thus, we set the size of the history buffer to 1.
-    rclcpp::KeepLast(1)
-  );
-  // From http://www.opendds.org/qosusages.html: "A RELIABLE setting can potentially block while
-  // trying to send." Therefore set the policy to best effort to avoid blocking during execution.
-  qos.best_effort();
+  this->declare_parameter("qos_depth", 10);
+  int8_t qos_depth = this->get_parameter("qos_depth", qos_depth);
+
+  const auto QoS_RKL10V =
+  rclcpp::QoS(rclcpp::KeepLast(qos_depth)).reliable().durability_volatile();
+
+  joystic_subscriber_ =
+    this->create_subscription<sensor_msgs::msg::Joy>(
+      "joy",
+      QoS_RKL10V,
+      [this] (const sensor_msgs::msg::Joy::SharedPtr msg) -> void
+      {
+        joystick_msg_.header = msg->header;
+        joystick_msg_.axes = msg->axes;
+        joystick_msg_.buttons = msg->buttons;
+
+        RCLCPP_INFO(
+          this->get_logger(),
+          "Header of the message : %ld, %ld",
+          msg->header,
+          msg->header);
+
+        // std::cout << joystick_msg_.axes << std::endl;
+        // std::cout << joystick_msg_.buttons << std::endl;
+      }
+    );
+
+  tcp_publisher_ =
+    this->create_publisher<std_msgs::msg::Int32MultiArray>("tcp_receiver", QoS_RKL10V);
+
+  tcp_subscriber_ =
+    this->create_subscription<std_msgs::msg::Int32MultiArray>(
+      "tcp_sender",
+      QoS_RKL10V,
+      [this] (const std_msgs::msg::Int32MultiArray::SharedPtr msg) -> void
+      {
+        tcp_send_msg_.layout = msg->layout;
+        tcp_send_msg_.data = msg->data;
+        RCLCPP_INFO(
+          this->get_logger(),
+          "TCP send msg(target val) : %ld",
+          tcp_send_msg_.data);
+      }
+    );
 
   if (this->Initialize()) {
     std::cout << "[TCPClientNode] Init Error." << std::endl;
@@ -34,15 +60,6 @@ TCPClientNode::TCPClientNode() : rclcpp::Node("TCPClientNode")
   this->send_thread_ = std::thread(&TCPClientNode::SendThread, this);
   this->recv_thread_ = std::thread(&TCPClientNode::RecvThread, this);
   std::cout << "[TCPClientNode] Threads (Send, Recv) are created." << std::endl;
-  
-  while (true) {
-    /* check the tcp On/Off */
-    usleep(1000000);
-  }
-
-  this->send_thread_.join();
-  this->recv_thread_.join();
-  return;
 }
 
 
@@ -102,10 +119,11 @@ uint8_t TCPClientNode::Initialize()
   return this->TCPconfiguration();
 }
 
+// ***********************
+// TCP configuration
+// ***********************
 uint8_t TCPClientNode::TCPconfiguration() {
-  // ***********************
-  // 3 - TCP configuration
-  // ***********************
+
   this->buffer_size_ = DEFAULT_TCP_BUFFER_SIZE;
   this->client_socket_ = socket(PF_INET, SOCK_STREAM, 0);
   if (this->client_socket_ == -1) {printf("socket() error.");}
@@ -144,7 +162,7 @@ void TCPClientNode::SendThread()
     }
     write(this->client_socket_, this->send_msg_, this->buffer_size_);
     counter++;
-    usleep(1000);
+    usleep(1000000);
   }
 #else
   // spin
@@ -155,7 +173,7 @@ void TCPClientNode::SendThread()
      *        ROS2 topic의 경우 배열로 던지고 받을 것.
     */
     for(int i=0; i<NUM_OF_MOTORS; i++){
-      send_val[i] = this->ros2_input_[i];
+      send_val[i] = this->tcp_send_msg_.data[i];
       memcpy(this->send_msg_ + i*sizeof(long), &send_val[i], sizeof(send_val[i]));
     }
     write(this->client_socket_, this->send_msg_, this->buffer_size_);
@@ -163,7 +181,6 @@ void TCPClientNode::SendThread()
   }
 #endif
 }
-
 
 void TCPClientNode::RecvThread()
 {
@@ -188,6 +205,12 @@ void TCPClientNode::RecvThread()
 
     // Little-Endian
     memcpy(recv_val, this->recv_msg_, this->buffer_size_);
+
+    for(int i=0; i<NUM_OF_MOTORS; i++) {
+      tcp_read_msg_.data[2*i] = recv_val[2*i];
+      tcp_read_msg_.data[2*i+1] = recv_val[2*i+1];
+    }
+    tcp_publisher_->publish(tcp_read_msg_);
     // system("cls");  // clear every time
     for(int n=0; n<NUM_OF_MOTORS; n++){
         std::cout << "#" << n << "| pos : " << recv_val[0+n*2] << " / vel : " << recv_val[1+n*2] << " - " << counter++ << std::endl;

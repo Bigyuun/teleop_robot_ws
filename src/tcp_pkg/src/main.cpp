@@ -28,21 +28,13 @@ int main(int argc, char * argv[])
     print_help();
     return 0;
   }
-  
 
   rclcpp::init(argc, argv);
   signal(SIGINT, signal_callback_handler);
-
   auto node = std::make_shared<TCPClientNode>();
-
-  
   std::cout << "ros spin() start" << std::endl;
   rclcpp::spin(node);
-
-  std::cout << "ros shutdown()" << std::endl;
   rclcpp::shutdown();
-
-  std::cout << "ros2 fin" <<std::endl;
   return 0;
 }
 
