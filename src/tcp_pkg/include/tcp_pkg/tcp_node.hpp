@@ -27,7 +27,7 @@
 // DY
 #define DEFAULT_IP "172.16.1.0"
 #define DEFAULT_PORT 7777
-#define DEFAULT_TCP_BUFFER_SIZE 512
+#define DEFAULT_TCP_BUFFER_SIZE 256
 
 #define NUM_OF_MOTORS 5
 
@@ -47,24 +47,23 @@ private:
   **************************/
   uint8_t Initialize();
   uint8_t TCPconfiguration();
-  void SendThread();
-  void RecvThread();
-  
+  void CommThread();
+  void sendmsg();
+  void recvmsg();
+
   std::string ip_ = DEFAULT_IP;
   std::string s_port_;
   uint32_t port_ = DEFAULT_PORT;
+  uint32_t buffer_size_;
 
   int client_socket_;
   struct sockaddr_in server_addr_;
   char send_msg_[DEFAULT_TCP_BUFFER_SIZE] = {0,};
   char recv_msg_[DEFAULT_TCP_BUFFER_SIZE] = {0,};
-
-  uint32_t buffer_size_;
-  std::thread send_thread_;
-  std::thread recv_thread_;
-
   int send_strlen_;
   int recv_strlen_;
+
+  std::thread commthread_;
 
   /**************************
    * @author DY

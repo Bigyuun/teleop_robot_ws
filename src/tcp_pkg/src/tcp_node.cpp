@@ -1,6 +1,7 @@
 
 
 #include "tcp_node.hpp"
+#include "rclcpp/rclcpp.hpp"
 
 using namespace std::chrono_literals;
 
@@ -57,18 +58,22 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
     return;
   }
 
-  this->send_thread_ = std::thread(&TCPClientNode::SendThread, this);
-  this->recv_thread_ = std::thread(&TCPClientNode::RecvThread, this);
-  std::cout << "[TCPClientNode] Threads (Send, Recv) are created." << std::endl;
+  this->commthread_ = std::thread(&TCPClientNode::CommThread, this);
 }
 
 
 TCPClientNode::~TCPClientNode()
 {
+  char msg[] = "";
+  send(this->client_socket_, msg, sizeof(msg), 0);
   close(this->client_socket_);
-  this->send_thread_.join();
-  this->recv_thread_.join();
+
+  commthread_.join();
 }
+
+
+
+
 
 uint8_t TCPClientNode::Initialize()
 {
@@ -147,74 +152,113 @@ uint8_t TCPClientNode::TCPconfiguration() {
   }
 }
 
-void TCPClientNode::SendThread()
+
+
+void TCPClientNode::CommThread() {
+  RCLCPP_INFO(this->get_logger(), "TCP communication Thread is onfigure");
+
+  while(rclcpp::ok()) {
+  // while(true) {
+    this->recvmsg();
+    this->sendmsg();
+  }
+}
+
+// ************************
+// Send
+// ************************
+void TCPClientNode::sendmsg()
 {
-  std::cout << "TCP Send Thread Start" << std::endl;
-  long send_val[this->buffer_size_];
 
 #if SINEWAVE_TEST
+  long send_val[this->buffer_size_];
   static uint64_t counter = 0;
-  // spin
-  while (true) {
-    for(int i=0; i<NUM_OF_MOTORS; i++){
-      send_val[i] = 10*sin(counter*0.01);
+  for(int i=0; i<NUM_OF_MOTORS; i++){
+      // send_val[i] = 10*sin(counter*0.002);
       memcpy(this->send_msg_ + i*sizeof(long), &send_val[i], sizeof(send_val[i]));
-    }
-    write(this->client_socket_, this->send_msg_, this->buffer_size_);
-    counter++;
-    usleep(1000000);
   }
+  this->send_strlen_ = send(client_socket_, this->send_msg_, this->buffer_size_, 0);
+  // this->send_strlen_ = write(this->client_socket_, this->send_msg_, this->buffer_size_);
+  for(int i=0; i<NUM_OF_MOTORS; i++) {
+    std::cout << "[SEND] #" << i << " | val : " << send_val[i] << std::endl;
+  }
+  counter++;
 #else
-  // spin
-  while (true) {
-    /**
-     * @author DY
-     * @brief struct에 접근하여 input으로 던져줄 것.
-     *        ROS2 topic의 경우 배열로 던지고 받을 것.
-    */
-    for(int i=0; i<NUM_OF_MOTORS; i++){
-      send_val[i] = this->tcp_send_msg_.data[i];
-      memcpy(this->send_msg_ + i*sizeof(long), &send_val[i], sizeof(send_val[i]));
-    }
-    write(this->client_socket_, this->send_msg_, this->buffer_size_);
-    usleep(1000);
+  /**
+   * @author DY
+   * @brief struct에 접근하여 input으로 던져줄 것.
+   *        ROS2 topic의 경우 배열로 던지고 받을 것.
+  */
+  long send_val[this->buffer_size_];
+  for(int i=0; i<NUM_OF_MOTORS; i++){
+    send_val[i] = this->tcp_send_msg_.data[i];
+    memcpy(this->send_msg_ + i*sizeof(long), &send_val[i], sizeof(send_val[i]));
   }
+  write(this->client_socket_, this->send_msg_, this->buffer_size_);
+  usleep(1000);
+  
 #endif
 }
 
-void TCPClientNode::RecvThread()
+// ************************
+// Receive
+// ************************
+void TCPClientNode::recvmsg()
 {
-  std::cout << "TCP Receive Thread Start" << std::endl;
   long recv_val[this->buffer_size_];
-  static uint32_t counter = 0;
 
-  // spin
-  while(true) {
-    /**
-     * @brief spin
-    */
-    this->send_strlen_ = read(this->client_socket_, this->recv_msg_, this->buffer_size_);
-    if (this->send_strlen_ == -1) {
-      std::cout << "[Send Thread] read() error." << std::endl;
-      continue;
-    }
-
-    if (this->send_strlen_ == 0) {  // disconnetion
-      RCLCPP_WARN(this->get_logger(), "EOF from Server. Try to reconnect");
-    }
-
-    // Little-Endian
-    memcpy(recv_val, this->recv_msg_, this->buffer_size_);
-
-    for(int i=0; i<NUM_OF_MOTORS; i++) {
-      tcp_read_msg_.data[2*i] = recv_val[2*i];
-      tcp_read_msg_.data[2*i+1] = recv_val[2*i+1];
-    }
-    tcp_publisher_->publish(tcp_read_msg_);
-    // system("cls");  // clear every time
-    for(int n=0; n<NUM_OF_MOTORS; n++){
-        std::cout << "#" << n << "| pos : " << recv_val[0+n*2] << " / vel : " << recv_val[1+n*2] << " - " << counter++ << std::endl;
-    }
-    usleep(100);
+  // system("clear");
+  this->send_strlen_ = recv(this->client_socket_, this->recv_msg_, this->buffer_size_, 0);
+  // this->send_strlen_ = read(this->client_socket_, this->recv_msg_, this->buffer_size_);
+  std::cout << "length : " << this->send_strlen_ << std::endl;
+  if (this->send_strlen_ == -1) {
+    std::cout << "read() error." << std::endl;
   }
+
+  if (this->send_strlen_ == 0) {  // disconnetion
+    RCLCPP_WARN(this->get_logger(), "EOF from Server. Try to reconnect");
+  }
+
+  memcpy(recv_val, this->recv_msg_, this->buffer_size_);
+
+  /**
+   * @author Bigyuun
+   * @brief  if use Linux-Windows Format, it will need endian conversion.
+  */
+  // for(int i=0; i<sizeof(recv_val); i++) {
+  //   recv_val[i] = htole32(recv_val[i]);
+  // }
+
+  system("clear");  // clear every time
+  for(int i=0; i<NUM_OF_MOTORS; i++){
+      std::cout << "[READ] #" << i << "| pos : " << htole32(recv_val[i*2]) << " / vel : " << htole32(recv_val[2*i + 1]) << std::endl;
+  }
+
+
+
+  std::cout << htole32(recv_val[4]) << std::endl;
+
+  std::cout << htole16(recv_val[3]) << std::endl;
+  std::cout << le16toh(recv_val[3]) << std::endl;
+  std::cout << htole32(recv_val[3]) << std::endl;
+  std::cout << le32toh(recv_val[3]) << std::endl;
+  std::cout << htole64(recv_val[3]) << std::endl;
+  // std::cout << (recv_val[4]) << std::endl;
+  // std::cout << (recv_val[4]) << std::endl;
+  // std::cout << (recv_val[4]) << std::endl;
+  // std::cout << (recv_val[4]) << std::endl;
+  // std::cout << (recv_val[4]) << std::endl;
+  // std::cout << (recv_val[4]) << std::endl;
+
+
+  for(int i=0; i<NUM_OF_MOTORS; i++) {
+    // tcp_read_msg_.data[i] = (int32_t)recv_val[i];
+    // tcp_read_msg_.data[2*i] = recv_val[2*i];
+    // tcp_read_msg_.data[2*i+1] = recv_val[2*i+1];
+  }
+  // tcp_publisher_->publish(tcp_read_msg_);
 }
+
+
+
+
