@@ -1,5 +1,3 @@
-
-
 #include "tcp_node.hpp"
 #include "rclcpp/rclcpp.hpp"
 
@@ -40,12 +38,12 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
   tcp_read_msg_.actual_acceleration.resize(NUM_OF_MOTORS); // pos & vel
   tcp_read_msg_.actual_torque.resize(NUM_OF_MOTORS); // pos & vel
   tcp_publisher_ =
-    this->create_publisher<MotorState>("tcp_receiver", QoS_RKL10V);
+    this->create_publisher<MotorState>("motor_state", QoS_RKL10V);
 
   tcp_send_msg_.target_val.resize(NUM_OF_MOTORS);
   tcp_subscriber_ =
     this->create_subscription<MotorCommand>(
-      "tcp_sender",
+      "kinematics_control_target_val",
       QoS_RKL10V,
       [this] (const MotorCommand::SharedPtr msg) -> void
       {
@@ -53,22 +51,6 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
         tcp_send_msg_.target_val = msg->target_val;
       }
     );
-
-  // tcp_read_msg_.data.resize(2*NUM_OF_MOTORS); // pos & vel
-  // tcp_publisher_ =
-  //   this->create_publisher<std_msgs::msg::Int32MultiArray>("tcp_receiver", QoS_RKL10V);
-
-  // tcp_send_msg_.data.resize(NUM_OF_MOTORS);
-  // tcp_subscriber_ =
-  //   this->create_subscription<std_msgs::msg::Int32MultiArray>(
-  //     "tcp_sender",
-  //     QoS_RKL10V,
-  //     [this] (const std_msgs::msg::Int32MultiArray::SharedPtr msg) -> void
-  //     {
-  //       tcp_send_msg_.layout = msg->layout;
-  //       tcp_send_msg_.data = msg->data;
-  //     }
-  //   );
 
   if (this->Initialize()) {
     std::cout << "[TCPClientNode] Init Error." << std::endl;

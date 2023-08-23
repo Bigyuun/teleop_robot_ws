@@ -22,10 +22,9 @@ find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(custom_interfaces REQUIRED)
-find_package(interfaces REQUIRED)
 
-include_directories("include/tcp_pkg/"
-                    "../custom_interfaces/"
+include_directories("./include/tcp_pkg/"
+                    "/opt/ros/foxy/include"
 )
 
 # DY
@@ -37,7 +36,6 @@ ament_target_dependencies(tcpclient
   sensor_msgs 
   geometry_msgs
   custom_interfaces
-  interfaces
 )
 
 # DY
