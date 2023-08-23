@@ -24,38 +24,51 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
         joystick_msg_.axes = msg->axes;
         joystick_msg_.buttons = msg->buttons;
 
-        RCLCPP_INFO(
-          this->get_logger(),
-          "Header of the message : %ld, %ld",
-          msg->header,
-          msg->header);
+        // RCLCPP_INFO(
+        //   this->get_logger(),
+        //   "Header of the message : %ld, %ld",
+        //   msg->header,
+        //   msg->header);
 
         // std::cout << joystick_msg_.axes << std::endl;
         // std::cout << joystick_msg_.buttons << std::endl;
       }
     );
 
-  tcp_read_msg_.data.resize(2*NUM_OF_MOTORS); // pos & vel
+  tcp_read_msg_.actual_position.resize(NUM_OF_MOTORS); // pos & vel
+  tcp_read_msg_.actual_velocity.resize(NUM_OF_MOTORS); // pos & vel
+  tcp_read_msg_.actual_acceleration.resize(NUM_OF_MOTORS); // pos & vel
+  tcp_read_msg_.actual_torque.resize(NUM_OF_MOTORS); // pos & vel
   tcp_publisher_ =
-    this->create_publisher<std_msgs::msg::Int32MultiArray>("tcp_receiver", QoS_RKL10V);
+    this->create_publisher<MotorState>("tcp_receiver", QoS_RKL10V);
 
-  testint32_publisher_ =
-    this->create_publisher<std_msgs::msg::Int32>("test_publisher", QoS_RKL10V);
-
+  tcp_send_msg_.target_val.resize(NUM_OF_MOTORS);
   tcp_subscriber_ =
-    this->create_subscription<std_msgs::msg::Int32MultiArray>(
+    this->create_subscription<MotorCommand>(
       "tcp_sender",
       QoS_RKL10V,
-      [this] (const std_msgs::msg::Int32MultiArray::SharedPtr msg) -> void
+      [this] (const MotorCommand::SharedPtr msg) -> void
       {
-        tcp_send_msg_.layout = msg->layout;
-        tcp_send_msg_.data = msg->data;
-        RCLCPP_INFO(
-          this->get_logger(),
-          "TCP send msg(target val) : %ld",
-          tcp_send_msg_.data);
+        tcp_send_msg_.stamp = msg->stamp;
+        tcp_send_msg_.target_val = msg->target_val;
       }
     );
+
+  // tcp_read_msg_.data.resize(2*NUM_OF_MOTORS); // pos & vel
+  // tcp_publisher_ =
+  //   this->create_publisher<std_msgs::msg::Int32MultiArray>("tcp_receiver", QoS_RKL10V);
+
+  // tcp_send_msg_.data.resize(NUM_OF_MOTORS);
+  // tcp_subscriber_ =
+  //   this->create_subscription<std_msgs::msg::Int32MultiArray>(
+  //     "tcp_sender",
+  //     QoS_RKL10V,
+  //     [this] (const std_msgs::msg::Int32MultiArray::SharedPtr msg) -> void
+  //     {
+  //       tcp_send_msg_.layout = msg->layout;
+  //       tcp_send_msg_.data = msg->data;
+  //     }
+  //   );
 
   if (this->Initialize()) {
     std::cout << "[TCPClientNode] Init Error." << std::endl;
@@ -178,7 +191,7 @@ void TCPClientNode::sendmsg()
   int send_val[this->buffer_size_];
   static uint64_t counter = 0;
   for(int i=0; i<NUM_OF_MOTORS; i++){
-      send_val[i] = 10*sin(counter*0.002);
+      // send_val[i] = 10*sin(counter*0.002);
       memcpy(this->send_msg_ + i*sizeof(send_val[i]), &send_val[i], sizeof(send_val[i]));
   }
   this->send_strlen_ = send(this->client_socket_, this->send_msg_, this->buffer_size_, 0);
@@ -237,9 +250,9 @@ void TCPClientNode::recvmsg()
 #endif
 
   for(int i=0; i<NUM_OF_MOTORS; i++) {
-    tcp_read_msg_.data[2*i] = recv_val[2*i];
-    tcp_read_msg_.data[2*i+1] = recv_val[2*i+1];
-    testint32_.data = i;
+    tcp_read_msg_.stamp = this->now();
+    tcp_read_msg_.actual_position[i] = recv_val[2*i];
+    tcp_read_msg_.actual_velocity[i] = recv_val[2*i+1];
   }
   publishall();
 }

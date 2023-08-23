@@ -21,9 +21,12 @@
 
 // ROS2
 #include <rclcpp/rclcpp.hpp>
+#include <rclcpp_action/rclcpp_action.hpp>
 #include "sensor_msgs/msg/joy.hpp"
 #include "std_msgs/msg/int32_multi_array.hpp"
 #include "std_msgs/msg/int32.hpp"
+#include "custom_interfaces/msg/motor_state.hpp"
+#include "custom_interfaces/msg/motor_command.hpp"
 
 // DY
 #define DEFAULT_IP "172.16.1.0"
@@ -37,6 +40,9 @@
 class TCPClientNode final : public rclcpp::Node  // keyword 'final' prevents further inheritance
 {
 public:
+  using MotorState = custom_interfaces::msg::MotorState;
+  using MotorCommand = custom_interfaces::msg::MotorCommand;
+
   explicit TCPClientNode(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
   virtual ~TCPClientNode(); // Keyword 'override' tell compiler that this inherited function must be implemented
   
@@ -73,10 +79,15 @@ private:
   sensor_msgs::msg::Joy joystick_msg_;
   rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joystic_subscriber_;
 
-  std_msgs::msg::Int32MultiArray tcp_read_msg_;
-  rclcpp::Publisher<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_publisher_;
-  std_msgs::msg::Int32MultiArray tcp_send_msg_;
-  rclcpp::Subscription<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_subscriber_;
+  MotorState tcp_read_msg_;
+  rclcpp::Publisher<MotorState>::SharedPtr tcp_publisher_;
+  MotorCommand tcp_send_msg_;
+  rclcpp::Subscription<MotorCommand>::SharedPtr tcp_subscriber_;
+
+  // std_msgs::msg::Int32MultiArray tcp_read_msg_;
+  // rclcpp::Publisher<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_publisher_;
+  // std_msgs::msg::Int32MultiArray tcp_send_msg_;
+  // rclcpp::Subscription<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_subscriber_;
 
   std_msgs::msg::Int32 testint32_;
   rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr testint32_publisher_;

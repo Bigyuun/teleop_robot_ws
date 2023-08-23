@@ -39,15 +39,3 @@ int main(int argc, char * argv[])
   std::cout << "ROS node Shutdown" << std::endl;
   return 0;
 }
-
-// int main(int argc, char *argv[])
-// {
-//   rclcpp::init(argc, argv);
-//   auto node = std::make_shared<TCPClientNode>();
-//   std::cout << "ros spin() start" << std::endl;
-//   rclcpp::spin(node);
-//   std::cout << "ros shutdown()" << std::endl;
-//   rclcpp::shutdown();
-//   std::cout << "ros2 fin" <<std::endl;
-//   return 0;
-// }

@@ -21,14 +21,24 @@ find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(custom_interfaces REQUIRED)
+find_package(interfaces REQUIRED)
 
-include_directories("include/tcp_pkg"
+include_directories("include/tcp_pkg/"
+                    "../custom_interfaces/"
 )
 
 # DY
 # Build
 add_executable(tcpclient src/main.cpp src/tcp_node.cpp)
-ament_target_dependencies(tcpclient rclcpp std_msgs sensor_msgs geometry_msgs)
+ament_target_dependencies(tcpclient
+  rclcpp 
+  std_msgs 
+  sensor_msgs 
+  geometry_msgs
+  custom_interfaces
+  interfaces
+)
 
 # DY
 # Install
