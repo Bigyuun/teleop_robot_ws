@@ -35,8 +35,12 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
       }
     );
 
+  tcp_read_msg_.data.resize(2*NUM_OF_MOTORS); // pos & vel
   tcp_publisher_ =
     this->create_publisher<std_msgs::msg::Int32MultiArray>("tcp_receiver", QoS_RKL10V);
+
+  testint32_publisher_ =
+    this->create_publisher<std_msgs::msg::Int32>("test_publisher", QoS_RKL10V);
 
   tcp_subscriber_ =
     this->create_subscription<std_msgs::msg::Int32MultiArray>(
@@ -171,17 +175,19 @@ void TCPClientNode::sendmsg()
 {
 
 #if SINEWAVE_TEST
-  long send_val[this->buffer_size_];
+  int send_val[this->buffer_size_];
   static uint64_t counter = 0;
   for(int i=0; i<NUM_OF_MOTORS; i++){
-      // send_val[i] = 10*sin(counter*0.002);
-      memcpy(this->send_msg_ + i*sizeof(long), &send_val[i], sizeof(send_val[i]));
+      send_val[i] = 10*sin(counter*0.002);
+      memcpy(this->send_msg_ + i*sizeof(send_val[i]), &send_val[i], sizeof(send_val[i]));
   }
-  this->send_strlen_ = send(client_socket_, this->send_msg_, this->buffer_size_, 0);
+  this->send_strlen_ = send(this->client_socket_, this->send_msg_, this->buffer_size_, 0);
   // this->send_strlen_ = write(this->client_socket_, this->send_msg_, this->buffer_size_);
+  #if TCP_SHOW
   for(int i=0; i<NUM_OF_MOTORS; i++) {
     std::cout << "[SEND] #" << i << " | val : " << send_val[i] << std::endl;
   }
+  #endif
   counter++;
 #else
   /**
@@ -192,11 +198,10 @@ void TCPClientNode::sendmsg()
   long send_val[this->buffer_size_];
   for(int i=0; i<NUM_OF_MOTORS; i++){
     send_val[i] = this->tcp_send_msg_.data[i];
-    memcpy(this->send_msg_ + i*sizeof(long), &send_val[i], sizeof(send_val[i]));
+    memcpy(this->send_msg_ + i*sizeof(send_val[i]), &send_val[i], sizeof(send_val[i]));
   }
-  write(this->client_socket_, this->send_msg_, this->buffer_size_);
-  usleep(1000);
-  
+  this->send_strlen_ = send(this->client_socket_, this->send_msg_, this->buffer_size_, 0);
+  // this->send_strlen_ = write(this->client_socket_, this->send_msg_, this->buffer_size_);
 #endif
 }
 
@@ -205,12 +210,11 @@ void TCPClientNode::sendmsg()
 // ************************
 void TCPClientNode::recvmsg()
 {
-  long recv_val[this->buffer_size_];
+  int recv_val[this->buffer_size_];
 
-  // system("clear");
+  // system("clear");  // clear every time
   this->send_strlen_ = recv(this->client_socket_, this->recv_msg_, this->buffer_size_, 0);
   // this->send_strlen_ = read(this->client_socket_, this->recv_msg_, this->buffer_size_);
-  std::cout << "length : " << this->send_strlen_ << std::endl;
   if (this->send_strlen_ == -1) {
     std::cout << "read() error." << std::endl;
   }
@@ -219,46 +223,31 @@ void TCPClientNode::recvmsg()
     RCLCPP_WARN(this->get_logger(), "EOF from Server. Try to reconnect");
   }
 
-  memcpy(recv_val, this->recv_msg_, this->buffer_size_);
+  memcpy(recv_val, this->recv_msg_, sizeof(this->recv_msg_));
 
   /**
    * @author Bigyuun
-   * @brief  if use Linux-Windows Format, it will need endian conversion.
+   * @brief  if use Linux-Windows Format, it will may need endian conversion.
   */
-  // for(int i=0; i<sizeof(recv_val); i++) {
-  //   recv_val[i] = htole32(recv_val[i]);
-  // }
-
-  system("clear");  // clear every time
+#if TCP_SHOW
   for(int i=0; i<NUM_OF_MOTORS; i++){
-      std::cout << "[READ] #" << i << "| pos : " << htole32(recv_val[i*2]) << " / vel : " << htole32(recv_val[2*i + 1]) << std::endl;
+      // std::cout << "[READ] #" << i << "| pos : " << htole16(recv_val[i*2]) << " / vel : " << htole16(recv_val[2*i + 1]) << std::endl;
+      std::cout << "[READ] #" << i << "| pos : " << recv_val[i*2] << " / vel : " << recv_val[2*i + 1] << std::endl;
   }
-
-
-
-  std::cout << htole32(recv_val[4]) << std::endl;
-
-  std::cout << htole16(recv_val[3]) << std::endl;
-  std::cout << le16toh(recv_val[3]) << std::endl;
-  std::cout << htole32(recv_val[3]) << std::endl;
-  std::cout << le32toh(recv_val[3]) << std::endl;
-  std::cout << htole64(recv_val[3]) << std::endl;
-  // std::cout << (recv_val[4]) << std::endl;
-  // std::cout << (recv_val[4]) << std::endl;
-  // std::cout << (recv_val[4]) << std::endl;
-  // std::cout << (recv_val[4]) << std::endl;
-  // std::cout << (recv_val[4]) << std::endl;
-  // std::cout << (recv_val[4]) << std::endl;
-
+#endif
 
   for(int i=0; i<NUM_OF_MOTORS; i++) {
-    // tcp_read_msg_.data[i] = (int32_t)recv_val[i];
-    // tcp_read_msg_.data[2*i] = recv_val[2*i];
-    // tcp_read_msg_.data[2*i+1] = recv_val[2*i+1];
+    tcp_read_msg_.data[2*i] = recv_val[2*i];
+    tcp_read_msg_.data[2*i+1] = recv_val[2*i+1];
+    testint32_.data = i;
   }
-  // tcp_publisher_->publish(tcp_read_msg_);
+  publishall();
 }
 
-
+void TCPClientNode::publishall() {
+  tcp_publisher_->publish(tcp_read_msg_);
+  // testint32_publisher_->publish(testint32_);
+  // RCLCPP_INFO(this->get_logger(), "Published");
+}
 
 

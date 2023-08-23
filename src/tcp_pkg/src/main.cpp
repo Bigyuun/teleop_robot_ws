@@ -35,6 +35,8 @@ int main(int argc, char * argv[])
   std::cout << "ros spin() start" << std::endl;
   rclcpp::spin(node);
   rclcpp::shutdown();
+
+  std::cout << "ROS node Shutdown" << std::endl;
   return 0;
 }
 

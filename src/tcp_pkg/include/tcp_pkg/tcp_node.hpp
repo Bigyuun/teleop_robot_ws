@@ -23,6 +23,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include "sensor_msgs/msg/joy.hpp"
 #include "std_msgs/msg/int32_multi_array.hpp"
+#include "std_msgs/msg/int32.hpp"
 
 // DY
 #define DEFAULT_IP "172.16.1.0"
@@ -30,9 +31,8 @@
 #define DEFAULT_TCP_BUFFER_SIZE 256
 
 #define NUM_OF_MOTORS 5
-
-#define KEYBOARD_INPUT_MODE 0
 #define SINEWAVE_TEST 1  // setting mode : 0-non sine wave / 1-sine wave
+#define TCP_SHOW 0
 
 class TCPClientNode final : public rclcpp::Node  // keyword 'final' prevents further inheritance
 {
@@ -69,6 +69,7 @@ private:
    * @author DY
    * @brief  ROS2 elements
   **************************/
+  void publishall();
   sensor_msgs::msg::Joy joystick_msg_;
   rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joystic_subscriber_;
 
@@ -76,7 +77,9 @@ private:
   rclcpp::Publisher<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_publisher_;
   std_msgs::msg::Int32MultiArray tcp_send_msg_;
   rclcpp::Subscription<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_subscriber_;
-  
+
+  std_msgs::msg::Int32 testint32_;
+  rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr testint32_publisher_;
 };
 
 
