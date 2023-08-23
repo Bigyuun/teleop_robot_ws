@@ -31,8 +31,8 @@ include_directories(include
 
 # DY
 # Build
-add_executable(control_node src/main.cpp src/kinematics_control_node.cpp)
-ament_target_dependencies(control_node
+add_executable(surgical_robot_control_node src/main.cpp src/kinematics_control_node.cpp)
+ament_target_dependencies(surgical_robot_control_node
   rclcpp 
   std_msgs 
   sensor_msgs 
@@ -43,11 +43,11 @@ ament_target_dependencies(control_node
 # DY
 # Install
 install(TARGETS
-control_node
+surgical_robot_control_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
-target_include_directories(control_node PUBLIC
+target_include_directories(surgical_robot_control_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
