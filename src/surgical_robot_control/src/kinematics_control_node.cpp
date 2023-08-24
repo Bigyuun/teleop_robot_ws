@@ -22,6 +22,12 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
         joystick_msg_.header = msg->header;
         joystick_msg_.axes = msg->axes;
         joystick_msg_.buttons = msg->buttons;
+
+        /**
+         * @brief E, W, S, N direction check (+1) or (-1)
+         * @note  In xbox's left axes, E:-, W:+, S:-, N:+
+         */
+        this->ST_.set_target(joystick_msg_.axes[0], (-1) * joystick_msg_.axes[1]);
       }
     );
 
@@ -45,10 +51,20 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
         this->motor_state_.actual_acceleration =  msg->actual_acceleration;
         this->motor_state_.actual_torque =  msg->actual_torque;
 
-        this->kinematics_control_target_val_ = cal_kinematics(this->motor_state_, this->joystick_msg_);
-        kinematics_control_publisher_->publish(this->kinematics_control_target_val_);
+        this->ST_.kinematics();
+        // this->kinematics_control_target_val_ = this->gear_encoder_ratio_conversion();
+        // this->kinematics_control_target_val_ = cal_kinematics(this->motor_state_, this->joystick_msg_);
+        // kinematics_control_publisher_->publish(this->kinematics_control_target_val_);
       }
     );
+  
+  /**
+   * @brief if use custom surgical tool, initialize.
+   */
+  // STLeft_.init_surgicaltool(1,1,1,1);
+  // STRight_.init_surgicaltool(1,1,1,1);
+
+
 }
 
 KinematicsControlNode::~KinematicsControlNode() {
