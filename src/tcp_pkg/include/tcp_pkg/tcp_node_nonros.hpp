@@ -20,14 +20,21 @@
 #include <math.h>
 #include <signal.h>
 
-// DY
+/**
+ * @author DY
+ * @brief Declare TCP network Setting
+ */
 #define DEFAULT_IP "172.16.1.0"
 #define DEFAULT_PORT 7777
 #define DEFAULT_TCP_BUFFER_SIZE 256
 
+/**
+ * @author DY
+ * @brief Setting Motor
+ */
 #define NUM_OF_MOTORS 5
-#define SINEWAVE_TEST 1  // setting mode : 0-non sine wave / 1-sine wave
-#define TCP_SHOW 0
+#define SINEWAVE_TEST 0  // setting mode : 0-non sine wave / 1-sine wave
+#define TCP_SHOW 0       // 0 : none / 1-show send & recv msg of devices
 
 class TCPClientNode
 {
@@ -41,10 +48,47 @@ private:
    * @author DY
    * @brief  tcp ip elements
   **************************/
+
+  /**
+   * @author DY
+   * @brief Setting IP and Port number for TCP connection.
+   * @return uint8_t success=0, fail=-1
+   */
   uint8_t Initialize();
+
+  /**
+   * @author DY
+   * @brief Try connection using declared IP and Port number.
+   * @return uint8_t 
+   */
   uint8_t TCPconfiguration();
+
+  /**
+   * @brief entering the thread loop
+   * @note 1. receive data from device
+   *       2. send data to device
+   *       3. iteration 1 & 2
+   */
   void CommThread();
+
+  /**
+   * @author DY
+   * @brief sending data (target values of motors)
+   * @param SINEWAVE_TEST 0 - using input data from another device
+   *                      1 - not using input data from another device
+   * @param send_val   type : int32_t(4 byte) array
+   * @note  MasterMACS use only 4byte data array on TCP IP network
+   */
   void sendmsg();
+
+  /**
+   * @author DY
+   * @brief receive data
+   * @protocol  4byte array
+   *            * [#1 Motor status, #2 Motor Status, #3, ... #N Motor Status] 
+   *            * Motor status = {actual_position, actual_velocity}
+   * @note  MasterMACS use only 4byte data array on TCP IP network
+   */
   void recvmsg();
 
   std::string ip_ = DEFAULT_IP;

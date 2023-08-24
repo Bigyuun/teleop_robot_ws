@@ -29,11 +29,7 @@ TCPClientNode::~TCPClientNode()
   commthread_.join();
 }
 
-/**
- * @author DY
- * @brief Setting IP and Port number for TCP connection.
- * @return uint8_t success=0, fail=-1
- */
+
 uint8_t TCPClientNode::Initialize()
 {
   // ***********************
@@ -86,11 +82,7 @@ uint8_t TCPClientNode::Initialize()
   return this->TCPconfiguration();
 }
 
-/**
- * @author DY
- * @brief Try connection using declared IP and Port number.
- * @return uint8_t 
- */
+
 uint8_t TCPClientNode::TCPconfiguration() {
 
   this->buffer_size_ = DEFAULT_TCP_BUFFER_SIZE;
@@ -116,30 +108,17 @@ uint8_t TCPClientNode::TCPconfiguration() {
   }
 }
 
-/**
- * @brief entering the thread loop
- * @note 1. receive from device
- *       2. send to device
- *       3. iteration 1 & 2
- */
+
 void TCPClientNode::CommThread() {
   std::cout << "[TCPClientNode] TCP communication Thread is onfigure" << std::endl;
 
   while(true) {
-  // while(true) {
     this->recvmsg();
     this->sendmsg();
   }
 }
 
-/**
- * @author DY
- * @brief sending data (target values of motors)
- * @param SINEWAVE_TEST 0 - using input data from another device
- *                      1 - not using input data from another device
- * @param send_val   type : int32_t(4 byte) array
- * @note  MasterMACS use only 4byte data array on TCP IP network
- */
+
 void TCPClientNode::sendmsg()
 {
 
@@ -157,12 +136,13 @@ void TCPClientNode::sendmsg()
   }
   #endif
   counter++;
-#else
+
   /**
    * @author DY
    * @brief struct에 접근하여 input으로 던져줄 것.
    *        ROS2 topic의 경우 배열로 던지고 받을 것.
   */
+#else
   long send_val[this->buffer_size_];
   for(int i=0; i<NUM_OF_MOTORS; i++){
     send_val[i] = 0;
@@ -172,11 +152,7 @@ void TCPClientNode::sendmsg()
 #endif
 }
 
-/**
- * @author DY
- * @brief receive data
- * @note  MasterMACS use only 4byte data array on TCP IP network
- */
+
 void TCPClientNode::recvmsg()
 {
   int recv_val[this->buffer_size_];
