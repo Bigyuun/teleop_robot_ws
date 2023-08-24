@@ -17,6 +17,7 @@
 #include <memory>
 #include <functional>
 #include <chrono>
+#include <math.h>
 #include <signal.h>
 
 // ROS2

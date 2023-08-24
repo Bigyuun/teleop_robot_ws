@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <future>
+#include <string>
+#include <thread>
+#include <string.h>
+#include <iostream>
+#include <unistd.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <memory>
+#include <vector>
+#include <sys/signal.h>
+#include <chrono>
+#include <memory>
+#include <functional>
+#include <chrono>
+#include <math.h>
+#include <signal.h>
+
+// DY
+#define DEFAULT_IP "172.16.1.0"
+#define DEFAULT_PORT 7777
+#define DEFAULT_TCP_BUFFER_SIZE 256
+
+#define NUM_OF_MOTORS 5
+#define SINEWAVE_TEST 1  // setting mode : 0-non sine wave / 1-sine wave
+#define TCP_SHOW 0
+
+class TCPClientNode
+{
+public:
+
+  explicit TCPClientNode();
+  virtual ~TCPClientNode();
+  
+private:
+  /***************************
+   * @author DY
+   * @brief  tcp ip elements
+  **************************/
+  uint8_t Initialize();
+  uint8_t TCPconfiguration();
+  void CommThread();
+  void sendmsg();
+  void recvmsg();
+
+  std::string ip_ = DEFAULT_IP;
+  std::string s_port_;
+  uint32_t port_ = DEFAULT_PORT;
+  uint32_t buffer_size_;
+
+  int client_socket_;
+  struct sockaddr_in server_addr_;
+  char send_msg_[DEFAULT_TCP_BUFFER_SIZE] = {0,};
+  char recv_msg_[DEFAULT_TCP_BUFFER_SIZE] = {0,};
+  int send_strlen_;
+  int recv_strlen_;
+
+  std::thread commthread_;
+
+  /**************************
+   * @author DY
+   * @brief  ROS2 elements
+  **************************/
+  // void publishall();
+  // sensor_msgs::msg::Joy joystick_msg_;
+  // rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joystic_subscriber_;
+
+  // MotorState tcp_read_msg_;
+  // rclcpp::Publisher<MotorState>::SharedPtr tcp_publisher_;
+  // MotorCommand tcp_send_msg_;
+  // rclcpp::Subscription<MotorCommand>::SharedPtr tcp_subscriber_;
+
+  // // std_msgs::msg::Int32MultiArray tcp_read_msg_;
+  // // rclcpp::Publisher<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_publisher_;
+  // // std_msgs::msg::Int32MultiArray tcp_send_msg_;
+  // // rclcpp::Subscription<std_msgs::msg::Int32MultiArray>::SharedPtr tcp_subscriber_;
+};
+
+
+
