@@ -17,6 +17,7 @@
 #include <memory>
 #include <functional>
 #include <chrono>
+#include <cmath>
 #include <signal.h>
 
 // ROS2
@@ -45,6 +46,7 @@ public:
   */
   // std::vector<int32_t> cal_kinematics(std::vector<int32_t> actual_pos[], std::vector<int32_t> actual_vel[]);
   MotorCommand cal_kinematics(MotorState state, sensor_msgs::msg::Joy controller_input);
+  void gear_encoder_ratio_conversion();
 
 private:
   void publishall();

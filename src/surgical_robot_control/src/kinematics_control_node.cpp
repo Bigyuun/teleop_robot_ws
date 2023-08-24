@@ -3,6 +3,7 @@
 using MotorState = custom_interfaces::msg::MotorState;
 using MotorCommand = custom_interfaces::msg::MotorCommand;
 
+
 KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_options)
 : Node("KinematicsControlNode", node_options)
 {
@@ -54,11 +55,6 @@ KinematicsControlNode::~KinematicsControlNode() {
 
 }
 
-void KinematicsControlNode::publishall()
-{
-
-}
-
 MotorCommand KinematicsControlNode::cal_kinematics(MotorState state, sensor_msgs::msg::Joy controller_input)
 {
   MotorCommand result;
@@ -69,6 +65,15 @@ MotorCommand KinematicsControlNode::cal_kinematics(MotorState state, sensor_msgs
   /* output : target value*/
 
   return result;
+}
+
+void KinematicsControlNode::gear_encoder_ratio_conversion() {
+
+}
+
+void KinematicsControlNode::publishall()
+{
+
 }
 
 
