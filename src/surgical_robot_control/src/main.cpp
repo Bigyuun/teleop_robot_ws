@@ -16,6 +16,12 @@ void print_help()
   printf("\t-h Help           : Print this help function.\n");
 }
 
+void signal_callback_handler (int signum) {
+  signal(signum, SIG_IGN);
+  printf("Ctrl+C break.\n");  
+  exit(1);
+}
+
 int main(int argc, char * argv[])
 {
   if(rcutils_cli_option_exist(argv, argv + argc, "-h")){
@@ -24,6 +30,7 @@ int main(int argc, char * argv[])
   }
 
   rclcpp::init(argc, argv);
+  // signal(SIGINT, signal_callback_handler);
   auto node = std::make_shared<KinematicsControlNode>();
   std::cout << "ros spin() start" << std::endl;
   rclcpp::spin(node);

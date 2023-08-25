@@ -35,10 +35,10 @@
 #define DEFAULT_TCP_BUFFER_SIZE 256
 
 #define NUM_OF_MOTORS 5
-#define SINEWAVE_TEST 1  // setting mode : 0-non sine wave / 1-sine wave
+#define SINEWAVE_TEST 0  // setting mode : 0-non sine wave / 1-sine wave
 #define TCP_SHOW 0
 
-class TCPClientNode final : public rclcpp::Node  // keyword 'final' prevents further inheritance
+class TCPClientNode : public rclcpp::Node  // keyword 'final' prevents further inheritance
 {
 public:
   using MotorState = custom_interfaces::msg::MotorState;
@@ -77,8 +77,8 @@ private:
    * @brief  ROS2 elements
   **************************/
   void publishall();
-  sensor_msgs::msg::Joy joystick_msg_;
-  rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joystic_subscriber_;
+  // sensor_msgs::msg::Joy joystick_msg_;
+  // rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joystic_subscriber_;
 
   MotorState tcp_read_msg_;
   rclcpp::Publisher<MotorState>::SharedPtr tcp_publisher_;

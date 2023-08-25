@@ -12,26 +12,26 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
   const auto QoS_RKL10V =
   rclcpp::QoS(rclcpp::KeepLast(qos_depth)).reliable().durability_volatile();
 
-  joystic_subscriber_ =
-    this->create_subscription<sensor_msgs::msg::Joy>(
-      "joy",
-      QoS_RKL10V,
-      [this] (const sensor_msgs::msg::Joy::SharedPtr msg) -> void
-      {
-        joystick_msg_.header = msg->header;
-        joystick_msg_.axes = msg->axes;
-        joystick_msg_.buttons = msg->buttons;
+  // joystic_subscriber_ =
+  //   this->create_subscription<sensor_msgs::msg::Joy>(
+  //     "joy",
+  //     QoS_RKL10V,
+  //     [this] (const sensor_msgs::msg::Joy::SharedPtr msg) -> void
+  //     {
+  //       joystick_msg_.header = msg->header;
+  //       joystick_msg_.axes = msg->axes;
+  //       joystick_msg_.buttons = msg->buttons;
 
-        // RCLCPP_INFO(
-        //   this->get_logger(),
-        //   "Header of the message : %ld, %ld",
-        //   msg->header,
-        //   msg->header);
+  //       RCLCPP_INFO(
+  //         this->get_logger(),
+  //         "Header of the message : %ld, %ld",
+  //         msg->header);
 
-        // std::cout << joystick_msg_.axes << std::endl;
-        // std::cout << joystick_msg_.buttons << std::endl;
-      }
-    );
+  //       std::cout << joystick_msg_.axes[0] << std::endl;
+  //       std::cout << joystick_msg_.axes[1] << std::endl;
+  //       std::cout << joystick_msg_.axes[2] << std::endl;
+  //     }
+  //   );
 
   tcp_read_msg_.actual_position.resize(NUM_OF_MOTORS); // pos & vel
   tcp_read_msg_.actual_velocity.resize(NUM_OF_MOTORS); // pos & vel
@@ -190,9 +190,9 @@ void TCPClientNode::sendmsg()
    * @brief struct에 접근하여 input으로 던져줄 것.
    *        ROS2 topic의 경우 배열로 던지고 받을 것.
   */
-  long send_val[this->buffer_size_];
+  int send_val[this->buffer_size_];
   for(int i=0; i<NUM_OF_MOTORS; i++){
-    send_val[i] = this->tcp_send_msg_.data[i];
+    send_val[i] = this->tcp_send_msg_.target_val[i];
     memcpy(this->send_msg_ + i*sizeof(send_val[i]), &send_val[i], sizeof(send_val[i]));
   }
   this->send_strlen_ = send(this->client_socket_, this->send_msg_, this->buffer_size_, 0);
