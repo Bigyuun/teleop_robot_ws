@@ -24,9 +24,10 @@ find_package(rclcpp REQUIRED)
 find_package(custom_interfaces REQUIRED)
 
 # DY
-include_directories("include/surgical_robot_control"
-                    "/opt/ros/foxy/include"
-                    "../tcp_pkg/include/tcp_pkg"
+include_directories(include
+  "include/surgical_robot_control"
+  "/opt/ros/foxy/include"
+  "../tcp_pkg/include/tcp_pkg"
 )
 
 # DY
@@ -35,7 +36,6 @@ add_executable(surgical_robot_control_node
   src/main.cpp 
   src/kinematics_control_node.cpp 
   src/surgical_tool.cpp)
-
 ament_target_dependencies(surgical_robot_control_node
   rclcpp 
   std_msgs 
@@ -47,8 +47,12 @@ ament_target_dependencies(surgical_robot_control_node
 # DY
 # Install
 install(TARGETS
-surgical_robot_control_node
+  surgical_robot_control_node
   DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)

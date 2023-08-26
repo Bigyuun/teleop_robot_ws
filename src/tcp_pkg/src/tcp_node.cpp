@@ -6,6 +6,8 @@ using namespace std::chrono_literals;
 TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
 : Node("TCPClientNode", node_options)
 {
+  RCLCPP_INFO(this->get_logger(), "<<1>>");
+
   this->declare_parameter("qos_depth", 10);
   int8_t qos_depth = this->get_parameter("qos_depth", qos_depth);
 
@@ -32,6 +34,7 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
   //       std::cout << joystick_msg_.axes[2] << std::endl;
   //     }
   //   );
+  RCLCPP_INFO(this->get_logger(), "<<2>>");
 
   tcp_read_msg_.actual_position.resize(NUM_OF_MOTORS); // pos & vel
   tcp_read_msg_.actual_velocity.resize(NUM_OF_MOTORS); // pos & vel
@@ -51,12 +54,17 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
         tcp_send_msg_.target_val = msg->target_val;
       }
     );
+  RCLCPP_INFO(this->get_logger(), "<<3>>");
+
+
+  RCLCPP_INFO(this->get_logger(), "<<4>>");
 
   if (this->Initialize()) {
     std::cout << "[TCPClientNode] Init Error." << std::endl;
     return;
   }
-
+  
+  RCLCPP_INFO(this->get_logger(), "TCP communication Thread is onfigure");
   this->commthread_ = std::thread(&TCPClientNode::CommThread, this);
 }
 
@@ -78,47 +86,47 @@ uint8_t TCPClientNode::Initialize()
 {
   // ***********************
   // 1 - ip setting
-  // ***********************
-  while(true){
-    std::cout << "[Command] Enter IP address. Enter is using dafault (default = " << DEFAULT_IP << ") : ";
-    std::getline(std::cin, this->ip_);
-    static uint8_t cnt = 0;
+  // // ***********************
+  // while(true){
+  //   std::cout << "[Command] Enter IP address. Enter is using dafault (default = " << DEFAULT_IP << ") : ";
+  //   std::getline(std::cin, this->ip_);
+  //   static uint8_t cnt = 0;
 
-    // set default
-    if(this->ip_ == "") {this->ip_ = DEFAULT_IP; std::cout << this->ip_ << std::endl; break;}
+  //   // set default
+  //   if(this->ip_ == "") {this->ip_ = DEFAULT_IP; std::cout << this->ip_ << std::endl; break;}
 
-    // set manual
-    for(int i=0; i<this->ip_.length(); i++) { if(this->ip_[i] == '.') cnt++; }
-    if(cnt != 3) std::cout << "[ERROR] Check your ip address (3 .)" << std::endl;
-    else {break;}
-  }
+  //   // set manual
+  //   for(int i=0; i<this->ip_.length(); i++) { if(this->ip_[i] == '.') cnt++; }
+  //   if(cnt != 3) std::cout << "[ERROR] Check your ip address (3 .)" << std::endl;
+  //   else {break;}
+  // }
 
-  // ***********************
-  // 2 - port setting
-  // ***********************
-  while(true){
-    std::cout << "[Command] Enter Port. Enter is using dafault (default = " << DEFAULT_PORT << ") : ";
-    std::getline(std::cin, this->s_port_);
-    uint8_t tf = 0;
+  // // ***********************
+  // // 2 - port setting
+  // // ***********************
+  // while(true){
+  //   std::cout << "[Command] Enter Port. Enter is using dafault (default = " << DEFAULT_PORT << ") : ";
+  //   std::getline(std::cin, this->s_port_);
+  //   uint8_t tf = 0;
 
-    // set default
-    if(this->s_port_=="") {std::cout << this->s_port_ << std::endl; break;}
+  //   // set default
+  //   if(this->s_port_=="") {std::cout << this->s_port_ << std::endl; break;}
 
-    // set manual
-    for(int i=0; i<this->s_port_.length(); i++)
-    {
-      tf = isdigit(this->s_port_[i]);
-      if(tf==0){
-        std::cout << "[ERROR] Check your Port Number (int)" << std::endl;
-        break;
-      }
-    }
-    if(tf) {
-      this->port_ = std::stoi(this->s_port_);
-      break;
-    }
-  }
-  std::cout << "[INFO] Set is done -> " << "IP = " << this->ip_ << " port = " << this->port_ << std::endl;
+  //   // set manual
+  //   for(int i=0; i<this->s_port_.length(); i++)
+  //   {
+  //     tf = isdigit(this->s_port_[i]);
+  //     if(tf==0){
+  //       std::cout << "[ERROR] Check your Port Number (int)" << std::endl;
+  //       break;
+  //     }
+  //   }
+  //   if(tf) {
+  //     this->port_ = std::stoi(this->s_port_);
+  //     break;
+  //   }
+  // }
+  // std::cout << "[INFO] Set is done -> " << "IP = " << this->ip_ << " port = " << this->port_ << std::endl;
 
   return this->TCPconfiguration();
 }
@@ -154,8 +162,6 @@ uint8_t TCPClientNode::TCPconfiguration() {
 
 
 void TCPClientNode::CommThread() {
-  RCLCPP_INFO(this->get_logger(), "TCP communication Thread is onfigure");
-
   while(rclcpp::ok()) {
   // while(true) {
     this->recvmsg();

@@ -106,29 +106,38 @@ void KinematicsControlNode::cal_kinematics() {
   float pAngle = this->mapping_joystick_to_bending_p();
   float tAngle = this->mapping_joystick_to_bending_t();
   float gAngle  = this->mapping_joystick_to_forceps();
-  // std::cout << pAngle << std::endl;
-  // std::cout << tAngle << std::endl;
-  // std::cout << gAngle << std::endl;
+  std::cout << "=================================" << std::endl;
+  std::cout << "pangle : " << pAngle << std::endl;
+  std::cout << "tangle : " << tAngle << std::endl;
+  std::cout << "gangle : " << gAngle << std::endl;
 
   this->ST_.get_bending_kinematic_result(pAngle, tAngle, gAngle);
-  // std::cout << this->ST_.wrLengthEast_ << std::endl;
-  // std::cout << this->ST_.wrLengthWest_ << std::endl;
-  // std::cout << this->ST_.wrLengthSouth_ << std::endl;
-  // std::cout << this->ST_.wrLengthNorth_ << std::endl;
-  // std::cout << this->ST_.wrLengthGrip << std::endl;
 
-  this->kinematics_control_target_val_.target_val[0] = this->ST_.wrLengthEast_;
-  this->kinematics_control_target_val_.target_val[1] = this->ST_.wrLengthWest_;
-  this->kinematics_control_target_val_.target_val[2] = this->ST_.wrLengthSouth_;
-  this->kinematics_control_target_val_.target_val[3] = this->ST_.wrLengthNorth_;
-  this->kinematics_control_target_val_.target_val[4] = this->ST_.wrLengthGrip;
+  float f_val[NUM_OF_MOTORS];
+  f_val[0] = this->ST_.wrLengthEast_;
+  f_val[1] = this->ST_.wrLengthWest_;
+  f_val[2] = this->ST_.wrLengthSouth_;
+  f_val[3] = this->ST_.wrLengthNorth_;
+  f_val[4] = this->ST_.wrLengthGrip;
+
+  std::cout << "East  : " << f_val[0] << std::endl;
+  std::cout << "West  : " << f_val[1] << std::endl;
+  std::cout << "South : " << f_val[2] << std::endl;
+  std::cout << "North : " << f_val[3] << std::endl;
+  std::cout << "Grip  : " << f_val[4] << std::endl;
 
   // ratio conversion
-  this->kinematics_control_target_val_.target_val[0] = this->kinematics_control_target_val_.target_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_val[1] = this->kinematics_control_target_val_.target_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_val[2] = this->kinematics_control_target_val_.target_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_val[3] = this->kinematics_control_target_val_.target_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_val[4] = this->kinematics_control_target_val_.target_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_val[0] = f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_val[1] = f_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_val[2] = f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_val[3] = f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_val[4] = f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  
+  std::cout << "1 : " << this->kinematics_control_target_val_.target_val[0] << std::endl;
+  std::cout << "2 : " << this->kinematics_control_target_val_.target_val[1] << std::endl;
+  std::cout << "3 : " << this->kinematics_control_target_val_.target_val[2] << std::endl;
+  std::cout << "4 : " << this->kinematics_control_target_val_.target_val[3] << std::endl;
+  std::cout << "5 : " << this->kinematics_control_target_val_.target_val[4] << std::endl;
 }
 
 float KinematicsControlNode::gear_encoder_ratio_conversion(float gear_ratio, int e_channel, int e_resolution) {
