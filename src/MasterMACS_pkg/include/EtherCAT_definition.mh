@@ -17,8 +17,8 @@
 #define g_ETHERCAT_CONFIG_INDIVIDUAL 0
 
 #define g_NUM_OF_SLAVES		NUM_OF_MOTORS
-#define g_OP_MODE			EPOS4_OP_CSV	// use it if you set all motors as same Operation Mode.
-//#define g_OP_MODE			EPOS4_OP_CSP
+//#define g_OP_MODE			EPOS4_OP_CSV	// use it if you set all motors as same Operation Mode.
+#define g_OP_MODE			EPOS4_OP_CSP
 //#define g_OP_MODE			EPOS4_OP_CST
 
 
