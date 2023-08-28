@@ -14,8 +14,6 @@ void signal_callback_handler (int signum) {
 
 int main(int argc, char * argv[])
 {
-
-  // auto node = std::make_shared<TCPClientNode>();
   TCPClientNode tcp_PCtoMasterMACS;
   signal(SIGINT, signal_callback_handler);
   while(true)

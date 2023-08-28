@@ -36,7 +36,7 @@ def generate_launch_description():
       
       IncludeLaunchDescription(      
         PythonLaunchDescriptionSource(
-          [get_package_share_directory('tcp_pkg'), '/launch/_launch.py'])
+          [get_package_share_directory('tcp_pkg'), '/launch/demo.launch.py'])
       ),
       
       IncludeLaunchDescription(

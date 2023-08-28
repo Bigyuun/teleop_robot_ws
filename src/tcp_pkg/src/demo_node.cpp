@@ -11,7 +11,6 @@ using std::placeholders::_1;
 using MotorState = custom_interfaces::msg::MotorState;
 using MotorCommand = custom_interfaces::msg::MotorCommand;
 
-
 class DemoNode : public rclcpp::Node
 {
 public:
@@ -52,6 +51,7 @@ private:
     msg.actual_velocity.resize(NUM_OF_MOTORS);
     msg.actual_acceleration.resize(NUM_OF_MOTORS);
     msg.actual_torque.resize(NUM_OF_MOTORS);
+    msg.stamp = this->now();
     demo_node_publisher_->publish(msg);
   }
 

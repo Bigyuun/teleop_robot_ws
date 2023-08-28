@@ -106,7 +106,6 @@ void KinematicsControlNode::cal_kinematics() {
   float pAngle = this->mapping_joystick_to_bending_p();
   float tAngle = this->mapping_joystick_to_bending_t();
   float gAngle  = this->mapping_joystick_to_forceps();
-  std::cout << "=================================" << std::endl;
   std::cout << "pangle : " << pAngle << std::endl;
   std::cout << "tangle : " << tAngle << std::endl;
   std::cout << "gangle : " << gAngle << std::endl;
@@ -120,13 +119,14 @@ void KinematicsControlNode::cal_kinematics() {
   f_val[3] = this->ST_.wrLengthNorth_;
   f_val[4] = this->ST_.wrLengthGrip;
 
-  std::cout << "East  : " << f_val[0] << std::endl;
-  std::cout << "West  : " << f_val[1] << std::endl;
-  std::cout << "South : " << f_val[2] << std::endl;
-  std::cout << "North : " << f_val[3] << std::endl;
-  std::cout << "Grip  : " << f_val[4] << std::endl;
+  // std::cout << "East  : " << f_val[0] << std::endl;
+  // std::cout << "West  : " << f_val[1] << std::endl;
+  // std::cout << "South : " << f_val[2] << std::endl;
+  // std::cout << "North : " << f_val[3] << std::endl;
+  // std::cout << "Grip  : " << f_val[4] << std::endl;
 
   // ratio conversion
+  this->kinematics_control_target_val_.stamp = this->now();
   this->kinematics_control_target_val_.target_val[0] = f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_val[1] = f_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_val[2] = f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
@@ -138,6 +138,7 @@ void KinematicsControlNode::cal_kinematics() {
   std::cout << "3 : " << this->kinematics_control_target_val_.target_val[2] << std::endl;
   std::cout << "4 : " << this->kinematics_control_target_val_.target_val[3] << std::endl;
   std::cout << "5 : " << this->kinematics_control_target_val_.target_val[4] << std::endl;
+  std::cout << "=================================" << std::endl;
 }
 
 float KinematicsControlNode::gear_encoder_ratio_conversion(float gear_ratio, int e_channel, int e_resolution) {
