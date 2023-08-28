@@ -6,35 +6,11 @@ using namespace std::chrono_literals;
 TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
 : Node("TCPClientNode", node_options)
 {
-  RCLCPP_INFO(this->get_logger(), "<<1>>");
-
   this->declare_parameter("qos_depth", 10);
   int8_t qos_depth = this->get_parameter("qos_depth", qos_depth);
 
   const auto QoS_RKL10V =
   rclcpp::QoS(rclcpp::KeepLast(qos_depth)).reliable().durability_volatile();
-
-  // joystic_subscriber_ =
-  //   this->create_subscription<sensor_msgs::msg::Joy>(
-  //     "joy",
-  //     QoS_RKL10V,
-  //     [this] (const sensor_msgs::msg::Joy::SharedPtr msg) -> void
-  //     {
-  //       joystick_msg_.header = msg->header;
-  //       joystick_msg_.axes = msg->axes;
-  //       joystick_msg_.buttons = msg->buttons;
-
-  //       RCLCPP_INFO(
-  //         this->get_logger(),
-  //         "Header of the message : %ld, %ld",
-  //         msg->header);
-
-  //       std::cout << joystick_msg_.axes[0] << std::endl;
-  //       std::cout << joystick_msg_.axes[1] << std::endl;
-  //       std::cout << joystick_msg_.axes[2] << std::endl;
-  //     }
-  //   );
-  RCLCPP_INFO(this->get_logger(), "<<2>>");
 
   tcp_read_msg_.actual_position.resize(NUM_OF_MOTORS); // pos & vel
   tcp_read_msg_.actual_velocity.resize(NUM_OF_MOTORS); // pos & vel
@@ -54,10 +30,6 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
         tcp_send_msg_.target_val = msg->target_val;
       }
     );
-  RCLCPP_INFO(this->get_logger(), "<<3>>");
-
-
-  RCLCPP_INFO(this->get_logger(), "<<4>>");
 
   if (this->Initialize()) {
     std::cout << "[TCPClientNode] Init Error." << std::endl;
@@ -84,50 +56,6 @@ TCPClientNode::~TCPClientNode()
 
 uint8_t TCPClientNode::Initialize()
 {
-  // ***********************
-  // 1 - ip setting
-  // // ***********************
-  // while(true){
-  //   std::cout << "[Command] Enter IP address. Enter is using dafault (default = " << DEFAULT_IP << ") : ";
-  //   std::getline(std::cin, this->ip_);
-  //   static uint8_t cnt = 0;
-
-  //   // set default
-  //   if(this->ip_ == "") {this->ip_ = DEFAULT_IP; std::cout << this->ip_ << std::endl; break;}
-
-  //   // set manual
-  //   for(int i=0; i<this->ip_.length(); i++) { if(this->ip_[i] == '.') cnt++; }
-  //   if(cnt != 3) std::cout << "[ERROR] Check your ip address (3 .)" << std::endl;
-  //   else {break;}
-  // }
-
-  // // ***********************
-  // // 2 - port setting
-  // // ***********************
-  // while(true){
-  //   std::cout << "[Command] Enter Port. Enter is using dafault (default = " << DEFAULT_PORT << ") : ";
-  //   std::getline(std::cin, this->s_port_);
-  //   uint8_t tf = 0;
-
-  //   // set default
-  //   if(this->s_port_=="") {std::cout << this->s_port_ << std::endl; break;}
-
-  //   // set manual
-  //   for(int i=0; i<this->s_port_.length(); i++)
-  //   {
-  //     tf = isdigit(this->s_port_[i]);
-  //     if(tf==0){
-  //       std::cout << "[ERROR] Check your Port Number (int)" << std::endl;
-  //       break;
-  //     }
-  //   }
-  //   if(tf) {
-  //     this->port_ = std::stoi(this->s_port_);
-  //     break;
-  //   }
-  // }
-  // std::cout << "[INFO] Set is done -> " << "IP = " << this->ip_ << " port = " << this->port_ << std::endl;
-
   return this->TCPconfiguration();
 }
 
@@ -176,7 +104,7 @@ void TCPClientNode::sendmsg()
 {
 
 #if SINEWAVE_TEST
-  int send_val[this->buffer_size_];
+  int32_t send_val[this->buffer_size_];
   static uint64_t counter = 0;
   for(int i=0; i<NUM_OF_MOTORS; i++){
       // send_val[i] = 10*sin(counter*0.002);
@@ -196,7 +124,7 @@ void TCPClientNode::sendmsg()
    * @brief struct에 접근하여 input으로 던져줄 것.
    *        ROS2 topic의 경우 배열로 던지고 받을 것.
   */
-  int send_val[this->buffer_size_];
+  int32_t send_val[this->buffer_size_];
   for(int i=0; i<NUM_OF_MOTORS; i++){
     send_val[i] = this->tcp_send_msg_.target_val[i];
     memcpy(this->send_msg_ + i*sizeof(send_val[i]), &send_val[i], sizeof(send_val[i]));
@@ -211,9 +139,7 @@ void TCPClientNode::sendmsg()
 // ************************
 void TCPClientNode::recvmsg()
 {
-  int recv_val[this->buffer_size_];
-
-  // system("clear");  // clear every time
+  int32_t recv_val[this->buffer_size_];
   this->send_strlen_ = recv(this->client_socket_, this->recv_msg_, this->buffer_size_, 0);
   // this->send_strlen_ = read(this->client_socket_, this->recv_msg_, this->buffer_size_);
   if (this->send_strlen_ == -1) {
@@ -247,8 +173,6 @@ void TCPClientNode::recvmsg()
 
 void TCPClientNode::publishall() {
   tcp_publisher_->publish(tcp_read_msg_);
-  // testint32_publisher_->publish(testint32_);
-  // RCLCPP_INFO(this->get_logger(), "Published");
 }
 
 

@@ -74,6 +74,9 @@ private:
   /**
    * @author DY
    * @brief sending data (target values of motors)
+   * @protocol  4byte array
+   *            * [#1 target val, #2 target val, #3, ... #N target val] 
+   *            * Motor status = {actual_position, actual_velocity}
    * @param SINEWAVE_TEST 0 - using input data from another device
    *                      1 - not using input data from another device
    * @param send_val   type : int32_t(4 byte) array

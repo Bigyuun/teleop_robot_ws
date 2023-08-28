@@ -1,6 +1,6 @@
 /**
  * @file hw_spec.hpp
- * @author daeyun (you@domain.com)
+ * @author daeyun (bigyun9375@gmail.com)
  * @brief 
  * @version 0.1
  * @date 2023-08-25

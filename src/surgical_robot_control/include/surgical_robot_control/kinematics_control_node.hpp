@@ -41,23 +41,32 @@ public:
   using MotorState = custom_interfaces::msg::MotorState;
   using MotorCommand = custom_interfaces::msg::MotorCommand;
 
+  /**
+   * @brief Construct a new Kinematics Control Node object
+   * @param node_options ROS
+   */
   explicit KinematicsControlNode(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
-  virtual ~KinematicsControlNode();
-
-
-  SurgicalTool ST_;
-  // SurgicalTool STRight_;
 
   /**
+   * @brief Destroy the Kinematics Control Node object
+   */
+  virtual ~KinematicsControlNode();
+
+  /**
+   * @brief sugical_tool.hpp
+   */
+  SurgicalTool ST_;
+
+  /**
+   * @author DY
    * @brief E, W, S, N direction check (+1) or (-1)
-   * @note  In xbox's left axes, E:-, W:+, S:-, N:+
+   * @note  In xbox's left axes -> E:-, W:+, S:-, N:+
+   *        In our definition   -> E:-, W:+, S:+, N:-
+   *        mapping joystick data to angle of hardware limitation
    */
   float mapping_joystick_to_bending_p();
   float mapping_joystick_to_bending_t();
   float mapping_joystick_to_forceps();
-  // float mapping_joystick_to_bending_p(float axes, SurgicalTool ST);
-  // float mapping_joystick_to_bending_t(float axes, SurgicalTool ST);
-  // float mapping_joystick_to_forceps(float axes, SurgicalTool ST);
 
   /**
    * @author DY, JKim
@@ -68,15 +77,42 @@ public:
   */
   void cal_kinematics();
 
+  /**
+   * @author DY
+   * @brief multiply the ratio of all components
+   * @param gear_ratio 
+   * @param e_channel 
+   * @param e_resolution 
+   * @return float 
+   */
   float gear_encoder_ratio_conversion(float gear_ratio, int e_channel, int e_resolution);
 
 private:
+
+  /**
+   * @author DY
+   * @brief ROS2 objects and arguments
+   */
   void publishall();
 
+  /**
+   * @author DY
+   * @brief joystick subscriber
+   */
   sensor_msgs::msg::Joy joystick_msg_;
   rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joystic_subscriber_;
+
+  /**
+   * @author DY
+   * @brief target values for operating motors
+   */
   MotorCommand kinematics_control_target_val_;
   rclcpp::Publisher<MotorCommand>::SharedPtr kinematics_control_publisher_;
+
+  /**
+   * @author DY
+   * @brief read actual motor status
+   */
   MotorState motor_state_;
   rclcpp::Subscription<MotorState>::SharedPtr motor_state_subscriber_;
 

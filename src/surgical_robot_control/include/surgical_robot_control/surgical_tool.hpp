@@ -14,6 +14,17 @@
 #define MAX_FORCEPS_RAGNE_DEGREE 30  // mm
 #define MAX_FORCEPS_RAGNE_MM 3  // mm
 
+/**
+ * @authors DY, JKim
+ * @brief Structure of Surgical tool (Forceps)
+ * @unit Degree
+ * @param pAngle : Pan angle (East(-) & West(+))
+ * @param tAngle : Tilt angle (South(+) & North(-))
+ * @param num_joint number of joint of continuum parts
+ * @param arc       degree of arc of the segment part (mm)
+ * @param diameter  diameter of the segment (mm)
+ * @param disWire   distance between the center and the center of ellipse (mm)
+ */
 struct structure {
   int num_joint;
   float pAngle;
@@ -26,11 +37,26 @@ struct structure {
 class SurgicalTool
 {
 public:
+  /**
+   * @brief Construct a new Surgical Tool object
+   */
   SurgicalTool();
+
+  /**
+   * @brief Destroy the Surgical Tool object
+   */
   ~SurgicalTool();
 
+  /**
+   * @brief make 1 object of the surgical tool 
+   * 
+   */
   struct structure surgicaltool_;
-  // Make wire
+  
+  /**
+   * @authors DY
+   * @brief initialize of surgical tool
+   */
   void init_surgicaltool(
     int num_joint,
     float arc,
@@ -38,25 +64,65 @@ public:
     float disWire
   );
 
+  // **************************
+  // Limitation of workspace
+  // **************************
   float max_bending_deg_ = MAX_BENDING_DEGREE;
   float max_forceps_deg_ = MAX_FORCEPS_RAGNE_DEGREE;
 
+  /**
+   * @brief target length for moving wire using motor 
+   * @unit mm
+   */
 	float wrLengthWest_, wrLengthEast_, wrLengthSouth_, wrLengthNorth_;
   float wrLengthGrip;
 
+  /**
+   * @brief Set the bending angle object
+   * @unit degree
+   * @param pAngle 
+   * @param tAngle 
+   */
   void set_bending_angle(float pAngle, float tAngle);
+
+  /**
+   * @brief Set the forceps angle object
+   * @unit degree
+   * @param angle 
+   */
   void set_forceps_angle(float angle);
+
+  /**
+   * @brief Get the bending kinematic result object
+   * @param pAngle 
+   * @param tAngle 
+   * @param grip 
+   * @return void
+   *         but the wrLength** variables has the target values
+   */
   void get_bending_kinematic_result(float pAngle, float tAngle, float grip);
+
+  /**
+   * @brief calculate the kinematics
+   */
   void kinematics();
-  
+
+  /**
+   * @brief make input variable to 'mm' unit
+   * @return * float 
+   */
   float tomm();
-  float todegree();
+
+  /**
+   * @brief make input variable to 'rad' unit
+   * @return float 
+   */
+  float torad();
 
 private:
   // const double PI = acos(-1);
   const double PI_ = M_PI;
 
-  // unit : radian
   float deg_ = M_PI / 180;
 	float rad_ = 180 / M_PI;
 	float mm_ = 0.001;

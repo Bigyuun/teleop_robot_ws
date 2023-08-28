@@ -1,5 +1,6 @@
 #include "surgical_tool.hpp"
 
+
 SurgicalTool::SurgicalTool() {
 	init_surgicaltool(
 		NUM_OF_JOINT,
@@ -28,8 +29,8 @@ void SurgicalTool::init_surgicaltool(	int num_joint,
 }
 
 void SurgicalTool::set_bending_angle(float pAngle, float tAngle) {
-	this->pAngle_ = pAngle * deg_;
-	this->tAngle_ = tAngle * deg_;
+	this->pAngle_ = pAngle * torad();
+	this->tAngle_ = tAngle * torad();
 }
 
 void SurgicalTool::set_forceps_angle(float angle) {	// degree
@@ -41,8 +42,11 @@ void SurgicalTool::get_bending_kinematic_result(
 	float tAngle,
 	float gAngle)
 {
+	// 1. set angle(degree) of continuum part
 	this->set_bending_angle(pAngle, tAngle);
+	// 2. set angle(degree) o forceps
 	this->set_forceps_angle(gAngle);
+	// 3. calculate kinematics
 	this->kinematics();
 }
 
@@ -67,7 +71,7 @@ float SurgicalTool::tomm()
 	return this->mm_;
 }
 
-float SurgicalTool::todegree()
+float SurgicalTool::torad()
 {
 	return this->deg_;
 }

@@ -27,15 +27,6 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
         joystick_msg_.header = msg->header;
         joystick_msg_.axes = msg->axes;
         joystick_msg_.buttons = msg->buttons;
-        
-        // RCLCPP_INFO(
-        //   this->get_logger(),
-        //   "Header of the message : %ld, %ld",
-        //   msg->header);
-
-        // std::cout << joystick_msg_.axes[0] << std::endl;
-        // std::cout << joystick_msg_.axes[1] << std::endl;
-        // std::cout << joystick_msg_.axes[2] << std::endl;
       }
     );
   RCLCPP_INFO(this->get_logger(), "joy node created!!");
@@ -85,8 +76,11 @@ KinematicsControlNode::~KinematicsControlNode() {
 
 
 /**
+ * @author DY
  * @brief E, W, S, N direction check (+1) or (-1)
- * @note  In xbox's left axes, E:-, W:+, S:-, N:+
+ * @note  In xbox's left axes -> E:-, W:+, S:-, N:+
+ *        In our definition   -> E:-, W:+, S:+, N:-
+ *        mapping joystick data to angle of hardware limitation
  */
 float KinematicsControlNode::mapping_joystick_to_bending_p() {
   float axes = this->joystick_msg_.axes[0];
