@@ -46,7 +46,10 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
   }
   kinematics_control_publisher_ =
     this->create_publisher<MotorCommand>("kinematics_control_target_val", QoS_RKL10V);
-  
+
+  surgical_tool_pose_publisher_ =
+    this->create_publisher<geometry_msgs::msg::Twist>("surgical_tool_pose", QoS_RKL10V);
+
   this->motor_state_.actual_position.resize(NUM_OF_MOTORS);
   this->motor_state_.actual_velocity.resize(NUM_OF_MOTORS);
   this->motor_state_.actual_acceleration.resize(NUM_OF_MOTORS);
@@ -64,7 +67,8 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
         this->motor_state_.actual_torque =  msg->actual_torque;
 
         this->cal_kinematics();
-        this->kinematics_control_publisher_->publish(kinematics_control_target_val_);
+        this->kinematics_control_publisher_->publish(this->kinematics_control_target_val_);
+        this->surgical_tool_pose_publisher_->publish(this->surgical_tool_pose_);
       }
     );
   
@@ -106,9 +110,6 @@ void KinematicsControlNode::cal_kinematics() {
   float pAngle = this->mapping_joystick_to_bending_p();
   float tAngle = this->mapping_joystick_to_bending_t();
   float gAngle  = this->mapping_joystick_to_forceps();
-  std::cout << "pangle : " << pAngle << std::endl;
-  std::cout << "tangle : " << tAngle << std::endl;
-  std::cout << "gangle : " << gAngle << std::endl;
 
   this->ST_.get_bending_kinematic_result(pAngle, tAngle, gAngle);
 
@@ -119,11 +120,12 @@ void KinematicsControlNode::cal_kinematics() {
   f_val[3] = this->ST_.wrLengthNorth_;
   f_val[4] = this->ST_.wrLengthGrip;
 
-  // std::cout << "East  : " << f_val[0] << std::endl;
-  // std::cout << "West  : " << f_val[1] << std::endl;
-  // std::cout << "South : " << f_val[2] << std::endl;
-  // std::cout << "North : " << f_val[3] << std::endl;
-  // std::cout << "Grip  : " << f_val[4] << std::endl;
+  std::cout << "--------------------------" << std::endl;
+  std::cout << "East  : " << f_val[0] << std::endl;
+  std::cout << "West  : " << f_val[1] << std::endl;
+  std::cout << "South : " << f_val[2] << std::endl;
+  std::cout << "North : " << f_val[3] << std::endl;
+  std::cout << "Grip  : " << f_val[4] << std::endl;
 
   // ratio conversion
   this->kinematics_control_target_val_.stamp = this->now();
@@ -133,12 +135,8 @@ void KinematicsControlNode::cal_kinematics() {
   this->kinematics_control_target_val_.target_val[3] = f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_val[4] = f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   
-  std::cout << "1 : " << this->kinematics_control_target_val_.target_val[0] << std::endl;
-  std::cout << "2 : " << this->kinematics_control_target_val_.target_val[1] << std::endl;
-  std::cout << "3 : " << this->kinematics_control_target_val_.target_val[2] << std::endl;
-  std::cout << "4 : " << this->kinematics_control_target_val_.target_val[3] << std::endl;
-  std::cout << "5 : " << this->kinematics_control_target_val_.target_val[4] << std::endl;
-  std::cout << "=================================" << std::endl;
+  this->surgical_tool_pose_.angular.x = pAngle;
+  this->surgical_tool_pose_.angular.y = tAngle;
 }
 
 float KinematicsControlNode::gear_encoder_ratio_conversion(float gear_ratio, int e_channel, int e_resolution) {

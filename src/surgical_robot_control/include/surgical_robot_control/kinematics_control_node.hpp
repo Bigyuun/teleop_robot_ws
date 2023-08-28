@@ -30,6 +30,7 @@
 #include "sensor_msgs/msg/joy.hpp"
 #include "std_msgs/msg/int32_multi_array.hpp"
 #include "std_msgs/msg/int32.hpp"
+#include "geometry_msgs/msg/twist.hpp"
 #include "custom_interfaces/msg/motor_state.hpp"
 #include "custom_interfaces/msg/motor_command.hpp"
 #include "tcp_node.hpp"   // using #define NUM_OF_MOTRS
@@ -79,4 +80,10 @@ private:
   MotorState motor_state_;
   rclcpp::Subscription<MotorState>::SharedPtr motor_state_subscriber_;
 
+  /**
+   * @author DY
+   * @brief kinematic info publisher
+   */
+  geometry_msgs::msg::Twist surgical_tool_pose_;
+  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr surgical_tool_pose_publisher_;
 };
