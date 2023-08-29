@@ -95,7 +95,7 @@ SmState EtherCAT_Handler
                             for(i=0;i<NUM_OF_MOTORS;i++) {
                             	printf("#%ld Motor pos : %ld\n", i, Apos(C_AXIS1+i));
                             }
-														
+
 														for(i=0;i<NUM_OF_MOTORS;i++)
 														{
 															AXE_PARAM(C_AXIS1+i, VELMAX) = 10000;
@@ -107,7 +107,7 @@ SmState EtherCAT_Handler
 														}
 														Vel(AXALL, 100);
 														Acc(AXALL, 60);
-														Dcc(AXALL, 60);
+														Dec(AXALL, 60);
 
 
 
@@ -146,12 +146,12 @@ SmState EtherCAT_Handler
                 			}
   							USER_PARAM(5) = 1;		// start moving
   							#else
-  							
+
   							#if g_OP_MODE == EPOS4_OP_CSV
 							for(i=0;i<NUM_OF_MOTORS;i++){
 							   Cvel(C_AXIS1+i, target_val[i]);
 						    }
-						    	#elif g_OP_MODE == EOPS4_OP_CSP
+						    	#elif g_OP_MODE == EPOS4_OP_CSP
 						    	for(i=0;i<NUM_OF_MOTORS;i++){
 						    	   AxisPosAbsStart(C_AXIS1+i, target_val[i]);
 						    	}
