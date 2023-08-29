@@ -53,7 +53,7 @@
 #define C_EC_OFFSET		0				// Shift offset
 #define C_PDO_NUMBER	1				// Used PDO number
 
-#define C_MOTOR_MAX_RPM		2000		// Maximum velocity in RPM
+#define C_MOTOR_MAX_RPM		15000		// Maximum velocity in RPM
 
 
 
@@ -71,11 +71,11 @@
 #define	C_AXIS1_FEEDDIST		C_AXIS1_ENCRES				// Distance travelled (in user units) in FEEDREV revolutions of the gear box output shaft [mm]
 
 // Axis Movement Parameter
-#define C_AXIS1_MAX_RPM			2000					// Maximum velocity in RPM
-#define C_AXIS1_VELRES			100						// Velocity resolution, Scaling used for the velocity and acceleration/deceleration commands, default
+#define C_AXIS1_MAX_RPM			15000					// Maximum velocity in RPM
+#define C_AXIS1_VELRES			50						// Velocity resolution, Scaling used for the velocity and acceleration/deceleration commands, default
 #define C_AXIS1_RAMPTYPE		0	// Defines the ramptype
-#define C_AXIS1_RAMPMIN			2000						// Maximum acceleration
-#define C_AXIS1_JERKMIN			1000					// Minimum time (ms) required before reaching the maximum acceleration
+#define C_AXIS1_RAMPMIN			50						// Maximum acceleration
+#define C_AXIS1_JERKMIN			100					// Minimum time (ms) required before reaching the maximum acceleration
 #define C_AXIS1_TRACKERR		2000000					// There is also a following error on EPOS4, could be very high ond the MACS
 
 // Axis MACS control loop settings

@@ -67,15 +67,15 @@ public:
   // **************************
   // Limitation of workspace
   // **************************
-  float max_bending_deg_ = MAX_BENDING_DEGREE;
-  float max_forceps_deg_ = MAX_FORCEPS_RAGNE_DEGREE;
+  double max_bending_deg_ = MAX_BENDING_DEGREE;
+  double max_forceps_deg_ = MAX_FORCEPS_RAGNE_DEGREE;
 
   /**
    * @brief target length for moving wire using motor 
    * @unit mm
    */
-	float wrLengthWest_, wrLengthEast_, wrLengthSouth_, wrLengthNorth_;
-  float wrLengthGrip;
+	double wrLengthWest_, wrLengthEast_, wrLengthSouth_, wrLengthNorth_;
+  double wrLengthGrip;
 
   /**
    * @brief Set the bending angle object
@@ -83,14 +83,14 @@ public:
    * @param pAngle 
    * @param tAngle 
    */
-  void set_bending_angle(float pAngle, float tAngle);
+  void set_bending_angle(double pAngle, double tAngle);
 
   /**
    * @brief Set the forceps angle object
    * @unit degree
    * @param angle 
    */
-  void set_forceps_angle(float angle);
+  void set_forceps_angle(double angle);
 
   /**
    * @brief Get the bending kinematic result object
@@ -100,7 +100,7 @@ public:
    * @return void
    *         but the wrLength** variables has the target values
    */
-  void get_bending_kinematic_result(float pAngle, float tAngle, float grip);
+  void get_bending_kinematic_result(double pAngle, double tAngle, double grip);
 
   /**
    * @brief calculate the kinematics
@@ -123,13 +123,13 @@ private:
   // const double PI = acos(-1);
   const double PI_ = M_PI;
 
-  float deg_ = M_PI / 180;
-	float rad_ = 180 / M_PI;
-	float mm_ = 0.001;
+  double deg_ = M_PI / 180;
+	double rad_ = 180 / M_PI;
+	double mm_ = 0.001;
 
-  float pAngle_ = 0;   // East * West
-	float tAngle_ = 0;   // South * North
-  float target_forceps_angle_ = 0;
+  double pAngle_ = 0;   // East * West
+	double tAngle_ = 0;   // South * North
+  double target_forceps_angle_ = 30;
 
-  float alpha_;
+  double alpha_;
 };

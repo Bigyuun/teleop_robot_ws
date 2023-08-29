@@ -98,16 +98,16 @@ SmState EtherCAT_Handler
 														
 														for(i=0;i<NUM_OF_MOTORS;i++)
 														{
-															AXE_PARAM(C_AXIS1+i, VELMAX) = 8000;
+															AXE_PARAM(C_AXIS1+i, VELMAX) = 10000;
 														}
 
 														for(i=0;i<NUM_OF_MOTORS;i++)
 														{
 															AXE_PARAM(C_AXIS1+i, RAMPMIN) = 100;
 														}
-														Vel(AXALL, 80);
-														Acc(AXALL, 80);
-														Dcc(AXALL, 80);
+														Vel(AXALL, 100);
+														Acc(AXALL, 30);
+														Dcc(AXALL, 30);
 
 
 

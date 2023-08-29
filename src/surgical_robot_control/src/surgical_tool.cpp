@@ -28,19 +28,19 @@ void SurgicalTool::init_surgicaltool(	int num_joint,
 	this->alpha_ = asin(this->surgicaltool_.disWire / this->surgicaltool_.arc);
 }
 
-void SurgicalTool::set_bending_angle(float pAngle, float tAngle) {
+void SurgicalTool::set_bending_angle(double pAngle, double tAngle) {
 	this->pAngle_ = pAngle * torad();
 	this->tAngle_ = tAngle * torad();
 }
 
-void SurgicalTool::set_forceps_angle(float angle) {	// degree
+void SurgicalTool::set_forceps_angle(double angle) {	// degree
 	this->target_forceps_angle_ = angle;	// non radian
 }
 
 void SurgicalTool::get_bending_kinematic_result(
-	float pAngle,
-	float tAngle,
-	float gAngle)
+	double pAngle,
+	double tAngle,
+	double gAngle)
 {
 	// 1. set angle(degree) of continuum part
 	this->set_bending_angle(pAngle, tAngle);
@@ -63,7 +63,7 @@ void SurgicalTool::kinematics()
 	this->wrLengthNorth_ = (-1) * this->wrLengthNorth_ / mm_;
 
 	// y = -x + 30
-	this->wrLengthGrip = (-1) * this->target_forceps_angle_ + this->max_forceps_deg_; 
+	this->wrLengthGrip = ((-1) * this->target_forceps_angle_ + this->max_forceps_deg_)*0.1; 
 }
 
 float SurgicalTool::tomm()

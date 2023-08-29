@@ -108,16 +108,16 @@ KinematicsControlNode::~KinematicsControlNode() {
  *        In our definition   -> E:-, W:+, S:+, N:-
  *        mapping joystick data to angle of hardware limitation
  */
-float KinematicsControlNode::mapping_joystick_to_bending_p() {
-  float axes = this->joystick_msg_.axes[0];
+double KinematicsControlNode::mapping_joystick_to_bending_p() {
+  double axes = this->joystick_msg_.axes[0];
   return (this->ST_.max_bending_deg_ * axes);
 }
-float KinematicsControlNode::mapping_joystick_to_bending_t() {
-  float axes = this->joystick_msg_.axes[1];
+double KinematicsControlNode::mapping_joystick_to_bending_t() {
+  double axes = this->joystick_msg_.axes[1];
   return ( -1 * this->ST_.max_bending_deg_ * axes);
 }
-float KinematicsControlNode::mapping_joystick_to_forceps() {
-  float axes = this->joystick_msg_.axes[2];
+double KinematicsControlNode::mapping_joystick_to_forceps() {
+  double axes = this->joystick_msg_.axes[2];
   if ( axes >= 0) return ( this->ST_.max_forceps_deg_ * axes);
   else return 0;
 }
@@ -127,15 +127,15 @@ void KinematicsControlNode::cal_kinematics() {
   /* input : actual pos & actual velocity & controller input */
   /* output : target value*/
 
-  float pAngle = this->mapping_joystick_to_bending_p();
-  float tAngle = this->mapping_joystick_to_bending_t();
-  float gAngle  = this->mapping_joystick_to_forceps();
+  double pAngle = this->mapping_joystick_to_bending_p();
+  double tAngle = this->mapping_joystick_to_bending_t();
+  double gAngle  = this->mapping_joystick_to_forceps();
   this->surgical_tool_pose_.angular.x = pAngle;
   this->surgical_tool_pose_.angular.y = tAngle;
 
   this->ST_.get_bending_kinematic_result(pAngle, tAngle, gAngle);
 
-  float f_val[NUM_OF_MOTORS];
+  double f_val[NUM_OF_MOTORS];
   f_val[0] = this->ST_.wrLengthEast_;
   f_val[1] = this->ST_.wrLengthWest_;
   f_val[2] = this->ST_.wrLengthSouth_;
@@ -143,11 +143,11 @@ void KinematicsControlNode::cal_kinematics() {
   f_val[4] = this->ST_.wrLengthGrip;
 
   std::cout << "--------------------------" << std::endl;
-  std::cout << "East  : " << f_val[0] << std::endl;
-  std::cout << "West  : " << f_val[1] << std::endl;
-  std::cout << "South : " << f_val[2] << std::endl;
-  std::cout << "North : " << f_val[3] << std::endl;
-  std::cout << "Grip  : " << f_val[4] << std::endl;
+  std::cout << "East  : " << f_val[0] << " mm" << std::endl;
+  std::cout << "West  : " << f_val[1] << " mm" << std::endl;
+  std::cout << "South : " << f_val[2] << " mm" << std::endl;
+  std::cout << "North : " << f_val[3] << " mm" << std::endl;
+  std::cout << "Grip  : " << f_val[4] << " mm" << std::endl;
 
   // ratio conversion & Check Threshold of loadcell
   // In ROS2, there is no function of finding max(or min) value
@@ -168,7 +168,7 @@ void KinematicsControlNode::cal_kinematics() {
   this->kinematics_control_target_val_.target_val[4] = f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
 }
 
-float KinematicsControlNode::gear_encoder_ratio_conversion(float gear_ratio, int e_channel, int e_resolution) {
+double KinematicsControlNode::gear_encoder_ratio_conversion(double gear_ratio, int e_channel, int e_resolution) {
   return gear_ratio * e_channel * e_resolution;
 }
 

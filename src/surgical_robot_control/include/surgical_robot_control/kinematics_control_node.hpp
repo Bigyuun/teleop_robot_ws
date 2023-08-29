@@ -65,9 +65,9 @@ public:
    *        In our definition   -> E:-, W:+, S:+, N:-
    *        mapping joystick data to angle of hardware limitation
    */
-  float mapping_joystick_to_bending_p();
-  float mapping_joystick_to_bending_t();
-  float mapping_joystick_to_forceps();
+  double mapping_joystick_to_bending_p();
+  double mapping_joystick_to_bending_t();
+  double mapping_joystick_to_forceps();
 
   /**
    * @author DY, JKim
@@ -86,7 +86,7 @@ public:
    * @param e_resolution 
    * @return float 
    */
-  float gear_encoder_ratio_conversion(float gear_ratio, int e_channel, int e_resolution);
+  double gear_encoder_ratio_conversion(double gear_ratio, int e_channel, int e_resolution);
 
 private:
 
