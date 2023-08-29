@@ -1,5 +1,6 @@
 #include "kinematics_control_node.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include <algorithm>  
 
 using MotorState = custom_interfaces::msg::MotorState;
 using MotorCommand = custom_interfaces::msg::MotorCommand;
@@ -14,10 +15,13 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
   const auto QoS_RKL10V =
   rclcpp::QoS(rclcpp::KeepLast(qos_depth)).reliable().durability_volatile();
 
-  RCLCPP_INFO(this->get_logger(), "joy node creating....");
-
+  //===============================
+  // joystick subscriber
+  //===============================
   joystick_msg_.axes.resize(8);
   joystick_msg_.buttons.resize(12);
+  joystick_msg_.axes[2] = 1;  // /joy has 1 as initial val
+  joystick_msg_.axes[5] = 1;  // /joy has 1 as initial val
   joystic_subscriber_ =
     this->create_subscription<sensor_msgs::msg::Joy>(
       "joy",
@@ -31,6 +35,9 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
     );
   RCLCPP_INFO(this->get_logger(), "joy node created!!");
 
+  //===============================
+  // target value publisher
+  //===============================
   this->kinematics_control_target_val_.target_val.resize(NUM_OF_MOTORS);
   for (int i=0; i<NUM_OF_MOTORS; i++) {
     this->kinematics_control_target_val_.target_val[i] = 1;
@@ -38,9 +45,15 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
   kinematics_control_publisher_ =
     this->create_publisher<MotorCommand>("kinematics_control_target_val", QoS_RKL10V);
 
+  //===============================
+  // surgical tool pose(degree) publisher
+  //===============================
   surgical_tool_pose_publisher_ =
     this->create_publisher<geometry_msgs::msg::Twist>("surgical_tool_pose", QoS_RKL10V);
 
+  //===============================
+  // motor status subscriber
+  //===============================
   this->motor_state_.actual_position.resize(NUM_OF_MOTORS);
   this->motor_state_.actual_velocity.resize(NUM_OF_MOTORS);
   this->motor_state_.actual_acceleration.resize(NUM_OF_MOTORS);
@@ -63,6 +76,20 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
       }
     );
   
+  //===============================
+  // loadcell data subscriber
+  //===============================
+  this->loadcell_data_.data.resize(NUM_OF_MOTORS);
+  loadcell_data_subscriber_ =
+    this->create_subscription<std_msgs::msg::Float32MultiArray>(
+      "loadcell_data",
+      QoS_RKL10V,
+      [this] (const std_msgs::msg::Float32MultiArray::SharedPtr msg) -> void
+      {
+        this->loadcell_data_.data = msg->data;
+      }
+    );
+
   /**
    * @brief if use custom surgical tool, initialize.
    */
@@ -104,6 +131,8 @@ void KinematicsControlNode::cal_kinematics() {
   float pAngle = this->mapping_joystick_to_bending_p();
   float tAngle = this->mapping_joystick_to_bending_t();
   float gAngle  = this->mapping_joystick_to_forceps();
+  this->surgical_tool_pose_.angular.x = pAngle;
+  this->surgical_tool_pose_.angular.y = tAngle;
 
   this->ST_.get_bending_kinematic_result(pAngle, tAngle, gAngle);
 
@@ -121,7 +150,17 @@ void KinematicsControlNode::cal_kinematics() {
   std::cout << "North : " << f_val[3] << std::endl;
   std::cout << "Grip  : " << f_val[4] << std::endl;
 
-  // ratio conversion
+  // ratio conversion & Check Threshold of loadcell
+  // In ROS2, there is no function of finding max(or min) value
+  for (int i=0; i<NUM_OF_MOTORS; i++) {
+    if (this->loadcell_data_.data[i] > THRESHOLD_LOADCELL) {
+      RCLCPP_WARN(
+        this->get_logger(),
+        "#%d Loadcell is %fg. Upper than %fg Threshold.",
+        i, this->loadcell_data_, THRESHOLD_LOADCELL);
+      continue;
+    }
+  }
   this->kinematics_control_target_val_.stamp = this->now();
   this->kinematics_control_target_val_.target_val[0] = f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_val[1] = f_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
@@ -129,8 +168,6 @@ void KinematicsControlNode::cal_kinematics() {
   this->kinematics_control_target_val_.target_val[3] = f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_val[4] = f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   
-  this->surgical_tool_pose_.angular.x = pAngle;
-  this->surgical_tool_pose_.angular.y = tAngle;
 }
 
 float KinematicsControlNode::gear_encoder_ratio_conversion(float gear_ratio, int e_channel, int e_resolution) {

@@ -30,6 +30,7 @@
 #include "sensor_msgs/msg/joy.hpp"
 #include "std_msgs/msg/int32_multi_array.hpp"
 #include "std_msgs/msg/int32.hpp"
+#include "std_msgs/msg/float32_multi_array.hpp"
 #include "geometry_msgs/msg/twist.hpp"
 #include "custom_interfaces/msg/motor_state.hpp"
 #include "custom_interfaces/msg/motor_command.hpp"
@@ -104,14 +105,14 @@ private:
 
   /**
    * @author DY
-   * @brief target values for operating motors
+   * @brief target values publisher for operating motors
    */
   MotorCommand kinematics_control_target_val_;
   rclcpp::Publisher<MotorCommand>::SharedPtr kinematics_control_publisher_;
 
   /**
    * @author DY
-   * @brief read actual motor status
+   * @brief actual motor status subscriber
    */
   MotorState motor_state_;
   rclcpp::Subscription<MotorState>::SharedPtr motor_state_subscriber_;
@@ -122,4 +123,11 @@ private:
    */
   geometry_msgs::msg::Twist surgical_tool_pose_;
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr surgical_tool_pose_publisher_;
+
+  /**
+   * @author DY
+   * @brief Loadcell data subscriber
+   */
+  std_msgs::msg::Float32MultiArray loadcell_data_;
+  rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr loadcell_data_subscriber_;
 };
