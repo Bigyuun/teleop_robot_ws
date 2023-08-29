@@ -101,7 +101,6 @@ KinematicsControlNode::~KinematicsControlNode() {
 
 }
 
-
 /**
  * @author DY
  * @brief E, W, S, N direction check (+1) or (-1)
@@ -167,7 +166,6 @@ void KinematicsControlNode::cal_kinematics() {
   this->kinematics_control_target_val_.target_val[2] = f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_val[3] = f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_val[4] = f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  
 }
 
 float KinematicsControlNode::gear_encoder_ratio_conversion(float gear_ratio, int e_channel, int e_resolution) {
