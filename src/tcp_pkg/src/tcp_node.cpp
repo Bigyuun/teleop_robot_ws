@@ -19,7 +19,8 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
   tcp_publisher_ =
     this->create_publisher<MotorState>("motor_state", QoS_RKL10V);
 
-  tcp_send_msg_.target_val.resize(NUM_OF_MOTORS);
+  tcp_send_msg_.target_position.resize(NUM_OF_MOTORS);
+  tcp_send_msg_.target_velocity_profile.resize(NUM_OF_MOTORS);
   tcp_subscriber_ =
     this->create_subscription<MotorCommand>(
       "kinematics_control_target_val",
@@ -27,7 +28,8 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
       [this] (const MotorCommand::SharedPtr msg) -> void
       {
         tcp_send_msg_.stamp = msg->stamp;
-        tcp_send_msg_.target_val = msg->target_val;
+        tcp_send_msg_.target_position = msg->target_position;
+        tcp_send_msg_.target_velocity_profile = msg->target_velocity_profile;
       }
     );
 
@@ -126,8 +128,9 @@ void TCPClientNode::sendmsg()
   */
   int32_t send_val[this->buffer_size_];
   for(int i=0; i<NUM_OF_MOTORS; i++){
-    send_val[i] = this->tcp_send_msg_.target_val[i];
+    send_val[i] = this->tcp_send_msg_.target_position[i];
     memcpy(this->send_msg_ + i*sizeof(send_val[i]), &send_val[i], sizeof(send_val[i]));
+    memcpy(this->send_msg_ + (i+NUM_OF_MOTORS)*sizeof(send_val[i+NUM_OF_MOTORS]), &send_val[i+NUM_OF_MOTORS], sizeof(send_val[i+NUM_OF_MOTORS]));
   }
   this->send_strlen_ = send(this->client_socket_, this->send_msg_, this->buffer_size_, 0);
   // this->send_strlen_ = write(this->client_socket_, this->send_msg_, this->buffer_size_);

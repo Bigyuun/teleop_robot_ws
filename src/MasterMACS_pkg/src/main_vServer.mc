@@ -153,6 +153,7 @@ SmState EtherCAT_Handler
 						    }
 						    	#elif g_OP_MODE == EPOS4_OP_CSP
 						    	for(i=0;i<NUM_OF_MOTORS;i++){
+										 Vel(C_AXIS1+i, target_velocity_profile[i]);
 						    	   AxisPosAbsStart(C_AXIS1+i, target_val[i]);
 						    	}
 						    	#endif

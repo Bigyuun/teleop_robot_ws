@@ -46,3 +46,4 @@ long actual_vel[NUM_OF_MOTORS] = {0};
 
 // Receive protocal parameters
 long target_val[NUM_OF_MOTORS] = {0};
+long target_velocity_profile[NUM_OF_MOTORS] = {0};
