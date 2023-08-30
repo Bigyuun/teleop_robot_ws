@@ -85,10 +85,10 @@ void TCP_receiveHandler(void)
 			target_val[i].ub2 = receiveData[BUFFER_TYPE*i+2];
 			target_val[i].ub3 = receiveData[BUFFER_TYPE*i+3];
 
-			target_velocity_profile[i] = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+0];
-			target_velocity_profile[i] = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+1];
-			target_velocity_profile[i] = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+2];
-			target_velocity_profile[i] = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+3];
+			target_velocity_profile[i].ub0 = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+0];
+			target_velocity_profile[i].ub1 = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+1];
+			target_velocity_profile[i].ub2 = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+2];
+			target_velocity_profile[i].ub3 = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+3];
 		}
 	} else {
 		for(i=0; i<NUM_OF_MOTORS;i++){

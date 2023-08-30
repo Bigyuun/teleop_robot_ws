@@ -27,9 +27,6 @@ long socketHandle, status;
 dim long receiveData[BUFFER_SIZE];
 dim long sendData[BUFFER_SIZE];	// *2 : actual Pos & Vel
 
-// long receiveData[NUM_OF_MOTORS] = {0};
-// long sendData[NUM_OF_MOTORS*2] = {0};	// *2 : actual Pos & Vel
-
 long retVal=0;
 long n=0;
 

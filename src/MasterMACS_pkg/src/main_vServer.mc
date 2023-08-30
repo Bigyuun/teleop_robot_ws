@@ -105,7 +105,7 @@ SmState EtherCAT_Handler
 														{
 															AXE_PARAM(C_AXIS1+i, RAMPMIN) = 100;
 														}
-														Vel(AXALL, 100);
+														//Vel(AXALL, 100);
 														Acc(AXALL, 60);
 														Dec(AXALL, 60);
 
