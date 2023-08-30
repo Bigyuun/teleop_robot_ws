@@ -10,7 +10,7 @@
 #define SEGMENT_DIAMETER  3     // mm
 #define WIRE_DISTANCE     1.05  // mm
 
-#define MAX_BENDING_DEGREE   60 // degree
+#define MAX_BENDING_DEGREE   90 // degree
 #define MAX_FORCEPS_RAGNE_DEGREE 30  // mm
 #define MAX_FORCEPS_RAGNE_MM 3  // mm
 

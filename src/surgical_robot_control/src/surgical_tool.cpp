@@ -52,6 +52,9 @@ void SurgicalTool::get_bending_kinematic_result(
 
 void SurgicalTool::kinematics()
 {
+	pAngle_ = pAngle_ / surgicaltool_.num_joint;	
+	tAngle_ = tAngle_ / surgicaltool_.num_joint;
+	
 	this->wrLengthEast_ = 2 *  surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ + pAngle_ / 2) + 1 - cos(tAngle_ / 2));
 	this->wrLengthWest_ = 2 *  surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ - pAngle_ / 2) + 1 - cos(tAngle_ / 2));
 	this->wrLengthSouth_ = 2 * surgicaltool_.arc * surgicaltool_.num_joint * (cos(alpha_) - cos(alpha_ - tAngle_ / 2) + 1 - cos(pAngle_ / 2));
