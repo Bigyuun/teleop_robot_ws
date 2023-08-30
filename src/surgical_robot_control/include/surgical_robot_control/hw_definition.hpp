@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#define THRESHOLD_LOADCELL 1000
+#define THRESHOLD_LOADCELL  1500
 
 #define GEAR_RATIO_44       44
 #define GEAR_RATIO_3_9      3.9
