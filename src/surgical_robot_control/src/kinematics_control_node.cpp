@@ -178,7 +178,8 @@ void KinematicsControlNode::cal_kinematics() {
   static double prev_f_val[DOF];  // for delta length
 
   std::vector<double> abs_f_val(DOF-1, 0);  // 5th DOF is a forceps
-  for (int i=0; i<DOF-1; i++) { abs_f_val[i] = std::abs(prev_f_val[i] - f_val[i]); }
+  // for (int i=0; i<DOF-1; i++) { abs_f_val[i] = std::abs(prev_f_val[i] - f_val[i]); }
+  for (int i=0; i<DOF-1; i++) { abs_f_val[i] = std::abs(this->kinematics_control_target_val_.target_position[i] - this->motor_state_.actual_position[i]); }
   std::cout << "--------------" << std::endl;
   std::cout << "Δ East  : " << abs_f_val[0] << " mm"<< std::endl;
   std::cout << "Δ West  : " << abs_f_val[1] << " mm"<< std::endl;

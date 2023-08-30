@@ -29,16 +29,16 @@ public:
     timer_ = this->create_wall_timer(
       10ms, std::bind(&DemoNode::publish_msg, this));
 
-    tcp_read_msg_.target_position.resize(NUM_OF_MOTORS);
-    tcp_read_msg_.target_velocity_profile.resize(NUM_OF_MOTORS);
+    tcp_send_msg_.target_position.resize(NUM_OF_MOTORS);
+    tcp_send_msg_.target_velocity_profile.resize(NUM_OF_MOTORS);
     demo_node_subscriber_ = this->create_subscription<MotorCommand>(
       "kinematics_control_target_val",
       QoS_RKL10V,
       [this] (const MotorCommand::SharedPtr msg) -> void
         {
-          tcp_read_msg_.stamp = msg->stamp;
-          tcp_read_msg_.target_position = msg->target_position;
-          tcp_read_msg_.target_velocity_profile = msg->target_velocity_profile;
+          tcp_send_msg_.stamp = msg->stamp;
+          tcp_send_msg_.target_position = msg->target_position;
+          tcp_send_msg_.target_velocity_profile = msg->target_velocity_profile;
         }
     );
   }
@@ -55,12 +55,12 @@ private:
     msg.actual_torque.resize(NUM_OF_MOTORS);
     
     msg.stamp = this->now();
-    demo_node_publisher_->publish(msg);
+    // demo_node_publisher_->publish(msg);
   }
 
   rclcpp::TimerBase::SharedPtr timer_;
   rclcpp::Publisher<MotorState>::SharedPtr demo_node_publisher_;
-  MotorCommand tcp_read_msg_;
+  MotorCommand tcp_send_msg_;
   rclcpp::Subscription<MotorCommand>::SharedPtr demo_node_subscriber_;
   size_t count_;
 
