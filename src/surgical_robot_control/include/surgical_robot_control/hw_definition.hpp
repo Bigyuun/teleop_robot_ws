@@ -8,14 +8,31 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#define THRESHOLD_LOADCELL  1500
 
+//===============================
+// Motor Parameters
+//===============================
+#define NUM_OF_MOTORS       5
 #define GEAR_RATIO_44       44
 #define GEAR_RATIO_3_9      3.9
 #define ENCODER_CHANNEL     4
 #define ENCODER_RESOLUTION  1024
 #define INC_PER_ROT_44      GEAR_RATIO_44 * ENCODER_CHANNEL * ENCODER_RESOLUTION
 #define INC_PER_ROT_3_9     GEAR_RATIO_3_9 * ENCODER_CHANNEL * ENCODER_RESOLUTION
+
+/** Motor control mode **/
+/**
+ * @brief It means that the ETA(Estimation Time Arrive) is same for all motors (arrive at same time)
+ *        If not use it, just each motors move same velocity (not arrive at same time)
+*/
+#define MOTOR_CONTROL_SAME_DURATION 1
+#define PERCENT_100 100
+
+
+//===============================
+// Loadcell Parameters
+//===============================
+#define LOADCELL_THRESHOLD  1000
 
 
 typedef struct {

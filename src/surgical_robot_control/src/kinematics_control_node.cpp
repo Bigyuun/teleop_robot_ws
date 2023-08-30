@@ -38,10 +38,8 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
   //===============================
   // target value publisher
   //===============================
-  this->kinematics_control_target_val_.target_val.resize(NUM_OF_MOTORS);
-  for (int i=0; i<NUM_OF_MOTORS; i++) {
-    this->kinematics_control_target_val_.target_val[i] = 1;
-  }
+  this->kinematics_control_target_val_.target_position.resize(NUM_OF_MOTORS);
+  this->kinematics_control_target_val_.target_velocity_profile.resize(NUM_OF_MOTORS);
   kinematics_control_publisher_ =
     this->create_publisher<MotorCommand>("kinematics_control_target_val", QoS_RKL10V);
 
@@ -79,7 +77,7 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
   //===============================
   // loadcell data subscriber
   //===============================
-  this->loadcell_data_.data.resize(NUM_OF_MOTORS);
+  this->loadcell_data_.data.resize(DOF);
   loadcell_data_subscriber_ =
     this->create_subscription<std_msgs::msg::Float32MultiArray>(
       "loadcell_data",
@@ -138,7 +136,7 @@ void KinematicsControlNode::cal_kinematics() {
 
   this->ST_.get_bending_kinematic_result(pAngle, tAngle, gAngle);
 
-  double f_val[NUM_OF_MOTORS];
+  double f_val[DOF];
   f_val[0] = this->ST_.wrLengthEast_;
   f_val[1] = this->ST_.wrLengthWest_;
   f_val[2] = this->ST_.wrLengthSouth_;
@@ -152,14 +150,16 @@ void KinematicsControlNode::cal_kinematics() {
   std::cout << "North : " << f_val[3] << " mm" << std::endl;
   std::cout << "Grip  : " << f_val[4] << " mm" << std::endl;
 
+
+
   // ratio conversion & Check Threshold of loadcell
   // In ROS2, there is no function of finding max(or min) value
-  for (int i=0; i<NUM_OF_MOTORS; i++) {
-    if (this->loadcell_data_.data[i] > THRESHOLD_LOADCELL) {
+  for (int i=0; i<DOF; i++) {
+    if (this->loadcell_data_.data[i] > LOADCELL_THRESHOLD) {
       RCLCPP_WARN(
         this->get_logger(),
-        "#%d Loadcell is %fg. Upper than %fg Threshold.",
-        i, this->loadcell_data_.data[i], THRESHOLD_LOADCELL);
+        "#%d Loadcell is %.2fg. Upper than %.2fg Threshold.",
+        i, this->loadcell_data_.data[i], LOADCELL_THRESHOLD);
       continue;
     }
   }
@@ -169,6 +169,42 @@ void KinematicsControlNode::cal_kinematics() {
   this->kinematics_control_target_val_.target_position[2] = f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_position[3] = f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_position[4] = f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+
+#if MOTOR_CONTROL_SAME_DURATION
+  /**
+   * @brief find max value and make it max_velocity_profile 100 (%),
+   *        other value have values proportional to 100 (%) each
+   */
+  static double prev_f_val[DOF];  // for delta length
+
+  std::vector<double> abs_f_val(DOF-1, 0);  // 5th DOF is a forceps
+  for (int i=0; i<DOF-1; i++) { abs_f_val[i] = std::abs(prev_f_val[i] - f_val[i]); }
+  std::cout << "--------------" << std::endl;
+  std::cout << "Δ East  : " << abs_f_val[0] << " mm"<< std::endl;
+  std::cout << "Δ West  : " << abs_f_val[1] << " mm"<< std::endl;
+  std::cout << "Δ South : " << abs_f_val[2] << " mm"<< std::endl;
+  std::cout << "Δ North : " << abs_f_val[3] << " mm"<< std::endl;
+  std::cout << "Δ Grip  : " << abs_f_val[4] << " mm"<< std::endl;
+
+  double max_val = *std::max_element(abs_f_val.begin(), abs_f_val.end()) + 0.00001; // 0.00001 is protection for 0/0 (0 divided by 0)
+  int max_val_index = std::max_element(abs_f_val.begin(), abs_f_val.end()) - abs_f_val.begin();
+  for (int i=0; i<DOF-1; i++) { 
+    this->kinematics_control_target_val_.target_velocity_profile[i] = (abs_f_val[i] / max_val) * PERCENT_100;
+  }
+  // last index means forceps. It doesn't need velocity profile
+  this->kinematics_control_target_val_.target_velocity_profile[DOF] = PERCENT_100;
+  
+  for (int i=0; i<DOF-1; i++) { 
+    prev_f_val[i] = f_val[i];
+  }
+  
+#else
+  for (int i=0; i<DOF; i++) { 
+    this->kinematics_control_target_val_.target_velocity_profile[i] = PERCENT_100;
+  }
+#endif
+
+
 }
 
 double KinematicsControlNode::gear_encoder_ratio_conversion(double gear_ratio, int e_channel, int e_resolution) {

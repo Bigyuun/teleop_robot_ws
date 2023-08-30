@@ -19,6 +19,7 @@
 #include <chrono>
 #include <cmath>
 #include <signal.h>
+#include <algorithm>
 
 // Surgical Tool Class
 #include "surgical_tool.hpp"
@@ -34,7 +35,7 @@
 #include "geometry_msgs/msg/twist.hpp"
 #include "custom_interfaces/msg/motor_state.hpp"
 #include "custom_interfaces/msg/motor_command.hpp"
-#include "tcp_node.hpp"   // using #define NUM_OF_MOTRS
+// #include "tcp_node.hpp"   // using #define NUM_OF_MOTRS
 
 class KinematicsControlNode : public rclcpp::Node
 {

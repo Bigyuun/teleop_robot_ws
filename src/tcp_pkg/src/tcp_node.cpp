@@ -129,6 +129,7 @@ void TCPClientNode::sendmsg()
   int32_t send_val[this->buffer_size_];
   for(int i=0; i<NUM_OF_MOTORS; i++){
     send_val[i] = this->tcp_send_msg_.target_position[i];
+    send_val[NUM_OF_MOTORS + i] = this->tcp_send_msg_.target_velocity_profile[i];
     memcpy(this->send_msg_ + i*sizeof(send_val[i]), &send_val[i], sizeof(send_val[i]));
     memcpy(this->send_msg_ + (i+NUM_OF_MOTORS)*sizeof(send_val[i+NUM_OF_MOTORS]), &send_val[i+NUM_OF_MOTORS], sizeof(send_val[i+NUM_OF_MOTORS]));
   }

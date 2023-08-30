@@ -5,6 +5,7 @@
 #include <math.h>
 
 // DY
+#define DOF               5     // Degree of freedom
 #define NUM_OF_JOINT      4     // ea
 #define SEGMENT_ARC       6.92  // mm
 #define SEGMENT_DIAMETER  3     // mm
