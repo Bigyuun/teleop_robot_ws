@@ -71,8 +71,8 @@
 #define	C_AXIS1_FEEDDIST		C_AXIS1_ENCRES				// Distance travelled (in user units) in FEEDREV revolutions of the gear box output shaft [mm]
 
 // Axis Movement Parameter
-#define C_AXIS1_MAX_RPM			15000					// Maximum velocity in RPM
-#define C_AXIS1_VELRES			50						// Velocity resolution, Scaling used for the velocity and acceleration/deceleration commands, default
+#define C_AXIS1_MAX_RPM			12500					// Maximum velocity in RPM
+#define C_AXIS1_VELRES			100						// Velocity resolution, Scaling used for the velocity and acceleration/deceleration commands, default
 #define C_AXIS1_RAMPTYPE		0	// Defines the ramptype
 #define C_AXIS1_RAMPMIN			50						// Maximum acceleration
 #define C_AXIS1_JERKMIN			100					// Minimum time (ms) required before reaching the maximum acceleration

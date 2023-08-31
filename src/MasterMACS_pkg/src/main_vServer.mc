@@ -22,7 +22,7 @@ long status_sm = -1;
 #define STATE_MACHINE_ID_TCP		2
 
 // sine wave test parameters
-#define DEBUG_FLAG 					0
+#define DEBUG_FLAG 					1
 #define DEBUG_TCP_FLAG				0
 #define SINE_WAVE_TEST_FLAG 		0
 #define PI 3.1415926
@@ -98,14 +98,14 @@ SmState EtherCAT_Handler
 
 														for(i=0;i<NUM_OF_MOTORS;i++)
 														{
-															AXE_PARAM(C_AXIS1+i, VELMAX) = 10000;
+															AXE_PARAM(C_AXIS1+i, VELMAX) = 9000;
 														}
 
 														for(i=0;i<NUM_OF_MOTORS;i++)
 														{
 															AXE_PARAM(C_AXIS1+i, RAMPMIN) = 100;
 														}
-														Vel(AXALL, 100);
+														//Vel(AXALL, 100);
 														Acc(AXALL, 80);
 														Dec(AXALL, 80);
 
@@ -188,7 +188,8 @@ SmState EtherCAT_Handler
 									In Index 4th number is axis number : 4C0'axis number'
 									**/
 									printf("#%ld Motor pos : %ld / vel : %ld\n", i, Apos(C_AXIS1+i), Avel(C_AXIS1+i)); //Sysvar(0x014C0002);
-								    printf("#%ld Motor pos : %ld / vel : %ld\n", i, BUSMOD_PROCESS(0,PO_BUSMOD_VALUE2), Avel(C_AXIS1+i)); //Sysvar(0x014C0002);
+								  //printf("#%ld Motor pos : %ld / vel : %ld\n", i, BUSMOD_PROCESS(0,PO_BUSMOD_VALUE2), Avel(C_AXIS1+i)); //Sysvar(0x014C0002);
+									printf(#%ld Motor vel profile : %ld \n", i, target_velocity_profile[i]);
 								}
 							}	//$B
 
