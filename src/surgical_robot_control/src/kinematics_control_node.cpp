@@ -162,11 +162,11 @@ void KinematicsControlNode::cal_kinematics() {
     }
   }
   this->kinematics_control_target_val_.stamp = this->now();
-  this->kinematics_control_target_val_.target_position[0] = f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[1] = f_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[2] = f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[3] = f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[4] = f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[0] = DIRECTION_COUPLER * f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[1] = DIRECTION_COUPLER * f_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[2] = DIRECTION_COUPLER * f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[3] = DIRECTION_COUPLER * f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[4] = DIRECTION_COUPLER * f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
 
 #if MOTOR_CONTROL_SAME_DURATION
   /**
@@ -189,15 +189,12 @@ void KinematicsControlNode::cal_kinematics() {
 
   double max_val = *std::max_element(abs_f_val.begin(), abs_f_val.end()) + 0.00001; // 0.00001 is protection for 0/0 (0 divided by 0)
   int max_val_index = std::max_element(abs_f_val.begin(), abs_f_val.end()) - abs_f_val.begin();
-  for (int i=0; i<DOF-1; i++) { 
+  for (int i=0; i<(DOF-1); i++) { 
     this->kinematics_control_target_val_.target_velocity_profile[i] = (abs_f_val[i] / max_val) * PERCENT_100;
   }
   // last index means forceps. It doesn't need velocity profile
-  this->kinematics_control_target_val_.target_velocity_profile[DOF] = PERCENT_100;
-  
-  for (int i=0; i<DOF-1; i++) { 
-    prev_f_val[i] = f_val[i];
-  }
+  this->kinematics_control_target_val_.target_velocity_profile[DOF-1] = PERCENT_100;
+  std::cout << "PPPP : " << this->kinematics_control_target_val_.target_velocity_profile[DOF-1] << std::endl;;
   
 #else
   for (int i=0; i<DOF; i++) { 

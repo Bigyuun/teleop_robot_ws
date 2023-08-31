@@ -19,6 +19,7 @@
 #define ENCODER_RESOLUTION  1024
 #define INC_PER_ROT_44      GEAR_RATIO_44 * ENCODER_CHANNEL * ENCODER_RESOLUTION
 #define INC_PER_ROT_3_9     GEAR_RATIO_3_9 * ENCODER_CHANNEL * ENCODER_RESOLUTION
+#define DIRECTION_COUPLER   -1      // if not, use 1         
 
 /** Motor control mode **/
 /**
