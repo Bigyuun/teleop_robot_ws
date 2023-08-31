@@ -55,7 +55,7 @@ private:
     msg.actual_torque.resize(NUM_OF_MOTORS);
     
     msg.stamp = this->now();
-    // demo_node_publisher_->publish(msg);
+    demo_node_publisher_->publish(msg);
   }
 
   rclcpp::TimerBase::SharedPtr timer_;

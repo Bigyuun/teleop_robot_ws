@@ -43,6 +43,7 @@ void SurgicalTool::get_bending_kinematic_result(
 	double gAngle)
 {
 	// 1. set angle(degree) of continuum part
+	std::cout << pAngle << " / " << tAngle << std::endl;
 	this->set_bending_angle(pAngle, tAngle);
 	// 2. set angle(degree) o forceps
 	this->set_forceps_angle(gAngle);
@@ -60,10 +61,10 @@ void SurgicalTool::kinematics()
 	this->wrLengthSouth_ = 2 * surgicaltool_.arc * surgicaltool_.num_joint * (cos(alpha_) - cos(alpha_ - tAngle_ / 2) + 1 - cos(pAngle_ / 2));
 	this->wrLengthNorth_ = 2 * surgicaltool_.arc * surgicaltool_.num_joint * (cos(alpha_) - cos(alpha_ + tAngle_ / 2) + 1 - cos(pAngle_ / 2));
 
-	this->wrLengthEast_ =  (-1) * this->wrLengthEast_ / mm_;
-	this->wrLengthWest_ = 			  this->wrLengthWest_ / mm_;
-	this->wrLengthSouth_ = 			  this->wrLengthSouth_ / mm_;
-	this->wrLengthNorth_ = (-1) * this->wrLengthNorth_ / mm_;
+	this->wrLengthEast_ =  this->wrLengthEast_ / mm_;
+	this->wrLengthWest_ =  this->wrLengthWest_ / mm_;
+	this->wrLengthSouth_ = this->wrLengthSouth_ / mm_;
+	this->wrLengthNorth_ = this->wrLengthNorth_ / mm_;
 
 	// y = -x + 30
 	this->wrLengthGrip = ((-1) * this->target_forceps_angle_ + this->max_forceps_deg_)*0.1; 

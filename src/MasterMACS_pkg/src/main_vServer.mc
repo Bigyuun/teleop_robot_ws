@@ -106,8 +106,8 @@ SmState EtherCAT_Handler
 															AXE_PARAM(C_AXIS1+i, RAMPMIN) = 100;
 														}
 														//Vel(AXALL, 100);
-														Acc(AXALL, 60);
-														Dec(AXALL, 60);
+														Acc(AXALL, 80);
+														Dec(AXALL, 80);
 
 
 
@@ -153,7 +153,7 @@ SmState EtherCAT_Handler
 						    }
 						    	#elif g_OP_MODE == EPOS4_OP_CSP
 						    	for(i=0;i<NUM_OF_MOTORS;i++){
-										 Vel(C_AXIS1+i, target_velocity_profile[i]);
+										 //Vel(C_AXIS1+i, target_velocity_profile[i]);
 						    	   AxisPosAbsStart(C_AXIS1+i, target_val[i]);
 						    	}
 						    	#endif

@@ -150,8 +150,6 @@ void KinematicsControlNode::cal_kinematics() {
   std::cout << "North : " << f_val[3] << " mm" << std::endl;
   std::cout << "Grip  : " << f_val[4] << " mm" << std::endl;
 
-
-
   // ratio conversion & Check Threshold of loadcell
   // In ROS2, there is no function of finding max(or min) value
   for (int i=0; i<DOF; i++) {
@@ -186,6 +184,8 @@ void KinematicsControlNode::cal_kinematics() {
   std::cout << "Δ South : " << abs_f_val[2] << " mm"<< std::endl;
   std::cout << "Δ North : " << abs_f_val[3] << " mm"<< std::endl;
   std::cout << "Δ Grip  : " << abs_f_val[4] << " mm"<< std::endl;
+
+  
 
   double max_val = *std::max_element(abs_f_val.begin(), abs_f_val.end()) + 0.00001; // 0.00001 is protection for 0/0 (0 divided by 0)
   int max_val_index = std::max_element(abs_f_val.begin(), abs_f_val.end()) - abs_f_val.begin();
