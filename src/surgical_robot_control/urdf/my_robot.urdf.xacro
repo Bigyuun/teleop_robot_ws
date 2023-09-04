@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="https://www.ros.org/wiki/xacro" name="surgical_robot_control">
+
+<!-- <xacro:include filename="my_materials.xacro"/> -->
+
+<xacro:property name="width" value="0.05"/>
+<xacro:property name="height" value="0.2"/>
+<xacro:property name="mass" value="0.1"/>
+
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${width} ${width} ${height}"/>
+            </geometry>
+            <material name="base_link">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${width} ${width} ${height}"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="Joint1" type="revolute">
+        <origin xyz="0.0 0.0 0.25" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="Link1"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-3.14" upper="3.14" effort="30" velocity="1"/>
+    </joint>
+
+    <link name="Link1">
+        <inertial>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="${mass/12*(width*width+width*width)}" ixy="0.0" ixz="0.0"
+                iyy="${mass/12*(width*width+width*width)}" iyz="0.0"
+                izz="${mass/12*(height*height+height*height)}"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${width} ${width} ${height}"/>
+            </geometry>
+            <material name="link1">
+                <color rgba="0.0 1.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${width} ${width} ${height}"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="Joint2" type="revolute">
+        <origin xyz="0.0 0.0 0.25" rpy="0.0 0.0 0.0"/>
+        <parent link="Link1"/>
+        <child link="Link2"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-3.14" upper="3.14" effort="30" velocity="1"/>
+    </joint>
+
+    <link name="Link2">
+        <inertial>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="${mass/12*(width*width+width*width)}" ixy="0.0" ixz="0.0"
+                iyy="${mass/12*(width*width+width*width)}" iyz="0.0"
+                izz="${mass/12*(height*height+height*height)}"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${width} ${width} ${height}"/>
+            </geometry>
+            <material name="link2">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${width} ${width} ${height}"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="Joint3" type="revolute">
+        <origin xyz="0.0 0.0 0.25" rpy="0.0 0.0 0.0"/>
+        <parent link="Link2"/>
+        <child link="Link3"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-3.14" upper="3.14" effort="30" velocity="1"/>
+    </joint>
+
+    <link name="Link3">
+        <inertial>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="${mass/12*(width*width+width*width)}" ixy="0.0" ixz="0.0"
+                iyy="${mass/12*(width*width+width*width)}" iyz="0.0"
+                izz="${mass/12*(height*height+height*height)}"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${width} ${width} ${height}"/>
+            </geometry>
+            <material name="link3">
+                <color rgba="0.0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${width} ${width} ${height}"/>
+            </geometry>
+        </collision>
+    </link>
+</robot>

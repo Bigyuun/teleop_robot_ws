@@ -13,11 +13,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import launch
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration, Command
 from launch_ros.actions import Node
+from ament_index_python.packages import get_package_share_directory
+from launch_ros.substitutions import FindPackageShare
+import os
+import xacro
 
 def generate_launch_description():
+    
+    # urdf_path = os.path.join(
+    #     get_package_share_directory('surgical_robot_control'),
+    #     'urdf',
+    #     'my_robot.urdf.xacro'
+    #     )
+    
+    # urdf_path = LaunchConfiguration('xacro_path', default=None)
+    
+
     return LaunchDescription([
+        
+        # DeclareLaunchArgument(
+        #   'xacro_path',
+        #   default_value=None,
+        #   description='path to urdf.xacro file to publish'  
+        # ),
+        
+        # Node(
+        #     package='robot_state_publisher',
+        #     executable='robot_state_publisher',
+        #     name='robot_state_publisher',
+        #     parameters=[
+        #     ],
+        #     output='screen',
+        # ),
+        
         Node(
             package='surgical_robot_control',
             executable='surgical_robot_control_node',
