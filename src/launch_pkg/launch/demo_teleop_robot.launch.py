@@ -42,5 +42,11 @@ def generate_launch_description():
       IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
           [get_package_share_directory('teleop_twist_joy'), '/launch/teleop-launch.py']),
-      )
+      ),
+      
+      Node(
+          package='rviz2',
+          executable='rviz2',
+          name='rviz2',
+          output='screen'),
   ])
