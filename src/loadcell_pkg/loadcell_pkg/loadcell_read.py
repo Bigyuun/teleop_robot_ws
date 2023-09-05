@@ -35,13 +35,11 @@ class LoadcellPublisher(Node):
         try:
             while True:
                 # 시리얼 데이터 수신
-                received_data = ser.readline().decode().strip()  # 수신한 데이터를 문자열로 변환
-                print("Received:", received_data)  # 수신한 데이터 출력
+                received_data = ser.readline().decode().strip().replace('\x00','')  # 수신한 데이터를 문자열로 변환
+                #print("Received:", received_data)  # 수신한 데이터 출력
                 if received_data:
-                    if received_data == '\x00':
-                        continue
                     parse_received_data = received_data.split(',')
-                    print("Parsed:", parse_received_data)  # 파싱된 데이터 출력
+                    #print("Parsed:", parse_received_data)  # 파싱된 데이터 출력
                     
                     for i, value in enumerate(parse_received_data):
                         self.loadcell_data[i] = value

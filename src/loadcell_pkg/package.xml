@@ -3,11 +3,12 @@
 <package format="3">
   <name>loadcell_pkg</name>
   <version>0.0.0</version>
-  <description>Loadcell data read package</description>
+  <description>TODO: Package description</description>
   <maintainer email="bigyun9375@gmail.com">daeyun</maintainer>
-  <license>Apache license 2.0</license>
+  <license>Apache License 2.0</license>
 
   <depend>std_msgs</depend>
+  <depend>rclpy</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
