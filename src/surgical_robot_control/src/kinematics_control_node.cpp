@@ -143,12 +143,12 @@ void KinematicsControlNode::cal_kinematics() {
   f_val[3] = this->ST_.wrLengthNorth_;
   f_val[4] = this->ST_.wrLengthGrip;
 
-  std::cout << "--------------------------" << std::endl;
-  std::cout << "East  : " << f_val[0] << " mm" << std::endl;
-  std::cout << "West  : " << f_val[1] << " mm" << std::endl;
-  std::cout << "South : " << f_val[2] << " mm" << std::endl;
-  std::cout << "North : " << f_val[3] << " mm" << std::endl;
-  std::cout << "Grip  : " << f_val[4] << " mm" << std::endl;
+  // std::cout << "--------------------------" << std::endl;
+  // std::cout << "East  : " << f_val[0] << " mm" << std::endl;
+  // std::cout << "West  : " << f_val[1] << " mm" << std::endl;
+  // std::cout << "South : " << f_val[2] << " mm" << std::endl;
+  // std::cout << "North : " << f_val[3] << " mm" << std::endl;
+  // std::cout << "Grip  : " << f_val[4] << " mm" << std::endl;
 
   // ratio conversion & Check Threshold of loadcell
   // In ROS2, there is no function of finding max(or min) value
@@ -176,16 +176,14 @@ void KinematicsControlNode::cal_kinematics() {
   static double prev_f_val[DOF];  // for delta length
 
   std::vector<double> abs_f_val(DOF-1, 0);  // 5th DOF is a forceps
-  // for (int i=0; i<DOF-1; i++) { abs_f_val[i] = std::abs(prev_f_val[i] - f_val[i]); }
   for (int i=0; i<DOF-1; i++) { abs_f_val[i] = std::abs(this->kinematics_control_target_val_.target_position[i] - this->motor_state_.actual_position[i]); }
-  std::cout << "--------------" << std::endl;
-  std::cout << "Δ East  : " << abs_f_val[0] << " mm"<< std::endl;
-  std::cout << "Δ West  : " << abs_f_val[1] << " mm"<< std::endl;
-  std::cout << "Δ South : " << abs_f_val[2] << " mm"<< std::endl;
-  std::cout << "Δ North : " << abs_f_val[3] << " mm"<< std::endl;
-  std::cout << "Δ Grip  : " << abs_f_val[4] << " mm"<< std::endl;
 
-  
+  // std::cout << "--------------" << std::endl;
+  // std::cout << "Δ East  : " << abs_f_val[0] << " mm"<< std::endl;
+  // std::cout << "Δ West  : " << abs_f_val[1] << " mm"<< std::endl;
+  // std::cout << "Δ South : " << abs_f_val[2] << " mm"<< std::endl;
+  // std::cout << "Δ North : " << abs_f_val[3] << " mm"<< std::endl;
+  // std::cout << "Δ Grip  : " << abs_f_val[4] << " mm"<< std::endl;
 
   double max_val = *std::max_element(abs_f_val.begin(), abs_f_val.end()) + 0.00001; // 0.00001 is protection for 0/0 (0 divided by 0)
   int max_val_index = std::max_element(abs_f_val.begin(), abs_f_val.end()) - abs_f_val.begin();
@@ -194,15 +192,12 @@ void KinematicsControlNode::cal_kinematics() {
   }
   // last index means forceps. It doesn't need velocity profile
   this->kinematics_control_target_val_.target_velocity_profile[DOF-1] = PERCENT_100;
-  std::cout << "PPPP : " << this->kinematics_control_target_val_.target_velocity_profile[DOF-1] << std::endl;;
   
 #else
   for (int i=0; i<DOF; i++) { 
     this->kinematics_control_target_val_.target_velocity_profile[i] = PERCENT_100;
   }
 #endif
-
-
 }
 
 double KinematicsControlNode::gear_encoder_ratio_conversion(double gear_ratio, int e_channel, int e_resolution) {

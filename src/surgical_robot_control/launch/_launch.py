@@ -16,40 +16,44 @@
 import launch
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration, Command
+from launch.substitutions import LaunchConfiguration, Command, ThisLaunchFileDir
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from launch_ros.substitutions import FindPackageShare
 import os
 import xacro
+from launch_ros.descriptions import ParameterValue
 
 def generate_launch_description():
     
-    # urdf_path = os.path.join(
-    #     get_package_share_directory('surgical_robot_control'),
-    #     'urdf',
-    #     'my_robot.urdf.xacro'
-    #     )
+    pkg_share = FindPackageShare('surgical_robot_control').find('surgical_robot_control')
+    urdf_dir = os.path.join(pkg_share, 'urdf')
+    xacro_file = os.path.join(urdf_dir, 'my_robot.urdf.xacro')
+    robot_desc = launch.substitutions.Command('xacro %s' % xacro_file)
     
-    # urdf_path = LaunchConfiguration('xacro_path', default=None)
-    
-
     return LaunchDescription([
+    
+        Node(
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
+            name='surgical_robot_state_publisher',
+            parameters=[
+               {'robot_description':robot_desc}
+            ],
+            output='screen',
+        ),
         
-        # DeclareLaunchArgument(
-        #   'xacro_path',
-        #   default_value=None,
-        #   description='path to urdf.xacro file to publish'  
-        # ),
+        Node(
+            package='joint_state_publisher_gui',
+            executable='joint_state_publisher_gui',
+            name='surgical_tool_joint_gui',
+        ),
         
         # Node(
-        #     package='robot_state_publisher',
-        #     executable='robot_state_publisher',
-        #     name='robot_state_publisher',
-        #     parameters=[
-        #     ],
-        #     output='screen',
-        # ),
+        #     package='rviz2',
+        #     executable='rviz2',
+        #     name='rviz2',
+        #     output='screen'),
         
         Node(
             package='surgical_robot_control',
@@ -58,30 +62,3 @@ def generate_launch_description():
             output='screen',
         ),
     ])
-
-
-# import os
-
-# from ament_index_python.packages import get_package_share_directory
-# from launch import LaunchDescription 
-# from launch.actions import LogInfo
-# from launch.substitutions import ThisLaunchFileDir
-# from launch.actions import IncludeLaunchDescription
-# from launch.launch_description_sources import PythonLaunchDescriptionSource
-# from launch.actions import DeclareLaunchArgument
-# from launch.substitutions import LaunchConfiguration
-# from launch_ros.actions import Node
-
-
-# def generate_launch_description():
-#   return LaunchDescription([
-#     Node(
-#       package='surgical_robot_control',
-#       excutable='surgical_robot_control_node',
-#       name='surgical_robot_control_node',
-#       output='screen',
-#       # parameters=[
-#       #   {'num_of_tools':'1'},
-#       # ],
-#     ),
-#   ])

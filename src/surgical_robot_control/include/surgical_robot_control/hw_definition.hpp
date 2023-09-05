@@ -33,7 +33,7 @@
 //===============================
 // Loadcell Parameters
 //===============================
-#define LOADCELL_THRESHOLD  1000
+#define LOADCELL_THRESHOLD  1000.0
 
 
 typedef struct {

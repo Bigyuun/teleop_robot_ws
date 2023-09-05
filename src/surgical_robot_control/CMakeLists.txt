@@ -27,6 +27,7 @@ find_package(robot_state_publisher REQUIRED)
 # DY
 include_directories(include
   "include/surgical_robot_control"
+  "../robot_state_publisher/include"
   "/opt/ros/foxy/include"
   "../tcp_pkg/include/tcp_pkg"
 )
@@ -52,7 +53,7 @@ install(TARGETS
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY launch
+install(DIRECTORY launch urdf
   DESTINATION share/${PROJECT_NAME}
 )
 

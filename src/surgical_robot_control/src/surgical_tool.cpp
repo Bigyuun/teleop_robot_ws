@@ -43,7 +43,6 @@ void SurgicalTool::get_bending_kinematic_result(
 	double gAngle)
 {
 	// 1. set angle(degree) of continuum part
-	std::cout << pAngle << " / " << tAngle << std::endl;
 	this->set_bending_angle(pAngle, tAngle);
 	// 2. set angle(degree) o forceps
 	this->set_forceps_angle(gAngle);
