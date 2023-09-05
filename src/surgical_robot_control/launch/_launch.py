@@ -28,7 +28,7 @@ def generate_launch_description():
     
     pkg_share = FindPackageShare('surgical_robot_control').find('surgical_robot_control')
     urdf_dir = os.path.join(pkg_share, 'urdf')
-    xacro_file = os.path.join(urdf_dir, 'my_robot.urdf.xacro')
+    xacro_file = os.path.join(urdf_dir, 'surgical_tool.urdf.xacro')
     robot_desc = launch.substitutions.Command('xacro %s' % xacro_file)
     
     return LaunchDescription([
