@@ -5,6 +5,9 @@
   "python.analysis.extraPaths": [
     "/opt/ros/foxy/lib/python3.8/site-packages"
   ],
+  "cmake.configureOnOpen": false,
+  "ros.distro": "foxy",
+
   "files.associations": {
     "vector": "cpp",
     "sstream": "cpp",
@@ -72,7 +75,10 @@
     "cfenv": "cpp",
     "typeindex": "cpp",
     "typeinfo": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "any": "cpp",
+    "regex": "cpp"
   },
-  "cmake.sourceDirectory": "/home/bigyun/Desktop/github_repositories_Bigyuun/teleop_robot_ws/src/tcp_pkg"
+  "cmake.sourceDirectory": "/home/bigyun/Desktop/github_repositories_Bigyuun/teleop_robot_ws/src/tcp_pkg",
+
 }
