@@ -1,7 +1,7 @@
 # teleop_robot_ws
 [MIDAS] Surgical robot development worksapce
 
-# This is the ROS2 project for the MIDAS surgical robot.
+This is the ROS2 project for the MIDAS surgical robot.
 
 ## OS
 Ubuntu 20.04.6 LTS
@@ -15,7 +15,7 @@ Ubuntu 20.04.6 LTS
 - teleop_twist_joy
 
 ## Execute
-''' bash
+'''bash
   $ cd teleop_robot_ws
   $ source /opt/ros/{DISTRIBUTION}/setup.bash
   $ . install/setup.bash
@@ -23,7 +23,7 @@ Ubuntu 20.04.6 LTS
 '''
 
 ## Execute(Demo - No TCP coneection)
-''' bash
+'''bash
   $ cd teleop_robot_ws
   $ source /opt/ros/{DISTRIBUTION}/setup.bash
   $ . install/setup.bash
