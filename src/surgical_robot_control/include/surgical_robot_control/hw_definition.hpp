@@ -12,7 +12,7 @@
 //===============================
 // Motor Parameters
 //===============================
-#define NUM_OF_MOTORS       5
+#define NUM_OF_MOTORS       10
 #define GEAR_RATIO_44       44
 #define GEAR_RATIO_3_9      3.9
 #define ENCODER_CHANNEL     4

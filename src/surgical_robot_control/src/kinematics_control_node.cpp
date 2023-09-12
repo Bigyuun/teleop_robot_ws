@@ -46,8 +46,10 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
   //===============================
   // surgical tool pose(degree) publisher
   //===============================
-  surgical_tool_pose_publisher_ =
-    this->create_publisher<geometry_msgs::msg::Twist>("surgical_tool_pose", QoS_RKL10V);
+  surgical_tool_pose_left_publisher_ =
+    this->create_publisher<geometry_msgs::msg::Twist>("surgical_tool_left_pose", QoS_RKL10V);
+  surgical_tool_pose_right_publisher_ =
+    this->create_publisher<geometry_msgs::msg::Twist>("surgical_tool_right_pose", QoS_RKL10V);
 
   //===============================
   // motor status subscriber
@@ -70,14 +72,15 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
 
         this->cal_kinematics();
         this->kinematics_control_publisher_->publish(this->kinematics_control_target_val_);
-        this->surgical_tool_pose_publisher_->publish(this->surgical_tool_pose_);
+        this->surgical_tool_pose_left_publisher_->publish(this->surgical_tool_pose_left_);
+        this->surgical_tool_pose_right_publisher_->publish(this->surgical_tool_pose_right_);
       }
     );
   
   //===============================
   // loadcell data subscriber
   //===============================
-  this->loadcell_data_.data.resize(DOF);
+  this->loadcell_data_.data.resize(NUM_OF_MOTORS);
   loadcell_data_subscriber_ =
     this->create_subscription<std_msgs::msg::Float32MultiArray>(
       "loadcell_data",
@@ -109,17 +112,14 @@ KinematicsControlNode::~KinematicsControlNode() {
  *        In our definition   -> E:-, W:+, S:+, N:-
  *        mapping joystick data to angle of hardware limitation
  */
-double KinematicsControlNode::mapping_joystick_to_bending_p() {
-  double axes = this->joystick_msg_.axes[0];
-  return (this->ST_.max_bending_deg_ * axes);
+double KinematicsControlNode::mapping_joystick_to_bending_p(SurgicalTool ST, float axes) {
+  return (ST.max_bending_deg_ * axes);  // axes 0
 }
-double KinematicsControlNode::mapping_joystick_to_bending_t() {
-  double axes = this->joystick_msg_.axes[1];
-  return ( -1 * this->ST_.max_bending_deg_ * axes);
+double KinematicsControlNode::mapping_joystick_to_bending_t(SurgicalTool ST, float axes) {
+  return ( -1 * ST.max_bending_deg_ * axes);  // axes 1
 }
-double KinematicsControlNode::mapping_joystick_to_forceps() {
-  double axes = this->joystick_msg_.axes[2];
-  if ( axes >= 0) return ( this->ST_.max_forceps_deg_ * axes);
+double KinematicsControlNode::mapping_joystick_to_forceps(SurgicalTool ST, float axes) {
+  if ( axes >= 0) return ( ST.max_forceps_deg_ * axes);  // axes 2
   else return 0;
 }
 
@@ -128,31 +128,40 @@ void KinematicsControlNode::cal_kinematics() {
   /* input : actual pos & actual velocity & controller input */
   /* output : target value*/
 
-  double pAngle = this->mapping_joystick_to_bending_p();
-  double tAngle = this->mapping_joystick_to_bending_t();
-  double gAngle  = this->mapping_joystick_to_forceps();
-  this->surgical_tool_pose_.angular.x = pAngle;
-  this->surgical_tool_pose_.angular.y = tAngle;
+  double pAngle_left = this->mapping_joystick_to_bending_p(this->ST_left_, this->joystick_msg_.axes[0]);
+  double tAngle_left = this->mapping_joystick_to_bending_t(this->ST_left_, this->joystick_msg_.axes[1]);
+  double gAngle_left  = this->mapping_joystick_to_forceps(this->ST_left_, this->joystick_msg_.axes[2]);
 
-  this->ST_.get_bending_kinematic_result(pAngle, tAngle, gAngle);
+  double pAngle_right = this->mapping_joystick_to_bending_p(this->ST_right_, this->joystick_msg_.axes[3]);
+  double tAngle_right = this->mapping_joystick_to_bending_t(this->ST_right_, this->joystick_msg_.axes[4]);
+  double gAngle_right  = this->mapping_joystick_to_forceps(this->ST_right_, this->joystick_msg_.axes[5]);
 
-  double f_val[DOF];
-  f_val[0] = this->ST_.wrLengthEast_;
-  f_val[1] = this->ST_.wrLengthWest_;
-  f_val[2] = this->ST_.wrLengthSouth_;
-  f_val[3] = this->ST_.wrLengthNorth_;
-  f_val[4] = this->ST_.wrLengthGrip;
+  this->surgical_tool_pose_left_.angular.x = pAngle_left;
+  this->surgical_tool_pose_left_.angular.y = tAngle_left;
 
-  // std::cout << "--------------------------" << std::endl;
-  // std::cout << "East  : " << f_val[0] << " mm" << std::endl;
-  // std::cout << "West  : " << f_val[1] << " mm" << std::endl;
-  // std::cout << "South : " << f_val[2] << " mm" << std::endl;
-  // std::cout << "North : " << f_val[3] << " mm" << std::endl;
-  // std::cout << "Grip  : " << f_val[4] << " mm" << std::endl;
+  this->surgical_tool_pose_right_.angular.x = pAngle_right;
+  this->surgical_tool_pose_right_.angular.y = tAngle_right;
+
+  this->ST_left_.get_bending_kinematic_result(pAngle_left, tAngle_left, gAngle_left);
+  this->ST_right_.get_bending_kinematic_result(pAngle_right, tAngle_right, gAngle_right);
+
+  double f_val_left[DOF];
+  f_val_left[0] = this->ST_left_.wrLengthEast_;
+  f_val_left[1] = this->ST_left_.wrLengthWest_;
+  f_val_left[2] = this->ST_left_.wrLengthSouth_;
+  f_val_left[3] = this->ST_left_.wrLengthNorth_;
+  f_val_left[4] = this->ST_left_.wrLengthGrip;
+
+  double f_val_right[DOF];
+  f_val_right[0] = this->ST_right_.wrLengthEast_;
+  f_val_right[1] = this->ST_right_.wrLengthWest_;
+  f_val_right[2] = this->ST_right_.wrLengthSouth_;
+  f_val_right[3] = this->ST_right_.wrLengthNorth_;
+  f_val_right[4] = this->ST_right_.wrLengthGrip;
 
   // ratio conversion & Check Threshold of loadcell
   // In ROS2, there is no function of finding max(or min) value
-  for (int i=0; i<DOF; i++) {
+  for (int i=0; i<NUM_OF_MOTORS; i++) {
     if (this->loadcell_data_.data[i] > LOADCELL_THRESHOLD) {
       RCLCPP_WARN(
         this->get_logger(),
@@ -162,39 +171,55 @@ void KinematicsControlNode::cal_kinematics() {
     }
   }
   this->kinematics_control_target_val_.stamp = this->now();
-  this->kinematics_control_target_val_.target_position[0] = DIRECTION_COUPLER * f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[1] = DIRECTION_COUPLER * f_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[2] = DIRECTION_COUPLER * f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[3] = DIRECTION_COUPLER * f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[4] = DIRECTION_COUPLER * f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[0] = DIRECTION_COUPLER * f_val_left[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[1] = DIRECTION_COUPLER * f_val_left[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[2] = DIRECTION_COUPLER * f_val_left[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[3] = DIRECTION_COUPLER * f_val_left[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[4] = DIRECTION_COUPLER * f_val_left[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+
+  this->kinematics_control_target_val_.target_position[5] = DIRECTION_COUPLER * f_val_right[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[6] = DIRECTION_COUPLER * f_val_right[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[7] = DIRECTION_COUPLER * f_val_right[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[8] = DIRECTION_COUPLER * f_val_right[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[9] = DIRECTION_COUPLER * f_val_right[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+
 
 #if MOTOR_CONTROL_SAME_DURATION
   /**
    * @brief find max value and make it max_velocity_profile 100 (%),
    *        other value have values proportional to 100 (%) each
    */
-  static double prev_f_val[DOF];  // for delta length
 
-  std::vector<double> abs_f_val(DOF-1, 0);  // 5th DOF is a forceps
-  for (int i=0; i<DOF-1; i++) { abs_f_val[i] = std::abs(this->kinematics_control_target_val_.target_position[i] - this->motor_state_.actual_position[i]); }
-
-  // std::cout << "--------------" << std::endl;
-  // std::cout << "Δ East  : " << abs_f_val[0] << " mm"<< std::endl;
-  // std::cout << "Δ West  : " << abs_f_val[1] << " mm"<< std::endl;
-  // std::cout << "Δ South : " << abs_f_val[2] << " mm"<< std::endl;
-  // std::cout << "Δ North : " << abs_f_val[3] << " mm"<< std::endl;
-  // std::cout << "Δ Grip  : " << abs_f_val[4] << " mm"<< std::endl;
-
-  double max_val = *std::max_element(abs_f_val.begin(), abs_f_val.end()) + 0.00001; // 0.00001 is protection for 0/0 (0 divided by 0)
-  int max_val_index = std::max_element(abs_f_val.begin(), abs_f_val.end()) - abs_f_val.begin();
+  /**
+   * @brief Left tool
+   */
+  std::vector<double> abs_f_val_left(DOF-1, 0);  // 5th DOF is a forceps
+  for (int i=0; i<DOF-1; i++) { abs_f_val_left[i] = std::abs(this->kinematics_control_target_val_.target_position[i] - this->motor_state_.actual_position[i]); }
+  double max_val_left = *std::max_element(abs_f_val_left.begin(), abs_f_val_left.end()) + 0.00001; // 0.00001 is protection for 0/0 (0 divided by 0)
+  int max_val_left_index = std::max_element(abs_f_val_left.begin(), abs_f_val_left.end()) - abs_f_val_left.begin();
   for (int i=0; i<(DOF-1); i++) { 
-    this->kinematics_control_target_val_.target_velocity_profile[i] = (abs_f_val[i] / max_val) * PERCENT_100;
+    this->kinematics_control_target_val_.target_velocity_profile[i] = (abs_f_val_left[i] / max_val_left) * PERCENT_100;
   }
   // last index means forceps. It doesn't need velocity profile
   this->kinematics_control_target_val_.target_velocity_profile[DOF-1] = PERCENT_100;
-  
+
+  /**
+   * @brief Right tool
+   */
+  std::vector<double> abs_f_val_right(DOF-1, 0);  // 5th DOF is a forceps
+  for (int i=(NUM_OF_MOTORS/2); i<(NUM_OF_MOTORS/2 + (DOF-1)); i++) {
+    abs_f_val_right[i-(NUM_OF_MOTORS/2)] = std::abs(this->kinematics_control_target_val_.target_position[i] - this->motor_state_.actual_position[i]); 
+  }
+  double max_val_right = *std::max_element(abs_f_val_right.begin(), abs_f_val_right.end()) + 0.00001; // 0.00001 is protection for 0/0 (0 divided by 0)
+  int max_val_right_index = std::max_element(abs_f_val_right.begin(), abs_f_val_right.end()) - abs_f_val_right.begin();
+  for (int i=(NUM_OF_MOTORS/2); i<(NUM_OF_MOTORS/2 + (DOF-1)); i++) { 
+    this->kinematics_control_target_val_.target_velocity_profile[i] = (abs_f_val_right[i-(NUM_OF_MOTORS/2)] / max_val_right) * PERCENT_100;
+  }
+  // last index means forceps. It doesn't need velocity profile
+  this->kinematics_control_target_val_.target_velocity_profile[(NUM_OF_MOTORS/2 + (DOF-1))] = PERCENT_100;
+
 #else
-  for (int i=0; i<DOF; i++) { 
+  for (int i=0; i<NUM_OF_MOTORS; i++) { 
     this->kinematics_control_target_val_.target_velocity_profile[i] = PERCENT_100;
   }
 #endif

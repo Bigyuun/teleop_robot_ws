@@ -13,7 +13,7 @@
 
 #define MAX_BENDING_DEGREE   90 // degree
 #define MAX_FORCEPS_RAGNE_DEGREE 30  // mm
-#define MAX_FORCEPS_RAGNE_MM 3  // mm
+#define MAX_FORCEPS_RAGNE_MM 2  // mm
 
 /**
  * @authors DY, JKim

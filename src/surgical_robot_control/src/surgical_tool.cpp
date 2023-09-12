@@ -66,7 +66,7 @@ void SurgicalTool::kinematics()
 	this->wrLengthNorth_ = this->wrLengthNorth_ / mm_;
 
 	// y = -x + 30
-	this->wrLengthGrip = ((-1) * this->target_forceps_angle_ + this->max_forceps_deg_)*0.1; 
+	this->wrLengthGrip = ((-1) * this->target_forceps_angle_ + this->max_forceps_deg_) * ( MAX_FORCEPS_RAGNE_MM / MAX_FORCEPS_RAGNE_DEGREE ); 
 }
 
 float SurgicalTool::tomm()

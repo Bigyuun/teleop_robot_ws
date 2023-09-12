@@ -57,7 +57,8 @@ public:
   /**
    * @brief sugical_tool.hpp
    */
-  SurgicalTool ST_;
+  SurgicalTool ST_left_;
+  SurgicalTool ST_right_;
 
   /**
    * @author DY
@@ -66,9 +67,9 @@ public:
    *        In our definition   -> E:-, W:+, S:+, N:-
    *        mapping joystick data to angle of hardware limitation
    */
-  double mapping_joystick_to_bending_p();
-  double mapping_joystick_to_bending_t();
-  double mapping_joystick_to_forceps();
+  double mapping_joystick_to_bending_p(SurgicalTool ST, float axes);
+  double mapping_joystick_to_bending_t(SurgicalTool ST, float axes);
+  double mapping_joystick_to_forceps(SurgicalTool ST, float axes);
 
   /**
    * @author DY, JKim
@@ -122,8 +123,10 @@ private:
    * @author DY
    * @brief kinematic info publisher
    */
-  geometry_msgs::msg::Twist surgical_tool_pose_;
-  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr surgical_tool_pose_publisher_;
+  geometry_msgs::msg::Twist surgical_tool_pose_left_;
+  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr surgical_tool_pose_left_publisher_;
+  geometry_msgs::msg::Twist surgical_tool_pose_right_;
+  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr surgical_tool_pose_right_publisher_;
 
   /**
    * @author DY
