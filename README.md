@@ -15,8 +15,7 @@ Ubuntu 20.04.6 LTS
 - teleop_twist_joy
 
 ## Execute
-
-'''bash
+'''
   $ cd teleop_robot_ws
   $ source /opt/ros/{DISTRIBUTION}/setup.bash
   $ . install/setup.bash
@@ -24,7 +23,7 @@ Ubuntu 20.04.6 LTS
 '''
 
 ## Execute(Demo - No TCP coneection)
-'''bash
+'''
   $ cd teleop_robot_ws
   $ source /opt/ros/{DISTRIBUTION}/setup.bash
   $ . install/setup.bash
