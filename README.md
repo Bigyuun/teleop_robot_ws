@@ -21,29 +21,29 @@ Ubuntu 20.04.6 LTS
 
 #### Node
 - **'surgical_robot_control_node'**
-  - Publisher
-    `kinematics_control_target_val`
-  - Subscriber
-    `/joy`
-    `/motor_state`
-    `/loadcell_data`
+  - Publisher<br/>
+    `kinematics_control_target_val`<br/>
+  - Subscriber<br/>
+    `/joy`<br/>
+    `/motor_state`<br/>
+    `/loadcell_data`<br/>
 - **tcpclient**
-  - Publisher
-    `/motor_state`
-  - Subscriber
-    `kinematics_control_target_val`
+  - Publisher<br/>
+    `/motor_state`<br/>
+  - Subscriber<br/>
+    `kinematics_control_target_val`<br/>
 - **loadcell_publisher**
-  - Publisher
-    `/loadcell_data`
+  - Publisher<br/>
+    `/loadcell_data`<br/>
 - **surgical_robot_state_publisher**
-  - Publisher
-    `/tf`
-    `/robot_description`
-  - Subscriber
-    `/joint_states`
+  - Publisher<br/>
+    `/tf`<br/>
+    `/robot_description`<br/>
+  - Subscriber<br/>
+    `/joint_states`<br/>
 - **joy_node**
-  - Publisher
-    `/joy`
+  - Publisher<br/>
+    `/joy`<br/>
 
 #### Topic
 - **Custom interfaces**
@@ -62,6 +62,13 @@ Ubuntu 20.04.6 LTS
     |int32[]|actual_acceleration|
     |int32[]|actual_torque|
 
+## Branch
+- main
+  > Use 5 motors. 4 for Directions(E,W,S,N) and the other for forceps.
+
+- twin
+  > Use 10 motors. It means 2 set of main branch system.
+  
 ## Execute
 ### TCP
 ```bash
@@ -79,11 +86,6 @@ Ubuntu 20.04.6 LTS
   $ ros2 launch launch_pkg demo_teleop_robot.launch.py
 ```
 
-## Branch
-- main
-  > Use 5 motors. 4 for Directions(E,W,S,N) and the other for forceps.
 
-- twin
-  > Use 10 motors. It means 2 set of main branch system.
 
 
