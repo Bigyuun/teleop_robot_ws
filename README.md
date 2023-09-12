@@ -18,7 +18,7 @@ Ubuntu 20.04.6 LTS
 
 ## System
 #### System Configuration
-![Image Description](https://github.com/Bigyuun/teleop_robot_ws/tree/main/media/ros2_system_config.png)
+![Image Description](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/ros2_system_config.png)
 
 #### Node
 - **'surgical_robot_control_node'**
