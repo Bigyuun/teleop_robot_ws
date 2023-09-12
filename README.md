@@ -15,20 +15,20 @@ Ubuntu 20.04.6 LTS
 - teleop_twist_joy
 
 ## Execute
-'''
+```bash
   $ cd teleop_robot_ws
   $ source /opt/ros/{DISTRIBUTION}/setup.bash
   $ . install/setup.bash
   $ ros2 launch launch_pkg teleop_robot.launch.py
-'''
+```
 
 ## Execute(Demo - No TCP coneection)
-'''
+```bash
   $ cd teleop_robot_ws
   $ source /opt/ros/{DISTRIBUTION}/setup.bash
   $ . install/setup.bash
   $ ros2 launch launch_pkg demo_teleop_robot.launch.py
-'''
+```
 
 ## Branch
 - main
