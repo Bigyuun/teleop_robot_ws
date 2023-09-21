@@ -89,6 +89,9 @@ public:
    */
   double gear_encoder_ratio_conversion(double gear_ratio, int e_channel, int e_resolution);
 
+  void homing();
+  void set_position_zero();
+
 private:
 
   /**
@@ -96,6 +99,11 @@ private:
    * @brief ROS2 objects and arguments
    */
   void publishall();
+
+  /**
+   * @brief virtual_position
+   */
+  int virtual_pos[NUM_OF_MOTORS];
 
   /**
    * @author DY

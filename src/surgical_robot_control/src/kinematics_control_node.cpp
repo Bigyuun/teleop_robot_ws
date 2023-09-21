@@ -77,7 +77,7 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
   //===============================
   // loadcell data subscriber
   //===============================
-  this->loadcell_data_.data.resize(DOF);
+  this->loadcell_data_.data.resize(10);
   loadcell_data_subscriber_ =
     this->create_subscription<std_msgs::msg::Float32MultiArray>(
       "loadcell_data",
@@ -203,6 +203,18 @@ void KinematicsControlNode::cal_kinematics() {
 double KinematicsControlNode::gear_encoder_ratio_conversion(double gear_ratio, int e_channel, int e_resolution) {
   return gear_ratio * e_channel * e_resolution;
 }
+
+  void KinematicsControlNode::set_position_zero() {
+    for (int i=0; i<NUM_OF_MOTORS; i++) {
+      this->virtual_pos[i] = 0;
+    }
+  }
+
+
+void KinematicsControlNode::homing() {
+
+}
+
 
 void KinematicsControlNode::publishall()
 {
