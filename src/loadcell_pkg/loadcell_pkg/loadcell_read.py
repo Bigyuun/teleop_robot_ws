@@ -2,7 +2,8 @@
 import rclpy
 from rclpy.node import Node
 
-from std_msgs.msg import Float32MultiArray
+# from std_msgs.msg import Float32MultiArray
+from custom_interfaces.msg import LoadcellState
 
 ## Serial Comm
 import serial
@@ -14,13 +15,28 @@ class LoadcellPublisher(Node):
     def __init__(self):
         super().__init__('loadcell_publisher')
         qos_depth = 10
-        self.loadcell_publisher_ = self.create_publisher(Float32MultiArray, 'loadcell_data', qos_depth)
-        self.read_data = {0}
+        # self.loadcell_publisher_ = self.create_publisher(Float32MultiArray, 'loadcell_data', qos_depth)
+        self.loadcell_publisher_ = self.create_publisher(LoadcellState, 'loadcell_data', qos_depth)
+        print('loadcell_publisher is created!')
 
         # serial comm parameters
         self.serial_port = '/dev/ttyUSB0'  # 아두이노와 연결된 포트 이름으로 변경해야 합니다.
-        self.baud_rate = 115200  # 아두이노와 동일한 전송 속도로 설정
-        self.loadcell_data = [0,0,0,0,0]  # buffer
+        self.baud_rate = 115200  # 아두이노와 동일한 전송 속도로 설정        
+        self.loadcell_data= [0,0,0,0,0,0,0,0,0,0] # buffer
+        self.loadcell_threshold = [0,0,0,0,0,0,0,0,0,0] # buffer
+
+        ## initialize the threshold
+        self.loadcell_threshold[0] = 1000
+        self.loadcell_threshold[1] = 1000
+        self.loadcell_threshold[2] = 1000
+        self.loadcell_threshold[3] = 1000
+        self.loadcell_threshold[4] = 1000
+        self.loadcell_threshold[5] = 1000
+        self.loadcell_threshold[6] = 1000
+        self.loadcell_threshold[7] = 1000
+        self.loadcell_threshold[8] = 1000
+        self.loadcell_threshold[9] = 1000
+        
         self.loadcell_pub_thread_ = threading.Thread(target=self.read_thread)
         self.loadcell_pub_thread_.start()
 
@@ -28,9 +44,10 @@ class LoadcellPublisher(Node):
         # spin
 
         # 시리얼 통신 시작
+        # while True:
+        #     self.publishall()
         ser = serial.Serial(self.serial_port, self.baud_rate)
         print(f"Connected to {self.serial_port}")
-
 
         try:
             while True:
@@ -43,7 +60,7 @@ class LoadcellPublisher(Node):
                     
                     for i, value in enumerate(parse_received_data):
                         self.loadcell_data[i] = value
-                        print(self.loadcell_data[i])
+                        # print(self.loadcell_data[i])
                 
                 self.publishall()
                 
@@ -57,9 +74,12 @@ class LoadcellPublisher(Node):
         
 
     def publishall(self):
-        msg = Float32MultiArray()
-        msg.data = [0.,0.,0.,0.,0.]
-        for i in range(5):
+        # msg = Float32MultiArray()
+        msg = LoadcellState()
+        msg.threshold = [0.,0.,0.,0.,0.,0.,0.,0.,0.,0.]
+        msg.data = [0.,0.,0.,0.,0.,0.,0.,0.,0.,0.]
+        for i in range(10):
+            msg.threshold[i] = self.loadcell_threshold[i]
             msg.data[i] = float(self.loadcell_data[i])
         self.loadcell_publisher_.publish(msg)
     

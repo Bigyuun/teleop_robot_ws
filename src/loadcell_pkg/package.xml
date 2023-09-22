@@ -7,7 +7,8 @@
   <maintainer email="bigyun9375@gmail.com">daeyun</maintainer>
   <license>Apache License 2.0</license>
 
-  <depend>std_msgs</depend>
+  <!-- <depend>std_msgs</depend> -->
+  <depend>custom_interfaces</depend>
   <depend>rclpy</depend>
 
   <test_depend>ament_copyright</test_depend>
