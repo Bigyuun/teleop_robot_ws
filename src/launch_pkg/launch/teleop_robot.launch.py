@@ -29,7 +29,12 @@ def generate_launch_description():
   launch_description = LaunchDescription()
   
   return LaunchDescription([
-     
+    
+    IncludeLaunchDescription(
+      PythonLaunchDescriptionSource(
+        [get_package_share_directory('loadcell_pkg'), '/launch/_launch.py']),
+    ),
+         
     IncludeLaunchDescription(
       PythonLaunchDescriptionSource(
         [get_package_share_directory('surgical_robot_control'), '/launch/_launch.py'])
@@ -43,11 +48,6 @@ def generate_launch_description():
     IncludeLaunchDescription(
       PythonLaunchDescriptionSource(
         [get_package_share_directory('teleop_twist_joy'), '/launch/teleop-launch.py']),
-    ),
-    
-    IncludeLaunchDescription(
-      PythonLaunchDescriptionSource(
-        [get_package_share_directory('loadcell_pkg'), '/launch/_launch.py']),
     ),
     
     Node(
