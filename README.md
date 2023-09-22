@@ -11,10 +11,13 @@ Ubuntu 20.04.6 LTS
 - ROS2 Foxy (Focal)
   <https://docs.ros.org/en/foxy/index.html>
 #### ROS2 packages 
+##### Support
 - Rviz2
 - teleop_twist_joy
 - robot_state_publisher
 - joint_state_publisher_gui
+##### Custom
+- surgical_robot_control
 
 ## System
 #### System Configuration
@@ -52,6 +55,12 @@ Ubuntu 20.04.6 LTS
     |Type|Name|
     |:--|:--|
     |builtin_interfaces/Time|stamp|
+    |float32[]|threshold|
+    |float32[]|data|
+  - MotorCommand.msg
+    |Type|Name|
+    |:--|:--|
+    |builtin_interfaces/Time|stamp|
     |int32[]|target_position|
     |int32[]|target_velocity_profile|
   - MotorState.msg
@@ -62,6 +71,7 @@ Ubuntu 20.04.6 LTS
     |int32[]|actual_velocity|
     |int32[]|actual_acceleration|
     |int32[]|actual_torque|
+   
 
 ## Branch
 - main
