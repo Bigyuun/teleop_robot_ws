@@ -3,14 +3,14 @@
 This is the ROS2 project for the MIDAS surgical robot.
 ---
 ## Index
-1. [Prerequisite][#Prerequisite]
-2. [OS][#OS]
-3. [ROS2 packages][#ROS2-packages]
-4. [System Confituration][#System-Confituration]
-5. [Node][#Node]
-6. [Topic][#Topic]
-7. [Branch][#Branch]
-8. [Execute][#Execute]
+1. [Prerequisite][#prerequisite]
+2. [OS][#os]
+3. [ROS2 packages][#ros2-packages]
+4. [System Confituration][#system-confituration]
+5. [Node][#node]
+6. [Topic][#topic]
+7. [Branch][#branch]
+8. [Execute][#execute]
 ---
 ## Prerequisite
 #### OS
