@@ -27,7 +27,7 @@ public:
       "motor_state",
       QoS_RKL10V);
     timer_ = this->create_wall_timer(
-      10ms, std::bind(&DemoNode::publish_msg, this));
+      3ms, std::bind(&DemoNode::publish_msg, this));
 
     tcp_send_msg_.target_position.resize(NUM_OF_MOTORS);
     tcp_send_msg_.target_velocity_profile.resize(NUM_OF_MOTORS);
