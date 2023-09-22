@@ -35,7 +35,14 @@
 #include "geometry_msgs/msg/twist.hpp"
 #include "custom_interfaces/msg/motor_state.hpp"
 #include "custom_interfaces/msg/motor_command.hpp"
+#include "custom_interfaces/msg/loadcell_state.hpp"
 // #include "tcp_node.hpp"   // using #define NUM_OF_MOTRS
+
+typedef enum  {
+  kStop = 0,
+  kEnable = 1,
+  kHoming = 5,
+} OpMode;
 
 class KinematicsControlNode : public rclcpp::Node
 {
@@ -89,10 +96,21 @@ public:
    */
   double gear_encoder_ratio_conversion(double gear_ratio, int e_channel, int e_resolution);
 
-  void homing();
+  /**
+   * @brief Homing mode
+   * @note Do this when starting the motor system
+   */
+  int8_t homing();
+
   void set_position_zero();
 
 private:
+  OpMode op_mode_ = kStop;
+  /**
+   * @author DY
+   * @brief At firts, motor homing will be start once;
+   */
+  std::thread homingthread_;
 
   /**
    * @author DY
@@ -103,7 +121,7 @@ private:
   /**
    * @brief virtual_position
    */
-  int virtual_pos[NUM_OF_MOTORS];
+  int virtual_pos[NUM_OF_MOTORS] = {0,};
 
   /**
    * @author DY
@@ -123,6 +141,7 @@ private:
    * @author DY
    * @brief actual motor status subscriber
    */
+  bool motorstate_op_flag_ = false;
   MotorState motor_state_;
   rclcpp::Subscription<MotorState>::SharedPtr motor_state_subscriber_;
 
@@ -137,6 +156,9 @@ private:
    * @author DY
    * @brief Loadcell data subscriber
    */
-  std_msgs::msg::Float32MultiArray loadcell_data_;
-  rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr loadcell_data_subscriber_;
+  bool loadcell_op_flag_ = false;
+  custom_interfaces::msg::LoadcellState loadcell_data_;
+  rclcpp::Subscription<custom_interfaces::msg::LoadcellState>::SharedPtr loadcell_data_subscriber_;
+  // std_msgs::msg::Float32MultiArray loadcell_data_;
+  // rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr loadcell_data_subscriber_;
 };
