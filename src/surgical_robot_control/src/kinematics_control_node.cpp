@@ -164,25 +164,31 @@ void KinematicsControlNode::cal_kinematics() {
 
   // ratio conversion & Check Threshold of loadcell
   // In ROS2, there is no function of finding max(or min) value
-  for (int i=0; i<DOF; i++) {
-    if (this->loadcell_data_.data[i] >= this->loadcell_data_.threshold[i]) {
-      RCLCPP_WARN(
-        this->get_logger(),
-        "#%d Loadcell is %.2fg. Upper than %.2fg Threshold.",
-        i, this->loadcell_data_.data[i], this->loadcell_data_.threshold[i]);
-    }
-  }
+  // for (int i=0; i<DOF; i++) {
+  //   if (this->loadcell_data_.data[i] >= this->loadcell_data_.threshold[i]) {
+  //     RCLCPP_WARN(
+  //       this->get_logger(),
+  //       "#%d Loadcell is %.2fg. Upper than %.2fg Threshold.",
+  //       i, this->loadcell_data_.data[i], this->loadcell_data_.threshold[i]);
+  //   }
+  // }
 
   this->kinematics_control_target_val_.stamp = this->now();
-  this->kinematics_control_target_val_.target_position[0] = this->motor_state_.actual_position[0]
+  this->kinematics_control_target_val_.target_position[0] = DIRECTION_COUPLER * f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[1] = DIRECTION_COUPLER * f_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[2] = DIRECTION_COUPLER * f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[3] = DIRECTION_COUPLER * f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[4] = DIRECTION_COUPLER * f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+
+  this->kinematics_control_target_val_.target_position[0] = this->virtual_home_pos_[0]
                                                             + DIRECTION_COUPLER * f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[1] = this->motor_state_.actual_position[1]
+  this->kinematics_control_target_val_.target_position[1] = this->virtual_home_pos_[1]
                                                             + DIRECTION_COUPLER * f_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[2] = this->motor_state_.actual_position[2]
+  this->kinematics_control_target_val_.target_position[2] = this->virtual_home_pos_[2]
                                                             + DIRECTION_COUPLER * f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[3] = this->motor_state_.actual_position[3]
+  this->kinematics_control_target_val_.target_position[3] = this->virtual_home_pos_[3]
                                                             + DIRECTION_COUPLER * f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[4] = this->motor_state_.actual_position[4]
+  this->kinematics_control_target_val_.target_position[4] = this->virtual_home_pos_[4]
                                                             + DIRECTION_COUPLER * f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
 
 #if MOTOR_CONTROL_SAME_DURATION
@@ -216,7 +222,7 @@ double KinematicsControlNode::gear_encoder_ratio_conversion(double gear_ratio, i
 
 void KinematicsControlNode::set_position_zero() {
   for (int i=0; i<NUM_OF_MOTORS; i++) {
-    this->virtual_pos[i] = 0;
+    this->virtual_home_pos_[i] = 0;
   }
 }
 
@@ -300,6 +306,9 @@ int8_t KinematicsControlNode::homing() {
       }
 
       RCLCPP_WARN(this->get_logger(), "Finish Homing");
+      for (int i=0; i<NUM_OF_MOTORS; i++ ) {
+        this->virtual_home_pos_[i] = this->motor_state_.actual_position[i];
+      }
       this->op_mode_ = kEnable;
       return 1;
     }

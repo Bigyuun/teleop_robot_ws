@@ -121,7 +121,7 @@ private:
   /**
    * @brief virtual_position
    */
-  int virtual_pos[NUM_OF_MOTORS] = {0,};
+  int virtual_home_pos_[NUM_OF_MOTORS] = {0,};
 
   /**
    * @author DY
