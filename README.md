@@ -111,7 +111,7 @@ Ubuntu 20.04.6 LTS
 - twin
   > Use 10 motors. It means 2 set of main branch system.
 ```bash
-$ git clone -b twin https://github.com/Bigyuun/teleop_robot_ws.git
+  $ git clone -b twin https://github.com/Bigyuun/teleop_robot_ws.git
 ```
 ## Execute
 ### TCP
