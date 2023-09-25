@@ -12,7 +12,7 @@ This is the ROS2 project for the MIDAS surgical robot.
 7. [Topic](#topic)
 8. [Branch](#branch)
 9. [Execute](#execute)
----
+
 ## Prerequisite
 #### OS
 Ubuntu 20.04.6 LTS
@@ -104,10 +104,15 @@ Ubuntu 20.04.6 LTS
 ## Branch
 - main
   > Use 5 motors. 4 for Directions(E,W,S,N) and the other for forceps.
+```bash
+  $ git clone -b main https://github.com/Bigyuun/teleop_robot_ws.git
+```
 
 - twin
   > Use 10 motors. It means 2 set of main branch system.
-  
+```bash
+$ git clone -b twin https://github.com/Bigyuun/teleop_robot_ws.git
+```
 ## Execute
 ### TCP
 ```bash
