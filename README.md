@@ -27,6 +27,25 @@ Ubuntu 20.04.6 LTS
 ##### Custom
 - surgical_robot_control
 
+#### Installation
+##### ROS2
+- xacro
+```bash
+  $ sudo apt install ros-{distro}-xacro
+```
+- joint_state_publisher_gui
+```bash
+  $ sudo apt install ros-{distro}-joint-state-publisher-gui
+```
+##### python
+- serial (pyserial)
+```bash
+  $ pip install pyserial
+```
+- parse
+```bash
+  $ pip install parse
+```
 ## System
 #### System Configuration
 ![Image Description](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/ros2_system_config.png)
