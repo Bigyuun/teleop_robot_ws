@@ -6,11 +6,12 @@ This is the ROS2 project for the MIDAS surgical robot.
 1. [Prerequisite](#prerequisite)
 2. [OS](#os)
 3. [ROS2 packages](#ros2-packages)
-4. [System Confituration](#system-confituration)
-5. [Node](#node)
-6. [Topic](#topic)
-7. [Branch](#branch)
-8. [Execute](#execute)
+4. [Installation](#installation)
+5. [System Confituration](#system-confituration)
+6. [Node](#node)
+7. [Topic](#topic)
+8. [Branch](#branch)
+9. [Execute](#execute)
 ---
 ## Prerequisite
 #### OS
@@ -27,7 +28,7 @@ Ubuntu 20.04.6 LTS
 ##### Custom
 - surgical_robot_control
 
-#### Installation
+## Installation
 ##### ROS2
 - xacro
 ```bash
