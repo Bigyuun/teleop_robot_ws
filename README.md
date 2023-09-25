@@ -6,12 +6,22 @@ This is the ROS2 project for the MIDAS surgical robot.
 1. [Prerequisite](#prerequisite)
 2. [OS](#os)
 3. [ROS2 packages](#ros2-packages)
+<<<<<<< HEAD
+4. [Installation](#installation)
+5. [System Confituration](#system-confituration)
+6. [Node](#node)
+7. [Topic](#topic)
+8. [Branch](#branch)
+9. [Execute](#execute)
+
+=======
 4. [System Confituration](#system-confituration)
 5. [Node](#node)
 6. [Topic](#topic)
 7. [Branch](#branch)
 8. [Execute](#execute)
 ---
+>>>>>>> be04d84714f6701617e4222d9800f11731269615
 ## Prerequisite
 #### OS
 Ubuntu 20.04.6 LTS
@@ -27,6 +37,28 @@ Ubuntu 20.04.6 LTS
 ##### Custom
 - surgical_robot_control
 
+<<<<<<< HEAD
+## Installation
+##### ROS2
+- xacro
+```bash
+  $ sudo apt install ros-{distro}-xacro
+```
+- joint_state_publisher_gui
+```bash
+  $ sudo apt install ros-{distro}-joint-state-publisher-gui
+```
+##### python
+- serial (pyserial)
+```bash
+  $ pip install pyserial
+```
+- parse
+```bash
+  $ pip install parse
+```
+=======
+>>>>>>> be04d84714f6701617e4222d9800f11731269615
 ## System
 #### System Configuration
 ![Image Description](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/ros2_system_config.png)
@@ -84,6 +116,15 @@ Ubuntu 20.04.6 LTS
 ## Branch
 - main
   > Use 5 motors. 4 for Directions(E,W,S,N) and the other for forceps.
+```bash
+  $ git clone -b main https://github.com/Bigyuun/teleop_robot_ws.git
+```
+
+- twin
+  > Use 10 motors. It means 2 set of main branch system.
+```bash
+  $ git clone -b twin https://github.com/Bigyuun/teleop_robot_ws.git
+```
 
 - twin
   > Use 10 motors. It means 2 set of main branch system.
