@@ -125,9 +125,6 @@ Ubuntu 20.04.6 LTS
 ```bash
   $ git clone -b twin https://github.com/Bigyuun/teleop_robot_ws.git
 ```
-
-- twin
-  > Use 10 motors. It means 2 set of main branch system.
   
 ## Execute
 ### TCP
