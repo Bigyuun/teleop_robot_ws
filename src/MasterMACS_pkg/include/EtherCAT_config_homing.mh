@@ -1,0 +1,7 @@
+#pragma once
+#include "EtherCAT_definition_homing.mh"
+
+long EtherCAT_configuration(void);
+long EtherCAT_REINIT(long id, long signal, long event[], long data[]);
+long EtherCAT_PREOP(long id, long signal, long event[], long data[]);
+long EtherCAT_OP(long id, long signal, long event[], long data[]);
