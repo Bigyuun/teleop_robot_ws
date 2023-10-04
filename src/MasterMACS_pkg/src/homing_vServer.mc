@@ -8,7 +8,7 @@
 //#include "C:\Users\bigyu\Desktop\Github repositories_Bigyuun\EtherCAT_MasterMACS_ws\include\SDK\SDK_ApossC.mc"
 #include "..\include\SDK\SDK_ApossC.mc"
 #include "..\include\user_definition.mh"
-#include "..\include\EtherCAT_config.mc"
+#include "..\include\EtherCAT_config_homing.mc"
 #include "..\include\TCP_config.mc"
 
 long i,j,k;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SysDef.mh>
-#include "EtherCAT_definition.mh"
+#include "EtherCAT_definition_homing.mh"
 #include "EtherCAT_config_homing.mh"
 
 long EtherCAT_configuration(void)
