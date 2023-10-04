@@ -24,6 +24,7 @@ find_package(rosidl_default_generators REQUIRED)
 set(msg_files
   "msg/MotorState.msg"
   "msg/MotorCommand.msg"
+  "msg/MotorCommandCSV.msg"
   "msg/LoadcellState.msg"
 )
 
