@@ -131,6 +131,14 @@ Ubuntu 20.04.6 LTS
   $ ros2 launch launch_pkg demo_teleop_robot.launch.py
 ```
 
+### Homing (using loadcells)
+```bash
+  $ cd teleop_robot_ws
+  $ source /opt/ros/{DISTRIBUTION}/setup.bash
+  $ . install/setup.bash
+  $ ros2 run surgical_robot_control homing_node
+```
+
 
 
 
