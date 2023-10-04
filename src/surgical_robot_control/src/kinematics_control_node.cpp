@@ -68,6 +68,7 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
       [this] (const MotorState::SharedPtr msg) -> void
       {
         RCLCPP_WARN_ONCE(this->get_logger(), "Subscribing the /motor_state.");
+        this->op_mode_ = kEnable;
         this->motorstate_op_flag_ = true;
         this->motor_state_.stamp = msg->stamp;
         this->motor_state_.actual_position =  msg->actual_position;
@@ -111,7 +112,7 @@ KinematicsControlNode::KinematicsControlNode(const rclcpp::NodeOptions & node_op
   /**
    * @brief homing
    */
-  this->homingthread_ = std::thread(&KinematicsControlNode::homing, this);
+  // this->homingthread_ = std::thread(&KinematicsControlNode::homing, this);
 
 }
 

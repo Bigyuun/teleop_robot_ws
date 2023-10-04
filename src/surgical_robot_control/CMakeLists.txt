@@ -46,10 +46,19 @@ ament_target_dependencies(surgical_robot_control_node
   custom_interfaces
 )
 
+# homing mode
+add_executable(homing_node src/homing_node.cpp)
+ament_target_dependencies(homing_node
+  rclcpp 
+  std_msgs 
+  custom_interfaces
+)
+
 # DY
 # Install
 install(TARGETS
   surgical_robot_control_node
+  homing_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
