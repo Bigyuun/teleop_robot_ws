@@ -4,6 +4,7 @@
 #include "geometry_msgs/msg/twist.hpp"
 #include "std_msgs/msg/float32_multi_array.hpp"
 #include "custom_interfaces/msg/motor_state.hpp"
+#include "custom_interfaces/msg/motor_command.hpp"
 #include "custom_interfaces/msg/motor_command_csv.hpp"
 #include "custom_interfaces/msg/loadcell_state.hpp"
 #include <chrono>
@@ -27,14 +28,16 @@ class HomingNode : public rclcpp::Node
 public:
   using MotorState = custom_interfaces::msg::MotorState;
   using MotorCommandCSV = custom_interfaces::msg::MotorCommandCSV;
+  using MotorCommand = custom_interfaces::msg::MotorCommand;
   HomingNode()
   : Node("homing_mode_publisher")
   {
     const auto QoS_RKL10V =
     rclcpp::QoS(rclcpp::KeepLast(10)).reliable().durability_volatile();
 
-    this->motor_command_.target_velocity.resize(NUM_OF_MOTORS);
-    motor_command_publisher_ = this->create_publisher<MotorCommandCSV>("homing_command", QoS_RKL10V);
+    this->motor_command_.target_position.resize(NUM_OF_MOTORS);
+    this->motor_command_.target_velocity_profile.resize(NUM_OF_MOTORS);
+    motor_command_publisher_ = this->create_publisher<MotorCommand>("kinematics_control_target_val", QoS_RKL10V);
     RCLCPP_WARN(this->get_logger(), "homing_command publisher is created");
 
     //===============================
@@ -106,16 +109,16 @@ public:
       for (int i=0; i<NUM_OF_MOTORS; i++)
       {
         if (loadcell_data_.data[i] <= HOMING_THRESHOLD) {
-          this->motor_command_.target_velocity[i] = 0;
+          this->motor_command_.target_position[i] = 0;
         } else {
-          this->motor_command_.target_velocity[i] = SPEED_RELEASE;
+          this->motor_command_.target_position[i] = SPEED_RELEASE;
         }
       }
       motor_command_publisher_->publish(motor_command_);
       
       // check
-      uint16_t exist = std::count(std::begin(motor_command_.target_velocity), std::end(motor_command_.target_velocity), SPEED_RELEASE);
-      std::cout << "exist: " << exist << std::endl;
+      uint16_t exist = std::count(std::begin(motor_command_.target_position), std::end(motor_command_.target_position), SPEED_RELEASE);
+      // std::cout << "exist: " << exist << std::endl;
       if (exist > 0) {
         continue;
       } else {
@@ -139,16 +142,16 @@ public:
       for (int i=0; i<NUM_OF_MOTORS; i++)
       {
         if (loadcell_data_.data[i] >= HOMING_THRESHOLD) {
-          this->motor_command_.target_velocity[i] = 0;
+          this->motor_command_.target_position[i] = 0;
         } else {
-          this->motor_command_.target_velocity[i] = SPEED_REEL;
+          this->motor_command_.target_position[i] = SPEED_REEL;
         }
       }
       motor_command_publisher_->publish(motor_command_);
 
       // check
-      uint16_t exist = std::count(std::begin(motor_command_.target_velocity), std::end(motor_command_.target_velocity), SPEED_REEL);
-      std::cout << "exist: " << exist << std::endl;
+      uint16_t exist = std::count(std::begin(motor_command_.target_position), std::end(motor_command_.target_position), SPEED_REEL);
+      // std::cout << "exist: " << exist << std::endl;
       if (exist > 0) {
         continue;
       } else {
@@ -165,8 +168,11 @@ public:
 private:
   std::thread homingthread_;
 
-  MotorCommandCSV motor_command_;
-  rclcpp::Publisher<MotorCommandCSV>::SharedPtr motor_command_publisher_;
+  // MotorCommandCSV motor_command_;
+  // rclcpp::Publisher<MotorCommandCSV>::SharedPtr motor_command_publisher_;
+
+  MotorCommand motor_command_;
+  rclcpp::Publisher<MotorCommand>::SharedPtr motor_command_publisher_;
 
   bool motorstate_op_flag_;
   MotorState motor_state_;
