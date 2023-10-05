@@ -5,7 +5,6 @@
 #include "TCP_definition.mh"
 
 
-
 /*********************************************************************
 ** State Machine Setup Parameters
 *********************************************************************/
@@ -90,12 +89,13 @@ void TCP_receiveHandler(void)
 			target_velocity_profile[i].ub2 = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+2];
 			target_velocity_profile[i].ub3 = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+3];
 		}
-	} else {
-		for(i=0; i<NUM_OF_MOTORS;i++){
-			target_val[i]=0;
-		}
-		//print("TCP socket not READY");
-	}
+	} 
+	//else {
+	//	for(i=0; i<NUM_OF_MOTORS;i++){
+	//		target_val[i]=0;
+	//	}
+	//	//print("TCP socket not READY");
+	//}
 	return;
 }
 
