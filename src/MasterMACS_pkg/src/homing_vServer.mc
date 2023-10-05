@@ -27,11 +27,11 @@ long status_sm = -1;
 #define SINE_WAVE_TEST_FLAG 		0
 #define PI 3.1415926
 #define SINE_WAVE_NORMAL_TIME		2.0 * PI			// normal
-#define SINE_WAVE_TIME  			10000				// time per 1 wave (ms)
-#define SINE_WAVE_AMP				50
+#define SINE_WAVE_TIME  			5000				// time per 1 wave (ms)
+#define SINE_WAVE_AMP				5
 #define SINE_WAVE_TIMER_FREQ        1000   // 1 kHz
 #define SINE_WAVE_TIMER_DURATION    1/SINE_WAVE_TIMER_FREQ  // 1 ms
-dim long pos[7]={0}, vel[7]={0}, acc[7]={0};
+long pos[NUM_OF_MOTORS]={0}, vel[NUM_OF_MOTORS]={0}, acc[NUM_OF_MOTORS]={0};
 long cnt_sine_wave = 0;
 
 
@@ -99,12 +99,10 @@ SmState EtherCAT_Handler
 														for(i=0;i<NUM_OF_MOTORS;i++)
 														{
 															AXE_PARAM(C_AXIS1+i, VELMAX) = 9000;
-														}
-
-														for(i=0;i<NUM_OF_MOTORS;i++)
-														{
+															AXE_PARAM(C_AXIS1+i, POSERR) = 500000;
 															AXE_PARAM(C_AXIS1+i, RAMPMIN) = 100;
 														}
+
 														//Vel(AXALL, 100);
 														Acc(AXALL, 80);
 														Dec(AXALL, 80);
@@ -189,7 +187,7 @@ SmState EtherCAT_Handler
 									**/
 									printf("#%ld Motor pos : %ld / vel : %ld\n", i, Apos(C_AXIS1+i), Avel(C_AXIS1+i)); //Sysvar(0x014C0002);
 								  //printf("#%ld Motor pos : %ld / vel : %ld\n", i, BUSMOD_PROCESS(0,PO_BUSMOD_VALUE2), Avel(C_AXIS1+i)); //Sysvar(0x014C0002);
-									printf(#%ld Motor vel profile : %ld \n", i, target_velocity_profile[i]);
+									//printf(#%ld Motor vel profile : %ld \n", i, target_velocity_profile[i]);
 								}
 							}	//$B
 
