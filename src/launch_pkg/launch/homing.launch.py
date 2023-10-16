@@ -30,10 +30,10 @@ def generate_launch_description():
   
   return LaunchDescription([
     
-    # IncludeLaunchDescription(
-    #   PythonLaunchDescriptionSource(
-    #     [get_package_share_directory('loadcell_pkg'), '/launch/_launch.py']),
-    # ),
+    IncludeLaunchDescription(
+      PythonLaunchDescriptionSource(
+        [get_package_share_directory('loadcell_pkg'), '/launch/_launch.py']),
+    ),
          
     IncludeLaunchDescription(
       PythonLaunchDescriptionSource(
