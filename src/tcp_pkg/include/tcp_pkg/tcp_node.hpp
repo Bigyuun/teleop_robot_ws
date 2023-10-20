@@ -34,8 +34,9 @@
 
 // DY
 #define DEFAULT_IP "172.16.1.0"
+// #define DEFAULT_IP "192.168.1."
 #define DEFAULT_PORT 7777
-#define DEFAULT_TCP_BUFFER_SIZE 256
+#define DEFAULT_TCP_BUFFER_SIZE 80 // NUM_OF_MOTORS*sizeof(int32_t)*2
 
 #define SINEWAVE_TEST 0  // setting mode : 0-non sine wave / 1-sine wave
 #define TCP_SHOW 0
