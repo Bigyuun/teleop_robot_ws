@@ -28,7 +28,7 @@ long status_sm = -1;
 #define PI 3.1415926
 #define SINE_WAVE_NORMAL_TIME		2.0 * PI			// normal
 #define SINE_WAVE_TIME  			10000				// time per 1 wave (ms)
-#define SINE_WAVE_AMP				50
+#define SINE_WAVE_AMP				5
 #define SINE_WAVE_TIMER_FREQ        1000   // 1 kHz
 #define SINE_WAVE_TIMER_DURATION    1/SINE_WAVE_TIMER_FREQ  // 1 ms
 dim long pos[7]={0}, vel[7]={0}, acc[7]={0};
