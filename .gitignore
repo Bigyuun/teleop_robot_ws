@@ -2,4 +2,4 @@
 log
 build
 install
-src/loadcell_pkg/loadcell_pkg/__pycache__
+src/loadcell_pkg/loadcell_pkg/__pycache__/
