@@ -187,9 +187,9 @@ SmState EtherCAT_Handler
 									In Sysvar, just put 0x01, Index(e.g. 4C00), and SubIndex(02)
 									In Index 4th number is axis number : 4C0'axis number'
 									**/
-									printf("#%ld Motor pos : %ld / vel : %ld\n", i, Apos(C_AXIS1+i), Avel(C_AXIS1+i)); //Sysvar(0x014C0002);
+									printf("#%ld [ACTUAL] Pos : %ld / Vel : %ld\n", i, Apos(C_AXIS1+i), Avel(C_AXIS1+i)); //Sysvar(0x014C0002);
 								  //printf("#%ld [ACTUAL] Pos : %ld / Vel : %ld\n", i, BUSMOD_PROCESS(0,PO_BUSMOD_VALUE2), Avel(C_AXIS1+i)); //Sysvar(0x014C0002);
-									printf("#%ld [TARGET] Pos: %ld, Profile : %ld \n", i, target.val[i], target_velocity_profile[i]);
+									printf("#%ld [TARGET] Pos: %ld, Profile : %ld \n", i, target_val[i], target_velocity_profile[i]);
 								}
 							}	//$B
 
