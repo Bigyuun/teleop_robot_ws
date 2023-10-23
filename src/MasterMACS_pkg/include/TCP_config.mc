@@ -40,16 +40,16 @@ long TCP_get_connection_status(void)
 	switch(status){
 
 		case SOCK_STATUS_INIT:
-			//print("SOCKET_STATUS_INIT");
+			print("SOCKET_STATUS_INIT");
 			break;
 		case SOCK_STATUS_WAITING:
-			//print("SOCKET_STATUS_WAITING");
+			print("SOCKET_STATUS_WAITING");
 			break;
 		case SOCK_STATUS_CONNECTING:
-			//print("SOCKET_STATUS_CONNECTING");
+			print("SOCKET_STATUS_CONNECTING");
 			break;
 		case SOCK_STATUS_READY:
-			//print("SOCKET_STATUS_READY");
+			print("SOCKET_STATUS_READY");
 			break;
 		case SOCK_STATUS_CLOSED:
 			print("SOCKET_STATUS_CLOSED");
@@ -58,9 +58,9 @@ long TCP_get_connection_status(void)
 			print("SOCKET_STATUS_ERRORSENDING");
 			break;
 		case SOCK_STATUS_ERROR:
-			for(i=0; i<NUM_OF_MOTORS;i++) {
-				target_val[i]=0;
-			}
+			//for(i=0; i<NUM_OF_MOTORS;i++) {
+			//	target_val[i]=0;
+			//}
 			//TCP_close();
 			printf("Socket Error! Check the connection (Error value : %ld). Reconnecting... \n", status);
 			break;
