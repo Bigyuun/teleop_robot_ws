@@ -174,6 +174,7 @@ void KinematicsControlNode::cal_kinematics() {
   f_val_right[3] = this->ST_right_.wrLengthNorth_;
   f_val_right[4] = this->ST_right_.wrLengthGrip;
 
+
   // ratio conversion & Check Threshold of loadcell
   // In ROS2, there is no function of finding max(or min) value
   for (int i=0; i<NUM_OF_MOTORS; i++) {
