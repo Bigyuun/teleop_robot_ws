@@ -186,27 +186,41 @@ void KinematicsControlNode::cal_kinematics() {
   }
   this->kinematics_control_target_val_.stamp = this->now();
 
-  this->kinematics_control_target_val_.target_position[0] = this->motor_state_.actual_position[0]
-                                                            + DIRECTION_COUPLER * f_val_left[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[1] = this->motor_state_.actual_position[1]
-                                                            + DIRECTION_COUPLER * f_val_left[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[2] = this->motor_state_.actual_position[2]
-                                                            + DIRECTION_COUPLER * f_val_left[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[3] = this->motor_state_.actual_position[3]
-                                                            + DIRECTION_COUPLER * f_val_left[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[4] = this->motor_state_.actual_position[4]
-                                                            + DIRECTION_COUPLER * f_val_left[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[0] = this->motor_state_.actual_position[0]
+  //                                                           + DIRECTION_COUPLER * f_val_left[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[1] = this->motor_state_.actual_position[1]
+  //                                                           + DIRECTION_COUPLER * f_val_left[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[2] = this->motor_state_.actual_position[2]
+  //                                                           + DIRECTION_COUPLER * f_val_left[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[3] = this->motor_state_.actual_position[3]
+  //                                                           + DIRECTION_COUPLER * f_val_left[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[4] = this->motor_state_.actual_position[4]
+  //                                                           + DIRECTION_COUPLER * f_val_left[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
 
-  this->kinematics_control_target_val_.target_position[5] = this->motor_state_.actual_position[5]
-                                                            + DIRECTION_COUPLER * f_val_right[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[6] = this->motor_state_.actual_position[6]
-                                                            + DIRECTION_COUPLER * f_val_right[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[7] = this->motor_state_.actual_position[7]
-                                                            + DIRECTION_COUPLER * f_val_right[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[8] = this->motor_state_.actual_position[8]
-                                                            + DIRECTION_COUPLER * f_val_right[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[9] = this->motor_state_.actual_position[9]
-                                                            + DIRECTION_COUPLER * f_val_right[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[5] = this->motor_state_.actual_position[5]
+  //                                                           + DIRECTION_COUPLER * f_val_right[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[6] = this->motor_state_.actual_position[6]
+  //                                                           + DIRECTION_COUPLER * f_val_right[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[7] = this->motor_state_.actual_position[7]
+  //                                                           + DIRECTION_COUPLER * f_val_right[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[8] = this->motor_state_.actual_position[8]
+  //                                                           + DIRECTION_COUPLER * f_val_right[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  // this->kinematics_control_target_val_.target_position[9] = this->motor_state_.actual_position[9]
+  //                                                           + DIRECTION_COUPLER * f_val_right[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+
+
+  this->kinematics_control_target_val_.target_position[0] = DIRECTION_COUPLER * f_val_left[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[1] = DIRECTION_COUPLER * f_val_left[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[2] = DIRECTION_COUPLER * f_val_left[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[3] = DIRECTION_COUPLER * f_val_left[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[4] =                     f_val_left[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+
+  this->kinematics_control_target_val_.target_position[5] = DIRECTION_COUPLER * f_val_right[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[6] = DIRECTION_COUPLER * f_val_right[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[7] = DIRECTION_COUPLER * f_val_right[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[8] = DIRECTION_COUPLER * f_val_right[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+  this->kinematics_control_target_val_.target_position[9] =                     f_val_right[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
+
 
 #if MOTOR_CONTROL_SAME_DURATION
   /**
