@@ -147,6 +147,9 @@ public:
           this->motor_command_.target_position[i] = SPEED_REEL;
         }
       }
+      this->motor_command_.target_position[4] = 0;  // Gripper.
+      this->motor_command_.target_position[9] = 0;  // Gripper.
+
       motor_command_publisher_->publish(motor_command_);
 
       // check
