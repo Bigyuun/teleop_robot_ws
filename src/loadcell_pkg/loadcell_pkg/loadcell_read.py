@@ -62,7 +62,7 @@ class LoadcellPublisher(Node):
                     
                     for i, value in enumerate(parse_received_data):
                         self.loadcell_data[i] = value
-                        print(self.loadcell_data[i])
+                        # print(self.loadcell_data[i])
 
 
                     
