@@ -16,7 +16,7 @@
 
 #include "hw_definition.hpp"
 
-#define HOMING_THRESHOLD 20.0
+#define HOMING_THRESHOLD 5.0
 #define SPEED_RELEASE  -1
 #define SPEED_REEL    1
 
