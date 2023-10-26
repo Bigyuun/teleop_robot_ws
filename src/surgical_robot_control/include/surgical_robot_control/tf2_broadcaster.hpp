@@ -24,6 +24,9 @@
 #include "std_srvs/srv/set_bool.hpp"
 #include "tf2/LinearMath/Quaternion.h"
 #include "tf2_ros/transform_broadcaster.h"
+#include "custom_interfaces/msg/loadcell_state.hpp"
+#include "custom_interfaces/msg/motor_state.hpp"
+#include "hw_definition.hpp"
 
 class ContinuumManipulator : public rclcpp::Node
 {
@@ -38,7 +41,8 @@ private:
 
   rclcpp::Service<std_srvs::srv::SetBool>::SharedPtr move_service_server_;
 
-  bool op_flag_;
+  double scale_of_unit_ = 1000;
+  bool move_flag_;
 };
 // #endif  // BROADCASTER_HPP_
 // [출처] 051 TF (오픈소스 소프트웨어 & 하드웨어: 로봇 기술 공유 카페 (오로카)) | 작성자 Routiful

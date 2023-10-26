@@ -1,3 +1,6 @@
+#ifndef KINEMATICS_CONTROL_NODE_HPP
+#define KINEMATICS_CONTROL_NODE_HPP
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <future>
@@ -165,3 +168,5 @@ private:
   custom_interfaces::msg::LoadcellState loadcell_data_;
   rclcpp::Subscription<custom_interfaces::msg::LoadcellState>::SharedPtr loadcell_data_subscriber_;
 };
+
+#endif

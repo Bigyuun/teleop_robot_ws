@@ -14,7 +14,7 @@
 
 #include <memory>
 
-#include "static_broadcaster.hpp"
+#include "tf2_static_broadcaster.hpp"
 
 using namespace std::chrono_literals;
 
@@ -22,7 +22,7 @@ Base::Base()
 : rclcpp::Node("base")
 {
   RCLCPP_INFO(this->get_logger(), "Make static tf (world->base)");
-  static_tf_broadcaster_ = std::make_unique<tf2_ros::StaticTransformBroadcaster>(this);
+  tf_static_broadcaster_ = std::make_unique<tf2_ros::StaticTransformBroadcaster>(this);
 
   geometry_msgs::msg::TransformStamped tf_stamped;
 
@@ -41,7 +41,7 @@ Base::Base()
   tf_stamped.transform.rotation.z = q.z();
   tf_stamped.transform.rotation.w = q.w();
 
-  static_tf_broadcaster_->sendTransform(tf_stamped);
+  tf_static_broadcaster_->sendTransform(tf_stamped);
 }
 
 int main(int argc, char * argv[])

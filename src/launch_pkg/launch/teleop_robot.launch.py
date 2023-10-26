@@ -19,7 +19,9 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from launch.actions import IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import Command, LaunchConfiguration
 
 def generate_launch_description():
   
@@ -27,6 +29,14 @@ def generate_launch_description():
   launch_dir = os.path.join(teleop_dir, 'launch')
   
   launch_description = LaunchDescription()
+  
+  # rviz_config_file = LaunchConfiguration('')
+  
+  DeclareLaunchArgument(
+    'rviz_config',
+    default_value='/rviz_env.rviz',  # 실제 설정 파일 경로로 변경
+    description='Path to your RViz configuration file'
+  ),
   
   return LaunchDescription([
     
@@ -54,6 +64,8 @@ def generate_launch_description():
       package='rviz2',
       executable='rviz2',
       name='rviz2',
-      output='screen'
+      output='screen',
+      parameters=[{'use_sim_time': 'false'}],
+      arguments=['-d', LaunchConfiguration('rviz_config')]
     ),
   ])

@@ -1,19 +1,13 @@
+#ifndef SURGICAL_TOOL_HPP
+#define SURGICAL_TOOL_HPP
+
 #include <iostream>
 #include <cmath>
 #include <chrono>
 #include <vector>
 #include <math.h>
 
-// DY
-#define DOF               5     // Degree of freedom
-#define NUM_OF_JOINT      4     // ea
-#define SEGMENT_ARC       6.92  // mm
-#define SEGMENT_DIAMETER  3     // mm
-#define WIRE_DISTANCE     1.05  // mm
-
-#define MAX_BENDING_DEGREE   90.0 // degree
-#define MAX_FORCEPS_RAGNE_DEGREE 30.0  // mm
-#define MAX_FORCEPS_RAGNE_MM 2.0  // mm (nor int)
+#include "hw_definition.hpp"
 
 /**
  * @authors DY, JKim
@@ -134,3 +128,5 @@ private:
 
   double alpha_;
 };
+
+#endif

@@ -14,7 +14,7 @@
 
 #include <memory>
 
-#include "listener.hpp"
+#include "tf2_listener.hpp"
 
 using namespace std::chrono_literals;
 
@@ -30,7 +30,7 @@ Listener::Listener()
       geometry_msgs::msg::TransformStamped tf_pan_world;
 
       try {
-        tf_world_pan = tf_buffer_.lookupTransform("pan", "world", tf2::timeFromSec(0));
+        tf_world_pan = tf_buffer_.lookupTransform("seg_pan_1", "world", tf2::timeFromSec(0));
 
         tf2::Quaternion quaternion(
           tf_world_pan.transform.rotation.x,
@@ -52,7 +52,7 @@ Listener::Listener()
           pitch * RAD_TO_DEG,
           yaw * RAD_TO_DEG);
 
-        tf_pan_world = tf_buffer_.lookupTransform("world", "pan", tf2::timeFromSec(0));
+        tf_pan_world = tf_buffer_.lookupTransform("world", "seg_pan_1", tf2::timeFromSec(0));
 
         tf2::Transform tf_inverse;
         tf2::fromMsg(tf_pan_world.transform, tf_inverse);

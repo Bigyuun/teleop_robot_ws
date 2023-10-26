@@ -49,6 +49,25 @@ def generate_launch_description():
             name='surgical_tool_joint_gui',
         ),
         
+        Node(
+            package='surgical_robot_control',
+            executable='broadcaster',
+            name='broadcaster',
+            output='screen',
+        ),
+        # Node(
+        #     package='surgical_robot_control',
+        #     executable='listener',
+        #     name='listener',
+        #     output='screen',
+        # ),
+        # Node(
+        #     package='surgical_robot_control',
+        #     executable='static_broadcaster',
+        #     name='static_broadcaster',
+        #     output='screen',
+        # ),
+        
         # Node(
         #     package='rviz2',
         #     executable='rviz2',

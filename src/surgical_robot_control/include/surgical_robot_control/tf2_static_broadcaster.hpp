@@ -29,7 +29,7 @@ public:
   Base();
 
 private:
-  std::unique_ptr<tf2_ros::StaticTransformBroadcaster> static_tf_broadcaster_;
+  std::unique_ptr<tf2_ros::StaticTransformBroadcaster> tf_static_broadcaster_;
 };
 #endif  // STATIC_BROADCASTER_HPP_
 // [출처] 051 TF (오픈소스 소프트웨어 & 하드웨어: 로봇 기술 공유 카페 (오로카)) | 작성자 Routiful
