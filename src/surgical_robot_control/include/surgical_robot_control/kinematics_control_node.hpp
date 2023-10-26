@@ -1,3 +1,6 @@
+#ifndef KINEMATICS_CONTROL_NODE_HPP
+#define KINEMATICS_CONTROL_NODE_HPP
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <future>
@@ -162,3 +165,5 @@ private:
   // std_msgs::msg::Float32MultiArray loadcell_data_;
   // rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr loadcell_data_subscriber_;
 };
+
+#endif

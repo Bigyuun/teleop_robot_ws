@@ -1,5 +1,5 @@
 /**
- * @file hw_spec.hpp
+ * @file hw_definition.hpp
  * @author daeyun (bigyun9375@gmail.com)
  * @brief 
  * @version 0.1
@@ -9,6 +9,8 @@
  * 
  */
 
+#ifndef HW_DEFINITION_HPP
+#define HW_DEFINITION_HPP
 //===============================
 // Motor Parameters
 //===============================
@@ -29,6 +31,20 @@
 #define MOTOR_CONTROL_SAME_DURATION 1
 #define PERCENT_100 100
 
+//===============================
+// Continuum Manipulator Paremeters
+//===============================
+#define DOF               5     // Degree of freedom
+#define NUM_OF_JOINT      4     // ea
+#define SEGMENT_ARC       6.92  // mm
+#define SEGMENT_DIAMETER  3     // mm
+#define WIRE_DISTANCE     1.05  // mm
+
+#define MAX_BENDING_DEGREE   90 // degree
+#define MAX_FORCEPS_RAGNE_DEGREE 30  // mm
+#define MAX_FORCEPS_RAGNE_MM 3  // mm
+
+#define JOINT_INTERVAL    3   // mm
 
 //===============================
 // Loadcell Parameters
@@ -49,3 +65,5 @@ typedef struct {
   int encoder_resolution = 1024;
   int inc_per_rot = gear_ratio * encoder_channel * encoder_resolution;
 } DCX22_G3_9;
+
+#endif
