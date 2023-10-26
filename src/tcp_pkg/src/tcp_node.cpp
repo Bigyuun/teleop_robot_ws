@@ -33,12 +33,6 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
       }
     );
 
-  if (this->Initialize()) {
-    std::cout << "[TCPClientNode] Init Error." << std::endl;
-    return;
-  }
-  
-  RCLCPP_INFO(this->get_logger(), "TCP communication Thread is onfigure");
   this->commthread_ = std::thread(&TCPClientNode::CommThread, this);
 }
 
@@ -92,6 +86,12 @@ uint8_t TCPClientNode::TCPconfiguration() {
 
 
 void TCPClientNode::CommThread() {
+  if (this->Initialize()) {
+    std::cout << "[TCPClientNode] Init Error." << std::endl;
+    return;
+  }
+  RCLCPP_INFO(this->get_logger(), "TCP communication Thread is onfigure");
+
   while(rclcpp::ok()) {
   // while(true) {
     this->recvmsg();
@@ -144,14 +144,24 @@ void TCPClientNode::sendmsg()
 void TCPClientNode::recvmsg()
 {
   int32_t recv_val[this->buffer_size_];
-  this->send_strlen_ = recv(this->client_socket_, this->recv_msg_, this->buffer_size_, 0);
-  // this->send_strlen_ = read(this->client_socket_, this->recv_msg_, this->buffer_size_);
-  if (this->send_strlen_ == -1) {
+  this->recv_strlen_ = recv(this->client_socket_, this->recv_msg_, this->buffer_size_, 0);
+  // this->recv_strlen_ = read(this->client_socket_, this->recv_msg_, this->buffer_size_);
+  if (this->recv_strlen_ == -1) {
     std::cout << "read() error." << std::endl;
   }
 
-  if (this->send_strlen_ == 0) {  // disconnetion
+  // EOF -> Reconnection to Server
+  if (this->recv_strlen_ == 0) {  // disconnetion
     RCLCPP_WARN(this->get_logger(), "EOF from Server. Try to reconnect");
+    char msg[] = "";
+    send(this->client_socket_, msg, sizeof(msg), 0);
+    close(this->client_socket_);
+
+    if (this->Initialize()) {
+      std::cout << "[TCPClientNode] Init Error." << std::endl;
+      return;
+    }
+    RCLCPP_INFO(this->get_logger(), "TCP communication Thread is onfigure");
   }
 
   memcpy(recv_val, this->recv_msg_, sizeof(this->recv_msg_));
