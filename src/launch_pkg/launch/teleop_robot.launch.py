@@ -29,12 +29,12 @@ def generate_launch_description():
   launch_dir = os.path.join(teleop_dir, 'launch')
   
   launch_description = LaunchDescription()
-  
+  rviz_packages_dir = get_package_share_directory('surgical_robot_control')
   # rviz_config_file = LaunchConfiguration('')
   
   DeclareLaunchArgument(
     'rviz_config',
-    default_value='/rviz_env.rviz',  # 실제 설정 파일 경로로 변경
+    default_value='rviz_env.rviz',  # 실제 설정 파일 경로로 변경
     description='Path to your RViz configuration file'
   ),
   
@@ -65,7 +65,7 @@ def generate_launch_description():
       executable='rviz2',
       name='rviz2',
       output='screen',
-      parameters=[{'use_sim_time': 'false'}],
-      arguments=['-d', LaunchConfiguration('rviz_config')]
+      # parameters=[{'rviz_config': './rviz_env.rviz'}],
+      arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env.rviz')]
     ),
   ])
