@@ -33,12 +33,6 @@ TCPClientNode::TCPClientNode(const rclcpp::NodeOptions & node_options)
       }
     );
 
-  if (this->Initialize()) {
-    std::cout << "[TCPClientNode] Init Error." << std::endl;
-    return;
-  }
-  
-  RCLCPP_INFO(this->get_logger(), "TCP communication Thread is onfigure");
   this->commthread_ = std::thread(&TCPClientNode::CommThread, this);
 }
 
@@ -92,11 +86,11 @@ uint8_t TCPClientNode::TCPconfiguration() {
 
 
 void TCPClientNode::CommThread() {
-  // if (this->Initialize()) {
-  //   std::cout << "[TCPClientNode] Init Error." << std::endl;
-  //   return;
-  // }
-  // RCLCPP_INFO(this->get_logger(), "TCP communication Thread is onfigure");
+  if (this->Initialize()) {
+    std::cout << "[TCPClientNode] Init Error." << std::endl;
+    return;
+  }
+  RCLCPP_INFO(this->get_logger(), "TCP communication Thread is onfigure");
 
   while(rclcpp::ok()) {
     this->recvmsg();
