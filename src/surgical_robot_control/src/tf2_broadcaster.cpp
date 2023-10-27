@@ -49,7 +49,7 @@ ContinuumManipulator::ContinuumManipulator()
 
   surgical_tool_pose_left_subscriber_ =
     this->create_subscription<geometry_msgs::msg::Twist>(
-      "surgical_tool_pose_left_",
+      "surgical_tool_left_pose",
       QoS_RKL10V,
       [this] (const geometry_msgs::msg::Twist::SharedPtr msg) -> void
       {
@@ -60,13 +60,14 @@ ContinuumManipulator::ContinuumManipulator()
     );
   surgical_tool_pose_right_subscriber_ =
     this->create_subscription<geometry_msgs::msg::Twist>(
-      "surgical_tool_pose_right_",
+      "surgical_tool_right_pose",
       QoS_RKL10V,
       [this] (const geometry_msgs::msg::Twist::SharedPtr msg) -> void
       {
         RCLCPP_WARN_ONCE(this->get_logger(), "Subscribing the topic '/surgical_tool_pose_right.'");
         surgical_tool_pose_right_.linear = msg->linear;
         surgical_tool_pose_right_.angular = msg->angular;
+
       }
     );
 
@@ -257,7 +258,6 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
 
-
       //================================================
       // Right Continuum Manipulator
       //================================================
@@ -294,7 +294,7 @@ ContinuumManipulator::ContinuumManipulator()
       quaternion.setRPY(
         0,
         0,
-        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+        surgical_tool_pose_right_.angular.z/NUM_OF_JOINT
       );
       #endif
       tf_stamped.transform.rotation.x = quaternion.x();
@@ -315,7 +315,7 @@ ContinuumManipulator::ContinuumManipulator()
       #else
       quaternion.setRPY(
         0,
-        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        surgical_tool_pose_right_.angular.y/NUM_OF_JOINT,
         0
       );
       #endif
@@ -337,7 +337,7 @@ ContinuumManipulator::ContinuumManipulator()
       quaternion.setRPY(
         0,
         0,
-        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+        surgical_tool_pose_right_.angular.z/NUM_OF_JOINT
       );
       #endif
       tf_stamped.transform.rotation.x = quaternion.x();
@@ -358,7 +358,7 @@ ContinuumManipulator::ContinuumManipulator()
       #else
       quaternion.setRPY(
         0,
-        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        surgical_tool_pose_right_.angular.y/NUM_OF_JOINT,
         0
       );
       #endif
@@ -381,7 +381,7 @@ ContinuumManipulator::ContinuumManipulator()
       quaternion.setRPY(
         0,
         0,
-        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+        surgical_tool_pose_right_.angular.z/NUM_OF_JOINT
       );
       #endif
       tf_stamped.transform.rotation.x = quaternion.x();
@@ -402,7 +402,7 @@ ContinuumManipulator::ContinuumManipulator()
       #else
       quaternion.setRPY(
         0,
-        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        surgical_tool_pose_right_.angular.y/NUM_OF_JOINT,
         0
       );
       #endif
@@ -425,7 +425,7 @@ ContinuumManipulator::ContinuumManipulator()
       quaternion.setRPY(
         0,
         0,
-        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+        surgical_tool_pose_right_.angular.z/NUM_OF_JOINT
       );
       #endif
       tf_stamped.transform.rotation.x = quaternion.x();
@@ -445,7 +445,7 @@ ContinuumManipulator::ContinuumManipulator()
       #else
       quaternion.setRPY(
         0,
-        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        surgical_tool_pose_right_.angular.y/NUM_OF_JOINT,
         0
       );
       #endif
@@ -458,7 +458,7 @@ ContinuumManipulator::ContinuumManipulator()
 
       // broadcast (publishing)
       tf_broadcaster_->sendTransform(tf_stamped_list_);
-
+      // RCLCPP_INFO(this->get_logger(), "TF-Broadcaster Transformed");
       if (move_flag_) {
         rad += 0.01;
       }
