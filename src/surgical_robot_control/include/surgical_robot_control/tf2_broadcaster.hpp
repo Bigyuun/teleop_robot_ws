@@ -20,6 +20,7 @@
 #include <vector>
 
 #include "geometry_msgs/msg/transform_stamped.hpp"
+#include "geometry_msgs/msg/twist.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "std_srvs/srv/set_bool.hpp"
 #include "tf2/LinearMath/Quaternion.h"
@@ -40,6 +41,9 @@ private:
   std::vector<geometry_msgs::msg::TransformStamped> tf_stamped_list_;
 
   rclcpp::Service<std_srvs::srv::SetBool>::SharedPtr move_service_server_;
+
+  geometry_msgs::msg::Twist surgical_tool_pose_;
+  rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr surgical_tool_pose_subscriber_;
 
   double scale_of_unit_ = 1000;
   bool move_flag_;

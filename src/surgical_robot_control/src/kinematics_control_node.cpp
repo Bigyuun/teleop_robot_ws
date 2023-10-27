@@ -146,8 +146,8 @@ void KinematicsControlNode::cal_kinematics() {
   double tAngle = this->mapping_joystick_to_bending_t();
   double gAngle  = this->mapping_joystick_to_forceps();
 
-  this->surgical_tool_pose_.angular.x = pAngle;
   this->surgical_tool_pose_.angular.y = tAngle;
+  this->surgical_tool_pose_.angular.z = pAngle;
   this->ST_.get_bending_kinematic_result(pAngle, tAngle, gAngle);
 
   double f_val[DOF];
