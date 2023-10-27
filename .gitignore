@@ -4,4 +4,4 @@ build
 install
 src/loadcell_pkg/loadcell_pkg/__pycache__/
 __pycache__/
-*.pyc
+*.pyc[cod]
