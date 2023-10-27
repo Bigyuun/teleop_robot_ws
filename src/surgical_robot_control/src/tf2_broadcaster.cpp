@@ -15,6 +15,9 @@
 #include <memory>
 
 #include "tf2_broadcaster.hpp"
+#include "hw_definition.hpp"
+
+#define SINE_TEST 0
 
 using namespace std::chrono_literals;
 
@@ -22,6 +25,11 @@ ContinuumManipulator::ContinuumManipulator()
 : rclcpp::Node("continuum_manipulator"),
   move_flag_(true)
 {
+  this->declare_parameter("qos_depth", 10);
+  int8_t qos_depth = this->get_parameter("qos_depth", qos_depth);
+  const auto QoS_RKL10V =
+  rclcpp::QoS(rclcpp::KeepLast(qos_depth)).reliable().durability_volatile();
+
   RCLCPP_INFO(this->get_logger(), "Move Coninuum Manipulator!");
   tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(this);
 
@@ -39,6 +47,29 @@ ContinuumManipulator::ContinuumManipulator()
     };
   move_service_server_ = create_service<std_srvs::srv::SetBool>("move", set_move);
 
+  surgical_tool_pose_left_subscriber_ =
+    this->create_subscription<geometry_msgs::msg::Twist>(
+      "surgical_tool_pose_left_",
+      QoS_RKL10V,
+      [this] (const geometry_msgs::msg::Twist::SharedPtr msg) -> void
+      {
+        RCLCPP_WARN_ONCE(this->get_logger(), "Subscribing the topic '/surgical_tool_pose_left.'");
+        surgical_tool_pose_left_.linear = msg->linear;
+        surgical_tool_pose_left_.angular = msg->angular;
+      }
+    );
+  surgical_tool_pose_right_subscriber_ =
+    this->create_subscription<geometry_msgs::msg::Twist>(
+      "surgical_tool_pose_right_",
+      QoS_RKL10V,
+      [this] (const geometry_msgs::msg::Twist::SharedPtr msg) -> void
+      {
+        RCLCPP_WARN_ONCE(this->get_logger(), "Subscribing the topic '/surgical_tool_pose_right.'");
+        surgical_tool_pose_right_.linear = msg->linear;
+        surgical_tool_pose_right_.angular = msg->angular;
+      }
+    );
+
   auto broadcast =
     [this]() -> void
     {
@@ -48,130 +79,384 @@ ContinuumManipulator::ContinuumManipulator()
 
       geometry_msgs::msg::TransformStamped tf_stamped;
       tf2::Quaternion quaternion;
-
+      
+      //================================================
+      // Left Continuum Manipulator
+      //================================================
       tf_stamped.header.stamp = this->now();
       tf_stamped.header.frame_id = "world";
-      tf_stamped.child_frame_id = "seg_pan_1";
-      tf_stamped.transform.translation.x = 0.0;
+      tf_stamped.child_frame_id = "left_seg_pan_1";
+      tf_stamped.transform.translation.x = 0.1 + JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.1 + JOINT_INTERVAL*100/this->scale_of_unit_;
-
+      tf_stamped.transform.translation.z = 0.0;
+      #if SINE_TEST
       quaternion.setRPY(0, 0.3 * sin(rad), 0);
-
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+      );
+      #endif
       tf_stamped.transform.rotation.x = quaternion.x();
       tf_stamped.transform.rotation.y = quaternion.y();
       tf_stamped.transform.rotation.z = quaternion.z();
       tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
 
+
+      tf_stamped.header.stamp = this->now();
+      tf_stamped.header.frame_id = "left_seg_pan_1";
+      tf_stamped.child_frame_id = "left_seg_tilt_1";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "left_seg_tilt_1";
+      tf_stamped.child_frame_id = "left_seg_pan_2";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "left_seg_pan_2";
+      tf_stamped.child_frame_id = "left_seg_tilt_2";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "left_seg_tilt_2";
+      tf_stamped.child_frame_id = "left_seg_pan_3";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "left_seg_pan_3";
+      tf_stamped.child_frame_id = "left_seg_tilt_3";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "left_seg_tilt_3";
+      tf_stamped.child_frame_id = "left_seg_pan_4";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "left_seg_pan_4";
+      tf_stamped.child_frame_id = "left_seg_tilt_4";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+
+      //================================================
+      // Right Continuum Manipulator
+      //================================================
+      tf_stamped.header.stamp = this->now();
+      tf_stamped.header.frame_id = "world";
+      tf_stamped.child_frame_id = "world_right";
+      tf_stamped.transform.translation.x = 0.0;
+      tf_stamped.transform.translation.y = 2.0;
+      tf_stamped.transform.translation.z = 0.0;
+      #if SINE_TEST
+      quaternion.setRPY(0, 0.3 * sin(rad), 0);
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        0
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
       tf_stamped_list_.push_back(tf_stamped);
 
       tf_stamped.header.stamp = this->now();
-      tf_stamped.header.frame_id = "seg_pan_1";
-      tf_stamped.child_frame_id = "seg_tilt_1";
-      tf_stamped.transform.translation.x = 0.0;
+      tf_stamped.header.frame_id = "world_right";
+      tf_stamped.child_frame_id = "right_seg_pan_1";
+      tf_stamped.transform.translation.x = 0.1 + JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_ + JOINT_INTERVAL*100/this->scale_of_unit_;
-
-      quaternion.setRPY(0.3 * sin(rad), 0, 0);
-
-      tf_stamped.transform.rotation.x = quaternion.x();
-      tf_stamped.transform.rotation.y = quaternion.y();
-      tf_stamped.transform.rotation.z = quaternion.z();
-      tf_stamped.transform.rotation.w = quaternion.w();
-
-      tf_stamped_list_.push_back(tf_stamped);
-
-      tf_stamped.header.frame_id = "seg_tilt_1";
-      tf_stamped.child_frame_id = "seg_pan_2";
-      tf_stamped.transform.translation.x = 0.0;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-
+      tf_stamped.transform.translation.z = 0.0;
+      #if SINE_TEST
       quaternion.setRPY(0, 0.3 * sin(rad), 0);
-
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+      );
+      #endif
       tf_stamped.transform.rotation.x = quaternion.x();
       tf_stamped.transform.rotation.y = quaternion.y();
       tf_stamped.transform.rotation.z = quaternion.z();
       tf_stamped.transform.rotation.w = quaternion.w();
-
       tf_stamped_list_.push_back(tf_stamped);
 
-      tf_stamped.header.frame_id = "seg_pan_2";
-      tf_stamped.child_frame_id = "seg_tilt_2";
-      tf_stamped.transform.translation.x = 0.0;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
 
+      tf_stamped.header.stamp = this->now();
+      tf_stamped.header.frame_id = "right_seg_pan_1";
+      tf_stamped.child_frame_id = "right_seg_tilt_1";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+      #if SINE_TEST
       quaternion.setRPY(0.3 * sin(rad), 0, 0);
-
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
       tf_stamped.transform.rotation.x = quaternion.x();
       tf_stamped.transform.rotation.y = quaternion.y();
       tf_stamped.transform.rotation.z = quaternion.z();
       tf_stamped.transform.rotation.w = quaternion.w();
-
       tf_stamped_list_.push_back(tf_stamped);
 
-      tf_stamped.header.frame_id = "seg_tilt_2";
-      tf_stamped.child_frame_id = "seg_pan_3";
-      tf_stamped.transform.translation.x = 0.0;
+
+      tf_stamped.header.frame_id = "right_seg_tilt_1";
+      tf_stamped.child_frame_id = "right_seg_pan_2";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-
-      quaternion.setRPY(0, 0.3 * sin(rad), 0);
-
-      tf_stamped.transform.rotation.x = quaternion.x();
-      tf_stamped.transform.rotation.y = quaternion.y();
-      tf_stamped.transform.rotation.z = quaternion.z();
-      tf_stamped.transform.rotation.w = quaternion.w();
-
-      tf_stamped_list_.push_back(tf_stamped);
-
-      tf_stamped.header.frame_id = "seg_pan_3";
-      tf_stamped.child_frame_id = "seg_tilt_3";
-      tf_stamped.transform.translation.x = 0.0;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-
+      tf_stamped.transform.translation.z = 0.0;
+      #if SINE_TEST
       quaternion.setRPY(0.3 * sin(rad), 0, 0);
-
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+      );
+      #endif
       tf_stamped.transform.rotation.x = quaternion.x();
       tf_stamped.transform.rotation.y = quaternion.y();
       tf_stamped.transform.rotation.z = quaternion.z();
       tf_stamped.transform.rotation.w = quaternion.w();
-
       tf_stamped_list_.push_back(tf_stamped);
 
-      tf_stamped.header.frame_id = "seg_tilt_3";
-      tf_stamped.child_frame_id = "seg_pan_4";
-      tf_stamped.transform.translation.x = 0.0;
+
+      tf_stamped.header.frame_id = "right_seg_pan_2";
+      tf_stamped.child_frame_id = "right_seg_tilt_2";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.z = 0.0;
 
-      quaternion.setRPY(0, 0.3 * sin(rad), 0);
-
-      tf_stamped.transform.rotation.x = quaternion.x();
-      tf_stamped.transform.rotation.y = quaternion.y();
-      tf_stamped.transform.rotation.z = quaternion.z();
-      tf_stamped.transform.rotation.w = quaternion.w();
-
-      tf_stamped_list_.push_back(tf_stamped);
-
-      tf_stamped.header.frame_id = "seg_pan_4";
-      tf_stamped.child_frame_id = "seg_tilt_4";
-      tf_stamped.transform.translation.x = 0.0;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-
+      #if SINE_TEST
       quaternion.setRPY(0.3 * sin(rad), 0, 0);
-
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
       tf_stamped.transform.rotation.x = quaternion.x();
       tf_stamped.transform.rotation.y = quaternion.y();
       tf_stamped.transform.rotation.z = quaternion.z();
       tf_stamped.transform.rotation.w = quaternion.w();
-
       tf_stamped_list_.push_back(tf_stamped);
 
 
+      tf_stamped.header.frame_id = "right_seg_tilt_2";
+      tf_stamped.child_frame_id = "right_seg_pan_3";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "right_seg_pan_3";
+      tf_stamped.child_frame_id = "right_seg_tilt_3";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "right_seg_tilt_3";
+      tf_stamped.child_frame_id = "right_seg_pan_4";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "right_seg_pan_4";
+      tf_stamped.child_frame_id = "right_seg_tilt_4";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      // broadcast (publishing)
       tf_broadcaster_->sendTransform(tf_stamped_list_);
 
       if (move_flag_) {
