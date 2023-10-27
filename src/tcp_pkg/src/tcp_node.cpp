@@ -46,10 +46,6 @@ TCPClientNode::~TCPClientNode()
   commthread_.join();
 }
 
-
-
-
-
 uint8_t TCPClientNode::Initialize()
 {
   return this->TCPconfiguration();
