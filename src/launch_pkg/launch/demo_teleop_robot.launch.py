@@ -27,6 +27,7 @@ def generate_launch_description():
   launch_dir = os.path.join(teleop_dir, 'launch')
   
   launch_description = LaunchDescription()
+  rviz_packages_dir = get_package_share_directory('surgical_robot_control')
   
   return LaunchDescription([
 
@@ -54,6 +55,7 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz2',
-        output='screen'
+        output='screen',
+        arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env.rviz')]
       ),
   ])
