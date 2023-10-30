@@ -5,4 +5,4 @@ install
 src/loadcell_pkg/loadcell_pkg/__pycache__/
 __pycache__/
 *.py[cod]
-*.cpythone-38.pyc
+*.cpython-38.pyc
