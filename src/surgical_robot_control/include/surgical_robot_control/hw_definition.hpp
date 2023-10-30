@@ -41,9 +41,9 @@
 #define WIRE_DISTANCE     0.9   // mm
 #define SHIFT             5.41  // degree
 
-#define MAX_BENDING_DEGREE   90 // degree
-#define MAX_FORCEPS_RAGNE_DEGREE 30  // mm
-#define MAX_FORCEPS_RAGNE_MM 3  // mm
+#define MAX_BENDING_DEGREE   90.0 // degree
+#define MAX_FORCEPS_RAGNE_DEGREE 30.0  // mm
+#define MAX_FORCEPS_RAGNE_MM 2.0  // mm
 
 #define JOINT_INTERVAL    3   // mm
 
