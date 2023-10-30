@@ -6,7 +6,8 @@ SurgicalTool::SurgicalTool() {
 		NUM_OF_JOINT,
 		SEGMENT_ARC,
 		SEGMENT_DIAMETER,
-		WIRE_DISTANCE
+		WIRE_DISTANCE,
+		SHIFT
 		);
 	std::cout << "Surgical tool is created" << &this->surgicaltool_ << std::endl;
 }
@@ -18,13 +19,15 @@ SurgicalTool::~SurgicalTool() {
 void SurgicalTool::init_surgicaltool(	int num_joint,
 																			float arc,
 																			float diameter,
-																			float disWire
+																			float disWire,
+																			float shift
 																		)
 {
 	this->surgicaltool_.num_joint = num_joint;
 	this->surgicaltool_.arc 			=	arc * mm_;
 	this->surgicaltool_.diameter  =	diameter * mm_;
 	this->surgicaltool_.disWire   =	disWire * mm_;
+	this->surgicaltool_.shift			= shift * torad();
 	this->alpha_ = asin(this->surgicaltool_.disWire / this->surgicaltool_.arc);
 }
 
@@ -52,8 +55,8 @@ void SurgicalTool::get_bending_kinematic_result(
 
 void SurgicalTool::kinematics()
 {
-	pAngle_ = pAngle_ / surgicaltool_.num_joint;	
-	tAngle_ = tAngle_ / surgicaltool_.num_joint;
+	pAngle_ = (pAngle_ - surgicaltool_.shift) / surgicaltool_.num_joint;	
+	tAngle_ = (tAngle_ - surgicaltool_.shift) / surgicaltool_.num_joint;
 	
 	this->wrLengthEast_ = 2 *  surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ + pAngle_ / 2) + 1 - cos(tAngle_ / 2));
 	this->wrLengthWest_ = 2 *  surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ - pAngle_ / 2) + 1 - cos(tAngle_ / 2));
