@@ -55,13 +55,27 @@ void SurgicalTool::get_bending_kinematic_result(
 
 void SurgicalTool::kinematics()
 {
-	pAngle_ = (pAngle_- surgicaltool_.shift) / surgicaltool_.num_joint;	
-	tAngle_ = (tAngle_- surgicaltool_.shift) / surgicaltool_.num_joint;
-	
-	this->wrLengthEast_ = 2 *  surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ + pAngle_ / 2) + 1 - cos(tAngle_ / 2));
-	this->wrLengthWest_ = 2 *  surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ - pAngle_ / 2) + 1 - cos(tAngle_ / 2));
-	this->wrLengthSouth_ = 2 * surgicaltool_.arc * surgicaltool_.num_joint * (cos(alpha_) - cos(alpha_ - tAngle_ / 2) + 1 - cos(pAngle_ / 2));
-	this->wrLengthNorth_ = 2 * surgicaltool_.arc * surgicaltool_.num_joint * (cos(alpha_) - cos(alpha_ + tAngle_ / 2) + 1 - cos(pAngle_ / 2));
+	// y = kx (k=SHIFT/SHIFT_THRESHOLD)
+	if (pAngle_ <= SHIFT_THRESHOLD * torad() && pAngle_ >= -SHIFT_THRESHOLD * torad()) 
+	{ 
+		pAngle_ = (pAngle_- pAngle_ * (surgicaltool_.shift/SHIFT_THRESHOLD)) / surgicaltool_.num_joint;	
+	}
+	else {
+		pAngle_ = (pAngle_ - surgicaltool_.shift) / surgicaltool_.num_joint;
+	}
+
+	if (tAngle_ <= SHIFT_THRESHOLD * torad() && tAngle_ >= -SHIFT_THRESHOLD * torad()) 
+	{ 
+		tAngle_ = (tAngle_- tAngle_ * (surgicaltool_.shift/SHIFT_THRESHOLD)) / surgicaltool_.num_joint;	
+	}
+	else {
+		tAngle_ = (tAngle_ - surgicaltool_.shift) / surgicaltool_.num_joint;
+	}
+
+	this->wrLengthEast_ = 2 *  surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ + (pAngle_ / 2)) + 1 - cos(tAngle_ / 2));
+	this->wrLengthWest_ = 2 *  surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ - (pAngle_ / 2)) + 1 - cos(tAngle_ / 2));
+	this->wrLengthSouth_ = 2 * surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ - (tAngle_ / 2)) + 1 - cos(pAngle_ / 2));
+	this->wrLengthNorth_ = 2 * surgicaltool_.arc * surgicaltool_.num_joint * ( cos(alpha_) - cos(alpha_ + (tAngle_ / 2)) + 1 - cos(pAngle_ / 2));
 
 	this->wrLengthEast_ =  this->wrLengthEast_ / mm_;
 	this->wrLengthWest_ =  this->wrLengthWest_ / mm_;
