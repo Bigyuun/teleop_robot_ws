@@ -8,7 +8,6 @@
  * @copyright Copyright (c) 2023
  * 
  */
-
 #ifndef HW_DEFINITION_HPP
 #define HW_DEFINITION_HPP
 //===============================
@@ -35,15 +34,17 @@
 // Continuum Manipulator Paremeters
 //===============================
 #define DOF               5     // Degree of freedom
-#define NUM_OF_JOINT      4     // ea
+#define NUM_OF_JOINT      5     // ea
 #define SEGMENT_ARC       6.92  // mm
 #define SEGMENT_DIAMETER  3     // mm
 #define WIRE_DISTANCE     0.9   // mm
+// #define WIRE_DISTANCE     1.2   // mm
 #define SHIFT             5.41  // degree
+#define SHIFT_THRESHOLD   5.0  // deg
 
 #define MAX_BENDING_DEGREE   90.0 // degree
 #define MAX_FORCEPS_RAGNE_DEGREE 30.0  // mm
-#define MAX_FORCEPS_RAGNE_MM 2.0  // mm
+#define MAX_FORCEPS_RAGNE_MM 2.0  // mm (nor int)
 
 #define JOINT_INTERVAL    3   // mm
 
