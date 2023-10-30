@@ -6,7 +6,8 @@
 #include <chrono>
 #include <vector>
 #include <math.h>
-#include <hw_definition.hpp>
+
+#include "hw_definition.hpp"
 
 /**
  * @authors DY, JKim
