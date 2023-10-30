@@ -151,11 +151,11 @@ void KinematicsControlNode::cal_kinematics() {
   double tAngle_right = this->mapping_joystick_to_bending_t(this->ST_right_, this->joystick_msg_.axes[4]);
   double gAngle_right  = this->mapping_joystick_to_forceps(this->ST_right_, this->joystick_msg_.axes[5]);
 
-  this->surgical_tool_pose_left_.angular.x = pAngle_left;
-  this->surgical_tool_pose_left_.angular.y = tAngle_left;
+  this->surgical_tool_pose_left_.angular.z = pAngle_left * M_PI/180;
+  this->surgical_tool_pose_left_.angular.y = tAngle_left * M_PI/180;
 
-  this->surgical_tool_pose_right_.angular.x = pAngle_right;
-  this->surgical_tool_pose_right_.angular.y = tAngle_right;
+  this->surgical_tool_pose_right_.angular.z = pAngle_right * M_PI/180;
+  this->surgical_tool_pose_right_.angular.y = tAngle_right * M_PI/180;
 
   this->ST_left_.get_bending_kinematic_result(pAngle_left, tAngle_left, gAngle_left);
   this->ST_right_.get_bending_kinematic_result(pAngle_right, tAngle_right, gAngle_right);

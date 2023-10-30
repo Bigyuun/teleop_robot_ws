@@ -17,7 +17,7 @@
 #include "tf2_broadcaster.hpp"
 #include "hw_definition.hpp"
 
-#define SINE_TEST 1
+#define SINE_TEST 0
 
 using namespace std::chrono_literals;
 
@@ -265,7 +265,7 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped.header.frame_id = "world";
       tf_stamped.child_frame_id = "world_right";
       tf_stamped.transform.translation.x = 0.0;
-      tf_stamped.transform.translation.y = 1.0;
+      tf_stamped.transform.translation.y = -1.0;
       tf_stamped.transform.translation.z = 0.0;
       #if SINE_TEST
       quaternion.setRPY(0, 0.3 * sin(rad), 0);

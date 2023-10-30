@@ -68,7 +68,7 @@ public:
   double max_bending_deg_ = MAX_BENDING_DEGREE;
   double max_forceps_deg_ = MAX_FORCEPS_RAGNE_DEGREE;
 
-  /**
+  /**w
    * @brief target length for moving wire using motor 
    * @unit mm
    */
