@@ -37,7 +37,8 @@
 #define NUM_OF_JOINT      4     // ea
 #define SEGMENT_ARC       6.92  // mm
 #define SEGMENT_DIAMETER  3     // mm
-#define WIRE_DISTANCE     1.05  // mm
+#define WIRE_DISTANCE     0.9   // mm
+#define SHIFT             5.41  // degree
 
 #define MAX_BENDING_DEGREE   90.0 // degree
 #define MAX_FORCEPS_RAGNE_DEGREE 30.0  // mm
