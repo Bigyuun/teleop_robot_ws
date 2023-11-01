@@ -16,7 +16,7 @@
 
 #include "hw_definition.hpp"
 
-#define HOMING_THRESHOLD 70.0
+#define HOMING_THRESHOLD 200.0
 #define SPEED_RELEASE  -1
 #define SPEED_REEL    1
 
@@ -24,7 +24,7 @@
 using namespace std::chrono_literals;
 
 class HomingNode : public rclcpp::Node
-{
+{ 
 public:
   using MotorState = custom_interfaces::msg::MotorState;
   using MotorCommandCSV = custom_interfaces::msg::MotorCommandCSV;
@@ -108,12 +108,16 @@ public:
     {
       for (int i=0; i<NUM_OF_MOTORS; i++)
       {
-        if (loadcell_data_.data[i] <= HOMING_THRESHOLD) {
+        // if (loadcell_data_.data[i] <= HOMING_THRESHOLD) {
+        if (std::abs(loadcell_data_.data[i]) <= HOMING_THRESHOLD) {
           this->motor_command_.target_position[i] = 0;
         } else {
           this->motor_command_.target_position[i] = SPEED_RELEASE;
         }
       }
+      this->motor_command_.target_position[4] = 0;  // Gripper.
+      this->motor_command_.target_position[9] = 0;  // Gripper.
+      
       motor_command_publisher_->publish(motor_command_);
       
       // check
@@ -141,7 +145,8 @@ public:
     {
       for (int i=0; i<NUM_OF_MOTORS; i++)
       {
-        if (loadcell_data_.data[i] >= HOMING_THRESHOLD) {
+        // if (loadcell_data_.data[i] >= HOMING_THRESHOLD) {
+        if (std::abs(loadcell_data_.data[i]) >= HOMING_THRESHOLD) {
           this->motor_command_.target_position[i] = 0;
         } else {
           this->motor_command_.target_position[i] = SPEED_REEL;

@@ -36,11 +36,10 @@
 #define DOF               5     // Degree of freedom
 #define NUM_OF_JOINT      5     // ea
 #define SEGMENT_ARC       6.92  // mm
-#define SEGMENT_DIAMETER  3     // mm
-#define WIRE_DISTANCE     0.9   // mm
-// #define WIRE_DISTANCE     1.2   // mm
-#define SHIFT             5.41  // degree
-#define SHIFT_THRESHOLD   5.0  // deg
+#define SEGMENT_DIAMETER  3.0   // mm
+#define WIRE_DISTANCE     1.05  // mm
+#define SLOT_LENGTH       1.05  // mm
+#define SLOT_WIDTH        0.3   // mm
 
 #define MAX_BENDING_DEGREE   90.0 // degree
 #define MAX_FORCEPS_RAGNE_DEGREE 30.0  // mm

@@ -77,7 +77,8 @@
     "typeinfo": "cpp",
     "variant": "cpp",
     "any": "cpp",
-    "regex": "cpp"
+    "regex": "cpp",
+    "*.ipp": "cpp"
   },
   "cmake.sourceDirectory": "/home/bigyun/Desktop/github_repositories_Bigyuun/teleop_robot_ws/src/tcp_pkg",
 
