@@ -42,6 +42,9 @@ long TCP_get_connection_status(void)
 			print("SOCKET_STATUS_INIT");
 			break;
 		case SOCK_STATUS_WAITING:
+			for(i=0; i<NUM_OF_MOTORS;i++) {
+				target_val[i]=0;
+			}
 			print("SOCKET_STATUS_WAITING");
 			break;
 		case SOCK_STATUS_CONNECTING:
@@ -51,16 +54,22 @@ long TCP_get_connection_status(void)
 			print("SOCKET_STATUS_READY");
 			break;
 		case SOCK_STATUS_CLOSED:
+			for(i=0; i<NUM_OF_MOTORS;i++) {
+				target_val[i]=0;
+			}
 			print("SOCKET_STATUS_CLOSED");
 			break;
 		case SOCK_STATUS_ERRORSENDING:
+			for(i=0; i<NUM_OF_MOTORS;i++) {
+				target_val[i]=0;
+			}
 			print("SOCKET_STATUS_ERRORSENDING");
 			break;
 		case SOCK_STATUS_ERROR:
-			//for(i=0; i<NUM_OF_MOTORS;i++) {
-			//	target_val[i]=0;
-			//}
-			//TCP_close();
+			for(i=0; i<NUM_OF_MOTORS;i++) {
+				target_val[i]=0;
+			}
+			TCP_close();
 			printf("Socket Error! Check the connection (Error value : %ld). Reconnecting... \n", status);
 			break;
 	}
@@ -90,12 +99,12 @@ void TCP_receiveHandler(void)
 			target_velocity_profile[i].ub3 = receiveData[BUFFER_TYPE*NUM_OF_MOTORS + BUFFER_TYPE*i+3];
 		}
 	} 
-	//else {
-	//	for(i=0; i<NUM_OF_MOTORS;i++){
-	//		target_val[i]=0;
-	//	}
-	//	//print("TCP socket not READY");
-	//}
+	else {
+		for(i=0; i<NUM_OF_MOTORS;i++){
+			target_val[i]=0;
+		}
+		//print("TCP socket not READY");
+	}
 	return;
 }
 
