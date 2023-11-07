@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="https://www.ros.org/wiki/xacro" name="surgical_robot_control">
+
+<!-- <xacro:include filename="my_materials.xacro"/> -->
+<!-- <xacro:include filename="./colors.urdf.xacro" /> -->
+
+<xacro:property name="width" value="0.05"/>
+<xacro:property name="height" value="0.2"/>
+<xacro:property name="mass" value="0.1"/>
+
+<!-- segment macro -->
+<xacro:property name="seg_interval" value="0.0018"/>
+<xacro:property name="tilt" value="0.0 1.0 0.0"/>
+<xacro:property name="pan" value="0.0 0.0 1.0"/>
+
+<xacro:property name="gray" value="1.0 1.0 1.0 0.4"/>
+<xacro:property name="black" value="0.0 0.0 0.0 1.0"/>
+<xacro:property name="orange" value="1.0 0.4 0.0 1.0"/>
+<xacro:property name="blue" value="0 0 0.8 1"/>
+<xacro:property name="blueviolet" value="0.54 0.16 0.88 1.0"/>
+
+    <link name="base_surgical_robot">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <!-- <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/> -->
+        </inertial>
+    </link>
+
+    <joint name="base-shaft" type="fixed">
+        <origin xyz="0.187 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="base_surgical_robot"/>
+        <child link="shaft"/>
+    </joint>
+
+    <link name="shaft">
+        <inertial>
+            <origin xyz="0.25 0.0 0.0" rpy="0.0 2.0 0.0"/>
+            <mass value="${mass}"/>
+            <inertia ixx="${mass/12*(width*width+width*width)}" ixy="0.0" ixz="0.0"
+                iyy="${mass/12*(width*width+width*width)}" iyz="0.0"
+                izz="${mass/12*(height*height+height*height)}"/>
+        </inertial>
+        <visual>
+            <origin xyz="${height/2} 0.0 0.0" rpy="0.0 1.5708 0.0"/>
+            <geometry>
+                <cylinder radius="0.0015" length="${height}"/>
+            </geometry>
+            <material name="link3">
+                <color rgba="1.0 1.0 0.0 0.3"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="${height/2} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.0015" length="${height}"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="tilt-1" type="revolute">
+        <origin xyz="${height} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="shaft"/>
+        <child link="seg_tilt-1"/>
+        <axis xyz="${tilt}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_tilt-1">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_lightgreen.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    <joint name="pan-1" type="revolute">
+        <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="seg_tilt-1"/>
+        <child link="seg_pan-1"/>
+        <axis xyz="${pan}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_pan-1">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_violet.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="tilt-2" type="revolute">
+        <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="seg_pan-1"/>
+        <child link="seg_tilt-2"/>
+        <axis xyz="${tilt}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_tilt-2">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_lightgreen.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="pan-2" type="revolute">
+        <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="seg_tilt-2"/>
+        <child link="seg_pan-2"/>
+        <axis xyz="${pan}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_pan-2">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_violet.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="tilt-3" type="revolute">
+        <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="seg_pan-2"/>
+        <child link="seg_tilt-3"/>
+        <axis xyz="${tilt}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_tilt-3">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_lightgreen.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="pan-3" type="revolute">
+        <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="seg_tilt-3"/>
+        <child link="seg_pan-3"/>
+        <axis xyz="${pan}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_pan-3">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_violet.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="tilt-4" type="revolute">
+        <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="seg_pan-3"/>
+        <child link="seg_tilt-4"/>
+        <axis xyz="${tilt}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_tilt-4">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_lightgreen.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="pan-4" type="revolute">
+        <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="seg_tilt-4"/>
+        <child link="seg_pan-4"/>
+        <axis xyz="${pan}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_pan-4">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_violet.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="tilt-5" type="revolute">
+        <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="seg_pan-4"/>
+        <child link="seg_tilt-5"/>
+        <axis xyz="${tilt}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_tilt-5">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_lightgreen.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="pan-5" type="revolute">
+        <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="seg_tilt-5"/>
+        <child link="seg_pan-5"/>
+        <axis xyz="${pan}"/>
+        <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+    </joint>
+
+    <link name="seg_pan-5">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://surgical_robot_control/meshes/continuum_segment_Blender_zero_violet.dae" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+</robot>

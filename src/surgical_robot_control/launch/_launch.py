@@ -41,6 +41,9 @@ def generate_launch_description():
     xacro_file = os.path.join(urdf_dir, 'surgical_tool.urdf.xacro')
     robot_desc = launch.substitutions.Command('xacro %s' % xacro_file)
     
+    xacro_file_2 = os.path.join(urdf_dir, 'surgical_tool_extend.urdf.xacro')
+    robot_desc_2 = launch.substitutions.Command('xacro %s' % xacro_file)
+    
     return LaunchDescription([
     
         Node(
@@ -49,7 +52,19 @@ def generate_launch_description():
             name='robot_state_publisher',
             parameters=[
                 {'use_sim_time': False},
-                {'robot_description':robot_description_file}
+                {'robot_description':robot_desc}
+                # {'robot_description': robot_description_file}
+            ],
+            output='screen',
+        ),
+        
+        Node(
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
+            name='robot_state_publisher',
+            parameters=[
+                {'use_sim_time': False},
+                {'robot_description':robot_desc_2}
                 # {'robot_description': robot_description_file}
             ],
             output='screen',

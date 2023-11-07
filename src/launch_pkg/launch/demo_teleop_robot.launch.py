@@ -59,4 +59,13 @@ def generate_launch_description():
         arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env.rviz')]
         # parameters=[{'rviz_config': './rviz_env.rviz'}]
       ),
+      
+      Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env_2.rviz')]
+        # parameters=[{'rviz_config': './rviz_env.rviz'}]
+      ),
   ])

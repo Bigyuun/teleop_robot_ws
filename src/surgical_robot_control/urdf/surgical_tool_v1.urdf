@@ -18,6 +18,7 @@
   </material>
 
   <material name="Al">
+    <color rgba = "1.0 1.0 1.0 1.0"/>
     <mass value="1.0"/>
   </material>
 
@@ -77,14 +78,14 @@
 
   <link name="seg_tilt1">
     <visual>
-      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.5"/>
       <geometry>
         <cylinder length="0.003" radius="0.003"/>
       </geometry>
       <material name="blueviolet"/>
     </visual>
     <collision>
-      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.5"/>
       <geometry>
         <cylinder length="0.003" radius="0.003"/>
       </geometry>
@@ -295,7 +296,8 @@
     <visual>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
       <geometry>
-        <cylinder length="0.003" radius="0.003"/>
+        <mesh filename="package://surgical_robot_control/meshes/ActuatorModule.stl" scale="0.001 0.001 0.001"/>
+        <!-- <cylinder length="0.003" radius="0.003"/> -->
       </geometry>
       <material name="blue"/>
     </visual>
