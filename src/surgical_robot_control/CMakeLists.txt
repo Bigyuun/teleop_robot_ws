@@ -29,6 +29,7 @@ find_package(rclcpp_action REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(robot_state_publisher REQUIRED) 
+find_package(urdf REQUIRED)
 
 # DY
 include_directories(include
@@ -110,7 +111,7 @@ install(TARGETS
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY launch urdf rviz
+install(DIRECTORY launch urdf rviz meshes param
   DESTINATION share/${PROJECT_NAME}
 )
 

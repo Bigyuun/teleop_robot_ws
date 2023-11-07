@@ -1,0 +1,3691 @@
+<?xml version="1.0"?>
+<!-- https://www.w3schools.com/colors/colors_xkcd.asp -->
+<robot>
+  <material name="acidgreen" >
+    <color rgba="0.5607843137254902 0.996078431372549 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="adobe" >
+    <color rgba="0.7411764705882353 0.4235294117647059 0.2823529411764706 1.0" />
+  </material>
+
+  <material name="algae" >
+    <color rgba="0.32941176470588235 0.6745098039215687 0.40784313725490196 1.0" />
+  </material>
+
+  <material name="algaegreen" >
+    <color rgba="0.12941176470588237 0.7647058823529411 0.43529411764705883 1.0" />
+  </material>
+
+  <material name="almostblack" >
+    <color rgba="0.027450980392156862 0.050980392156862744 0.050980392156862744 1.0" />
+  </material>
+
+  <material name="amber" >
+    <color rgba="0.996078431372549 0.7019607843137254 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="amethyst" >
+    <color rgba="0.6078431372549019 0.37254901960784315 0.7529411764705882 1.0" />
+  </material>
+
+  <material name="apple" >
+    <color rgba="0.43137254901960786 0.796078431372549 0.23529411764705882 1.0" />
+  </material>
+
+  <material name="applegreen" >
+    <color rgba="0.4627450980392157 0.803921568627451 0.14901960784313725 1.0" />
+  </material>
+
+  <material name="apricot" >
+    <color rgba="1.0 0.6941176470588235 0.42745098039215684 1.0" />
+  </material>
+
+  <material name="aqua" >
+    <color rgba="0.07450980392156863 0.9176470588235294 0.788235294117647 1.0" />
+  </material>
+
+  <material name="aquablue" >
+    <color rgba="0.00784313725490196 0.8470588235294118 0.9137254901960784 1.0" />
+  </material>
+
+  <material name="aquagreen" >
+    <color rgba="0.07058823529411765 0.8823529411764706 0.5764705882352941 1.0" />
+  </material>
+
+  <material name="aquamarine" >
+    <color rgba="0.1803921568627451 0.9098039215686274 0.7333333333333333 1.0" />
+  </material>
+
+  <material name="armygreen" >
+    <color rgba="0.29411764705882354 0.36470588235294116 0.08627450980392157 1.0" />
+  </material>
+
+  <material name="asparagus" >
+    <color rgba="0.4666666666666667 0.6705882352941176 0.33725490196078434 1.0" />
+  </material>
+
+  <material name="aubergine" >
+    <color rgba="0.23921568627450981 0.027450980392156862 0.20392156862745098 1.0" />
+  </material>
+
+  <material name="auburn" >
+    <color rgba="0.6039215686274509 0.18823529411764706 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="avocado" >
+    <color rgba="0.5647058823529412 0.6941176470588235 0.20392156862745098 1.0" />
+  </material>
+
+  <material name="avocadogreen" >
+    <color rgba="0.5294117647058824 0.6627450980392157 0.13333333333333333 1.0" />
+  </material>
+
+  <material name="azul" >
+    <color rgba="0.11372549019607843 0.36470588235294116 0.9254901960784314 1.0" />
+  </material>
+
+  <material name="azure" >
+    <color rgba="0.023529411764705882 0.6039215686274509 0.9529411764705882 1.0" />
+  </material>
+
+  <material name="babyblue" >
+    <color rgba="0.6352941176470588 0.8117647058823529 0.996078431372549 1.0" />
+  </material>
+
+  <material name="babygreen" >
+    <color rgba="0.5490196078431373 1.0 0.6196078431372549 1.0" />
+  </material>
+
+  <material name="babypink" >
+    <color rgba="1.0 0.7176470588235294 0.807843137254902 1.0" />
+  </material>
+
+  <material name="babypoo" >
+    <color rgba="0.6705882352941176 0.5647058823529412 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="babypoop" >
+    <color rgba="0.5764705882352941 0.48627450980392156 0.0 1.0" />
+  </material>
+
+  <material name="babypoopgreen" >
+    <color rgba="0.5607843137254902 0.596078431372549 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="babypukegreen" >
+    <color rgba="0.7137254901960784 0.7686274509803922 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="babypurple" >
+    <color rgba="0.792156862745098 0.6078431372549019 0.9686274509803922 1.0" />
+  </material>
+
+  <material name="babyshitbrown" >
+    <color rgba="0.6784313725490196 0.5647058823529412 0.050980392156862744 1.0" />
+  </material>
+
+  <material name="babyshitgreen" >
+    <color rgba="0.5333333333333333 0.592156862745098 0.09019607843137255 1.0" />
+  </material>
+
+  <material name="banana" >
+    <color rgba="1.0 1.0 0.49411764705882355 1.0" />
+  </material>
+
+  <material name="bananayellow" >
+    <color rgba="0.9803921568627451 0.996078431372549 0.29411764705882354 1.0" />
+  </material>
+
+  <material name="barbiepink" >
+    <color rgba="0.996078431372549 0.27450980392156865 0.6470588235294118 1.0" />
+  </material>
+
+  <material name="barfgreen" >
+    <color rgba="0.5803921568627451 0.6745098039215687 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="barney" >
+    <color rgba="0.6745098039215687 0.11372549019607843 0.7215686274509804 1.0" />
+  </material>
+
+  <material name="barneypurple" >
+    <color rgba="0.6274509803921569 0.01568627450980392 0.596078431372549 1.0" />
+  </material>
+
+  <material name="battleshipgrey" >
+    <color rgba="0.4196078431372549 0.48627450980392156 0.5215686274509804 1.0" />
+  </material>
+
+  <material name="beige" >
+    <color rgba="0.9019607843137255 0.8549019607843137 0.6509803921568628 1.0" />
+  </material>
+
+  <material name="berry" >
+    <color rgba="0.6 0.058823529411764705 0.29411764705882354 1.0" />
+  </material>
+
+  <material name="bile" >
+    <color rgba="0.7098039215686275 0.7647058823529411 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="black" >
+    <color rgba="0.0 0.0 0.0 1.0" />
+  </material>
+
+  <material name="bland" >
+    <color rgba="0.6862745098039216 0.6588235294117647 0.5450980392156862 1.0" />
+  </material>
+
+  <material name="blood" >
+    <color rgba="0.4666666666666667 0.0 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="bloodorange" >
+    <color rgba="0.996078431372549 0.29411764705882354 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="bloodred" >
+    <color rgba="0.596078431372549 0.0 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="blue" >
+    <color rgba="0.011764705882352941 0.2627450980392157 0.8745098039215686 1.0" />
+  </material>
+
+  <material name="blueberry" >
+    <color rgba="0.27450980392156865 0.2549019607843137 0.5882352941176471 1.0" />
+  </material>
+
+  <material name="blueblue" >
+    <color rgba="0.13333333333333333 0.25882352941176473 0.7803921568627451 1.0" />
+  </material>
+
+  <material name="bluegreen" >
+    <color rgba="0.058823529411764705 0.6078431372549019 0.5568627450980392 1.0" />
+  </material>
+
+  <material name="bluegrey" >
+    <color rgba="0.5215686274509804 0.6392156862745098 0.6980392156862745 1.0" />
+  </material>
+
+  <material name="bluepurple" >
+    <color rgba="0.35294117647058826 0.023529411764705882 0.9372549019607843 1.0" />
+  </material>
+
+  <material name="blueviolet" >
+    <color rgba="0.36470588235294116 0.023529411764705882 0.9137254901960784 1.0" />
+  </material>
+
+  <material name="bluewithahintofpurple" >
+    <color rgba="0.3254901960784314 0.23529411764705882 0.7764705882352941 1.0" />
+  </material>
+
+  <material name="blueygreen" >
+    <color rgba="0.16862745098039217 0.6941176470588235 0.4745098039215686 1.0" />
+  </material>
+
+  <material name="blueygrey" >
+    <color rgba="0.5372549019607843 0.6274509803921569 0.6901960784313725 1.0" />
+  </material>
+
+  <material name="blueypurple" >
+    <color rgba="0.3843137254901961 0.2549019607843137 0.7803921568627451 1.0" />
+  </material>
+
+  <material name="bluish" >
+    <color rgba="0.1607843137254902 0.4627450980392157 0.7333333333333333 1.0" />
+  </material>
+
+  <material name="bluishgreen" >
+    <color rgba="0.06274509803921569 0.6509803921568628 0.4549019607843137 1.0" />
+  </material>
+
+  <material name="bluishgrey" >
+    <color rgba="0.4549019607843137 0.5450980392156862 0.592156862745098 1.0" />
+  </material>
+
+  <material name="bluishpurple" >
+    <color rgba="0.4392156862745098 0.23137254901960785 0.9058823529411765 1.0" />
+  </material>
+
+  <material name="blurple" >
+    <color rgba="0.3333333333333333 0.2235294117647059 0.8 1.0" />
+  </material>
+
+  <material name="blush" >
+    <color rgba="0.9490196078431372 0.6196078431372549 0.5568627450980392 1.0" />
+  </material>
+
+  <material name="blushpink" >
+    <color rgba="0.996078431372549 0.5098039215686274 0.5490196078431373 1.0" />
+  </material>
+
+  <material name="booger" >
+    <color rgba="0.6078431372549019 0.7098039215686275 0.23529411764705882 1.0" />
+  </material>
+
+  <material name="boogergreen" >
+    <color rgba="0.5882352941176471 0.7058823529411765 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="bordeaux" >
+    <color rgba="0.4823529411764706 0.0 0.17254901960784313 1.0" />
+  </material>
+
+  <material name="boringgreen" >
+    <color rgba="0.38823529411764707 0.7019607843137254 0.396078431372549 1.0" />
+  </material>
+
+  <material name="bottlegreen" >
+    <color rgba="0.01568627450980392 0.2901960784313726 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="brick" >
+    <color rgba="0.6274509803921569 0.21176470588235294 0.13725490196078433 1.0" />
+  </material>
+
+  <material name="brickorange" >
+    <color rgba="0.7568627450980392 0.2901960784313726 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="brickred" >
+    <color rgba="0.5607843137254902 0.0784313725490196 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="brightaqua" >
+    <color rgba="0.043137254901960784 0.9764705882352941 0.9176470588235294 1.0" />
+  </material>
+
+  <material name="brightblue" >
+    <color rgba="0.00392156862745098 0.396078431372549 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="brightcyan" >
+    <color rgba="0.2549019607843137 0.9921568627450981 0.996078431372549 1.0" />
+  </material>
+
+  <material name="brightgreen" >
+    <color rgba="0.00392156862745098 1.0 0.027450980392156862 1.0" />
+  </material>
+
+  <material name="brightlavender" >
+    <color rgba="0.7803921568627451 0.3764705882352941 1.0 1.0" />
+  </material>
+
+  <material name="brightlightblue" >
+    <color rgba="0.14901960784313725 0.9686274509803922 0.9921568627450981 1.0" />
+  </material>
+
+  <material name="brightlightgreen" >
+    <color rgba="0.17647058823529413 0.996078431372549 0.32941176470588235 1.0" />
+  </material>
+
+  <material name="brightlilac" >
+    <color rgba="0.788235294117647 0.3686274509803922 0.984313725490196 1.0" />
+  </material>
+
+  <material name="brightlime" >
+    <color rgba="0.5294117647058824 0.9921568627450981 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="brightlimegreen" >
+    <color rgba="0.396078431372549 0.996078431372549 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="brightmagenta" >
+    <color rgba="1.0 0.03137254901960784 0.9098039215686274 1.0" />
+  </material>
+
+  <material name="brightolive" >
+    <color rgba="0.611764705882353 0.7333333333333333 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="brightorange" >
+    <color rgba="1.0 0.3568627450980392 0.0 1.0" />
+  </material>
+
+  <material name="brightpink" >
+    <color rgba="0.996078431372549 0.00392156862745098 0.6941176470588235 1.0" />
+  </material>
+
+  <material name="brightpurple" >
+    <color rgba="0.7450980392156863 0.011764705882352941 0.9921568627450981 1.0" />
+  </material>
+
+  <material name="brightred" >
+    <color rgba="1.0 0.0 0.050980392156862744 1.0" />
+  </material>
+
+  <material name="brightseagreen" >
+    <color rgba="0.0196078431372549 1.0 0.6509803921568628 1.0" />
+  </material>
+
+  <material name="brightskyblue" >
+    <color rgba="0.00784313725490196 0.8 0.996078431372549 1.0" />
+  </material>
+
+  <material name="brightteal" >
+    <color rgba="0.00392156862745098 0.9764705882352941 0.7764705882352941 1.0" />
+  </material>
+
+  <material name="brightturquoise" >
+    <color rgba="0.058823529411764705 0.996078431372549 0.9764705882352941 1.0" />
+  </material>
+
+  <material name="brightviolet" >
+    <color rgba="0.6784313725490196 0.0392156862745098 0.9921568627450981 1.0" />
+  </material>
+
+  <material name="brightyellow" >
+    <color rgba="1.0 0.9921568627450981 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="brightyellowgreen" >
+    <color rgba="0.615686274509804 1.0 0.0 1.0" />
+  </material>
+
+  <material name="britishracinggreen" >
+    <color rgba="0.0196078431372549 0.2823529411764706 0.050980392156862744 1.0" />
+  </material>
+
+  <material name="bronze" >
+    <color rgba="0.6588235294117647 0.4745098039215686 0.0 1.0" />
+  </material>
+
+  <material name="brown" >
+    <color rgba="0.396078431372549 0.21568627450980393 0.0 1.0" />
+  </material>
+
+  <material name="browngreen" >
+    <color rgba="0.4392156862745098 0.4235294117647059 0.06666666666666667 1.0" />
+  </material>
+
+  <material name="browngrey" >
+    <color rgba="0.5529411764705883 0.5176470588235295 0.40784313725490196 1.0" />
+  </material>
+
+  <material name="brownish" >
+    <color rgba="0.611764705882353 0.42745098039215684 0.3411764705882353 1.0" />
+  </material>
+
+  <material name="brownishgreen" >
+    <color rgba="0.41568627450980394 0.43137254901960786 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="brownishgrey" >
+    <color rgba="0.5254901960784314 0.4666666666666667 0.37254901960784315 1.0" />
+  </material>
+
+  <material name="brownishorange" >
+    <color rgba="0.796078431372549 0.4666666666666667 0.13725490196078433 1.0" />
+  </material>
+
+  <material name="brownishpink" >
+    <color rgba="0.7607843137254902 0.49411764705882355 0.4745098039215686 1.0" />
+  </material>
+
+  <material name="brownishpurple" >
+    <color rgba="0.4627450980392157 0.25882352941176473 0.3058823529411765 1.0" />
+  </material>
+
+  <material name="brownishred" >
+    <color rgba="0.6196078431372549 0.21176470588235294 0.13725490196078433 1.0" />
+  </material>
+
+  <material name="brownishyellow" >
+    <color rgba="0.788235294117647 0.6901960784313725 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="brownorange" >
+    <color rgba="0.7254901960784313 0.4117647058823529 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="brownred" >
+    <color rgba="0.5725490196078431 0.16862745098039217 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="brownyellow" >
+    <color rgba="0.6980392156862745 0.592156862745098 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="brownygreen" >
+    <color rgba="0.43529411764705883 0.4235294117647059 0.0392156862745098 1.0" />
+  </material>
+
+  <material name="brownyorange" >
+    <color rgba="0.792156862745098 0.4196078431372549 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="bruise" >
+    <color rgba="0.49411764705882355 0.25098039215686274 0.44313725490196076 1.0" />
+  </material>
+
+  <material name="bubblegum" >
+    <color rgba="1.0 0.4235294117647059 0.7098039215686275 1.0" />
+  </material>
+
+  <material name="bubblegumpink" >
+    <color rgba="1.0 0.4117647058823529 0.6862745098039216 1.0" />
+  </material>
+
+  <material name="buff" >
+    <color rgba="0.996078431372549 0.9647058823529412 0.6196078431372549 1.0" />
+  </material>
+
+  <material name="burgundy" >
+    <color rgba="0.3803921568627451 0.0 0.13725490196078433 1.0" />
+  </material>
+
+  <material name="burntorange" >
+    <color rgba="0.7529411764705882 0.3058823529411765 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="burntred" >
+    <color rgba="0.6235294117647059 0.13725490196078433 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="burntsiena" >
+    <color rgba="0.7176470588235294 0.3215686274509804 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="burntsienna" >
+    <color rgba="0.6901960784313725 0.3058823529411765 0.058823529411764705 1.0" />
+  </material>
+
+  <material name="burntumber" >
+    <color rgba="0.6274509803921569 0.27058823529411763 0.054901960784313725 1.0" />
+  </material>
+
+  <material name="burntyellow" >
+    <color rgba="0.8352941176470589 0.6705882352941176 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="burple" >
+    <color rgba="0.40784313725490196 0.19607843137254902 0.8901960784313725 1.0" />
+  </material>
+
+  <material name="butter" >
+    <color rgba="1.0 1.0 0.5058823529411764 1.0" />
+  </material>
+
+  <material name="butterscotch" >
+    <color rgba="0.9921568627450981 0.6941176470588235 0.2784313725490196 1.0" />
+  </material>
+
+  <material name="butteryellow" >
+    <color rgba="1.0 0.9921568627450981 0.4549019607843137 1.0" />
+  </material>
+
+  <material name="cadetblue" >
+    <color rgba="0.3058823529411765 0.4549019607843137 0.5882352941176471 1.0" />
+  </material>
+
+  <material name="camel" >
+    <color rgba="0.7764705882352941 0.6235294117647059 0.34901960784313724 1.0" />
+  </material>
+
+  <material name="camo" >
+    <color rgba="0.4980392156862745 0.5607843137254902 0.3058823529411765 1.0" />
+  </material>
+
+  <material name="camogreen" >
+    <color rgba="0.3215686274509804 0.396078431372549 0.1450980392156863 1.0" />
+  </material>
+
+  <material name="camouflagegreen" >
+    <color rgba="0.29411764705882354 0.3803921568627451 0.07450980392156863 1.0" />
+  </material>
+
+  <material name="canary" >
+    <color rgba="0.9921568627450981 1.0 0.38823529411764707 1.0" />
+  </material>
+
+  <material name="canaryyellow" >
+    <color rgba="1.0 0.996078431372549 0.25098039215686274 1.0" />
+  </material>
+
+  <material name="candypink" >
+    <color rgba="1.0 0.38823529411764707 0.9137254901960784 1.0" />
+  </material>
+
+  <material name="caramel" >
+    <color rgba="0.6862745098039216 0.43529411764705883 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="carmine" >
+    <color rgba="0.615686274509804 0.00784313725490196 0.08627450980392157 1.0" />
+  </material>
+
+  <material name="carnation" >
+    <color rgba="0.9921568627450981 0.4745098039215686 0.5607843137254902 1.0" />
+  </material>
+
+  <material name="carnationpink" >
+    <color rgba="1.0 0.4980392156862745 0.6549019607843137 1.0" />
+  </material>
+
+  <material name="carolinablue" >
+    <color rgba="0.5411764705882353 0.7215686274509804 0.996078431372549 1.0" />
+  </material>
+
+  <material name="celadon" >
+    <color rgba="0.7450980392156863 0.9921568627450981 0.7176470588235294 1.0" />
+  </material>
+
+  <material name="celery" >
+    <color rgba="0.7568627450980392 0.9921568627450981 0.5843137254901961 1.0" />
+  </material>
+
+  <material name="cement" >
+    <color rgba="0.6470588235294118 0.6392156862745098 0.5686274509803921 1.0" />
+  </material>
+
+  <material name="cerise" >
+    <color rgba="0.8705882352941177 0.047058823529411764 0.3843137254901961 1.0" />
+  </material>
+
+  <material name="cerulean" >
+    <color rgba="0.01568627450980392 0.5215686274509804 0.8196078431372549 1.0" />
+  </material>
+
+  <material name="ceruleanblue" >
+    <color rgba="0.0196078431372549 0.43137254901960786 0.9333333333333333 1.0" />
+  </material>
+
+  <material name="charcoal" >
+    <color rgba="0.20392156862745098 0.2196078431372549 0.21568627450980393 1.0" />
+  </material>
+
+  <material name="charcoalgrey" >
+    <color rgba="0.23529411764705882 0.2549019607843137 0.25882352941176473 1.0" />
+  </material>
+
+  <material name="chartreuse" >
+    <color rgba="0.7568627450980392 0.9725490196078431 0.0392156862745098 1.0" />
+  </material>
+
+  <material name="cherry" >
+    <color rgba="0.8117647058823529 0.00784313725490196 0.20392156862745098 1.0" />
+  </material>
+
+  <material name="cherryred" >
+    <color rgba="0.9686274509803922 0.00784313725490196 0.16470588235294117 1.0" />
+  </material>
+
+  <material name="chestnut" >
+    <color rgba="0.4549019607843137 0.1568627450980392 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="chocolate" >
+    <color rgba="0.23921568627450981 0.10980392156862745 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="chocolatebrown" >
+    <color rgba="0.2549019607843137 0.09803921568627451 0.0 1.0" />
+  </material>
+
+  <material name="cinnamon" >
+    <color rgba="0.6745098039215687 0.30980392156862746 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="claret" >
+    <color rgba="0.40784313725490196 0.0 0.09411764705882353 1.0" />
+  </material>
+
+  <material name="clay" >
+    <color rgba="0.7137254901960784 0.41568627450980394 0.3137254901960784 1.0" />
+  </material>
+
+  <material name="claybrown" >
+    <color rgba="0.6980392156862745 0.44313725490196076 0.23921568627450981 1.0" />
+  </material>
+
+  <material name="clearblue" >
+    <color rgba="0.1411764705882353 0.47843137254901963 0.9921568627450981 1.0" />
+  </material>
+
+  <material name="cobalt" >
+    <color rgba="0.11764705882352941 0.2823529411764706 0.5607843137254902 1.0" />
+  </material>
+
+  <material name="cobaltblue" >
+    <color rgba="0.011764705882352941 0.0392156862745098 0.6549019607843137 1.0" />
+  </material>
+
+  <material name="cocoa" >
+    <color rgba="0.5294117647058824 0.37254901960784315 0.25882352941176473 1.0" />
+  </material>
+
+  <material name="coffee" >
+    <color rgba="0.6509803921568628 0.5058823529411764 0.2980392156862745 1.0" />
+  </material>
+
+  <material name="coolblue" >
+    <color rgba="0.28627450980392155 0.5176470588235295 0.7215686274509804 1.0" />
+  </material>
+
+  <material name="coolgreen" >
+    <color rgba="0.2 0.7215686274509804 0.39215686274509803 1.0" />
+  </material>
+
+  <material name="coolgrey" >
+    <color rgba="0.5843137254901961 0.6392156862745098 0.6509803921568628 1.0" />
+  </material>
+
+  <material name="copper" >
+    <color rgba="0.7137254901960784 0.38823529411764707 0.1450980392156863 1.0" />
+  </material>
+
+  <material name="coral" >
+    <color rgba="0.9882352941176471 0.35294117647058826 0.3137254901960784 1.0" />
+  </material>
+
+  <material name="coralpink" >
+    <color rgba="1.0 0.3803921568627451 0.38823529411764707 1.0" />
+  </material>
+
+  <material name="cornflower" >
+    <color rgba="0.41568627450980394 0.4745098039215686 0.9686274509803922 1.0" />
+  </material>
+
+  <material name="cornflowerblue" >
+    <color rgba="0.3176470588235294 0.4392156862745098 0.8431372549019608 1.0" />
+  </material>
+
+  <material name="cranberry" >
+    <color rgba="0.6196078431372549 0.0 0.22745098039215686 1.0" />
+  </material>
+
+  <material name="cream" >
+    <color rgba="1.0 1.0 0.7607843137254902 1.0" />
+  </material>
+
+  <material name="creme" >
+    <color rgba="1.0 1.0 0.7137254901960784 1.0" />
+  </material>
+
+  <material name="crimson" >
+    <color rgba="0.5490196078431373 0.0 0.058823529411764705 1.0" />
+  </material>
+
+  <material name="custard" >
+    <color rgba="1.0 0.9921568627450981 0.47058823529411764 1.0" />
+  </material>
+
+  <material name="cyan" >
+    <color rgba="0.0 1.0 1.0 1.0" />
+  </material>
+
+  <material name="dandelion" >
+    <color rgba="0.996078431372549 0.8745098039215686 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="dark" >
+    <color rgba="0.10588235294117647 0.1411764705882353 0.19215686274509805 1.0" />
+  </material>
+
+  <material name="darkaqua" >
+    <color rgba="0.0196078431372549 0.4117647058823529 0.4196078431372549 1.0" />
+  </material>
+
+  <material name="darkaquamarine" >
+    <color rgba="0.00392156862745098 0.45098039215686275 0.44313725490196076 1.0" />
+  </material>
+
+  <material name="darkbeige" >
+    <color rgba="0.6745098039215687 0.5764705882352941 0.3843137254901961 1.0" />
+  </material>
+
+  <material name="darkblue" >
+    <color rgba="0.011764705882352941 0.027450980392156862 0.39215686274509803 1.0" />
+  </material>
+
+  <material name="darkbluegreen" >
+    <color rgba="0.0 0.3215686274509804 0.28627450980392155 1.0" />
+  </material>
+
+  <material name="darkbluegrey" >
+    <color rgba="0.12156862745098039 0.23137254901960785 0.30196078431372547 1.0" />
+  </material>
+
+  <material name="darkbrown" >
+    <color rgba="0.20392156862745098 0.10980392156862745 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="darkcoral" >
+    <color rgba="0.8117647058823529 0.3215686274509804 0.3058823529411765 1.0" />
+  </material>
+
+  <material name="darkcream" >
+    <color rgba="1.0 0.9529411764705882 0.6039215686274509 1.0" />
+  </material>
+
+  <material name="darkcyan" >
+    <color rgba="0.0392156862745098 0.5333333333333333 0.5411764705882353 1.0" />
+  </material>
+
+  <material name="darkforestgreen" >
+    <color rgba="0.0 0.17647058823529413 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="darkfuchsia" >
+    <color rgba="0.615686274509804 0.027450980392156862 0.34901960784313724 1.0" />
+  </material>
+
+  <material name="darkgold" >
+    <color rgba="0.7098039215686275 0.5803921568627451 0.06274509803921569 1.0" />
+  </material>
+
+  <material name="darkgrassgreen" >
+    <color rgba="0.2196078431372549 0.5019607843137255 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="darkgreen" >
+    <color rgba="0.0196078431372549 0.28627450980392155 0.027450980392156862 1.0" />
+  </material>
+
+  <material name="darkgreenblue" >
+    <color rgba="0.12156862745098039 0.38823529411764707 0.3411764705882353 1.0" />
+  </material>
+
+  <material name="darkgrey" >
+    <color rgba="0.21176470588235294 0.21568627450980393 0.21568627450980393 1.0" />
+  </material>
+
+  <material name="darkgreyblue" >
+    <color rgba="0.1607843137254902 0.27450980392156865 0.3568627450980392 1.0" />
+  </material>
+
+  <material name="darkhotpink" >
+    <color rgba="0.8509803921568627 0.00392156862745098 0.4 1.0" />
+  </material>
+
+  <material name="darkindigo" >
+    <color rgba="0.12156862745098039 0.03529411764705882 0.32941176470588235 1.0" />
+  </material>
+
+  <material name="darkishblue" >
+    <color rgba="0.00392156862745098 0.2549019607843137 0.5098039215686274 1.0" />
+  </material>
+
+  <material name="darkishgreen" >
+    <color rgba="0.1568627450980392 0.48627450980392156 0.21568627450980393 1.0" />
+  </material>
+
+  <material name="darkishpink" >
+    <color rgba="0.8549019607843137 0.27450980392156865 0.49019607843137253 1.0" />
+  </material>
+
+  <material name="darkishpurple" >
+    <color rgba="0.4588235294117647 0.09803921568627451 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="darkishred" >
+    <color rgba="0.6627450980392157 0.011764705882352941 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="darkkhaki" >
+    <color rgba="0.6078431372549019 0.5607843137254902 0.3333333333333333 1.0" />
+  </material>
+
+  <material name="darklavender" >
+    <color rgba="0.5215686274509804 0.403921568627451 0.596078431372549 1.0" />
+  </material>
+
+  <material name="darklilac" >
+    <color rgba="0.611764705882353 0.42745098039215684 0.6470588235294118 1.0" />
+  </material>
+
+  <material name="darklime" >
+    <color rgba="0.5176470588235295 0.7176470588235294 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="darklimegreen" >
+    <color rgba="0.49411764705882355 0.7411764705882353 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="darkmagenta" >
+    <color rgba="0.5882352941176471 0.0 0.33725490196078434 1.0" />
+  </material>
+
+  <material name="darkmaroon" >
+    <color rgba="0.23529411764705882 0.0 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="darkmauve" >
+    <color rgba="0.5294117647058824 0.2980392156862745 0.3843137254901961 1.0" />
+  </material>
+
+  <material name="darkmint" >
+    <color rgba="0.2823529411764706 0.7529411764705882 0.4470588235294118 1.0" />
+  </material>
+
+  <material name="darkmintgreen" >
+    <color rgba="0.12549019607843137 0.7529411764705882 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="darkmustard" >
+    <color rgba="0.6588235294117647 0.5372549019607843 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="darknavy" >
+    <color rgba="0.0 0.01568627450980392 0.20784313725490197 1.0" />
+  </material>
+
+  <material name="darknavyblue" >
+    <color rgba="0.0 0.00784313725490196 0.1803921568627451 1.0" />
+  </material>
+
+  <material name="darkolive" >
+    <color rgba="0.21568627450980393 0.24313725490196078 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="darkolivegreen" >
+    <color rgba="0.23529411764705882 0.30196078431372547 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="darkorange" >
+    <color rgba="0.7764705882352941 0.3176470588235294 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="darkpastelgreen" >
+    <color rgba="0.33725490196078434 0.6823529411764706 0.3411764705882353 1.0" />
+  </material>
+
+  <material name="darkpeach" >
+    <color rgba="0.8705882352941177 0.49411764705882355 0.36470588235294116 1.0" />
+  </material>
+
+  <material name="darkperiwinkle" >
+    <color rgba="0.4 0.37254901960784315 0.8196078431372549 1.0" />
+  </material>
+
+  <material name="darkpink" >
+    <color rgba="0.796078431372549 0.2549019607843137 0.4196078431372549 1.0" />
+  </material>
+
+  <material name="darkplum" >
+    <color rgba="0.24705882352941178 0.00392156862745098 0.17254901960784313 1.0" />
+  </material>
+
+  <material name="darkpurple" >
+    <color rgba="0.20784313725490197 0.023529411764705882 0.24313725490196078 1.0" />
+  </material>
+
+  <material name="darkred" >
+    <color rgba="0.5176470588235295 0.0 0.0 1.0" />
+  </material>
+
+  <material name="darkrose" >
+    <color rgba="0.7098039215686275 0.2823529411764706 0.36470588235294116 1.0" />
+  </material>
+
+  <material name="darkroyalblue" >
+    <color rgba="0.00784313725490196 0.023529411764705882 0.43529411764705883 1.0" />
+  </material>
+
+  <material name="darksage" >
+    <color rgba="0.34901960784313724 0.5215686274509804 0.33725490196078434 1.0" />
+  </material>
+
+  <material name="darksalmon" >
+    <color rgba="0.7843137254901961 0.35294117647058826 0.3254901960784314 1.0" />
+  </material>
+
+  <material name="darksand" >
+    <color rgba="0.6588235294117647 0.5607843137254902 0.34901960784313724 1.0" />
+  </material>
+
+  <material name="darkseafoam" >
+    <color rgba="0.12156862745098039 0.7098039215686275 0.47843137254901963 1.0" />
+  </material>
+
+  <material name="darkseafoamgreen" >
+    <color rgba="0.24313725490196078 0.6862745098039216 0.4627450980392157 1.0" />
+  </material>
+
+  <material name="darkseagreen" >
+    <color rgba="0.06666666666666667 0.5294117647058824 0.36470588235294116 1.0" />
+  </material>
+
+  <material name="darkskyblue" >
+    <color rgba="0.26666666666666666 0.5568627450980392 0.8941176470588236 1.0" />
+  </material>
+
+  <material name="darkslateblue" >
+    <color rgba="0.12941176470588237 0.2784313725490196 0.3803921568627451 1.0" />
+  </material>
+
+  <material name="darktan" >
+    <color rgba="0.6862745098039216 0.5333333333333333 0.2901960784313726 1.0" />
+  </material>
+
+  <material name="darktaupe" >
+    <color rgba="0.4980392156862745 0.40784313725490196 0.3058823529411765 1.0" />
+  </material>
+
+  <material name="darkteal" >
+    <color rgba="0.00392156862745098 0.30196078431372547 0.3058823529411765 1.0" />
+  </material>
+
+  <material name="darkturquoise" >
+    <color rgba="0.01568627450980392 0.3607843137254902 0.35294117647058826 1.0" />
+  </material>
+
+  <material name="darkviolet" >
+    <color rgba="0.20392156862745098 0.00392156862745098 0.24705882352941178 1.0" />
+  </material>
+
+  <material name="darkyellow" >
+    <color rgba="0.8352941176470589 0.7137254901960784 0.0392156862745098 1.0" />
+  </material>
+
+  <material name="darkyellowgreen" >
+    <color rgba="0.4470588235294118 0.5607843137254902 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="deepaqua" >
+    <color rgba="0.03137254901960784 0.47058823529411764 0.4980392156862745 1.0" />
+  </material>
+
+  <material name="deepblue" >
+    <color rgba="0.01568627450980392 0.00784313725490196 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="deepbrown" >
+    <color rgba="0.2549019607843137 0.00784313725490196 0.0 1.0" />
+  </material>
+
+  <material name="deepgreen" >
+    <color rgba="0.00784313725490196 0.34901960784313724 0.058823529411764705 1.0" />
+  </material>
+
+  <material name="deeplavender" >
+    <color rgba="0.5529411764705883 0.3686274509803922 0.7176470588235294 1.0" />
+  </material>
+
+  <material name="deeplilac" >
+    <color rgba="0.5882352941176471 0.43137254901960786 0.7411764705882353 1.0" />
+  </material>
+
+  <material name="deepmagenta" >
+    <color rgba="0.6274509803921569 0.00784313725490196 0.3607843137254902 1.0" />
+  </material>
+
+  <material name="deeporange" >
+    <color rgba="0.8627450980392157 0.30196078431372547 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="deeppink" >
+    <color rgba="0.796078431372549 0.00392156862745098 0.3843137254901961 1.0" />
+  </material>
+
+  <material name="deeppurple" >
+    <color rgba="0.21176470588235294 0.00392156862745098 0.24705882352941178 1.0" />
+  </material>
+
+  <material name="deepred" >
+    <color rgba="0.6039215686274509 0.00784313725490196 0.0 1.0" />
+  </material>
+
+  <material name="deeprose" >
+    <color rgba="0.7803921568627451 0.2784313725490196 0.403921568627451 1.0" />
+  </material>
+
+  <material name="deepseablue" >
+    <color rgba="0.00392156862745098 0.32941176470588235 0.5098039215686274 1.0" />
+  </material>
+
+  <material name="deepskyblue" >
+    <color rgba="0.050980392156862744 0.4588235294117647 0.9725490196078431 1.0" />
+  </material>
+
+  <material name="deepteal" >
+    <color rgba="0.0 0.3333333333333333 0.35294117647058826 1.0" />
+  </material>
+
+  <material name="deepturquoise" >
+    <color rgba="0.00392156862745098 0.45098039215686275 0.4549019607843137 1.0" />
+  </material>
+
+  <material name="deepviolet" >
+    <color rgba="0.28627450980392155 0.023529411764705882 0.2823529411764706 1.0" />
+  </material>
+
+  <material name="denim" >
+    <color rgba="0.23137254901960785 0.38823529411764707 0.5490196078431373 1.0" />
+  </material>
+
+  <material name="denimblue" >
+    <color rgba="0.23137254901960785 0.3568627450980392 0.5725490196078431 1.0" />
+  </material>
+
+  <material name="desert" >
+    <color rgba="0.8 0.6784313725490196 0.3764705882352941 1.0" />
+  </material>
+
+  <material name="diarrhea" >
+    <color rgba="0.6235294117647059 0.5137254901960784 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="dirt" >
+    <color rgba="0.5411764705882353 0.43137254901960786 0.27058823529411763 1.0" />
+  </material>
+
+  <material name="dirtbrown" >
+    <color rgba="0.5137254901960784 0.396078431372549 0.2235294117647059 1.0" />
+  </material>
+
+  <material name="dirtyblue" >
+    <color rgba="0.24705882352941178 0.5098039215686274 0.615686274509804 1.0" />
+  </material>
+
+  <material name="dirtygreen" >
+    <color rgba="0.4 0.49411764705882355 0.17254901960784313 1.0" />
+  </material>
+
+  <material name="dirtyorange" >
+    <color rgba="0.7843137254901961 0.4627450980392157 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="dirtypink" >
+    <color rgba="0.792156862745098 0.4823529411764706 0.5019607843137255 1.0" />
+  </material>
+
+  <material name="dirtypurple" >
+    <color rgba="0.45098039215686275 0.2901960784313726 0.396078431372549 1.0" />
+  </material>
+
+  <material name="dirtyyellow" >
+    <color rgba="0.803921568627451 0.7725490196078432 0.0392156862745098 1.0" />
+  </material>
+
+  <material name="dodgerblue" >
+    <color rgba="0.24313725490196078 0.5098039215686274 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="drab" >
+    <color rgba="0.5098039215686274 0.5137254901960784 0.26666666666666666 1.0" />
+  </material>
+
+  <material name="drabgreen" >
+    <color rgba="0.4549019607843137 0.5843137254901961 0.3176470588235294 1.0" />
+  </material>
+
+  <material name="driedblood" >
+    <color rgba="0.29411764705882354 0.00392156862745098 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="duckeggblue" >
+    <color rgba="0.7647058823529411 0.984313725490196 0.9568627450980393 1.0" />
+  </material>
+
+  <material name="dullblue" >
+    <color rgba="0.28627450980392155 0.4588235294117647 0.611764705882353 1.0" />
+  </material>
+
+  <material name="dullbrown" >
+    <color rgba="0.5294117647058824 0.43137254901960786 0.29411764705882354 1.0" />
+  </material>
+
+  <material name="dullgreen" >
+    <color rgba="0.4549019607843137 0.6509803921568628 0.3843137254901961 1.0" />
+  </material>
+
+  <material name="dullorange" >
+    <color rgba="0.8470588235294118 0.5254901960784314 0.23137254901960785 1.0" />
+  </material>
+
+  <material name="dullpink" >
+    <color rgba="0.8352941176470589 0.5254901960784314 0.615686274509804 1.0" />
+  </material>
+
+  <material name="dullpurple" >
+    <color rgba="0.5176470588235295 0.34901960784313724 0.49411764705882355 1.0" />
+  </material>
+
+  <material name="dullred" >
+    <color rgba="0.7333333333333333 0.24705882352941178 0.24705882352941178 1.0" />
+  </material>
+
+  <material name="dullteal" >
+    <color rgba="0.37254901960784315 0.6196078431372549 0.5607843137254902 1.0" />
+  </material>
+
+  <material name="dullyellow" >
+    <color rgba="0.9333333333333333 0.8627450980392157 0.3568627450980392 1.0" />
+  </material>
+
+  <material name="dusk" >
+    <color rgba="0.3058823529411765 0.32941176470588235 0.5058823529411764 1.0" />
+  </material>
+
+  <material name="duskblue" >
+    <color rgba="0.14901960784313725 0.3254901960784314 0.5529411764705883 1.0" />
+  </material>
+
+  <material name="duskyblue" >
+    <color rgba="0.2784313725490196 0.37254901960784315 0.5803921568627451 1.0" />
+  </material>
+
+  <material name="duskypink" >
+    <color rgba="0.8 0.47843137254901963 0.5450980392156862 1.0" />
+  </material>
+
+  <material name="duskypurple" >
+    <color rgba="0.5372549019607843 0.3568627450980392 0.4823529411764706 1.0" />
+  </material>
+
+  <material name="duskyrose" >
+    <color rgba="0.7294117647058823 0.40784313725490196 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="dust" >
+    <color rgba="0.6980392156862745 0.6 0.43137254901960786 1.0" />
+  </material>
+
+  <material name="dustyblue" >
+    <color rgba="0.35294117647058826 0.5254901960784314 0.6784313725490196 1.0" />
+  </material>
+
+  <material name="dustygreen" >
+    <color rgba="0.4627450980392157 0.6627450980392157 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="dustylavender" >
+    <color rgba="0.6745098039215687 0.5254901960784314 0.6588235294117647 1.0" />
+  </material>
+
+  <material name="dustyorange" >
+    <color rgba="0.9411764705882353 0.5137254901960784 0.22745098039215686 1.0" />
+  </material>
+
+  <material name="dustypink" >
+    <color rgba="0.8352941176470589 0.5411764705882353 0.5803921568627451 1.0" />
+  </material>
+
+  <material name="dustypurple" >
+    <color rgba="0.5098039215686274 0.37254901960784315 0.5294117647058824 1.0" />
+  </material>
+
+  <material name="dustyred" >
+    <color rgba="0.7254901960784313 0.2823529411764706 0.3058823529411765 1.0" />
+  </material>
+
+  <material name="dustyrose" >
+    <color rgba="0.7529411764705882 0.45098039215686275 0.47843137254901963 1.0" />
+  </material>
+
+  <material name="dustyteal" >
+    <color rgba="0.2980392156862745 0.5647058823529412 0.5215686274509804 1.0" />
+  </material>
+
+  <material name="earth" >
+    <color rgba="0.6352941176470588 0.396078431372549 0.24313725490196078 1.0" />
+  </material>
+
+  <material name="eastergreen" >
+    <color rgba="0.5490196078431373 0.9921568627450981 0.49411764705882355 1.0" />
+  </material>
+
+  <material name="easterpurple" >
+    <color rgba="0.7529411764705882 0.44313725490196076 0.996078431372549 1.0" />
+  </material>
+
+  <material name="ecru" >
+    <color rgba="0.996078431372549 1.0 0.792156862745098 1.0" />
+  </material>
+
+  <material name="eggplant" >
+    <color rgba="0.2196078431372549 0.03137254901960784 0.20784313725490197 1.0" />
+  </material>
+
+  <material name="eggplantpurple" >
+    <color rgba="0.2627450980392157 0.0196078431372549 0.2549019607843137 1.0" />
+  </material>
+
+  <material name="eggshell" >
+    <color rgba="1.0 0.9882352941176471 0.7686274509803922 1.0" />
+  </material>
+
+  <material name="eggshellblue" >
+    <color rgba="0.7686274509803922 1.0 0.9686274509803922 1.0" />
+  </material>
+
+  <material name="electricblue" >
+    <color rgba="0.023529411764705882 0.3215686274509804 1.0 1.0" />
+  </material>
+
+  <material name="electricgreen" >
+    <color rgba="0.12941176470588237 0.9882352941176471 0.050980392156862744 1.0" />
+  </material>
+
+  <material name="electriclime" >
+    <color rgba="0.6588235294117647 1.0 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="electricpink" >
+    <color rgba="1.0 0.01568627450980392 0.5647058823529412 1.0" />
+  </material>
+
+  <material name="electricpurple" >
+    <color rgba="0.6666666666666666 0.13725490196078433 1.0 1.0" />
+  </material>
+
+  <material name="emerald" >
+    <color rgba="0.00392156862745098 0.6274509803921569 0.28627450980392155 1.0" />
+  </material>
+
+  <material name="emeraldgreen" >
+    <color rgba="0.00784313725490196 0.5607843137254902 0.11764705882352941 1.0" />
+  </material>
+
+  <material name="evergreen" >
+    <color rgba="0.0196078431372549 0.2784313725490196 0.16470588235294117 1.0" />
+  </material>
+
+  <material name="fadedblue" >
+    <color rgba="0.396078431372549 0.5490196078431373 0.7333333333333333 1.0" />
+  </material>
+
+  <material name="fadedgreen" >
+    <color rgba="0.4823529411764706 0.6980392156862745 0.4549019607843137 1.0" />
+  </material>
+
+  <material name="fadedorange" >
+    <color rgba="0.9411764705882353 0.5803921568627451 0.30196078431372547 1.0" />
+  </material>
+
+  <material name="fadedpink" >
+    <color rgba="0.8705882352941177 0.615686274509804 0.6745098039215687 1.0" />
+  </material>
+
+  <material name="fadedpurple" >
+    <color rgba="0.5686274509803921 0.43137254901960786 0.6 1.0" />
+  </material>
+
+  <material name="fadedred" >
+    <color rgba="0.8274509803921568 0.28627450980392155 0.3058823529411765 1.0" />
+  </material>
+
+  <material name="fadedyellow" >
+    <color rgba="0.996078431372549 1.0 0.4980392156862745 1.0" />
+  </material>
+
+  <material name="fawn" >
+    <color rgba="0.8117647058823529 0.6862745098039216 0.4823529411764706 1.0" />
+  </material>
+
+  <material name="fern" >
+    <color rgba="0.38823529411764707 0.6627450980392157 0.3137254901960784 1.0" />
+  </material>
+
+  <material name="ferngreen" >
+    <color rgba="0.32941176470588235 0.5529411764705883 0.26666666666666666 1.0" />
+  </material>
+
+  <material name="fireenginered" >
+    <color rgba="0.996078431372549 0.0 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="flatblue" >
+    <color rgba="0.23529411764705882 0.45098039215686275 0.6588235294117647 1.0" />
+  </material>
+
+  <material name="flatgreen" >
+    <color rgba="0.4117647058823529 0.615686274509804 0.2980392156862745 1.0" />
+  </material>
+
+  <material name="fluorescentgreen" >
+    <color rgba="0.03137254901960784 1.0 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="flurogreen" >
+    <color rgba="0.0392156862745098 1.0 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="foamgreen" >
+    <color rgba="0.5647058823529412 0.9921568627450981 0.6627450980392157 1.0" />
+  </material>
+
+  <material name="forest" >
+    <color rgba="0.043137254901960784 0.3333333333333333 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="forestgreen" >
+    <color rgba="0.023529411764705882 0.2784313725490196 0.047058823529411764 1.0" />
+  </material>
+
+  <material name="forrestgreen" >
+    <color rgba="0.08235294117647059 0.26666666666666666 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="frenchblue" >
+    <color rgba="0.2627450980392157 0.4196078431372549 0.6784313725490196 1.0" />
+  </material>
+
+  <material name="freshgreen" >
+    <color rgba="0.4117647058823529 0.8470588235294118 0.30980392156862746 1.0" />
+  </material>
+
+  <material name="froggreen" >
+    <color rgba="0.34509803921568627 0.7372549019607844 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="fuchsia" >
+    <color rgba="0.9294117647058824 0.050980392156862744 0.8509803921568627 1.0" />
+  </material>
+
+  <material name="gold" >
+    <color rgba="0.8588235294117647 0.7058823529411765 0.047058823529411764 1.0" />
+  </material>
+
+  <material name="golden" >
+    <color rgba="0.9607843137254902 0.7490196078431373 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="goldenbrown" >
+    <color rgba="0.6980392156862745 0.47843137254901963 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="goldenrod" >
+    <color rgba="0.9764705882352941 0.7372549019607844 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="goldenyellow" >
+    <color rgba="0.996078431372549 0.7764705882352941 0.08235294117647059 1.0" />
+  </material>
+
+  <material name="grape" >
+    <color rgba="0.4235294117647059 0.20392156862745098 0.3803921568627451 1.0" />
+  </material>
+
+  <material name="grapefruit" >
+    <color rgba="0.9921568627450981 0.34901960784313724 0.33725490196078434 1.0" />
+  </material>
+
+  <material name="grapepurple" >
+    <color rgba="0.36470588235294116 0.0784313725490196 0.3176470588235294 1.0" />
+  </material>
+
+  <material name="grass" >
+    <color rgba="0.3607843137254902 0.6745098039215687 0.17647058823529413 1.0" />
+  </material>
+
+  <material name="grassgreen" >
+    <color rgba="0.24705882352941178 0.6078431372549019 0.043137254901960784 1.0" />
+  </material>
+
+  <material name="grassygreen" >
+    <color rgba="0.2549019607843137 0.611764705882353 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="green" >
+    <color rgba="0.08235294117647059 0.6901960784313725 0.10196078431372549 1.0" />
+  </material>
+
+  <material name="greenapple" >
+    <color rgba="0.3686274509803922 0.8627450980392157 0.12156862745098039 1.0" />
+  </material>
+
+  <material name="greenblue" >
+    <color rgba="0.00392156862745098 0.7529411764705882 0.5529411764705883 1.0" />
+  </material>
+
+  <material name="greenbrown" >
+    <color rgba="0.32941176470588235 0.3058823529411765 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="greengrey" >
+    <color rgba="0.4666666666666667 0.5725490196078431 0.43529411764705883 1.0" />
+  </material>
+
+  <material name="greenish" >
+    <color rgba="0.25098039215686274 0.6392156862745098 0.40784313725490196 1.0" />
+  </material>
+
+  <material name="greenishbeige" >
+    <color rgba="0.788235294117647 0.8196078431372549 0.4745098039215686 1.0" />
+  </material>
+
+  <material name="greenishblue" >
+    <color rgba="0.043137254901960784 0.5450980392156862 0.5294117647058824 1.0" />
+  </material>
+
+  <material name="greenishbrown" >
+    <color rgba="0.4117647058823529 0.3803921568627451 0.07058823529411765 1.0" />
+  </material>
+
+  <material name="greenishcyan" >
+    <color rgba="0.16470588235294117 0.996078431372549 0.7176470588235294 1.0" />
+  </material>
+
+  <material name="greenishgrey" >
+    <color rgba="0.5882352941176471 0.6823529411764706 0.5529411764705883 1.0" />
+  </material>
+
+  <material name="greenishtan" >
+    <color rgba="0.7372549019607844 0.796078431372549 0.47843137254901963 1.0" />
+  </material>
+
+  <material name="greenishteal" >
+    <color rgba="0.19607843137254902 0.7490196078431373 0.5176470588235295 1.0" />
+  </material>
+
+  <material name="greenishturquoise" >
+    <color rgba="0.0 0.984313725490196 0.6901960784313725 1.0" />
+  </material>
+
+  <material name="greenishyellow" >
+    <color rgba="0.803921568627451 0.9921568627450981 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="greenteal" >
+    <color rgba="0.047058823529411764 0.7098039215686275 0.4666666666666667 1.0" />
+  </material>
+
+  <material name="greenyblue" >
+    <color rgba="0.25882352941176473 0.7019607843137254 0.5843137254901961 1.0" />
+  </material>
+
+  <material name="greenybrown" >
+    <color rgba="0.4117647058823529 0.3764705882352941 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="greenyellow" >
+    <color rgba="0.7098039215686275 0.807843137254902 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="greenygrey" >
+    <color rgba="0.49411764705882355 0.6274509803921569 0.47843137254901963 1.0" />
+  </material>
+
+  <material name="greenyyellow" >
+    <color rgba="0.7764705882352941 0.9725490196078431 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="grey" >
+    <color rgba="0.5725490196078431 0.5843137254901961 0.5686274509803921 1.0" />
+  </material>
+
+  <material name="greyblue" >
+    <color rgba="0.39215686274509803 0.49019607843137253 0.5568627450980392 1.0" />
+  </material>
+
+  <material name="greybrown" >
+    <color rgba="0.4980392156862745 0.4392156862745098 0.3254901960784314 1.0" />
+  </material>
+
+  <material name="greygreen" >
+    <color rgba="0.5254901960784314 0.6313725490196078 0.49019607843137253 1.0" />
+  </material>
+
+  <material name="greyish" >
+    <color rgba="0.6588235294117647 0.6431372549019608 0.5843137254901961 1.0" />
+  </material>
+
+  <material name="greyishblue" >
+    <color rgba="0.3686274509803922 0.5058823529411764 0.615686274509804 1.0" />
+  </material>
+
+  <material name="greyishbrown" >
+    <color rgba="0.47843137254901963 0.41568627450980394 0.30980392156862746 1.0" />
+  </material>
+
+  <material name="greyishgreen" >
+    <color rgba="0.5098039215686274 0.6509803921568628 0.49019607843137253 1.0" />
+  </material>
+
+  <material name="greyishpink" >
+    <color rgba="0.7843137254901961 0.5529411764705883 0.5803921568627451 1.0" />
+  </material>
+
+  <material name="greyishpurple" >
+    <color rgba="0.5333333333333333 0.44313725490196076 0.5686274509803921 1.0" />
+  </material>
+
+  <material name="greyishteal" >
+    <color rgba="0.44313725490196076 0.6235294117647059 0.5686274509803921 1.0" />
+  </material>
+
+  <material name="greypink" >
+    <color rgba="0.7647058823529411 0.5647058823529412 0.6078431372549019 1.0" />
+  </material>
+
+  <material name="greypurple" >
+    <color rgba="0.5098039215686274 0.42745098039215684 0.5490196078431373 1.0" />
+  </material>
+
+  <material name="greyteal" >
+    <color rgba="0.3686274509803922 0.6078431372549019 0.5411764705882353 1.0" />
+  </material>
+
+  <material name="grossgreen" >
+    <color rgba="0.6274509803921569 0.7490196078431373 0.08627450980392157 1.0" />
+  </material>
+
+  <material name="gunmetal" >
+    <color rgba="0.3254901960784314 0.3843137254901961 0.403921568627451 1.0" />
+  </material>
+
+  <material name="hazel" >
+    <color rgba="0.5568627450980392 0.4627450980392157 0.09411764705882353 1.0" />
+  </material>
+
+  <material name="heather" >
+    <color rgba="0.6431372549019608 0.5176470588235295 0.6745098039215687 1.0" />
+  </material>
+
+  <material name="heliotrope" >
+    <color rgba="0.8509803921568627 0.30980392156862746 0.9607843137254902 1.0" />
+  </material>
+
+  <material name="highlightergreen" >
+    <color rgba="0.10588235294117647 0.9882352941176471 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="hospitalgreen" >
+    <color rgba="0.6078431372549019 0.8980392156862745 0.6666666666666666 1.0" />
+  </material>
+
+  <material name="hotgreen" >
+    <color rgba="0.1450980392156863 1.0 0.1607843137254902 1.0" />
+  </material>
+
+  <material name="hotmagenta" >
+    <color rgba="0.9607843137254902 0.01568627450980392 0.788235294117647 1.0" />
+  </material>
+
+  <material name="hotpink" >
+    <color rgba="1.0 0.00784313725490196 0.5529411764705883 1.0" />
+  </material>
+
+  <material name="hotpurple" >
+    <color rgba="0.796078431372549 0.0 0.9607843137254902 1.0" />
+  </material>
+
+  <material name="huntergreen" >
+    <color rgba="0.043137254901960784 0.25098039215686274 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="ice" >
+    <color rgba="0.8392156862745098 1.0 0.9803921568627451 1.0" />
+  </material>
+
+  <material name="iceblue" >
+    <color rgba="0.8431372549019608 1.0 0.996078431372549 1.0" />
+  </material>
+
+  <material name="ickygreen" >
+    <color rgba="0.5607843137254902 0.6823529411764706 0.13333333333333333 1.0" />
+  </material>
+
+  <material name="indianred" >
+    <color rgba="0.5215686274509804 0.054901960784313725 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="indigo" >
+    <color rgba="0.2196078431372549 0.00784313725490196 0.5098039215686274 1.0" />
+  </material>
+
+  <material name="indigoblue" >
+    <color rgba="0.22745098039215686 0.09411764705882353 0.6941176470588235 1.0" />
+  </material>
+
+  <material name="iris" >
+    <color rgba="0.3843137254901961 0.34509803921568627 0.7686274509803922 1.0" />
+  </material>
+
+  <material name="irishgreen" >
+    <color rgba="0.00392156862745098 0.5843137254901961 0.1607843137254902 1.0" />
+  </material>
+
+  <material name="ivory" >
+    <color rgba="1.0 1.0 0.796078431372549 1.0" />
+  </material>
+
+  <material name="jade" >
+    <color rgba="0.12156862745098039 0.6549019607843137 0.4549019607843137 1.0" />
+  </material>
+
+  <material name="jadegreen" >
+    <color rgba="0.16862745098039217 0.6862745098039216 0.41568627450980394 1.0" />
+  </material>
+
+  <material name="junglegreen" >
+    <color rgba="0.01568627450980392 0.5098039215686274 0.2627450980392157 1.0" />
+  </material>
+
+  <material name="kelleygreen" >
+    <color rgba="0.0 0.5764705882352941 0.21568627450980393 1.0" />
+  </material>
+
+  <material name="kellygreen" >
+    <color rgba="0.00784313725490196 0.6705882352941176 0.1803921568627451 1.0" />
+  </material>
+
+  <material name="kermitgreen" >
+    <color rgba="0.3607843137254902 0.6980392156862745 0.0 1.0" />
+  </material>
+
+  <material name="keylime" >
+    <color rgba="0.6823529411764706 1.0 0.43137254901960786 1.0" />
+  </material>
+
+  <material name="khaki" >
+    <color rgba="0.6666666666666666 0.6509803921568628 0.3843137254901961 1.0" />
+  </material>
+
+  <material name="khakigreen" >
+    <color rgba="0.4470588235294118 0.5254901960784314 0.2235294117647059 1.0" />
+  </material>
+
+  <material name="kiwi" >
+    <color rgba="0.611764705882353 0.9372549019607843 0.2627450980392157 1.0" />
+  </material>
+
+  <material name="kiwigreen" >
+    <color rgba="0.5568627450980392 0.8980392156862745 0.24705882352941178 1.0" />
+  </material>
+
+  <material name="lavender" >
+    <color rgba="0.7803921568627451 0.6235294117647059 0.9372549019607843 1.0" />
+  </material>
+
+  <material name="lavenderblue" >
+    <color rgba="0.5450980392156862 0.5333333333333333 0.9725490196078431 1.0" />
+  </material>
+
+  <material name="lavenderpink" >
+    <color rgba="0.8666666666666667 0.5215686274509804 0.8431372549019608 1.0" />
+  </material>
+
+  <material name="lawngreen" >
+    <color rgba="0.30196078431372547 0.6431372549019608 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="leaf" >
+    <color rgba="0.44313725490196076 0.6666666666666666 0.20392156862745098 1.0" />
+  </material>
+
+  <material name="leafgreen" >
+    <color rgba="0.3607843137254902 0.6627450980392157 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="leafygreen" >
+    <color rgba="0.3176470588235294 0.7176470588235294 0.23137254901960785 1.0" />
+  </material>
+
+  <material name="leather" >
+    <color rgba="0.6745098039215687 0.4549019607843137 0.20392156862745098 1.0" />
+  </material>
+
+  <material name="lemon" >
+    <color rgba="0.9921568627450981 1.0 0.3215686274509804 1.0" />
+  </material>
+
+  <material name="lemongreen" >
+    <color rgba="0.6784313725490196 0.9725490196078431 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="lemonlime" >
+    <color rgba="0.7490196078431373 0.996078431372549 0.1568627450980392 1.0" />
+  </material>
+
+  <material name="lemonyellow" >
+    <color rgba="0.9921568627450981 1.0 0.2196078431372549 1.0" />
+  </material>
+
+  <material name="lichen" >
+    <color rgba="0.5607843137254902 0.7137254901960784 0.4823529411764706 1.0" />
+  </material>
+
+  <material name="lightaqua" >
+    <color rgba="0.5490196078431373 1.0 0.8588235294117647 1.0" />
+  </material>
+
+  <material name="lightaquamarine" >
+    <color rgba="0.4823529411764706 0.9921568627450981 0.7803921568627451 1.0" />
+  </material>
+
+  <material name="lightbeige" >
+    <color rgba="1.0 0.996078431372549 0.7137254901960784 1.0" />
+  </material>
+
+  <material name="lightblue" >
+    <color rgba="0.4823529411764706 0.7843137254901961 0.9647058823529412 1.0" />
+  </material>
+
+  <material name="lightbluegreen" >
+    <color rgba="0.49411764705882355 0.984313725490196 0.7019607843137254 1.0" />
+  </material>
+
+  <material name="lightbluegrey" >
+    <color rgba="0.7176470588235294 0.788235294117647 0.8862745098039215 1.0" />
+  </material>
+
+  <material name="lightbluishgreen" >
+    <color rgba="0.4627450980392157 0.9921568627450981 0.6588235294117647 1.0" />
+  </material>
+
+  <material name="lightbrightgreen" >
+    <color rgba="0.3254901960784314 0.996078431372549 0.3607843137254902 1.0" />
+  </material>
+
+  <material name="lightbrown" >
+    <color rgba="0.6784313725490196 0.5058823529411764 0.3137254901960784 1.0" />
+  </material>
+
+  <material name="lightburgundy" >
+    <color rgba="0.6588235294117647 0.2549019607843137 0.3568627450980392 1.0" />
+  </material>
+
+  <material name="lightcyan" >
+    <color rgba="0.6745098039215687 1.0 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="lighteggplant" >
+    <color rgba="0.5372549019607843 0.27058823529411763 0.5215686274509804 1.0" />
+  </material>
+
+  <material name="lightergreen" >
+    <color rgba="0.4588235294117647 0.9921568627450981 0.38823529411764707 1.0" />
+  </material>
+
+  <material name="lighterpurple" >
+    <color rgba="0.6470588235294118 0.35294117647058826 0.9568627450980393 1.0" />
+  </material>
+
+  <material name="lightforestgreen" >
+    <color rgba="0.30980392156862746 0.5686274509803921 0.3254901960784314 1.0" />
+  </material>
+
+  <material name="lightgold" >
+    <color rgba="0.9921568627450981 0.8627450980392157 0.3607843137254902 1.0" />
+  </material>
+
+  <material name="lightgrassgreen" >
+    <color rgba="0.6039215686274509 0.9686274509803922 0.39215686274509803 1.0" />
+  </material>
+
+  <material name="lightgreen" >
+    <color rgba="0.4627450980392157 1.0 0.4823529411764706 1.0" />
+  </material>
+
+  <material name="lightgreenblue" >
+    <color rgba="0.33725490196078434 0.9882352941176471 0.6352941176470588 1.0" />
+  </material>
+
+  <material name="lightgreenishblue" >
+    <color rgba="0.38823529411764707 0.9686274509803922 0.7058823529411765 1.0" />
+  </material>
+
+  <material name="lightgrey" >
+    <color rgba="0.8470588235294118 0.8627450980392157 0.8392156862745098 1.0" />
+  </material>
+
+  <material name="lightgreyblue" >
+    <color rgba="0.615686274509804 0.7372549019607844 0.8313725490196079 1.0" />
+  </material>
+
+  <material name="lightgreygreen" >
+    <color rgba="0.7176470588235294 0.8823529411764706 0.6313725490196078 1.0" />
+  </material>
+
+  <material name="lightindigo" >
+    <color rgba="0.42745098039215684 0.35294117647058826 0.8117647058823529 1.0" />
+  </material>
+
+  <material name="lightishblue" >
+    <color rgba="0.23921568627450981 0.47843137254901963 0.9921568627450981 1.0" />
+  </material>
+
+  <material name="lightishgreen" >
+    <color rgba="0.3803921568627451 0.8823529411764706 0.3764705882352941 1.0" />
+  </material>
+
+  <material name="lightishpurple" >
+    <color rgba="0.6470588235294118 0.3215686274509804 0.9019607843137255 1.0" />
+  </material>
+
+  <material name="lightishred" >
+    <color rgba="0.996078431372549 0.1843137254901961 0.2901960784313726 1.0" />
+  </material>
+
+  <material name="lightkhaki" >
+    <color rgba="0.9019607843137255 0.9490196078431372 0.6352941176470588 1.0" />
+  </material>
+
+  <material name="lightlavendar" >
+    <color rgba="0.9372549019607843 0.7529411764705882 0.996078431372549 1.0" />
+  </material>
+
+  <material name="lightlavender" >
+    <color rgba="0.8745098039215686 0.7725490196078432 0.996078431372549 1.0" />
+  </material>
+
+  <material name="lightlightblue" >
+    <color rgba="0.792156862745098 1.0 0.984313725490196 1.0" />
+  </material>
+
+  <material name="lightlightgreen" >
+    <color rgba="0.7843137254901961 1.0 0.6901960784313725 1.0" />
+  </material>
+
+  <material name="lightlilac" >
+    <color rgba="0.9294117647058824 0.7843137254901961 1.0 1.0" />
+  </material>
+
+  <material name="lightlime" >
+    <color rgba="0.6823529411764706 0.9921568627450981 0.4235294117647059 1.0" />
+  </material>
+
+  <material name="lightlimegreen" >
+    <color rgba="0.7254901960784313 1.0 0.4 1.0" />
+  </material>
+
+  <material name="lightmagenta" >
+    <color rgba="0.9803921568627451 0.37254901960784315 0.9686274509803922 1.0" />
+  </material>
+
+  <material name="lightmaroon" >
+    <color rgba="0.6352941176470588 0.2823529411764706 0.3411764705882353 1.0" />
+  </material>
+
+  <material name="lightmauve" >
+    <color rgba="0.7607843137254902 0.5725490196078431 0.6313725490196078 1.0" />
+  </material>
+
+  <material name="lightmint" >
+    <color rgba="0.7137254901960784 1.0 0.7333333333333333 1.0" />
+  </material>
+
+  <material name="lightmintgreen" >
+    <color rgba="0.6509803921568628 0.984313725490196 0.6980392156862745 1.0" />
+  </material>
+
+  <material name="lightmossgreen" >
+    <color rgba="0.6509803921568628 0.7843137254901961 0.4588235294117647 1.0" />
+  </material>
+
+  <material name="lightmustard" >
+    <color rgba="0.9686274509803922 0.8352941176470589 0.3764705882352941 1.0" />
+  </material>
+
+  <material name="lightnavy" >
+    <color rgba="0.08235294117647059 0.3137254901960784 0.5176470588235295 1.0" />
+  </material>
+
+  <material name="lightnavyblue" >
+    <color rgba="0.1803921568627451 0.35294117647058826 0.5333333333333333 1.0" />
+  </material>
+
+  <material name="lightneongreen" >
+    <color rgba="0.3058823529411765 0.9921568627450981 0.32941176470588235 1.0" />
+  </material>
+
+  <material name="lightolive" >
+    <color rgba="0.6745098039215687 0.7490196078431373 0.4117647058823529 1.0" />
+  </material>
+
+  <material name="lightolivegreen" >
+    <color rgba="0.6431372549019608 0.7450980392156863 0.3607843137254902 1.0" />
+  </material>
+
+  <material name="lightorange" >
+    <color rgba="0.9921568627450981 0.6666666666666666 0.2823529411764706 1.0" />
+  </material>
+
+  <material name="lightpastelgreen" >
+    <color rgba="0.6980392156862745 0.984313725490196 0.6470588235294118 1.0" />
+  </material>
+
+  <material name="lightpeach" >
+    <color rgba="1.0 0.8470588235294118 0.6941176470588235 1.0" />
+  </material>
+
+  <material name="lightpeagreen" >
+    <color rgba="0.7686274509803922 0.996078431372549 0.5098039215686274 1.0" />
+  </material>
+
+  <material name="lightperiwinkle" >
+    <color rgba="0.7568627450980392 0.7764705882352941 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="lightpink" >
+    <color rgba="1.0 0.8196078431372549 0.8745098039215686 1.0" />
+  </material>
+
+  <material name="lightplum" >
+    <color rgba="0.615686274509804 0.3411764705882353 0.5137254901960784 1.0" />
+  </material>
+
+  <material name="lightpurple" >
+    <color rgba="0.7490196078431373 0.4666666666666667 0.9647058823529412 1.0" />
+  </material>
+
+  <material name="lightred" >
+    <color rgba="1.0 0.2784313725490196 0.2980392156862745 1.0" />
+  </material>
+
+  <material name="lightrose" >
+    <color rgba="1.0 0.7725490196078432 0.796078431372549 1.0" />
+  </material>
+
+  <material name="lightroyalblue" >
+    <color rgba="0.22745098039215686 0.1803921568627451 0.996078431372549 1.0" />
+  </material>
+
+  <material name="lightsage" >
+    <color rgba="0.7372549019607844 0.9254901960784314 0.6745098039215687 1.0" />
+  </material>
+
+  <material name="lightsalmon" >
+    <color rgba="0.996078431372549 0.6627450980392157 0.5764705882352941 1.0" />
+  </material>
+
+  <material name="lightseafoam" >
+    <color rgba="0.6274509803921569 0.996078431372549 0.7490196078431373 1.0" />
+  </material>
+
+  <material name="lightseafoamgreen" >
+    <color rgba="0.6549019607843137 1.0 0.7098039215686275 1.0" />
+  </material>
+
+  <material name="lightseagreen" >
+    <color rgba="0.596078431372549 0.9647058823529412 0.6901960784313725 1.0" />
+  </material>
+
+  <material name="lightskyblue" >
+    <color rgba="0.7764705882352941 0.9882352941176471 1.0 1.0" />
+  </material>
+
+  <material name="lighttan" >
+    <color rgba="0.984313725490196 0.9333333333333333 0.6745098039215687 1.0" />
+  </material>
+
+  <material name="lightteal" >
+    <color rgba="0.5647058823529412 0.8941176470588236 0.7568627450980392 1.0" />
+  </material>
+
+  <material name="lightturquoise" >
+    <color rgba="0.49411764705882355 0.9568627450980393 0.8 1.0" />
+  </material>
+
+  <material name="lighturple" >
+    <color rgba="0.7019607843137254 0.43529411764705883 0.9647058823529412 1.0" />
+  </material>
+
+  <material name="lightviolet" >
+    <color rgba="0.8392156862745098 0.7058823529411765 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="lightyellow" >
+    <color rgba="1.0 0.996078431372549 0.47843137254901963 1.0" />
+  </material>
+
+  <material name="lightyellowgreen" >
+    <color rgba="0.8 0.9921568627450981 0.4980392156862745 1.0" />
+  </material>
+
+  <material name="lightyellowishgreen" >
+    <color rgba="0.7607843137254902 1.0 0.5372549019607843 1.0" />
+  </material>
+
+  <material name="lilac" >
+    <color rgba="0.807843137254902 0.6352941176470588 0.9921568627450981 1.0" />
+  </material>
+
+  <material name="liliac" >
+    <color rgba="0.7686274509803922 0.5568627450980392 0.9921568627450981 1.0" />
+  </material>
+
+  <material name="lime" >
+    <color rgba="0.6666666666666666 1.0 0.19607843137254902 1.0" />
+  </material>
+
+  <material name="limegreen" >
+    <color rgba="0.5372549019607843 0.996078431372549 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="limeyellow" >
+    <color rgba="0.8156862745098039 0.996078431372549 0.11372549019607843 1.0" />
+  </material>
+
+  <material name="lipstick" >
+    <color rgba="0.8352941176470589 0.09019607843137255 0.3058823529411765 1.0" />
+  </material>
+
+  <material name="lipstickred" >
+    <color rgba="0.7529411764705882 0.00784313725490196 0.1843137254901961 1.0" />
+  </material>
+
+  <material name="macaroniandcheese" >
+    <color rgba="0.9372549019607843 0.7058823529411765 0.20784313725490197 1.0" />
+  </material>
+
+  <material name="magenta" >
+    <color rgba="0.7607843137254902 0.0 0.47058823529411764 1.0" />
+  </material>
+
+  <material name="mahogany" >
+    <color rgba="0.2901960784313726 0.00392156862745098 0.0 1.0" />
+  </material>
+
+  <material name="maize" >
+    <color rgba="0.9568627450980393 0.8156862745098039 0.32941176470588235 1.0" />
+  </material>
+
+  <material name="mango" >
+    <color rgba="1.0 0.6509803921568628 0.16862745098039217 1.0" />
+  </material>
+
+  <material name="manilla" >
+    <color rgba="1.0 0.9803921568627451 0.5254901960784314 1.0" />
+  </material>
+
+  <material name="marigold" >
+    <color rgba="0.9882352941176471 0.7529411764705882 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="marine" >
+    <color rgba="0.01568627450980392 0.1803921568627451 0.3764705882352941 1.0" />
+  </material>
+
+  <material name="marineblue" >
+    <color rgba="0.00392156862745098 0.2196078431372549 0.41568627450980394 1.0" />
+  </material>
+
+  <material name="maroon" >
+    <color rgba="0.396078431372549 0.0 0.12941176470588237 1.0" />
+  </material>
+
+  <material name="mauve" >
+    <color rgba="0.6823529411764706 0.44313725490196076 0.5058823529411764 1.0" />
+  </material>
+
+  <material name="mediumblue" >
+    <color rgba="0.17254901960784313 0.43529411764705883 0.7333333333333333 1.0" />
+  </material>
+
+  <material name="mediumbrown" >
+    <color rgba="0.4980392156862745 0.3176470588235294 0.07058823529411765 1.0" />
+  </material>
+
+  <material name="mediumgreen" >
+    <color rgba="0.2235294117647059 0.6784313725490196 0.2823529411764706 1.0" />
+  </material>
+
+  <material name="mediumgrey" >
+    <color rgba="0.49019607843137253 0.4980392156862745 0.48627450980392156 1.0" />
+  </material>
+
+  <material name="mediumpink" >
+    <color rgba="0.9529411764705882 0.3803921568627451 0.5882352941176471 1.0" />
+  </material>
+
+  <material name="mediumpurple" >
+    <color rgba="0.6196078431372549 0.2627450980392157 0.6352941176470588 1.0" />
+  </material>
+
+  <material name="melon" >
+    <color rgba="1.0 0.47058823529411764 0.3333333333333333 1.0" />
+  </material>
+
+  <material name="merlot" >
+    <color rgba="0.45098039215686275 0.0 0.2235294117647059 1.0" />
+  </material>
+
+  <material name="metallicblue" >
+    <color rgba="0.30980392156862746 0.45098039215686275 0.5568627450980392 1.0" />
+  </material>
+
+  <material name="midblue" >
+    <color rgba="0.15294117647058825 0.41568627450980394 0.7019607843137254 1.0" />
+  </material>
+
+  <material name="midgreen" >
+    <color rgba="0.3137254901960784 0.6549019607843137 0.2784313725490196 1.0" />
+  </material>
+
+  <material name="midnight" >
+    <color rgba="0.011764705882352941 0.00392156862745098 0.17647058823529413 1.0" />
+  </material>
+
+  <material name="midnightblue" >
+    <color rgba="0.00784313725490196 0.0 0.20784313725490197 1.0" />
+  </material>
+
+  <material name="midnightpurple" >
+    <color rgba="0.1568627450980392 0.00392156862745098 0.21568627450980393 1.0" />
+  </material>
+
+  <material name="militarygreen" >
+    <color rgba="0.4 0.48627450980392156 0.24313725490196078 1.0" />
+  </material>
+
+  <material name="milkchocolate" >
+    <color rgba="0.4980392156862745 0.3058823529411765 0.11764705882352941 1.0" />
+  </material>
+
+  <material name="mint" >
+    <color rgba="0.6235294117647059 0.996078431372549 0.6901960784313725 1.0" />
+  </material>
+
+  <material name="mintgreen" >
+    <color rgba="0.5607843137254902 1.0 0.6235294117647059 1.0" />
+  </material>
+
+  <material name="mintygreen" >
+    <color rgba="0.043137254901960784 0.9686274509803922 0.49019607843137253 1.0" />
+  </material>
+
+  <material name="mocha" >
+    <color rgba="0.615686274509804 0.4627450980392157 0.3176470588235294 1.0" />
+  </material>
+
+  <material name="moss" >
+    <color rgba="0.4627450980392157 0.6 0.34509803921568627 1.0" />
+  </material>
+
+  <material name="mossgreen" >
+    <color rgba="0.396078431372549 0.5450980392156862 0.2196078431372549 1.0" />
+  </material>
+
+  <material name="mossygreen" >
+    <color rgba="0.38823529411764707 0.5450980392156862 0.15294117647058825 1.0" />
+  </material>
+
+  <material name="mud" >
+    <color rgba="0.45098039215686275 0.3607843137254902 0.07058823529411765 1.0" />
+  </material>
+
+  <material name="mudbrown" >
+    <color rgba="0.3764705882352941 0.27450980392156865 0.058823529411764705 1.0" />
+  </material>
+
+  <material name="muddybrown" >
+    <color rgba="0.5333333333333333 0.40784313725490196 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="muddygreen" >
+    <color rgba="0.396078431372549 0.4549019607843137 0.19607843137254902 1.0" />
+  </material>
+
+  <material name="muddyyellow" >
+    <color rgba="0.7490196078431373 0.6745098039215687 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="mudgreen" >
+    <color rgba="0.3764705882352941 0.4 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="mulberry" >
+    <color rgba="0.5725490196078431 0.0392156862745098 0.3058823529411765 1.0" />
+  </material>
+
+  <material name="murkygreen" >
+    <color rgba="0.4235294117647059 0.47843137254901963 0.054901960784313725 1.0" />
+  </material>
+
+  <material name="mushroom" >
+    <color rgba="0.7294117647058823 0.6196078431372549 0.5333333333333333 1.0" />
+  </material>
+
+  <material name="mustard" >
+    <color rgba="0.807843137254902 0.7019607843137254 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="mustardbrown" >
+    <color rgba="0.6745098039215687 0.49411764705882355 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="mustardgreen" >
+    <color rgba="0.6588235294117647 0.7098039215686275 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="mustardyellow" >
+    <color rgba="0.8235294117647058 0.7411764705882353 0.0392156862745098 1.0" />
+  </material>
+
+  <material name="mutedblue" >
+    <color rgba="0.23137254901960785 0.44313725490196076 0.6235294117647059 1.0" />
+  </material>
+
+  <material name="mutedgreen" >
+    <color rgba="0.37254901960784315 0.6274509803921569 0.3215686274509804 1.0" />
+  </material>
+
+  <material name="mutedpink" >
+    <color rgba="0.8196078431372549 0.4627450980392157 0.5607843137254902 1.0" />
+  </material>
+
+  <material name="mutedpurple" >
+    <color rgba="0.5019607843137255 0.3568627450980392 0.5294117647058824 1.0" />
+  </material>
+
+  <material name="nastygreen" >
+    <color rgba="0.4392156862745098 0.6980392156862745 0.24705882352941178 1.0" />
+  </material>
+
+  <material name="navy" >
+    <color rgba="0.00392156862745098 0.08235294117647059 0.24313725490196078 1.0" />
+  </material>
+
+  <material name="navyblue" >
+    <color rgba="0.0 0.06666666666666667 0.27450980392156865 1.0" />
+  </material>
+
+  <material name="navygreen" >
+    <color rgba="0.20784313725490197 0.3254901960784314 0.0392156862745098 1.0" />
+  </material>
+
+  <material name="neonblue" >
+    <color rgba="0.01568627450980392 0.8509803921568627 1.0 1.0" />
+  </material>
+
+  <material name="neongreen" >
+    <color rgba="0.047058823529411764 1.0 0.047058823529411764 1.0" />
+  </material>
+
+  <material name="neonpink" >
+    <color rgba="0.996078431372549 0.00392156862745098 0.6039215686274509 1.0" />
+  </material>
+
+  <material name="neonpurple" >
+    <color rgba="0.7372549019607844 0.07450980392156863 0.996078431372549 1.0" />
+  </material>
+
+  <material name="neonred" >
+    <color rgba="1.0 0.027450980392156862 0.22745098039215686 1.0" />
+  </material>
+
+  <material name="neonyellow" >
+    <color rgba="0.8117647058823529 1.0 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="niceblue" >
+    <color rgba="0.06274509803921569 0.47843137254901963 0.6901960784313725 1.0" />
+  </material>
+
+  <material name="nightblue" >
+    <color rgba="0.01568627450980392 0.011764705882352941 0.2823529411764706 1.0" />
+  </material>
+
+  <material name="ocean" >
+    <color rgba="0.00392156862745098 0.4823529411764706 0.5725490196078431 1.0" />
+  </material>
+
+  <material name="oceanblue" >
+    <color rgba="0.011764705882352941 0.44313725490196076 0.611764705882353 1.0" />
+  </material>
+
+  <material name="oceangreen" >
+    <color rgba="0.23921568627450981 0.6 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="ocher" >
+    <color rgba="0.7490196078431373 0.6078431372549019 0.047058823529411764 1.0" />
+  </material>
+
+  <material name="ochre" >
+    <color rgba="0.7490196078431373 0.5647058823529412 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="ocre" >
+    <color rgba="0.7764705882352941 0.611764705882353 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="offblue" >
+    <color rgba="0.33725490196078434 0.5176470588235295 0.6823529411764706 1.0" />
+  </material>
+
+  <material name="offgreen" >
+    <color rgba="0.4196078431372549 0.6392156862745098 0.3254901960784314 1.0" />
+  </material>
+
+  <material name="offwhite" >
+    <color rgba="1.0 1.0 0.8941176470588236 1.0" />
+  </material>
+
+  <material name="offyellow" >
+    <color rgba="0.9450980392156862 0.9529411764705882 0.24705882352941178 1.0" />
+  </material>
+
+  <material name="oldpink" >
+    <color rgba="0.7803921568627451 0.4745098039215686 0.5254901960784314 1.0" />
+  </material>
+
+  <material name="oldrose" >
+    <color rgba="0.7843137254901961 0.4980392156862745 0.5372549019607843 1.0" />
+  </material>
+
+  <material name="olive" >
+    <color rgba="0.43137254901960786 0.4588235294117647 0.054901960784313725 1.0" />
+  </material>
+
+  <material name="olivebrown" >
+    <color rgba="0.39215686274509803 0.32941176470588235 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="olivedrab" >
+    <color rgba="0.43529411764705883 0.4627450980392157 0.19607843137254902 1.0" />
+  </material>
+
+  <material name="olivegreen" >
+    <color rgba="0.403921568627451 0.47843137254901963 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="oliveyellow" >
+    <color rgba="0.7607843137254902 0.7176470588235294 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="orange" >
+    <color rgba="0.9764705882352941 0.45098039215686275 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="orangebrown" >
+    <color rgba="0.7450980392156863 0.39215686274509803 0.0 1.0" />
+  </material>
+
+  <material name="orangeish" >
+    <color rgba="0.9921568627450981 0.5529411764705883 0.28627450980392155 1.0" />
+  </material>
+
+  <material name="orangepink" >
+    <color rgba="1.0 0.43529411764705883 0.3215686274509804 1.0" />
+  </material>
+
+  <material name="orangered" >
+    <color rgba="0.996078431372549 0.25882352941176473 0.058823529411764705 1.0" />
+  </material>
+
+  <material name="orangeybrown" >
+    <color rgba="0.6941176470588235 0.3764705882352941 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="orangeyellow" >
+    <color rgba="1.0 0.6784313725490196 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="orangeyred" >
+    <color rgba="0.9803921568627451 0.25882352941176473 0.1411764705882353 1.0" />
+  </material>
+
+  <material name="orangeyyellow" >
+    <color rgba="0.9921568627450981 0.7254901960784313 0.08235294117647059 1.0" />
+  </material>
+
+  <material name="orangish" >
+    <color rgba="0.9882352941176471 0.5098039215686274 0.2901960784313726 1.0" />
+  </material>
+
+  <material name="orangishbrown" >
+    <color rgba="0.6980392156862745 0.37254901960784315 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="orangishred" >
+    <color rgba="0.9568627450980393 0.21176470588235294 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="orchid" >
+    <color rgba="0.7843137254901961 0.4588235294117647 0.7686274509803922 1.0" />
+  </material>
+
+  <material name="pale" >
+    <color rgba="1.0 0.9764705882352941 0.8156862745098039 1.0" />
+  </material>
+
+  <material name="paleaqua" >
+    <color rgba="0.7215686274509804 1.0 0.9215686274509803 1.0" />
+  </material>
+
+  <material name="paleblue" >
+    <color rgba="0.8156862745098039 0.996078431372549 0.996078431372549 1.0" />
+  </material>
+
+  <material name="palebrown" >
+    <color rgba="0.6941176470588235 0.5686274509803921 0.43137254901960786 1.0" />
+  </material>
+
+  <material name="palecyan" >
+    <color rgba="0.7176470588235294 1.0 0.9803921568627451 1.0" />
+  </material>
+
+  <material name="palegold" >
+    <color rgba="0.9921568627450981 0.8705882352941177 0.4235294117647059 1.0" />
+  </material>
+
+  <material name="palegreen" >
+    <color rgba="0.7803921568627451 0.9921568627450981 0.7098039215686275 1.0" />
+  </material>
+
+  <material name="palegrey" >
+    <color rgba="0.9921568627450981 0.9921568627450981 0.996078431372549 1.0" />
+  </material>
+
+  <material name="palelavender" >
+    <color rgba="0.9333333333333333 0.8117647058823529 0.996078431372549 1.0" />
+  </material>
+
+  <material name="palelightgreen" >
+    <color rgba="0.6941176470588235 0.9882352941176471 0.6 1.0" />
+  </material>
+
+  <material name="palelilac" >
+    <color rgba="0.8941176470588236 0.796078431372549 1.0 1.0" />
+  </material>
+
+  <material name="palelime" >
+    <color rgba="0.7450980392156863 0.9921568627450981 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="palelimegreen" >
+    <color rgba="0.6941176470588235 1.0 0.396078431372549 1.0" />
+  </material>
+
+  <material name="palemagenta" >
+    <color rgba="0.8431372549019608 0.403921568627451 0.6784313725490196 1.0" />
+  </material>
+
+  <material name="palemauve" >
+    <color rgba="0.996078431372549 0.8156862745098039 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="paleolive" >
+    <color rgba="0.7254901960784313 0.8 0.5058823529411764 1.0" />
+  </material>
+
+  <material name="paleolivegreen" >
+    <color rgba="0.6941176470588235 0.8235294117647058 0.4823529411764706 1.0" />
+  </material>
+
+  <material name="paleorange" >
+    <color rgba="1.0 0.6549019607843137 0.33725490196078434 1.0" />
+  </material>
+
+  <material name="palepeach" >
+    <color rgba="1.0 0.8980392156862745 0.6784313725490196 1.0" />
+  </material>
+
+  <material name="palepink" >
+    <color rgba="1.0 0.8117647058823529 0.8627450980392157 1.0" />
+  </material>
+
+  <material name="palepurple" >
+    <color rgba="0.7176470588235294 0.5647058823529412 0.8313725490196079 1.0" />
+  </material>
+
+  <material name="palered" >
+    <color rgba="0.8509803921568627 0.32941176470588235 0.30196078431372547 1.0" />
+  </material>
+
+  <material name="palerose" >
+    <color rgba="0.9921568627450981 0.7568627450980392 0.7725490196078432 1.0" />
+  </material>
+
+  <material name="palesalmon" >
+    <color rgba="1.0 0.6941176470588235 0.6039215686274509 1.0" />
+  </material>
+
+  <material name="paleskyblue" >
+    <color rgba="0.7411764705882353 0.9647058823529412 0.996078431372549 1.0" />
+  </material>
+
+  <material name="paleteal" >
+    <color rgba="0.5098039215686274 0.796078431372549 0.6980392156862745 1.0" />
+  </material>
+
+  <material name="paleturquoise" >
+    <color rgba="0.6470588235294118 0.984313725490196 0.8352941176470589 1.0" />
+  </material>
+
+  <material name="paleviolet" >
+    <color rgba="0.807843137254902 0.6823529411764706 0.9803921568627451 1.0" />
+  </material>
+
+  <material name="paleyellow" >
+    <color rgba="1.0 1.0 0.5176470588235295 1.0" />
+  </material>
+
+  <material name="parchment" >
+    <color rgba="0.996078431372549 0.9882352941176471 0.6862745098039216 1.0" />
+  </material>
+
+  <material name="pastelblue" >
+    <color rgba="0.6352941176470588 0.7490196078431373 0.996078431372549 1.0" />
+  </material>
+
+  <material name="pastelgreen" >
+    <color rgba="0.6901960784313725 1.0 0.615686274509804 1.0" />
+  </material>
+
+  <material name="pastelorange" >
+    <color rgba="1.0 0.5882352941176471 0.30980392156862746 1.0" />
+  </material>
+
+  <material name="pastelpink" >
+    <color rgba="1.0 0.7294117647058823 0.803921568627451 1.0" />
+  </material>
+
+  <material name="pastelpurple" >
+    <color rgba="0.792156862745098 0.6274509803921569 1.0 1.0" />
+  </material>
+
+  <material name="pastelred" >
+    <color rgba="0.8588235294117647 0.34509803921568627 0.33725490196078434 1.0" />
+  </material>
+
+  <material name="pastelyellow" >
+    <color rgba="1.0 0.996078431372549 0.44313725490196076 1.0" />
+  </material>
+
+  <material name="pea" >
+    <color rgba="0.6431372549019608 0.7490196078431373 0.12549019607843137 1.0" />
+  </material>
+
+  <material name="peach" >
+    <color rgba="1.0 0.6901960784313725 0.48627450980392156 1.0" />
+  </material>
+
+  <material name="peachypink" >
+    <color rgba="1.0 0.6039215686274509 0.5411764705882353 1.0" />
+  </material>
+
+  <material name="peacockblue" >
+    <color rgba="0.00392156862745098 0.403921568627451 0.5843137254901961 1.0" />
+  </material>
+
+  <material name="peagreen" >
+    <color rgba="0.5568627450980392 0.6705882352941176 0.07058823529411765 1.0" />
+  </material>
+
+  <material name="pear" >
+    <color rgba="0.796078431372549 0.9725490196078431 0.37254901960784315 1.0" />
+  </material>
+
+  <material name="peasoup" >
+    <color rgba="0.5725490196078431 0.6 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="peasoupgreen" >
+    <color rgba="0.5803921568627451 0.6509803921568628 0.09019607843137255 1.0" />
+  </material>
+
+  <material name="periwinkle" >
+    <color rgba="0.5568627450980392 0.5098039215686274 0.996078431372549 1.0" />
+  </material>
+
+  <material name="periwinkleblue" >
+    <color rgba="0.5607843137254902 0.6 0.984313725490196 1.0" />
+  </material>
+
+  <material name="perrywinkle" >
+    <color rgba="0.5607843137254902 0.5490196078431373 0.9058823529411765 1.0" />
+  </material>
+
+  <material name="petrol" >
+    <color rgba="0.0 0.37254901960784315 0.41568627450980394 1.0" />
+  </material>
+
+  <material name="pigpink" >
+    <color rgba="0.9058823529411765 0.5568627450980392 0.6470588235294118 1.0" />
+  </material>
+
+  <material name="pine" >
+    <color rgba="0.16862745098039217 0.36470588235294116 0.20392156862745098 1.0" />
+  </material>
+
+  <material name="pinegreen" >
+    <color rgba="0.0392156862745098 0.2823529411764706 0.11764705882352941 1.0" />
+  </material>
+
+  <material name="pink" >
+    <color rgba="1.0 0.5058823529411764 0.7529411764705882 1.0" />
+  </material>
+
+  <material name="pinkish" >
+    <color rgba="0.8313725490196079 0.41568627450980394 0.49411764705882355 1.0" />
+  </material>
+
+  <material name="pinkishbrown" >
+    <color rgba="0.6941176470588235 0.4470588235294118 0.3803921568627451 1.0" />
+  </material>
+
+  <material name="pinkishgrey" >
+    <color rgba="0.7843137254901961 0.6745098039215687 0.6627450980392157 1.0" />
+  </material>
+
+  <material name="pinkishorange" >
+    <color rgba="1.0 0.4470588235294118 0.2980392156862745 1.0" />
+  </material>
+
+  <material name="pinkishpurple" >
+    <color rgba="0.8392156862745098 0.2823529411764706 0.8431372549019608 1.0" />
+  </material>
+
+  <material name="pinkishred" >
+    <color rgba="0.9450980392156862 0.047058823529411764 0.27058823529411763 1.0" />
+  </material>
+
+  <material name="pinkishtan" >
+    <color rgba="0.8509803921568627 0.6078431372549019 0.5098039215686274 1.0" />
+  </material>
+
+  <material name="pinkpurple" >
+    <color rgba="0.9372549019607843 0.11372549019607843 0.9058823529411765 1.0" />
+  </material>
+
+  <material name="pinkred" >
+    <color rgba="0.9607843137254902 0.0196078431372549 0.30980392156862746 1.0" />
+  </material>
+
+  <material name="pinky" >
+    <color rgba="0.9882352941176471 0.5254901960784314 0.6666666666666666 1.0" />
+  </material>
+
+  <material name="pinkypurple" >
+    <color rgba="0.788235294117647 0.2980392156862745 0.7450980392156863 1.0" />
+  </material>
+
+  <material name="pinkyred" >
+    <color rgba="0.9882352941176471 0.14901960784313725 0.2784313725490196 1.0" />
+  </material>
+
+  <material name="pissyellow" >
+    <color rgba="0.8666666666666667 0.8392156862745098 0.09411764705882353 1.0" />
+  </material>
+
+  <material name="pistachio" >
+    <color rgba="0.7529411764705882 0.9803921568627451 0.5450980392156862 1.0" />
+  </material>
+
+  <material name="plum" >
+    <color rgba="0.34509803921568627 0.058823529411764705 0.2549019607843137 1.0" />
+  </material>
+
+  <material name="plumpurple" >
+    <color rgba="0.3058823529411765 0.0196078431372549 0.3137254901960784 1.0" />
+  </material>
+
+  <material name="poisongreen" >
+    <color rgba="0.25098039215686274 0.9921568627450981 0.0784313725490196 1.0" />
+  </material>
+
+  <material name="poo" >
+    <color rgba="0.5607843137254902 0.45098039215686275 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="poobrown" >
+    <color rgba="0.5333333333333333 0.37254901960784315 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="poop" >
+    <color rgba="0.4980392156862745 0.3686274509803922 0.0 1.0" />
+  </material>
+
+  <material name="poopbrown" >
+    <color rgba="0.47843137254901963 0.34901960784313724 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="poopgreen" >
+    <color rgba="0.43529411764705883 0.48627450980392156 0.0 1.0" />
+  </material>
+
+  <material name="powderblue" >
+    <color rgba="0.6941176470588235 0.8196078431372549 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="powderpink" >
+    <color rgba="1.0 0.6980392156862745 0.8156862745098039 1.0" />
+  </material>
+
+  <material name="primaryblue" >
+    <color rgba="0.03137254901960784 0.01568627450980392 0.9764705882352941 1.0" />
+  </material>
+
+  <material name="prussianblue" >
+    <color rgba="0.0 0.27058823529411763 0.4666666666666667 1.0" />
+  </material>
+
+  <material name="puce" >
+    <color rgba="0.6470588235294118 0.49411764705882355 0.3215686274509804 1.0" />
+  </material>
+
+  <material name="puke" >
+    <color rgba="0.6470588235294118 0.6470588235294118 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="pukebrown" >
+    <color rgba="0.5803921568627451 0.4666666666666667 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="pukegreen" >
+    <color rgba="0.6039215686274509 0.6823529411764706 0.027450980392156862 1.0" />
+  </material>
+
+  <material name="pukeyellow" >
+    <color rgba="0.7607843137254902 0.7450980392156863 0.054901960784313725 1.0" />
+  </material>
+
+  <material name="pumpkin" >
+    <color rgba="0.8823529411764706 0.4666666666666667 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="pumpkinorange" >
+    <color rgba="0.984313725490196 0.49019607843137253 0.027450980392156862 1.0" />
+  </material>
+
+  <material name="pureblue" >
+    <color rgba="0.00784313725490196 0.011764705882352941 0.8862745098039215 1.0" />
+  </material>
+
+  <material name="purple" >
+    <color rgba="0.49411764705882355 0.11764705882352941 0.611764705882353 1.0" />
+  </material>
+
+  <material name="purpleblue" >
+    <color rgba="0.36470588235294116 0.12941176470588237 0.8156862745098039 1.0" />
+  </material>
+
+  <material name="purplebrown" >
+    <color rgba="0.403921568627451 0.22745098039215686 0.24705882352941178 1.0" />
+  </material>
+
+  <material name="purplegrey" >
+    <color rgba="0.5254901960784314 0.43529411764705883 0.5215686274509804 1.0" />
+  </material>
+
+  <material name="purpleish" >
+    <color rgba="0.596078431372549 0.33725490196078434 0.5529411764705883 1.0" />
+  </material>
+
+  <material name="purpleishblue" >
+    <color rgba="0.3803921568627451 0.25098039215686274 0.9372549019607843 1.0" />
+  </material>
+
+  <material name="purpleishpink" >
+    <color rgba="0.8745098039215686 0.3058823529411765 0.7843137254901961 1.0" />
+  </material>
+
+  <material name="purplepink" >
+    <color rgba="0.8431372549019608 0.1450980392156863 0.8705882352941177 1.0" />
+  </material>
+
+  <material name="purplered" >
+    <color rgba="0.6 0.00392156862745098 0.2784313725490196 1.0" />
+  </material>
+
+  <material name="purpley" >
+    <color rgba="0.5294117647058824 0.33725490196078434 0.8941176470588236 1.0" />
+  </material>
+
+  <material name="purpleyblue" >
+    <color rgba="0.37254901960784315 0.20392156862745098 0.9058823529411765 1.0" />
+  </material>
+
+  <material name="purpleygrey" >
+    <color rgba="0.5803921568627451 0.49411764705882355 0.5803921568627451 1.0" />
+  </material>
+
+  <material name="purpleypink" >
+    <color rgba="0.7843137254901961 0.23529411764705882 0.7254901960784313 1.0" />
+  </material>
+
+  <material name="purplish" >
+    <color rgba="0.5803921568627451 0.33725490196078434 0.5490196078431373 1.0" />
+  </material>
+
+  <material name="purplishblue" >
+    <color rgba="0.3764705882352941 0.11764705882352941 0.9764705882352941 1.0" />
+  </material>
+
+  <material name="purplishbrown" >
+    <color rgba="0.4196078431372549 0.25882352941176473 0.2784313725490196 1.0" />
+  </material>
+
+  <material name="purplishgrey" >
+    <color rgba="0.47843137254901963 0.40784313725490196 0.4980392156862745 1.0" />
+  </material>
+
+  <material name="purplishpink" >
+    <color rgba="0.807843137254902 0.36470588235294116 0.6823529411764706 1.0" />
+  </material>
+
+  <material name="purplishred" >
+    <color rgba="0.6901960784313725 0.0196078431372549 0.29411764705882354 1.0" />
+  </material>
+
+  <material name="purply" >
+    <color rgba="0.596078431372549 0.24705882352941178 0.6980392156862745 1.0" />
+  </material>
+
+  <material name="purplyblue" >
+    <color rgba="0.4 0.10196078431372549 0.9333333333333333 1.0" />
+  </material>
+
+  <material name="purplypink" >
+    <color rgba="0.9411764705882353 0.4588235294117647 0.9019607843137255 1.0" />
+  </material>
+
+  <material name="putty" >
+    <color rgba="0.7450980392156863 0.6823529411764706 0.5411764705882353 1.0" />
+  </material>
+
+  <material name="racinggreen" >
+    <color rgba="0.00392156862745098 0.27450980392156865 0.0 1.0" />
+  </material>
+
+  <material name="radioactivegreen" >
+    <color rgba="0.17254901960784313 0.9803921568627451 0.12156862745098039 1.0" />
+  </material>
+
+  <material name="raspberry" >
+    <color rgba="0.6901960784313725 0.00392156862745098 0.28627450980392155 1.0" />
+  </material>
+
+  <material name="rawsienna" >
+    <color rgba="0.6039215686274509 0.3843137254901961 0.0 1.0" />
+  </material>
+
+  <material name="rawumber" >
+    <color rgba="0.6549019607843137 0.3686274509803922 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="reallylightblue" >
+    <color rgba="0.8313725490196079 1.0 1.0 1.0" />
+  </material>
+
+  <material name="red" >
+    <color rgba="0.8980392156862745 0.0 0.0 1.0" />
+  </material>
+
+  <material name="redbrown" >
+    <color rgba="0.5450980392156862 0.1803921568627451 0.08627450980392157 1.0" />
+  </material>
+
+  <material name="reddish" >
+    <color rgba="0.7686274509803922 0.25882352941176473 0.25098039215686274 1.0" />
+  </material>
+
+  <material name="reddishbrown" >
+    <color rgba="0.4980392156862745 0.16862745098039217 0.0392156862745098 1.0" />
+  </material>
+
+  <material name="reddishgrey" >
+    <color rgba="0.6 0.4588235294117647 0.4392156862745098 1.0" />
+  </material>
+
+  <material name="reddishorange" >
+    <color rgba="0.9725490196078431 0.2823529411764706 0.10980392156862745 1.0" />
+  </material>
+
+  <material name="reddishpink" >
+    <color rgba="0.996078431372549 0.17254901960784313 0.32941176470588235 1.0" />
+  </material>
+
+  <material name="reddishpurple" >
+    <color rgba="0.5686274509803921 0.03529411764705882 0.3176470588235294 1.0" />
+  </material>
+
+  <material name="reddybrown" >
+    <color rgba="0.43137254901960786 0.06274509803921569 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="redorange" >
+    <color rgba="0.9921568627450981 0.23529411764705882 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="redpink" >
+    <color rgba="0.9803921568627451 0.16470588235294117 0.3333333333333333 1.0" />
+  </material>
+
+  <material name="redpurple" >
+    <color rgba="0.5098039215686274 0.027450980392156862 0.2784313725490196 1.0" />
+  </material>
+
+  <material name="redviolet" >
+    <color rgba="0.6196078431372549 0.00392156862745098 0.40784313725490196 1.0" />
+  </material>
+
+  <material name="redwine" >
+    <color rgba="0.5490196078431373 0.0 0.20392156862745098 1.0" />
+  </material>
+
+  <material name="richblue" >
+    <color rgba="0.00784313725490196 0.10588235294117647 0.9764705882352941 1.0" />
+  </material>
+
+  <material name="richpurple" >
+    <color rgba="0.4470588235294118 0.0 0.34509803921568627 1.0" />
+  </material>
+
+  <material name="robineggblue" >
+    <color rgba="0.5411764705882353 0.9450980392156862 0.996078431372549 1.0" />
+  </material>
+
+  <material name="robinsegg" >
+    <color rgba="0.42745098039215684 0.9294117647058824 0.9921568627450981 1.0" />
+  </material>
+
+  <material name="robinseggblue" >
+    <color rgba="0.596078431372549 0.9372549019607843 0.9764705882352941 1.0" />
+  </material>
+
+  <material name="rosa" >
+    <color rgba="0.996078431372549 0.5254901960784314 0.6431372549019608 1.0" />
+  </material>
+
+  <material name="rose" >
+    <color rgba="0.8117647058823529 0.3843137254901961 0.4588235294117647 1.0" />
+  </material>
+
+  <material name="rosepink" >
+    <color rgba="0.9686274509803922 0.5294117647058824 0.6039215686274509 1.0" />
+  </material>
+
+  <material name="rosered" >
+    <color rgba="0.7450980392156863 0.00392156862745098 0.23529411764705882 1.0" />
+  </material>
+
+  <material name="rosypink" >
+    <color rgba="0.9647058823529412 0.40784313725490196 0.5568627450980392 1.0" />
+  </material>
+
+  <material name="rouge" >
+    <color rgba="0.6705882352941176 0.07058823529411765 0.2235294117647059 1.0" />
+  </material>
+
+  <material name="royal" >
+    <color rgba="0.047058823529411764 0.09019607843137255 0.5764705882352941 1.0" />
+  </material>
+
+  <material name="royalblue" >
+    <color rgba="0.0196078431372549 0.01568627450980392 0.6666666666666666 1.0" />
+  </material>
+
+  <material name="royalpurple" >
+    <color rgba="0.29411764705882354 0.0 0.43137254901960786 1.0" />
+  </material>
+
+  <material name="ruby" >
+    <color rgba="0.792156862745098 0.00392156862745098 0.2784313725490196 1.0" />
+  </material>
+
+  <material name="russet" >
+    <color rgba="0.6313725490196078 0.2235294117647059 0.0196078431372549 1.0" />
+  </material>
+
+  <material name="rust" >
+    <color rgba="0.6588235294117647 0.23529411764705882 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="rustbrown" >
+    <color rgba="0.5450980392156862 0.19215686274509805 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="rustorange" >
+    <color rgba="0.7686274509803922 0.3333333333333333 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="rustred" >
+    <color rgba="0.6666666666666666 0.15294117647058825 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="rustyorange" >
+    <color rgba="0.803921568627451 0.34901960784313724 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="rustyred" >
+    <color rgba="0.6862745098039216 0.1843137254901961 0.050980392156862744 1.0" />
+  </material>
+
+  <material name="saffron" >
+    <color rgba="0.996078431372549 0.6980392156862745 0.03529411764705882 1.0" />
+  </material>
+
+  <material name="sage" >
+    <color rgba="0.5294117647058824 0.6823529411764706 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="sagegreen" >
+    <color rgba="0.5333333333333333 0.7019607843137254 0.47058823529411764 1.0" />
+  </material>
+
+  <material name="salmon" >
+    <color rgba="1.0 0.4745098039215686 0.4235294117647059 1.0" />
+  </material>
+
+  <material name="salmonpink" >
+    <color rgba="0.996078431372549 0.4823529411764706 0.48627450980392156 1.0" />
+  </material>
+
+  <material name="sand" >
+    <color rgba="0.8862745098039215 0.792156862745098 0.4627450980392157 1.0" />
+  </material>
+
+  <material name="sandbrown" >
+    <color rgba="0.796078431372549 0.6470588235294118 0.3764705882352941 1.0" />
+  </material>
+
+  <material name="sandstone" >
+    <color rgba="0.788235294117647 0.6823529411764706 0.4549019607843137 1.0" />
+  </material>
+
+  <material name="sandy" >
+    <color rgba="0.9450980392156862 0.8549019607843137 0.47843137254901963 1.0" />
+  </material>
+
+  <material name="sandybrown" >
+    <color rgba="0.7686274509803922 0.6509803921568628 0.3803921568627451 1.0" />
+  </material>
+
+  <material name="sandyellow" >
+    <color rgba="0.9882352941176471 0.8823529411764706 0.4 1.0" />
+  </material>
+
+  <material name="sandyyellow" >
+    <color rgba="0.9921568627450981 0.9333333333333333 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="sapgreen" >
+    <color rgba="0.3607843137254902 0.5450980392156862 0.08235294117647059 1.0" />
+  </material>
+
+  <material name="sapphire" >
+    <color rgba="0.12941176470588237 0.2196078431372549 0.6705882352941176 1.0" />
+  </material>
+
+  <material name="scarlet" >
+    <color rgba="0.7450980392156863 0.00392156862745098 0.09803921568627451 1.0" />
+  </material>
+
+  <material name="sea" >
+    <color rgba="0.23529411764705882 0.6 0.5725490196078431 1.0" />
+  </material>
+
+  <material name="seablue" >
+    <color rgba="0.01568627450980392 0.4549019607843137 0.5843137254901961 1.0" />
+  </material>
+
+  <material name="seafoam" >
+    <color rgba="0.5019607843137255 0.9764705882352941 0.6784313725490196 1.0" />
+  </material>
+
+  <material name="seafoamblue" >
+    <color rgba="0.47058823529411764 0.8196078431372549 0.7137254901960784 1.0" />
+  </material>
+
+  <material name="seafoamgreen" >
+    <color rgba="0.47843137254901963 0.9764705882352941 0.6705882352941176 1.0" />
+  </material>
+
+  <material name="seagreen" >
+    <color rgba="0.3254901960784314 0.9882352941176471 0.6313725490196078 1.0" />
+  </material>
+
+  <material name="seaweed" >
+    <color rgba="0.09411764705882353 0.8196078431372549 0.4823529411764706 1.0" />
+  </material>
+
+  <material name="seaweedgreen" >
+    <color rgba="0.20784313725490197 0.6784313725490196 0.4196078431372549 1.0" />
+  </material>
+
+  <material name="sepia" >
+    <color rgba="0.596078431372549 0.3686274509803922 0.16862745098039217 1.0" />
+  </material>
+
+  <material name="shamrock" >
+    <color rgba="0.00392156862745098 0.7058823529411765 0.2980392156862745 1.0" />
+  </material>
+
+  <material name="shamrockgreen" >
+    <color rgba="0.00784313725490196 0.7568627450980392 0.30196078431372547 1.0" />
+  </material>
+
+  <material name="shit" >
+    <color rgba="0.4980392156862745 0.37254901960784315 0.0 1.0" />
+  </material>
+
+  <material name="shitbrown" >
+    <color rgba="0.4823529411764706 0.34509803921568627 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="shitgreen" >
+    <color rgba="0.4588235294117647 0.5019607843137255 0.0 1.0" />
+  </material>
+
+  <material name="shockingpink" >
+    <color rgba="0.996078431372549 0.00784313725490196 0.6352941176470588 1.0" />
+  </material>
+
+  <material name="sickgreen" >
+    <color rgba="0.615686274509804 0.7254901960784313 0.17254901960784313 1.0" />
+  </material>
+
+  <material name="sicklygreen" >
+    <color rgba="0.5803921568627451 0.6980392156862745 0.10980392156862745 1.0" />
+  </material>
+
+  <material name="sicklyyellow" >
+    <color rgba="0.8156862745098039 0.8941176470588236 0.1607843137254902 1.0" />
+  </material>
+
+  <material name="sienna" >
+    <color rgba="0.6627450980392157 0.33725490196078434 0.11764705882352941 1.0" />
+  </material>
+
+  <material name="silver" >
+    <color rgba="0.7725490196078432 0.788235294117647 0.7803921568627451 1.0" />
+  </material>
+
+  <material name="sky" >
+    <color rgba="0.5098039215686274 0.792156862745098 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="skyblue" >
+    <color rgba="0.4588235294117647 0.7333333333333333 0.9921568627450981 1.0" />
+  </material>
+
+  <material name="slate" >
+    <color rgba="0.3176470588235294 0.396078431372549 0.4470588235294118 1.0" />
+  </material>
+
+  <material name="slateblue" >
+    <color rgba="0.3568627450980392 0.48627450980392156 0.6 1.0" />
+  </material>
+
+  <material name="slategreen" >
+    <color rgba="0.396078431372549 0.5529411764705883 0.42745098039215684 1.0" />
+  </material>
+
+  <material name="slategrey" >
+    <color rgba="0.34901960784313724 0.396078431372549 0.42745098039215684 1.0" />
+  </material>
+
+  <material name="slimegreen" >
+    <color rgba="0.6 0.8 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="snot" >
+    <color rgba="0.6745098039215687 0.7333333333333333 0.050980392156862744 1.0" />
+  </material>
+
+  <material name="snotgreen" >
+    <color rgba="0.615686274509804 0.7568627450980392 0.0 1.0" />
+  </material>
+
+  <material name="softblue" >
+    <color rgba="0.39215686274509803 0.5333333333333333 0.9176470588235294 1.0" />
+  </material>
+
+  <material name="softgreen" >
+    <color rgba="0.43529411764705883 0.7607843137254902 0.4627450980392157 1.0" />
+  </material>
+
+  <material name="softpink" >
+    <color rgba="0.9921568627450981 0.6901960784313725 0.7529411764705882 1.0" />
+  </material>
+
+  <material name="softpurple" >
+    <color rgba="0.6509803921568628 0.43529411764705883 0.7098039215686275 1.0" />
+  </material>
+
+  <material name="spearmint" >
+    <color rgba="0.11764705882352941 0.9725490196078431 0.4627450980392157 1.0" />
+  </material>
+
+  <material name="springgreen" >
+    <color rgba="0.6627450980392157 0.9764705882352941 0.44313725490196076 1.0" />
+  </material>
+
+  <material name="spruce" >
+    <color rgba="0.0392156862745098 0.37254901960784315 0.2196078431372549 1.0" />
+  </material>
+
+  <material name="squash" >
+    <color rgba="0.9490196078431372 0.6705882352941176 0.08235294117647059 1.0" />
+  </material>
+
+  <material name="steel" >
+    <color rgba="0.45098039215686275 0.5215686274509804 0.5843137254901961 1.0" />
+  </material>
+
+  <material name="steelblue" >
+    <color rgba="0.35294117647058826 0.49019607843137253 0.6039215686274509 1.0" />
+  </material>
+
+  <material name="steelgrey" >
+    <color rgba="0.43529411764705883 0.5098039215686274 0.5411764705882353 1.0" />
+  </material>
+
+  <material name="stone" >
+    <color rgba="0.6784313725490196 0.6470588235294118 0.5294117647058824 1.0" />
+  </material>
+
+  <material name="stormyblue" >
+    <color rgba="0.3137254901960784 0.4823529411764706 0.611764705882353 1.0" />
+  </material>
+
+  <material name="straw" >
+    <color rgba="0.9882352941176471 0.9647058823529412 0.4745098039215686 1.0" />
+  </material>
+
+  <material name="strawberry" >
+    <color rgba="0.984313725490196 0.1607843137254902 0.2627450980392157 1.0" />
+  </material>
+
+  <material name="strongblue" >
+    <color rgba="0.047058823529411764 0.023529411764705882 0.9686274509803922 1.0" />
+  </material>
+
+  <material name="strongpink" >
+    <color rgba="1.0 0.027450980392156862 0.5372549019607843 1.0" />
+  </material>
+
+  <material name="sunflower" >
+    <color rgba="1.0 0.7725490196078432 0.07058823529411765 1.0" />
+  </material>
+
+  <material name="sunfloweryellow" >
+    <color rgba="1.0 0.8549019607843137 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="sunnyyellow" >
+    <color rgba="1.0 0.9764705882352941 0.09019607843137255 1.0" />
+  </material>
+
+  <material name="sunshineyellow" >
+    <color rgba="1.0 0.9921568627450981 0.21568627450980393 1.0" />
+  </material>
+
+  <material name="sunyellow" >
+    <color rgba="1.0 0.8745098039215686 0.13333333333333333 1.0" />
+  </material>
+
+  <material name="swamp" >
+    <color rgba="0.4117647058823529 0.5137254901960784 0.2235294117647059 1.0" />
+  </material>
+
+  <material name="swampgreen" >
+    <color rgba="0.4549019607843137 0.5215686274509804 0.0 1.0" />
+  </material>
+
+  <material name="tan" >
+    <color rgba="0.8196078431372549 0.6980392156862745 0.43529411764705883 1.0" />
+  </material>
+
+  <material name="tanbrown" >
+    <color rgba="0.6705882352941176 0.49411764705882355 0.2980392156862745 1.0" />
+  </material>
+
+  <material name="tangerine" >
+    <color rgba="1.0 0.5803921568627451 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="tangreen" >
+    <color rgba="0.6627450980392157 0.7450980392156863 0.4392156862745098 1.0" />
+  </material>
+
+  <material name="taupe" >
+    <color rgba="0.7254901960784313 0.6352941176470588 0.5058823529411764 1.0" />
+  </material>
+
+  <material name="tea" >
+    <color rgba="0.396078431372549 0.6705882352941176 0.48627450980392156 1.0" />
+  </material>
+
+  <material name="teagreen" >
+    <color rgba="0.7411764705882353 0.9725490196078431 0.6392156862745098 1.0" />
+  </material>
+
+  <material name="teal" >
+    <color rgba="0.00784313725490196 0.5764705882352941 0.5254901960784314 1.0" />
+  </material>
+
+  <material name="tealblue" >
+    <color rgba="0.00392156862745098 0.5333333333333333 0.6235294117647059 1.0" />
+  </material>
+
+  <material name="tealgreen" >
+    <color rgba="0.1450980392156863 0.6392156862745098 0.43529411764705883 1.0" />
+  </material>
+
+  <material name="tealish" >
+    <color rgba="0.1411764705882353 0.7372549019607844 0.6588235294117647 1.0" />
+  </material>
+
+  <material name="tealishgreen" >
+    <color rgba="0.047058823529411764 0.8627450980392157 0.45098039215686275 1.0" />
+  </material>
+
+  <material name="terracota" >
+    <color rgba="0.796078431372549 0.40784313725490196 0.2627450980392157 1.0" />
+  </material>
+
+  <material name="terracotta" >
+    <color rgba="0.788235294117647 0.39215686274509803 0.23137254901960785 1.0" />
+  </material>
+
+  <material name="tiffanyblue" >
+    <color rgba="0.4823529411764706 0.9490196078431372 0.8549019607843137 1.0" />
+  </material>
+
+  <material name="tomato" >
+    <color rgba="0.9372549019607843 0.25098039215686274 0.14901960784313725 1.0" />
+  </material>
+
+  <material name="tomatored" >
+    <color rgba="0.9254901960784314 0.17647058823529413 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="topaz" >
+    <color rgba="0.07450980392156863 0.7333333333333333 0.6862745098039216 1.0" />
+  </material>
+
+  <material name="toupe" >
+    <color rgba="0.7803921568627451 0.6745098039215687 0.49019607843137253 1.0" />
+  </material>
+
+  <material name="toxicgreen" >
+    <color rgba="0.3803921568627451 0.8705882352941177 0.16470588235294117 1.0" />
+  </material>
+
+  <material name="treegreen" >
+    <color rgba="0.16470588235294117 0.49411764705882355 0.09803921568627451 1.0" />
+  </material>
+
+  <material name="trueblue" >
+    <color rgba="0.00392156862745098 0.058823529411764705 0.8 1.0" />
+  </material>
+
+  <material name="truegreen" >
+    <color rgba="0.03137254901960784 0.5803921568627451 0.01568627450980392 1.0" />
+  </material>
+
+  <material name="turquoise" >
+    <color rgba="0.023529411764705882 0.7607843137254902 0.6745098039215687 1.0" />
+  </material>
+
+  <material name="turquoiseblue" >
+    <color rgba="0.023529411764705882 0.6941176470588235 0.7686274509803922 1.0" />
+  </material>
+
+  <material name="turquoisegreen" >
+    <color rgba="0.01568627450980392 0.9568627450980393 0.5372549019607843 1.0" />
+  </material>
+
+  <material name="turtlegreen" >
+    <color rgba="0.4588235294117647 0.7215686274509804 0.30980392156862746 1.0" />
+  </material>
+
+  <material name="twilight" >
+    <color rgba="0.3058823529411765 0.3176470588235294 0.5450980392156862 1.0" />
+  </material>
+
+  <material name="twilightblue" >
+    <color rgba="0.0392156862745098 0.2627450980392157 0.47843137254901963 1.0" />
+  </material>
+
+  <material name="uglyblue" >
+    <color rgba="0.19215686274509805 0.4 0.5411764705882353 1.0" />
+  </material>
+
+  <material name="uglybrown" >
+    <color rgba="0.49019607843137253 0.44313725490196076 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="uglygreen" >
+    <color rgba="0.47843137254901963 0.592156862745098 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="uglypink" >
+    <color rgba="0.803921568627451 0.4588235294117647 0.5176470588235295 1.0" />
+  </material>
+
+  <material name="uglypurple" >
+    <color rgba="0.6431372549019608 0.25882352941176473 0.6274509803921569 1.0" />
+  </material>
+
+  <material name="uglyyellow" >
+    <color rgba="0.8156862745098039 0.7568627450980392 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="ultramarine" >
+    <color rgba="0.12549019607843137 0.0 0.6941176470588235 1.0" />
+  </material>
+
+  <material name="ultramarineblue" >
+    <color rgba="0.09411764705882353 0.0196078431372549 0.8588235294117647 1.0" />
+  </material>
+
+  <material name="umber" >
+    <color rgba="0.6980392156862745 0.39215686274509803 0.0 1.0" />
+  </material>
+
+  <material name="velvet" >
+    <color rgba="0.4588235294117647 0.03137254901960784 0.3176470588235294 1.0" />
+  </material>
+
+  <material name="vermillion" >
+    <color rgba="0.9568627450980393 0.19607843137254902 0.047058823529411764 1.0" />
+  </material>
+
+  <material name="verydarkblue" >
+    <color rgba="0.0 0.00392156862745098 0.2 1.0" />
+  </material>
+
+  <material name="verydarkbrown" >
+    <color rgba="0.11372549019607843 0.00784313725490196 0.0 1.0" />
+  </material>
+
+  <material name="verydarkgreen" >
+    <color rgba="0.023529411764705882 0.1803921568627451 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="verydarkpurple" >
+    <color rgba="0.16470588235294117 0.00392156862745098 0.20392156862745098 1.0" />
+  </material>
+
+  <material name="verylightblue" >
+    <color rgba="0.8352941176470589 1.0 1.0 1.0" />
+  </material>
+
+  <material name="verylightbrown" >
+    <color rgba="0.8274509803921568 0.7137254901960784 0.5137254901960784 1.0" />
+  </material>
+
+  <material name="verylightgreen" >
+    <color rgba="0.8196078431372549 1.0 0.7411764705882353 1.0" />
+  </material>
+
+  <material name="verylightpink" >
+    <color rgba="1.0 0.9568627450980393 0.9490196078431372 1.0" />
+  </material>
+
+  <material name="verylightpurple" >
+    <color rgba="0.9647058823529412 0.807843137254902 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="verypaleblue" >
+    <color rgba="0.8392156862745098 1.0 0.996078431372549 1.0" />
+  </material>
+
+  <material name="verypalegreen" >
+    <color rgba="0.8117647058823529 0.9921568627450981 0.7372549019607844 1.0" />
+  </material>
+
+  <material name="vibrantblue" >
+    <color rgba="0.011764705882352941 0.2235294117647059 0.9725490196078431 1.0" />
+  </material>
+
+  <material name="vibrantgreen" >
+    <color rgba="0.0392156862745098 0.8666666666666667 0.03137254901960784 1.0" />
+  </material>
+
+  <material name="vibrantpurple" >
+    <color rgba="0.6784313725490196 0.011764705882352941 0.8705882352941177 1.0" />
+  </material>
+
+  <material name="violet" >
+    <color rgba="0.6039215686274509 0.054901960784313725 0.9176470588235294 1.0" />
+  </material>
+
+  <material name="violetblue" >
+    <color rgba="0.3176470588235294 0.0392156862745098 0.788235294117647 1.0" />
+  </material>
+
+  <material name="violetpink" >
+    <color rgba="0.984313725490196 0.37254901960784315 0.9882352941176471 1.0" />
+  </material>
+
+  <material name="violetred" >
+    <color rgba="0.6470588235294118 0.0 0.3333333333333333 1.0" />
+  </material>
+
+  <material name="viridian" >
+    <color rgba="0.11764705882352941 0.5686274509803921 0.403921568627451 1.0" />
+  </material>
+
+  <material name="vividblue" >
+    <color rgba="0.08235294117647059 0.1803921568627451 1.0 1.0" />
+  </material>
+
+  <material name="vividgreen" >
+    <color rgba="0.1843137254901961 0.9372549019607843 0.06274509803921569 1.0" />
+  </material>
+
+  <material name="vividpurple" >
+    <color rgba="0.6 0.0 0.9803921568627451 1.0" />
+  </material>
+
+  <material name="vomit" >
+    <color rgba="0.6352941176470588 0.6431372549019608 0.08235294117647059 1.0" />
+  </material>
+
+  <material name="vomitgreen" >
+    <color rgba="0.5372549019607843 0.6352941176470588 0.011764705882352941 1.0" />
+  </material>
+
+  <material name="vomityellow" >
+    <color rgba="0.7803921568627451 0.7568627450980392 0.047058823529411764 1.0" />
+  </material>
+
+  <material name="warmblue" >
+    <color rgba="0.29411764705882354 0.3411764705882353 0.8588235294117647 1.0" />
+  </material>
+
+  <material name="warmbrown" >
+    <color rgba="0.5882352941176471 0.3058823529411765 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="warmgrey" >
+    <color rgba="0.592156862745098 0.5411764705882353 0.5176470588235295 1.0" />
+  </material>
+
+  <material name="warmpink" >
+    <color rgba="0.984313725490196 0.3333333333333333 0.5058823529411764 1.0" />
+  </material>
+
+  <material name="warmpurple" >
+    <color rgba="0.5843137254901961 0.1803921568627451 0.5607843137254902 1.0" />
+  </material>
+
+  <material name="washedoutgreen" >
+    <color rgba="0.7372549019607844 0.9607843137254902 0.6509803921568628 1.0" />
+  </material>
+
+  <material name="waterblue" >
+    <color rgba="0.054901960784313725 0.5294117647058824 0.8 1.0" />
+  </material>
+
+  <material name="watermelon" >
+    <color rgba="0.9921568627450981 0.27450980392156865 0.34901960784313724 1.0" />
+  </material>
+
+  <material name="weirdgreen" >
+    <color rgba="0.22745098039215686 0.8980392156862745 0.4980392156862745 1.0" />
+  </material>
+
+  <material name="wheat" >
+    <color rgba="0.984313725490196 0.8666666666666667 0.49411764705882355 1.0" />
+  </material>
+
+  <material name="white" >
+    <color rgba="1.0 1.0 1.0 1.0" />
+  </material>
+
+  <material name="windowsblue" >
+    <color rgba="0.21568627450980393 0.47058823529411764 0.7490196078431373 1.0" />
+  </material>
+
+  <material name="wine" >
+    <color rgba="0.5019607843137255 0.00392156862745098 0.24705882352941178 1.0" />
+  </material>
+
+  <material name="winered" >
+    <color rgba="0.4823529411764706 0.011764705882352941 0.13725490196078433 1.0" />
+  </material>
+
+  <material name="wintergreen" >
+    <color rgba="0.12549019607843137 0.9764705882352941 0.5254901960784314 1.0" />
+  </material>
+
+  <material name="wisteria" >
+    <color rgba="0.6588235294117647 0.49019607843137253 0.7607843137254902 1.0" />
+  </material>
+
+  <material name="yellow" >
+    <color rgba="1.0 1.0 0.0784313725490196 1.0" />
+  </material>
+
+  <material name="yellowbrown" >
+    <color rgba="0.7176470588235294 0.5803921568627451 0.0 1.0" />
+  </material>
+
+  <material name="yellowgreen" >
+    <color rgba="0.7333333333333333 0.9764705882352941 0.058823529411764705 1.0" />
+  </material>
+
+  <material name="yellowish" >
+    <color rgba="0.9803921568627451 0.9333333333333333 0.4 1.0" />
+  </material>
+
+  <material name="yellowishbrown" >
+    <color rgba="0.6078431372549019 0.47843137254901963 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="yellowishgreen" >
+    <color rgba="0.6901960784313725 0.8666666666666667 0.08627450980392157 1.0" />
+  </material>
+
+  <material name="yellowishorange" >
+    <color rgba="1.0 0.6705882352941176 0.058823529411764705 1.0" />
+  </material>
+
+  <material name="yellowishtan" >
+    <color rgba="0.9882352941176471 0.9882352941176471 0.5058823529411764 1.0" />
+  </material>
+
+  <material name="yellowochre" >
+    <color rgba="0.796078431372549 0.615686274509804 0.023529411764705882 1.0" />
+  </material>
+
+  <material name="yelloworange" >
+    <color rgba="0.9882352941176471 0.6901960784313725 0.00392156862745098 1.0" />
+  </material>
+
+  <material name="yellowtan" >
+    <color rgba="1.0 0.8901960784313725 0.43137254901960786 1.0" />
+  </material>
+
+  <material name="yellowybrown" >
+    <color rgba="0.6823529411764706 0.5450980392156862 0.047058823529411764 1.0" />
+  </material>
+
+  <material name="yellowygreen" >
+    <color rgba="0.7490196078431373 0.9450980392156862 0.1568627450980392 1.0" />
+  </material>
+</robot>

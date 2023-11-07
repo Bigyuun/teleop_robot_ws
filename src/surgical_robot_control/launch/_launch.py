@@ -26,6 +26,16 @@ from launch_ros.descriptions import ParameterValue
 
 def generate_launch_description():
     
+    urdf_file = os.path.join(
+        get_package_share_directory('surgical_robot_control'),
+        'urdf',
+        'test.urdf'
+        # 'surgical_tool_v1.urdf'
+    )
+    print(urdf_file)
+    with open(urdf_file, 'r') as infp:
+        robot_description_file = infp.read()
+    
     pkg_share = FindPackageShare('surgical_robot_control').find('surgical_robot_control')
     urdf_dir = os.path.join(pkg_share, 'urdf')
     xacro_file = os.path.join(urdf_dir, 'surgical_tool.urdf.xacro')
@@ -38,7 +48,9 @@ def generate_launch_description():
             executable='robot_state_publisher',
             name='robot_state_publisher',
             parameters=[
-               {'robot_description':robot_desc}
+                {'use_sim_time': False},
+                {'robot_description':robot_description_file}
+                # {'robot_description': robot_description_file}
             ],
             output='screen',
         ),
@@ -47,14 +59,15 @@ def generate_launch_description():
             package='joint_state_publisher_gui',
             executable='joint_state_publisher_gui',
             name='surgical_tool_joint_gui',
+            output='screen'
         ),
         
-        Node(
-            package='surgical_robot_control',
-            executable='broadcaster',
-            name='broadcaster',
-            output='screen',
-        ),
+        # Node(
+        #     package='surgical_robot_control',
+        #     executable='broadcaster',
+        #     name='broadcaster',
+        #     output='screen',
+        # ),
         # Node(
         #     package='surgical_robot_control',
         #     executable='listener',

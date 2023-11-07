@@ -1,0 +1,310 @@
+<?xml version="1.0" ?>
+<robot name="surgical_robot">
+
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="gray">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+  <material name="orange">
+    <color rgba="1.0 0.4 0.0 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba = "0 0 0.8 1"/>
+  </material>
+  <material name="blueviolet">
+    <color rgba = "0.54 0.16 0.88 1.0"/>
+  </material>
+
+  <material name="Al">
+    <mass value="1.0"/>
+  </material>
+
+  <!-- Configuration -->
+  <!-- DY -->
+  <link name="base"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="base"/>
+    <child link="actuator_box"/>
+  </joint>
+
+  <link name="actuator_box">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder length="0.35" radius="0.10"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <cylinder length="35" radius="10"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="tool_base" type="fixed">
+    <parent link="actuator_box"/>
+    <child link="tool_body"/>
+  </joint>
+
+  <link name="tool_body">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.35" />
+      <geometry>
+        <cylinder length="0.15" radius="0.003"/>
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.35"/>
+      <geometry>
+        <cylinder length="0.15" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="tilt1" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="tool_body"/>
+    <child link="seg_tilt1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_tilt1">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blueviolet"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="pan1" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="seg_tilt1"/>
+    <child link="seg_pan1"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_pan1">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="tilt2" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="seg_pan1"/>
+    <child link="seg_tilt2"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_tilt2">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15" />
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blueviolet"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="pan2" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="seg_tilt2"/>
+    <child link="seg_pan2"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_pan2">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="tilt3" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="seg_pan2"/>
+    <child link="seg_tilt3"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_tilt3">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blueviolet"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="pan3" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="seg_tilt3"/>
+    <child link="seg_pan3"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_pan3">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="tilt4" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="seg_pan3"/>
+    <child link="seg_tilt4"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_tilt4">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blueviolet"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="pan4" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="seg_tilt4"/>
+    <child link="seg_pan4"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_pan4">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="tilt5" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="seg_pan4"/>
+    <child link="seg_tilt5"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_tilt5">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blueviolet"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="pan5" type="revolute">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+    <parent link="seg_tilt5"/>
+    <child link="seg_pan5"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
+  </joint>
+
+  <link name="seg_pan5">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.15"/>
+      <geometry>
+        <cylinder length="0.003" radius="0.003"/>
+      </geometry>
+    </collision>
+  </link>
+  
+</robot>
