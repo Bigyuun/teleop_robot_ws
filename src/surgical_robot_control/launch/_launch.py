@@ -29,8 +29,8 @@ def generate_launch_description():
     urdf_file = os.path.join(
         get_package_share_directory('surgical_robot_control'),
         'urdf',
-        'test.urdf'
-        # 'surgical_tool_v1.urdf'
+        # 'test.urdf'
+        'surgical_tool_v1.urdf'
     )
     print(urdf_file)
     with open(urdf_file, 'r') as infp:
