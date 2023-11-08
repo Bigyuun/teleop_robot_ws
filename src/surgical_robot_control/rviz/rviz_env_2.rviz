@@ -51,43 +51,29 @@ Visualization Manager:
         All Enabled: true
         actuator:
           Value: true
-        left_seg_pan_1:
+        base:
           Value: true
-        left_seg_pan_2:
+        seg_pan-1:
           Value: true
-        left_seg_pan_3:
+        seg_pan-2:
           Value: true
-        left_seg_pan_4:
+        seg_pan-3:
           Value: true
-        left_seg_tilt_1:
+        seg_pan-4:
           Value: true
-        left_seg_tilt_2:
+        seg_pan-5:
           Value: true
-        left_seg_tilt_3:
+        seg_tilt-1:
           Value: true
-        left_seg_tilt_4:
+        seg_tilt-2:
           Value: true
-        right_seg_pan_1:
+        seg_tilt-3:
           Value: true
-        right_seg_pan_2:
+        seg_tilt-4:
           Value: true
-        right_seg_pan_3:
-          Value: true
-        right_seg_pan_4:
-          Value: true
-        right_seg_tilt_1:
-          Value: true
-        right_seg_tilt_2:
-          Value: true
-        right_seg_tilt_3:
-          Value: true
-        right_seg_tilt_4:
+        seg_tilt-5:
           Value: true
         shaft:
-          Value: true
-        world:
-          Value: true
-        world_right:
           Value: true
       Marker Scale: 0.20000000298023224
       Name: TF
@@ -95,7 +81,20 @@ Visualization Manager:
       Show Axes: false
       Show Names: false
       Tree:
-        {}
+        base:
+          actuator:
+            shaft:
+              seg_tilt-1:
+                seg_pan-1:
+                  seg_tilt-2:
+                    seg_pan-2:
+                      seg_tilt-3:
+                        seg_pan-3:
+                          seg_tilt-4:
+                            seg_pan-4:
+                              seg_tilt-5:
+                                seg_pan-5:
+                                  {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -116,6 +115,70 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        actuator:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        seg_pan-1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seg_pan-2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seg_pan-3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seg_pan-4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seg_pan-5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seg_tilt-1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seg_tilt-2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seg_tilt-3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seg_tilt-4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seg_tilt-5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        shaft:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
       TF Prefix: ""
       Update Interval: 0
@@ -164,25 +227,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 0.8393051624298096
+      Distance: 0.06371548771858215
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.11050649732351303
-        Y: -0.12272614240646362
-        Z: -0.05151582881808281
+        X: 0.38892048597335815
+        Y: -0.0027308068238198757
+        Z: 0.004182725679129362
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.41039785742759705
+      Pitch: 0.22539806365966797
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.775388240814209
+      Yaw: 0.3403877019882202
     Saved: ~
 Window Geometry:
   Displays:
@@ -198,5 +261,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1280
-  X: 0
+  X: 1280
   Y: 179

@@ -4,6 +4,8 @@
 <!-- <xacro:include filename="my_materials.xacro"/> -->
 <!-- <xacro:include filename="./colors.urdf.xacro" /> -->
 
+<xacro:property name="robot_name" value="left"/>
+
 <xacro:property name="width" value="0.05"/>
 <xacro:property name="height" value="0.2"/>
 <xacro:property name="mass" value="0.1"/>
@@ -19,46 +21,31 @@
 <xacro:property name="blue" value="0 0 0.8 1"/>
 <xacro:property name="blueviolet" value="0.54 0.16 0.88 1.0"/>
 
-    <link name="base">
+    <link name="${robot_name}/base">
         <inertial>
-            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
-            <mass value="${mass}"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+            <mass value="${mass}"/>
         </inertial>
-        <visual>
-            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
-            <geometry>
-                <box size="${width} ${width} ${height}"/>
-            </geometry>
-            <material name="link">
-                <color rgba="1.0 0.0 0.0 1.0"/>
-            </material>
-        </visual>
-        <!-- <collision>
-            <origin xyz="0.0 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
-            <geometry>
-                <box size="${width} ${width} ${height}"/>
-            </geometry>
-        </collision> -->
     </link>
 
-    <joint name="base_actuator" type="fixed">
+    <joint name="${robot_name}/base-actuator" type="revolute">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="base"/>
-        <child link="actuator"/>
+        <parent link="${robot_name}/base"/>
+        <child link="${robot_name}/actuator"/>
         <axis xyz="1.0 0.0 0.0"/>
         <limit lower="-3.14" upper="3.14" effort="30" velocity="1"/>
     </joint>
     
-    <link name="actuator">
-        <inertial>
+    <link name="${robot_name}/actuator">
+        <!-- <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <mesh filename="package://surgical_robot_control/meshes/ActuatorModule_Blender_zero.dae"/>
             <mass value="${mass}"/>
             <inertia ixx="${mass/12*(width*width+width*width)}" ixy="0.0" ixz="0.0"
                 iyy="${mass/12*(width*width+width*width)}" iyz="0.0"
                 izz="${mass/12*(height*height+height*height)}"/>
-        </inertial>
+        </inertial> -->
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
@@ -68,21 +55,21 @@
                 <color rgba="1.0 1.0 0.0 0.4"/>
             </material> -->
         </visual>
-        <!-- <collision>
+        <collision>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <mesh filename="package://surgical_robot_control/meshes/ActuatorModule_Blender_zero.dae"/>
             </geometry>
-        </collision> -->
+        </collision>
     </link>
 
-    <joint name="actuator_shaft" type="fixed">
+    <joint name="${robot_name}/actuator-shaft" type="fixed">
         <origin xyz="0.187 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="actuator"/>
-        <child link="shaft"/>
+        <parent link="${robot_name}/actuator"/>
+        <child link="${robot_name}/shaft"/>
     </joint>
 
-    <link name="shaft">
+    <link name="${robot_name}/shaft">
         <inertial>
             <origin xyz="0.25 0.0 0.0" rpy="0.0 2.0 0.0"/>
             <mass value="${mass}"/>
@@ -95,27 +82,27 @@
             <geometry>
                 <cylinder radius="0.0015" length="${height}"/>
             </geometry>
-            <material name="shaft">
+            <material name="${robot_name}/shaft">
                 <color rgba="1.0 1.0 0.0 0.3"/>
             </material>
         </visual>
-        <!-- <collision>
+        <collision>
             <origin xyz="${height/2} 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <cylinder radius="0.0015" length="${height}"/>
             </geometry>
-        </collision> -->
+        </collision>
     </link>
 
-    <joint name="tilt_1" type="revolute">
+    <joint name="${robot_name}/tilt-1" type="revolute">
         <origin xyz="${height} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="shaft"/>
-        <child link="seg_tilt_1"/>
+        <parent link="${robot_name}/shaft"/>
+        <child link="${robot_name}/seg_tilt-1"/>
         <axis xyz="${tilt}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_tilt_1">
+    <link name="${robot_name}/seg_tilt-1">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
@@ -124,15 +111,15 @@
         </visual>
     </link>
     
-    <joint name="pan_1" type="revolute">
+    <joint name="${robot_name}/pan-1" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="seg_tilt_1"/>
-        <child link="seg_pan_1"/>
+        <parent link="${robot_name}/seg_tilt-1"/>
+        <child link="${robot_name}/seg_pan-1"/>
         <axis xyz="${pan}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_pan_1">
+    <link name="${robot_name}/seg_pan-1">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
             <geometry>
@@ -141,15 +128,15 @@
         </visual>
     </link>
 
-    <joint name="tilt_2" type="revolute">
+    <joint name="${robot_name}/tilt-2" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="seg_pan_1"/>
-        <child link="seg_tilt_2"/>
+        <parent link="${robot_name}/seg_pan-1"/>
+        <child link="${robot_name}/seg_tilt-2"/>
         <axis xyz="${tilt}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_tilt_2">
+    <link name="${robot_name}/seg_tilt-2">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
@@ -158,15 +145,15 @@
         </visual>
     </link>
 
-    <joint name="pan_2" type="revolute">
+    <joint name="${robot_name}/pan-2" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="seg_tilt_2"/>
-        <child link="seg_pan_2"/>
+        <parent link="${robot_name}/seg_tilt-2"/>
+        <child link="${robot_name}/seg_pan-2"/>
         <axis xyz="${pan}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_pan_2">
+    <link name="${robot_name}/seg_pan-2">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
             <geometry>
@@ -175,15 +162,15 @@
         </visual>
     </link>
 
-    <joint name="tilt_3" type="revolute">
+    <joint name="${robot_name}/tilt-3" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="seg_pan_2"/>
-        <child link="seg_tilt_3"/>
+        <parent link="${robot_name}/seg_pan-2"/>
+        <child link="${robot_name}/seg_tilt-3"/>
         <axis xyz="${tilt}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_tilt_3">
+    <link name="${robot_name}/seg_tilt-3">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
@@ -192,15 +179,15 @@
         </visual>
     </link>
 
-    <joint name="pan_3" type="revolute">
+    <joint name="pan-3" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="seg_tilt_3"/>
-        <child link="seg_pan_3"/>
+        <parent link="${robot_name}/seg_tilt-3"/>
+        <child link="${robot_name}/seg_pan-3"/>
         <axis xyz="${pan}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_pan_3">
+    <link name="${robot_name}/seg_pan-3">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
             <geometry>
@@ -209,15 +196,15 @@
         </visual>
     </link>
 
-    <joint name="tilt_4" type="revolute">
+    <joint name="tilt-4" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="seg_pan_3"/>
-        <child link="seg_tilt_4"/>
+        <parent link="${robot_name}/seg_pan-3"/>
+        <child link="${robot_name}/seg_tilt-4"/>
         <axis xyz="${tilt}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_tilt_4">
+    <link name="${robot_name}/seg_tilt-4">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
@@ -226,15 +213,15 @@
         </visual>
     </link>
 
-    <joint name="pan_4" type="revolute">
+    <joint name="${robot_name}/pan-4" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="seg_tilt_4"/>
-        <child link="seg_pan_4"/>
+        <parent link="${robot_name}/seg_tilt-4"/>
+        <child link="${robot_name}/seg_pan-4"/>
         <axis xyz="${pan}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_pan_4">
+    <link name="${robot_name}/seg_pan-4">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
             <geometry>
@@ -243,15 +230,15 @@
         </visual>
     </link>
 
-    <joint name="tilt_5" type="revolute">
+    <joint name="${robot_name}/tilt-5" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="seg_pan_4"/>
-        <child link="seg_tilt_5"/>
+        <parent link="${robot_name}/seg_pan-4"/>
+        <child link="${robot_name}/seg_tilt-5"/>
         <axis xyz="${tilt}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_tilt_5">
+    <link name="${robot_name}/seg_tilt-5">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
@@ -260,15 +247,15 @@
         </visual>
     </link>
 
-    <joint name="pan_5" type="revolute">
+    <joint name="${robot_name}/pan-5" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="seg_tilt_5"/>
-        <child link="seg_pan_5"/>
+        <parent link="${robot_name}/seg_tilt-5"/>
+        <child link="${robot_name}/seg_pan-5"/>
         <axis xyz="${pan}"/>
         <limit lower="-0.7854" upper="0.7854" effort="30.0" velocity="3.141"/>
     </joint>
 
-    <link name="seg_pan_5">
+    <link name="${robot_name}/seg_pan-5">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="1.5708 0.0 0.0"/>
             <geometry>

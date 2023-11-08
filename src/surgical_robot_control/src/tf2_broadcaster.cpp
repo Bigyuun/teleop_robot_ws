@@ -85,11 +85,11 @@ ContinuumManipulator::ContinuumManipulator()
       // Left Continuum Manipulator
       //================================================
       tf_stamped.header.stamp = this->now();
-      tf_stamped.header.frame_id = "world";
-      tf_stamped.child_frame_id = "left_seg_pan_1";
-      tf_stamped.transform.translation.x = 0.1 + JOINT_INTERVAL*100/this->scale_of_unit_;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.0;
+      tf_stamped.header.frame_id = "left/shaft";
+      tf_stamped.child_frame_id = "left/seg_pan-1";
+      // tf_stamped.transform.translation.x = 0.1 + JOINT_INTERVAL*100/this->scale_of_unit_;
+      // tf_stamped.transform.translation.y = 0.0;
+      // tf_stamped.transform.translation.z = 0.0;
       #if SINE_TEST
       quaternion.setRPY(0, 0.3 * sin(rad), 0);
       #else
@@ -107,11 +107,11 @@ ContinuumManipulator::ContinuumManipulator()
 
 
       tf_stamped.header.stamp = this->now();
-      tf_stamped.header.frame_id = "left_seg_pan_1";
-      tf_stamped.child_frame_id = "left_seg_tilt_1";
-      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.0;
+      tf_stamped.header.frame_id = "left/seg_pan-1";
+      tf_stamped.child_frame_id = "left/seg_tilt-1";
+      // tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      // tf_stamped.transform.translation.y = 0.0;
+      // tf_stamped.transform.translation.z = 0.0;
       #if SINE_TEST
       quaternion.setRPY(0.3 * sin(rad), 0, 0);
       #else
@@ -128,11 +128,11 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
 
-      tf_stamped.header.frame_id = "left_seg_tilt_1";
-      tf_stamped.child_frame_id = "left_seg_pan_2";
-      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.0;
+      tf_stamped.header.frame_id = "left/seg_tilt-1";
+      tf_stamped.child_frame_id = "left/seg_pan-2";
+      // tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      // tf_stamped.transform.translation.y = 0.0;
+      // tf_stamped.transform.translation.z = 0.0;
       #if SINE_TEST
       quaternion.setRPY(0.3 * sin(rad), 0, 0);
       #else
@@ -149,11 +149,11 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
 
-      tf_stamped.header.frame_id = "left_seg_pan_2";
-      tf_stamped.child_frame_id = "left_seg_tilt_2";
-      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.0;
+      tf_stamped.header.frame_id = "left/seg_pan-2";
+      tf_stamped.child_frame_id = "left/seg_tilt-2";
+      // tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      // tf_stamped.transform.translation.y = 0.0;
+      // tf_stamped.transform.translation.z = 0.0;
 
       #if SINE_TEST
       quaternion.setRPY(0.3 * sin(rad), 0, 0);
@@ -171,52 +171,8 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
 
-      tf_stamped.header.frame_id = "left_seg_tilt_2";
-      tf_stamped.child_frame_id = "left_seg_pan_3";
-      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.0;
-
-      #if SINE_TEST
-      quaternion.setRPY(0.3 * sin(rad), 0, 0);
-      #else
-      quaternion.setRPY(
-        0,
-        0,
-        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
-      );
-      #endif
-      tf_stamped.transform.rotation.x = quaternion.x();
-      tf_stamped.transform.rotation.y = quaternion.y();
-      tf_stamped.transform.rotation.z = quaternion.z();
-      tf_stamped.transform.rotation.w = quaternion.w();
-      tf_stamped_list_.push_back(tf_stamped);
-
-
-      tf_stamped.header.frame_id = "left_seg_pan_3";
-      tf_stamped.child_frame_id = "left_seg_tilt_3";
-      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.0;
-
-      #if SINE_TEST
-      quaternion.setRPY(0.3 * sin(rad), 0, 0);
-      #else
-      quaternion.setRPY(
-        0,
-        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
-        0
-      );
-      #endif
-      tf_stamped.transform.rotation.x = quaternion.x();
-      tf_stamped.transform.rotation.y = quaternion.y();
-      tf_stamped.transform.rotation.z = quaternion.z();
-      tf_stamped.transform.rotation.w = quaternion.w();
-      tf_stamped_list_.push_back(tf_stamped);
-
-
-      tf_stamped.header.frame_id = "left_seg_tilt_3";
-      tf_stamped.child_frame_id = "left_seg_pan_4";
+      tf_stamped.header.frame_id = "left/seg_tilt-2";
+      tf_stamped.child_frame_id = "left/seg_pan-3";
       tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
       tf_stamped.transform.translation.z = 0.0;
@@ -237,8 +193,52 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
 
-      tf_stamped.header.frame_id = "left_seg_pan_4";
-      tf_stamped.child_frame_id = "left_seg_tilt_4";
+      tf_stamped.header.frame_id = "left/seg_pan-3";
+      tf_stamped.child_frame_id = "left/seg_tilt-3";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_left_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "left/seg_tilt-3";
+      tf_stamped.child_frame_id = "left/seg_pan-4";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_left_.angular.z/NUM_OF_JOINT
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "left/seg_pan-4";
+      tf_stamped.child_frame_id = "left/seg_tilt-4";
       tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
       tf_stamped.transform.translation.z = 0.0;
@@ -262,8 +262,8 @@ ContinuumManipulator::ContinuumManipulator()
       // Right Continuum Manipulator
       //================================================
       tf_stamped.header.stamp = this->now();
-      tf_stamped.header.frame_id = "world";
-      tf_stamped.child_frame_id = "world_right";
+      tf_stamped.header.frame_id = "right/shaft";
+      tf_stamped.child_frame_id = "right/seg_tilt-1";
       tf_stamped.transform.translation.x = 0.0;
       tf_stamped.transform.translation.y = -1.0;
       tf_stamped.transform.translation.z = 0.0;
@@ -283,8 +283,8 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
       tf_stamped.header.stamp = this->now();
-      tf_stamped.header.frame_id = "world_right";
-      tf_stamped.child_frame_id = "right_seg_pan_1";
+      tf_stamped.header.frame_id = "right/seg_tilt-1";
+      tf_stamped.child_frame_id = "right/seg_pan-1";
       tf_stamped.transform.translation.x = 0.1 + JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
       tf_stamped.transform.translation.z = 0.0;
@@ -305,8 +305,8 @@ ContinuumManipulator::ContinuumManipulator()
 
 
       tf_stamped.header.stamp = this->now();
-      tf_stamped.header.frame_id = "right_seg_pan_1";
-      tf_stamped.child_frame_id = "right_seg_tilt_1";
+      tf_stamped.header.frame_id = "right/seg_pan-1";
+      tf_stamped.child_frame_id = "right/seg_tilt-1";
       tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
       tf_stamped.transform.translation.z = 0.0;
@@ -326,8 +326,8 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
 
-      tf_stamped.header.frame_id = "right_seg_tilt_1";
-      tf_stamped.child_frame_id = "right_seg_pan_2";
+      tf_stamped.header.frame_id = "right/seg_tilt-1";
+      tf_stamped.child_frame_id = "right/seg_pan-2";
       tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
       tf_stamped.transform.translation.z = 0.0;
@@ -347,52 +347,8 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
 
-      tf_stamped.header.frame_id = "right_seg_pan_2";
-      tf_stamped.child_frame_id = "right_seg_tilt_2";
-      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.0;
-
-      #if SINE_TEST
-      quaternion.setRPY(0.3 * sin(rad), 0, 0);
-      #else
-      quaternion.setRPY(
-        0,
-        surgical_tool_pose_right_.angular.y/NUM_OF_JOINT,
-        0
-      );
-      #endif
-      tf_stamped.transform.rotation.x = quaternion.x();
-      tf_stamped.transform.rotation.y = quaternion.y();
-      tf_stamped.transform.rotation.z = quaternion.z();
-      tf_stamped.transform.rotation.w = quaternion.w();
-      tf_stamped_list_.push_back(tf_stamped);
-
-
-      tf_stamped.header.frame_id = "right_seg_tilt_2";
-      tf_stamped.child_frame_id = "right_seg_pan_3";
-      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
-      tf_stamped.transform.translation.y = 0.0;
-      tf_stamped.transform.translation.z = 0.0;
-
-      #if SINE_TEST
-      quaternion.setRPY(0.3 * sin(rad), 0, 0);
-      #else
-      quaternion.setRPY(
-        0,
-        0,
-        surgical_tool_pose_right_.angular.z/NUM_OF_JOINT
-      );
-      #endif
-      tf_stamped.transform.rotation.x = quaternion.x();
-      tf_stamped.transform.rotation.y = quaternion.y();
-      tf_stamped.transform.rotation.z = quaternion.z();
-      tf_stamped.transform.rotation.w = quaternion.w();
-      tf_stamped_list_.push_back(tf_stamped);
-
-
-      tf_stamped.header.frame_id = "right_seg_pan_3";
-      tf_stamped.child_frame_id = "right_seg_tilt_3";
+      tf_stamped.header.frame_id = "right/seg_pan-2";
+      tf_stamped.child_frame_id = "right/seg_tilt-2";
       tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
       tf_stamped.transform.translation.z = 0.0;
@@ -413,8 +369,8 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
 
-      tf_stamped.header.frame_id = "right_seg_tilt_3";
-      tf_stamped.child_frame_id = "right_seg_pan_4";
+      tf_stamped.header.frame_id = "right/seg_tilt-2";
+      tf_stamped.child_frame_id = "right/seg_pan-3";
       tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
       tf_stamped.transform.translation.z = 0.0;
@@ -435,8 +391,52 @@ ContinuumManipulator::ContinuumManipulator()
       tf_stamped_list_.push_back(tf_stamped);
 
 
-      tf_stamped.header.frame_id = "right_seg_pan_4";
-      tf_stamped.child_frame_id = "right_seg_tilt_4";
+      tf_stamped.header.frame_id = "right/seg_pan-3";
+      tf_stamped.child_frame_id = "right/seg_tilt-3";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        surgical_tool_pose_right_.angular.y/NUM_OF_JOINT,
+        0
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "right/seg_tilt-3";
+      tf_stamped.child_frame_id = "right/seg_pan-4";
+      tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
+      tf_stamped.transform.translation.y = 0.0;
+      tf_stamped.transform.translation.z = 0.0;
+
+      #if SINE_TEST
+      quaternion.setRPY(0.3 * sin(rad), 0, 0);
+      #else
+      quaternion.setRPY(
+        0,
+        0,
+        surgical_tool_pose_right_.angular.z/NUM_OF_JOINT
+      );
+      #endif
+      tf_stamped.transform.rotation.x = quaternion.x();
+      tf_stamped.transform.rotation.y = quaternion.y();
+      tf_stamped.transform.rotation.z = quaternion.z();
+      tf_stamped.transform.rotation.w = quaternion.w();
+      tf_stamped_list_.push_back(tf_stamped);
+
+
+      tf_stamped.header.frame_id = "right/seg_pan-4";
+      tf_stamped.child_frame_id = "right/seg_tilt-4";
       tf_stamped.transform.translation.x = 0.5 * JOINT_INTERVAL*100/this->scale_of_unit_;
       tf_stamped.transform.translation.y = 0.0;
       tf_stamped.transform.translation.z = 0.0;

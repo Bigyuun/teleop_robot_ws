@@ -30,52 +30,63 @@ def generate_launch_description():
         get_package_share_directory('surgical_robot_control'),
         'urdf',
         # 'test.urdf'
-        'surgical_tool_v1.urdf'
+        'surgical_tool.urdf'
     )
-    print(urdf_file)
     with open(urdf_file, 'r') as infp:
         robot_description_file = infp.read()
     
     pkg_share = FindPackageShare('surgical_robot_control').find('surgical_robot_control')
     urdf_dir = os.path.join(pkg_share, 'urdf')
+    
     xacro_file = os.path.join(urdf_dir, 'surgical_tool.urdf.xacro')
     robot_desc = launch.substitutions.Command('xacro %s' % xacro_file)
     
-    xacro_file_2 = os.path.join(urdf_dir, 'surgical_tool_extend.urdf.xacro')
-    robot_desc_2 = launch.substitutions.Command('xacro %s' % xacro_file)
+    xacro_file = os.path.join(urdf_dir, 'surgical_tool_left.urdf.xacro')
+    surgical_tool_left_robot_desc = launch.substitutions.Command('xacro %s' % xacro_file)
+    xacro_file = os.path.join(urdf_dir, 'surgical_tool_right.urdf.xacro')
+    surgical_tool_right_robot_desc = launch.substitutions.Command('xacro %s' % xacro_file)
     
+    rviz_packages_dir = get_package_share_directory('surgical_robot_control')
+
     return LaunchDescription([
-    
+      
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
+            namespace='left',
             name='robot_state_publisher',
             parameters=[
-                {'use_sim_time': False},
-                {'robot_description':robot_desc}
-                # {'robot_description': robot_description_file}
+                {'use_sim_time': True},
+                {'robot_description':surgical_tool_left_robot_desc}
+            ],
+            output='screen',
+        ),
+        Node(
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
+            namespace='right',
+            name='robot_state_publisher',
+            parameters=[
+                {'use_sim_time': True},
+                {'robot_description':surgical_tool_right_robot_desc}
             ],
             output='screen',
         ),
         
-        Node(
-            package='robot_state_publisher',
-            executable='robot_state_publisher',
-            name='robot_state_publisher',
-            parameters=[
-                {'use_sim_time': False},
-                {'robot_description':robot_desc_2}
-                # {'robot_description': robot_description_file}
-            ],
-            output='screen',
-        ),
-        
-        Node(
-            package='joint_state_publisher_gui',
-            executable='joint_state_publisher_gui',
-            name='surgical_tool_joint_gui',
-            output='screen'
-        ),
+        # Node(
+        #     package='joint_state_publisher_gui',
+        #     executable='joint_state_publisher_gui',
+        #     namespace='left',
+        #     name='surgical_tool_joint_gui',
+        #     output='screen'
+        # ),
+        # Node(
+        #     package='joint_state_publisher_gui',
+        #     executable='joint_state_publisher_gui',
+        #     namespace='right',
+        #     name='surgical_tool_joint_gui',
+        #     output='screen'
+        # ),
         
         # Node(
         #     package='surgical_robot_control',
@@ -83,29 +94,18 @@ def generate_launch_description():
         #     name='broadcaster',
         #     output='screen',
         # ),
-        # Node(
-        #     package='surgical_robot_control',
-        #     executable='listener',
-        #     name='listener',
-        #     output='screen',
-        # ),
-        # Node(
-        #     package='surgical_robot_control',
-        #     executable='static_broadcaster',
-        #     name='static_broadcaster',
-        #     output='screen',
-        # ),
-        
-        # Node(
-        #     package='rviz2',
-        #     executable='rviz2',
-        #     name='rviz2',
-        #     output='screen'),
         
         Node(
             package='surgical_robot_control',
             executable='surgical_robot_control_node',
             name='surgical_robot_control_node',
+            output='screen',
+        ),
+        
+        Node(
+            package='surgical_robot_control',
+            executable='joint_state_publisher',
+            name='surgical_tool_joint_state_publisher',
             output='screen',
         ),
     ])

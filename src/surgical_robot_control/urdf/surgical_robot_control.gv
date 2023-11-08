@@ -1,0 +1,41 @@
+digraph G {
+node [shape=box];
+"base" [label="base"];
+"actuator" [label="actuator"];
+"shaft" [label="shaft"];
+"seg_tilt_1" [label="seg_tilt_1"];
+"seg_pan_1" [label="seg_pan_1"];
+"seg_tilt_2" [label="seg_tilt_2"];
+"seg_pan_2" [label="seg_pan_2"];
+"seg_tilt_3" [label="seg_tilt_3"];
+"seg_pan_3" [label="seg_pan_3"];
+"seg_tilt_4" [label="seg_tilt_4"];
+"seg_pan_4" [label="seg_pan_4"];
+"seg_tilt_5" [label="seg_tilt_5"];
+"seg_pan_5" [label="seg_pan_5"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base" -> "base_actuator" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"base_actuator" -> "actuator"
+"actuator" -> "actuator_shaft" [label="xyz: 0.187 0 0 \nrpy: 0 -0 0"]
+"actuator_shaft" -> "shaft"
+"shaft" -> "tilt_1" [label="xyz: 0.2 0 0 \nrpy: 0 -0 0"]
+"tilt_1" -> "seg_tilt_1"
+"seg_tilt_1" -> "pan_1" [label="xyz: 0.0018 0 0 \nrpy: 0 -0 0"]
+"pan_1" -> "seg_pan_1"
+"seg_pan_1" -> "tilt_2" [label="xyz: 0.0018 0 0 \nrpy: 0 -0 0"]
+"tilt_2" -> "seg_tilt_2"
+"seg_tilt_2" -> "pan_2" [label="xyz: 0.0018 0 0 \nrpy: 0 -0 0"]
+"pan_2" -> "seg_pan_2"
+"seg_pan_2" -> "tilt_3" [label="xyz: 0.0018 0 0 \nrpy: 0 -0 0"]
+"tilt_3" -> "seg_tilt_3"
+"seg_tilt_3" -> "pan_3" [label="xyz: 0.0018 0 0 \nrpy: 0 -0 0"]
+"pan_3" -> "seg_pan_3"
+"seg_pan_3" -> "tilt_4" [label="xyz: 0.0018 0 0 \nrpy: 0 -0 0"]
+"tilt_4" -> "seg_tilt_4"
+"seg_tilt_4" -> "pan_4" [label="xyz: 0.0018 0 0 \nrpy: 0 -0 0"]
+"pan_4" -> "seg_pan_4"
+"seg_pan_4" -> "tilt_5" [label="xyz: 0.0018 0 0 \nrpy: 0 -0 0"]
+"tilt_5" -> "seg_tilt_5"
+"seg_tilt_5" -> "pan_5" [label="xyz: 0.0018 0 0 \nrpy: 0 -0 0"]
+"pan_5" -> "seg_pan_5"
+}

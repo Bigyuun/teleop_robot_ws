@@ -56,7 +56,7 @@ def generate_launch_description():
         executable='rviz2',
         name='rviz2',
         output='screen',
-        arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env.rviz')]
+        arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env_left.rviz')]
         # parameters=[{'rviz_config': './rviz_env.rviz'}]
       ),
       
@@ -65,7 +65,7 @@ def generate_launch_description():
         executable='rviz2',
         name='rviz2',
         output='screen',
-        arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env_2.rviz')]
+        arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env_right.rviz'),],
         # parameters=[{'rviz_config': './rviz_env.rviz'}]
       ),
   ])
