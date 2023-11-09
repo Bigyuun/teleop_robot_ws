@@ -20,11 +20,12 @@ Ubuntu 20.04.6 LTS
 - ROS2 Foxy (Focal)
   <https://docs.ros.org/en/foxy/index.html>
 #### ROS2 packages 
-##### Support
+##### Support (Officially)
 - Rviz2
 - teleop_twist_joy
 - robot_state_publisher
-- joint_state_publisher_gui
+- joint_state_publisher
+- joint_state_publisher_gui (optional)
 ##### Custom
 - surgical_robot_control
 
@@ -34,8 +35,9 @@ Ubuntu 20.04.6 LTS
 ```bash
   $ sudo apt install ros-{distro}-xacro
 ```
-- joint_state_publisher_gui
+- joint_state_publisher & gui
 ```bash
+  $ sudo apt install ros-{distro}-joint-state-publisher
   $ sudo apt install ros-{distro}-joint-state-publisher-gui
 ```
 ##### python
@@ -51,10 +53,15 @@ Ubuntu 20.04.6 LTS
 #### System Configuration
 ![Image Description](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/ros2_system_config.png)
 
-#### Node
+#### Rviz
+<!-- ![Image Description](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/rviz_screen.png) -->
+![Alt text](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/rviz_simulator_twin_test.gif) / ![](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/rviz_simulator_twin_test.gif)
+
+#### Node & Topic
 - **'surgical_robot_control_node'**
   - Publisher<br/>
     `kinematics_control_target_val`<br/>
+    `surgical_tool_pose`<br/>
   - Subscriber<br/>
     `/joy`<br/>
     `/motor_state`<br/>
@@ -71,13 +78,12 @@ Ubuntu 20.04.6 LTS
   - Publisher<br/>
     `/tf`<br/>
     `/robot_description`<br/>
-  - Subscriber<br/>
     `/joint_states`<br/>
 - **joy_node**
   - Publisher<br/>
     `/joy`<br/>
 
-#### Topic
+#### Interface
 - **Custom interfaces**
   - MotorCommand.msg
     |Type|Name|
