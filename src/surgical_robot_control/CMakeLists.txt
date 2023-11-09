@@ -27,8 +27,10 @@ find_package(tf2_geometry_msgs REQUIRED)
 find_package(custom_interfaces REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(sensor_msgs REQUIRED)
-find_package(rclcpp_action REQUIRED)
 find_package(robot_state_publisher REQUIRED) 
+# find_package(joint_state_publisher REQUIRED) 
+# find_package(joint_state_publisher_gui REQUIRED) 
+find_package(urdf REQUIRED)
 
 # DY
 include_directories(include
@@ -60,8 +62,16 @@ ament_target_dependencies(homing_node
   custom_interfaces
 )
 
-
-
+add_executable(joint_state_publisher src/tf2_joint_state_publisher.cpp)
+ament_target_dependencies(joint_state_publisher
+                          rclcpp
+                          sensor_msgs
+                          geometry_msgs
+                          # tf2
+                          # tf2_ros
+                          # tf2_geometry_msgs
+                          # custom_interfaces
+                          )
 
 add_executable(broadcaster src/tf2_broadcaster.cpp)
 ament_target_dependencies(broadcaster
@@ -104,13 +114,14 @@ ament_target_dependencies(listener
 install(TARGETS
   surgical_robot_control_node
   homing_node
+  joint_state_publisher
   broadcaster
   static_broadcaster
   listener
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY launch urdf rviz
+install(DIRECTORY launch urdf rviz meshes param
   DESTINATION share/${PROJECT_NAME}
 )
 

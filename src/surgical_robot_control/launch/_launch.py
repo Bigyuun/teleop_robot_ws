@@ -38,23 +38,30 @@ def generate_launch_description():
             executable='robot_state_publisher',
             name='surgical_robot_state_publisher',
             parameters=[
+               {'use_sim_time': True},
                {'robot_description':robot_desc}
             ],
             output='screen',
         ),
-        
-        Node(
-            package='joint_state_publisher_gui',
-            executable='joint_state_publisher_gui',
-            name='surgical_tool_joint_gui',
-        ),
-        
+        # Node(
+        #     package='joint_state_publisher_gui',
+        #     executable='joint_state_publisher_gui',
+        #     name='surgical_tool_joint_gui',
+        # ),
         Node(
             package='surgical_robot_control',
-            executable='broadcaster',
-            name='broadcaster',
+            executable='joint_state_publisher',
+            # namespace='left',
+            name='surgical_tool_joint_state_publisher',
             output='screen',
         ),
+        
+        # Node(
+        #     package='surgical_robot_control',
+        #     executable='broadcaster',
+        #     name='broadcaster',
+        #     output='screen',
+        # ),
         # Node(
         #     package='surgical_robot_control',
         #     executable='listener',
@@ -79,4 +86,6 @@ def generate_launch_description():
             name='surgical_robot_control_node',
             output='screen',
         ),
+        
+        
     ])

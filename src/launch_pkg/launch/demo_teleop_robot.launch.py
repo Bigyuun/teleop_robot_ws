@@ -31,31 +31,31 @@ def generate_launch_description():
   
   return LaunchDescription([
 
-      IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-          [get_package_share_directory('loadcell_pkg'), '/launch/_launch.py']),
-      ),
+    IncludeLaunchDescription(
+      PythonLaunchDescriptionSource(
+        [get_package_share_directory('loadcell_pkg'), '/launch/_launch.py']),
+    ),
 
-      IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-          [get_package_share_directory('surgical_robot_control'), '/launch/_launch.py'])
-      ),
-      
-      IncludeLaunchDescription(      
-        PythonLaunchDescriptionSource(
-          [get_package_share_directory('tcp_pkg'), '/launch/demo.launch.py'])
-      ),
-      
-      IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-          [get_package_share_directory('teleop_twist_joy'), '/launch/teleop-launch.py']),
-      ),
-      
-      Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        output='screen',
-        arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env.rviz')]
-      ),
+    IncludeLaunchDescription(
+      PythonLaunchDescriptionSource(
+        [get_package_share_directory('surgical_robot_control'), '/launch/_launch.py'])
+    ),
+    
+    IncludeLaunchDescription(      
+      PythonLaunchDescriptionSource(
+        [get_package_share_directory('tcp_pkg'), '/launch/demo.launch.py'])
+    ),
+    
+    IncludeLaunchDescription(
+      PythonLaunchDescriptionSource(
+        [get_package_share_directory('teleop_twist_joy'), '/launch/teleop-launch.py']),
+    ),
+    
+    Node(
+      package='rviz2',
+      executable='rviz2',
+      name='rviz2',
+      output='screen',
+      arguments=['-d', os.path.join(rviz_packages_dir, 'rviz', 'rviz_env.rviz')]
+    ),
   ])
