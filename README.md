@@ -55,7 +55,7 @@ Ubuntu 20.04.6 LTS
 
 #### Rviz
 <!-- ![Image Description](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/rviz_screen.png) -->
-![Alt text](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/rviz_simulator_twin_test.gif) / ![](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/rviz_simulator_twin_test.gif)
+![Alt text](https://github.com/Bigyuun/teleop_robot_ws/blob/main/media/rviz_simulator_twin_test.gif)
 
 #### Node & Topic
 - **'surgical_robot_control_node'**
