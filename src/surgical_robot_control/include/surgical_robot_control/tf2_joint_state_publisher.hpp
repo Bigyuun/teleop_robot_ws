@@ -21,11 +21,14 @@ class JointStatePublisher : public rclcpp::Node
 {
 public:
   explicit JointStatePublisher(const rclcpp::NodeOptions & node_options = rclcpp::NodeOptions());
-  void publish();
+  void publishall();
 
 private:
-  rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr publisher_;
-  sensor_msgs::msg::JointState joint_state_;
+  rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr surgical_tool_left_publisher_;
+  sensor_msgs::msg::JointState surgical_tool_left_joint_state_;
+
+  rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr surgical_tool_right_publisher_;
+  sensor_msgs::msg::JointState surgical_tool_right_joint_state_;
   // rclcpp::WallRate loop_rate_;
   rclcpp::TimerBase::SharedPtr timer_;
 

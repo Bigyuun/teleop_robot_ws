@@ -179,7 +179,7 @@
         </visual>
     </link>
 
-    <joint name="pan-3" type="revolute">
+    <joint name="${robot_name}/pan-3" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="${robot_name}/seg_tilt-3"/>
         <child link="${robot_name}/seg_pan-3"/>
@@ -196,7 +196,7 @@
         </visual>
     </link>
 
-    <joint name="tilt-4" type="revolute">
+    <joint name="${robot_name}/tilt-4" type="revolute">
         <origin xyz="${seg_interval} 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="${robot_name}/seg_pan-3"/>
         <child link="${robot_name}/seg_tilt-4"/>
