@@ -3,6 +3,7 @@ log
 build
 install
 src/loadcell_pkg/loadcell_pkg/__pycache__/
+src/loadcell_pkg/loadcell_pkg/__pycache__
 __pycache__/
 *.py[cod]
 *.cpython-38.pyc
