@@ -36,6 +36,7 @@ def generate_launch_description():
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
+            # namespace='left',
             name='surgical_robot_state_publisher',
             parameters=[
                {'use_sim_time': True},
@@ -51,7 +52,6 @@ def generate_launch_description():
         Node(
             package='surgical_robot_control',
             executable='joint_state_publisher',
-            # namespace='left',
             name='surgical_tool_joint_state_publisher',
             output='screen',
         ),
