@@ -85,7 +85,7 @@ Ubuntu 20.04.6 LTS
 
 #### Interface
 - **Custom interfaces**
-  - MotorCommand.msg
+  - LoadcellState.msg
     |Type|Name|
     |:--|:--|
     |builtin_interfaces/Time|stamp|

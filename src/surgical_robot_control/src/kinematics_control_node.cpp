@@ -176,12 +176,6 @@ void KinematicsControlNode::cal_kinematics() {
   // }
 
   this->kinematics_control_target_val_.stamp = this->now();
-  this->kinematics_control_target_val_.target_position[0] = DIRECTION_COUPLER * f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[1] = DIRECTION_COUPLER * f_val[1] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[2] = DIRECTION_COUPLER * f_val[2] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[3] = DIRECTION_COUPLER * f_val[3] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-  this->kinematics_control_target_val_.target_position[4] = DIRECTION_COUPLER * f_val[4] * gear_encoder_ratio_conversion(GEAR_RATIO_3_9, ENCODER_CHANNEL, ENCODER_RESOLUTION);
-
   this->kinematics_control_target_val_.target_position[0] = this->virtual_home_pos_[0]
                                                             + DIRECTION_COUPLER * f_val[0] * gear_encoder_ratio_conversion(GEAR_RATIO_44, ENCODER_CHANNEL, ENCODER_RESOLUTION);
   this->kinematics_control_target_val_.target_position[1] = this->virtual_home_pos_[1]
@@ -229,93 +223,93 @@ void KinematicsControlNode::set_position_zero() {
 }
 
 
-int8_t KinematicsControlNode::homing() {
-  this->op_mode_ = kHoming;
-  // Calibration & Homing
-  bool loop_out_flag[NUM_OF_MOTORS] = {false,};
-  RCLCPP_WARN(this->get_logger(), "Start Homing");
+// int8_t KinematicsControlNode::homing() {
+//   this->op_mode_ = kHoming;
+//   // Calibration & Homing
+//   bool loop_out_flag[NUM_OF_MOTORS] = {false,};
+//   RCLCPP_WARN(this->get_logger(), "Start Homing");
 
-  while(this->op_mode_ == kHoming) {
-    // if loadcell is operating
-    if (this->loadcell_op_flag_ == false || this->motorstate_op_flag_ == false) {
-      std:: cout << "loadcell_op_flag_   : " << this->loadcell_op_flag_ << std::endl;
-      std:: cout << "motorstate_op_flag_ : " << this->motorstate_op_flag_ << std::endl;
-      rclcpp::sleep_for(1s);
-      continue;
-      // return -1;
-    }
+//   while(this->op_mode_ == kHoming) {
+//     // if loadcell is operating
+//     if (this->loadcell_op_flag_ == false || this->motorstate_op_flag_ == false) {
+//       std:: cout << "loadcell_op_flag_   : " << this->loadcell_op_flag_ << std::endl;
+//       std:: cout << "motorstate_op_flag_ : " << this->motorstate_op_flag_ << std::endl;
+//       rclcpp::sleep_for(1s);
+//       continue;
+//       // return -1;
+//     }
 
-    else {
-      /**
-       * @brief Release the wire
-       */
-      RCLCPP_WARN_ONCE(this->get_logger(), "Releasing the wire...");
-      while(this->op_mode_ == kHoming) {
-        for (int i=0; i<NUM_OF_MOTORS; i++) {
-          if(this->loadcell_data_.data[i] >= 20.0) {
-            this->kinematics_control_target_val_.target_position[i] = this->motor_state_.actual_position[i] - 100;
-            loop_out_flag[i] = false;
-          }
-          else {
-            loop_out_flag[i] = true;
-          }
-        }
+//     else {
+//       /**
+//        * @brief Release the wire
+//        */
+//       RCLCPP_WARN_ONCE(this->get_logger(), "Releasing the wire...");
+//       while(this->op_mode_ == kHoming) {
+//         for (int i=0; i<NUM_OF_MOTORS; i++) {
+//           if(this->loadcell_data_.data[i] >= 20.0) {
+//             this->kinematics_control_target_val_.target_position[i] = this->motor_state_.actual_position[i] - 100;
+//             loop_out_flag[i] = false;
+//           }
+//           else {
+//             loop_out_flag[i] = true;
+//           }
+//         }
 
-        // finish releasing the wire
-        bool release_flag = false;
-        for (int i=0; i<NUM_OF_MOTORS; i++) {
-          if (loop_out_flag[i] == false) {
-            release_flag = false;
-            continue;
-          }
-          else {
-            release_flag = true;
-          }
-        }
-        if (release_flag == true) break;
-      }
+//         // finish releasing the wire
+//         bool release_flag = false;
+//         for (int i=0; i<NUM_OF_MOTORS; i++) {
+//           if (loop_out_flag[i] == false) {
+//             release_flag = false;
+//             continue;
+//           }
+//           else {
+//             release_flag = true;
+//           }
+//         }
+//         if (release_flag == true) break;
+//       }
 
-      /**
-       * @brief Reel the wire
-       */
-      RCLCPP_WARN_ONCE(this->get_logger(), "Reeling the wire...");
-      for (int i=0; i<NUM_OF_MOTORS; i++) {
-        loop_out_flag[i] = false;
-      }
-      while(this->op_mode_ == kHoming) {
-        for (int i=0;i <NUM_OF_MOTORS; i++) {
-          if (this->loadcell_data_.data[i] <= 20.0) {
-            this->kinematics_control_target_val_.target_position[i] = this->motor_state_.actual_position[i] + 10;
-            loop_out_flag[i] = false;
-          }
-          else {
-            loop_out_flag[i] = true;
-          }
-        }
+//       /**
+//        * @brief Reel the wire
+//        */
+//       RCLCPP_WARN_ONCE(this->get_logger(), "Reeling the wire...");
+//       for (int i=0; i<NUM_OF_MOTORS; i++) {
+//         loop_out_flag[i] = false;
+//       }
+//       while(this->op_mode_ == kHoming) {
+//         for (int i=0;i <NUM_OF_MOTORS; i++) {
+//           if (this->loadcell_data_.data[i] <= 20.0) {
+//             this->kinematics_control_target_val_.target_position[i] = this->motor_state_.actual_position[i] + 10;
+//             loop_out_flag[i] = false;
+//           }
+//           else {
+//             loop_out_flag[i] = true;
+//           }
+//         }
 
-        // finish reeling the wire
-        bool reel_flag = false;
-        for (int i=0; i<NUM_OF_MOTORS; i++) {
-          if (loop_out_flag[i] == false) {
-            reel_flag = false;
-            continue;
-          }
-          else {
-            reel_flag = true;
-          }
-        }
-        if (reel_flag == true) break;
-      }
+//         // finish reeling the wire
+//         bool reel_flag = false;
+//         for (int i=0; i<NUM_OF_MOTORS; i++) {
+//           if (loop_out_flag[i] == false) {
+//             reel_flag = false;
+//             continue;
+//           }
+//           else {
+//             reel_flag = true;
+//           }
+//         }
+//         if (reel_flag == true) break;
+//       }
 
-      RCLCPP_WARN(this->get_logger(), "Finish Homing");
-      for (int i=0; i<NUM_OF_MOTORS; i++ ) {
-        this->virtual_home_pos_[i] = this->motor_state_.actual_position[i];
-      }
-      this->op_mode_ = kEnable;
-      return 1;
-    }
-  }
-}
+//       RCLCPP_WARN(this->get_logger(), "Finish Homing");
+//       for (int i=0; i<NUM_OF_MOTORS; i++ ) {
+//         this->virtual_home_pos_[i] = this->motor_state_.actual_position[i];
+//       }
+//       this->op_mode_ = kEnable;
+//       return 1;
+//     }
+//   }
+// }
 
 
 void KinematicsControlNode::publishall()

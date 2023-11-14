@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// #ifndef BROADCASTER_2_HPP_
-// #define BROADCASTER_2_HPP_
+#ifndef BROADCASTER_2_HPP_
+#define TF2_BROADCASTER_HPP_
 
 #include <cmath>
 #include <memory>
@@ -48,5 +48,5 @@ private:
   double scale_of_unit_ = 1000;
   bool move_flag_;
 };
-// #endif  // BROADCASTER_HPP_
+#endif  // BROADCASTER_HPP_
 // [출처] 051 TF (오픈소스 소프트웨어 & 하드웨어: 로봇 기술 공유 카페 (오로카)) | 작성자 Routiful

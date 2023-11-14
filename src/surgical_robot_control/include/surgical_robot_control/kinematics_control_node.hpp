@@ -1,5 +1,16 @@
-#ifndef KINEMATICS_CONTROL_NODE_HPP
-#define KINEMATICS_CONTROL_NODE_HPP
+
+/**
+ * @file kinematics_control_node.hpp
+ * @author daeyun (bigyun9375@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2023-11-14
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+#ifndef KINEMATICS_CONTROL_NODE_HPP_
+#define KINEMATICS_CONTROL_NODE_HPP_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,6 +34,7 @@
 #include <cmath>
 #include <signal.h>
 #include <algorithm>
+#include <tuple>
 
 // Surgical Tool Class
 #include "surgical_tool.hpp"
@@ -99,21 +111,10 @@ public:
    */
   double gear_encoder_ratio_conversion(double gear_ratio, int e_channel, int e_resolution);
 
-  /**
-   * @brief Homing mode
-   * @note Do this when starting the motor system
-   */
-  int8_t homing();
-
   void set_position_zero();
 
 private:
   OpMode op_mode_ = kStop;
-  /**
-   * @author DY
-   * @brief At firts, motor homing will be start once;
-   */
-  std::thread homingthread_;
 
   /**
    * @author DY

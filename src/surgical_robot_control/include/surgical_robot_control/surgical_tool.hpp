@@ -1,16 +1,27 @@
-#ifndef SURGICAL_TOOL_HPP
-#define SURGICAL_TOOL_HPP
+/**
+ * @file surgical_tool.hpp
+ * @author daeyun (bigyun9375@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2023-11-14
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+#ifndef SURGICAL_TOOL_HPP_
+#define SURGICAL_TOOL_HPP_
 
 #include <iostream>
 #include <cmath>
 #include <chrono>
 #include <vector>
 #include <math.h>
+#include <tuple>
 
 #include "hw_definition.hpp"
 
 /**
- * @authors DY, JKim
+ * @authors DY, JYoo, JKim
  * @brief Structure of Surgical tool (Forceps)
  * @unit Degree
  * @param pAngle : Pan angle (East(-) & West(+))
@@ -92,13 +103,14 @@ public:
 
   /**
    * @brief Get the bending kinematic result object
-   * @param pAngle 
-   * @param tAngle 
-   * @param grip 
-   * @return void
-   *         but the wrLength** variables has the target values
+   * @param pAngle  pan angle
+   * @param tAngle  tilt angle
+   * @param grip    grip angle
+   * @note   Also, class has the value : this->wrLength** variables has the target values
+   *         or use the return values
+   * @return std::tuple<double ...>
    */
-  void get_bending_kinematic_result(double pAngle, double tAngle, double grip);
+  std::tuple<double, double, double, double, double> get_bending_kinematic_result(double pAngle, double tAngle, double grip);
 
   /**
    * @brief calculate the kinematics

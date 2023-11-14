@@ -1,6 +1,5 @@
 #include "surgical_tool.hpp"
 
-
 SurgicalTool::SurgicalTool() {
 	init_surgicaltool(
 		NUM_OF_JOINT,
@@ -40,7 +39,7 @@ void SurgicalTool::set_forceps_angle(double angle) {	// degree
 	this->target_forceps_angle_ = angle;	// non radian
 }
 
-void SurgicalTool::get_bending_kinematic_result(
+std::tuple<double, double, double, double, double> SurgicalTool::get_bending_kinematic_result(
 	double pAngle,
 	double tAngle,
 	double gAngle)
@@ -51,6 +50,10 @@ void SurgicalTool::get_bending_kinematic_result(
 	this->set_forceps_angle(gAngle);
 	// 3. calculate kinematics
 	this->kinematics();
+
+	return std::make_tuple(this->wrLengthEast_, this->wrLengthWest_, this->wrLengthSouth_, this->wrLengthNorth_, this->wrLengthGrip);
+	// return std::tuple<double, double, double, double, double>
+	// (this->wrLengthEast_, this->wrLengthWest_, this->wrLengthSouth_, this->wrLengthNorth_, this->wrLengthGrip);
 }
 
 void SurgicalTool::kinematics()

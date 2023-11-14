@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#ifndef HW_DEFINITION_HPP
-#define HW_DEFINITION_HPP
+#ifndef HW_DEFINITION_HPP_
+#define HW_DEFINITION_HPP_
 //===============================
 // Motor Parameters
 //===============================
@@ -53,7 +53,11 @@
 //===============================
 #define LOADCELL_THRESHOLD  1000.0
 
-
+//===============================
+// Motor Specification
+// DCX22 series
+// MAXON.co
+//===============================
 typedef struct {
   float gear_ratio = 44;
   int encoder_channel = 3;
