@@ -50,6 +50,11 @@ def generate_launch_description():
       PythonLaunchDescriptionSource(
         [get_package_share_directory('teleop_twist_joy'), '/launch/teleop-launch.py']),
     ),
+    # IncludeLaunchDescription(
+    #   PythonLaunchDescriptionSource(
+    #     [get_package_share_directory('teleop_twist_joy'), '/launch/teleop-launch.py']),
+    #   launch_arguments={'namespace': 'sr'}.items(),
+    # ),
     
     Node(
       package='rviz2',

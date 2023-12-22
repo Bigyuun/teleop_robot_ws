@@ -32,6 +32,7 @@
     <joint name="${robot_name}base-actuator" type="revolute">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="${robot_name}base"/>
+        <!-- <parent link="link6"/> -->
         <child link="${robot_name}actuator"/>
         <axis xyz="1.0 0.0 0.0"/>
         <limit lower="-3.14" upper="3.14" effort="30" velocity="1"/>
